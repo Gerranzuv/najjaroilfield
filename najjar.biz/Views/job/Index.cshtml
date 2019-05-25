@@ -1,0 +1,164 @@
+﻿@model IEnumerable<najjar.biz.Models.Job>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+<div>
+
+    <h2 style="color: #15a589">Job List</h2>
+    <br />
+    <p style="float:right;text-decoration-color:white;">
+
+        <input type="button" class="btn btn-primary btn-default" value="Add New Job" onclick="location.href='@Url.Action("Create", "Job")'" />
+
+    </p>
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            <table align="center">
+
+                <tr>
+                    <td style="padding-right:20px;padding-bottom:20px;">
+                        <b>Job Title</b>
+                    </td>
+                    <td style="padding-right:20px;padding-bottom:20px;">
+                        @Html.TextBox("SearchString")
+                    </td>
+                    <td style="padding-left:50px;padding-right:20px;padding-bottom:20px;">
+                        <b>Status</b>
+                    </td>
+                    <td style="padding-right:20px;padding-bottom:20px;">
+                        @Html.DropDownList("Status", new List<SelectListItem>
+                               { new SelectListItem { Text="Active", Value="Active"},
+                                new SelectListItem{Text="Not Active", Value="Not Active"}
+                          }, "Select Status")
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-right:20px;padding-bottom:20px;">
+                        <b>Category</b>
+                    </td>
+                    <td style="padding-right:20px;padding-bottom:20px;">
+
+                        @Html.DropDownList("Category", new List<SelectListItem>
+                                             {
+                                            new SelectListItem { Text="IT", Value="IT"},
+                                            new SelectListItem{Text="Accountaing", Value="Accountaing"},
+                                            new SelectListItem{Text="Human Resourses", Value="Human Resourses"},
+                                            new SelectListItem{Text="Operation", Value="Operation"},
+                                            new SelectListItem{Text="Goverement", Value="Goverement"},
+                                            new SelectListItem{Text="Sales&Markeing", Value="Sales&Markeing"},
+                                            new SelectListItem{Text="Transporting", Value="Transporting"},
+                                            new SelectListItem{Text="Engineering", Value="Engineering"},
+                                            new SelectListItem{Text="Other", Value="Other"}
+
+                          }, "Select Category")
+
+                    </td>
+
+                    @*<td>
+                    Closing Date
+                </td>
+                <td>
+                    @Html.TextBox("closingDate", new { type = "date" }, new { @class = "form-control" });
+                </td>*@
+                </tr>
+            </table>
+            
+            <br/>
+            
+            <input class="btn btn-primary btn-default"  type="submit" value="Search" style="float: right; position: relative; left: -50%; /* or right 50% */ text-align: left; " />
+        </p>
+    }
+
+    <br />
+    <br />
+
+    <table id="myTable" class="table table table-striped table-hover col-sm-10 col-md-10">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+
+            <th>
+                Announcement Date
+            </th>
+            <th>
+                Closing Date
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.AnnouncementDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClosingDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br />
+
+
+</div>
+
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $('#myTable').DataTable({
+            buttons: [{
+            searching: true,
+            ordering: true,
+            extend: 'excel',
+            text: 'Save current page',
+            exportOptions: {
+                modifier: {
+                    page: 'current'
+                }
+            }
+        }
+            ]
+        });
+    </script>
+}

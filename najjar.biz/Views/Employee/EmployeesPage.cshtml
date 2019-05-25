@@ -1,0 +1,116 @@
+﻿@model PagedList.IPagedList<najjar.biz.Models.Employees>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Employees";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h2 class="alert-info">Employees Information</h2>
+    @*<p style="float:right;text-decoration-color:white;">
+
+        <input type="button" class="btn btn-primary btn-lg" value="Create" onclick="location.href='@Url.Action("Create", "Employee")'" />
+
+    </p>*@
+
+
+
+    <table id="myTable" class="table table table-striped table-hover col-sm-10 col-md-10">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+
+                <th>
+                    Email
+                </th>
+
+                <th>
+                    Joining date
+                </th>
+
+
+                <th>
+                    Type of Employee
+                </th>
+
+                <th>
+                    Status
+                </th>
+                <th>
+                    Department
+                </th>
+                <th>
+                    Manager
+                </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(@item.Name, "EmpCV", new { id = @item.Id }, null)
+                    </td>
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Joiningdate)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TypeOfEmployee)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Department)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Manager)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+
+
+</div>
+
+
+
+@*@section scripts{
+    <script type="text/javascript" language="javascript" src="//
+cdn.datatables.net/1.10.0/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//
+cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/
+dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $('#myTable').DataTable( {
+            buttons: [
+        {
+            searching: false,
+            ordering:  false,
+            extend: 'excel',
+            text: 'Save current page',
+            exportOptions: {
+                modifier: {
+                    page: 'current'
+                }
+            }
+        }
+            ]
+        } );
+    </script>
+}*@

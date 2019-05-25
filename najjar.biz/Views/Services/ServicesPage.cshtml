@@ -1,0 +1,604 @@
+﻿@{
+    ViewBag.Title = "Service Page";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 col-sm-4 sidebar">
+            <br />
+            <ul class="nav nav-stacked nav-pills">
+                @*<li>
+                    @Html.ActionLink("Home", "Index", "Home")
+                </li>*@
+                <li id="wireLine">
+                    <a href="#">WireLine Logging</a>
+                </li>
+                <li id="sickLine">
+                    <a href="#">Sickline</a>
+                </li>
+                <li id="wellTesting">
+                    <a href="#">Surface Well Testing</a>
+                </li>
+                <li id="CoiledTubing">
+                    <a>Coiled Tubing</a>
+                </li>
+                <li id="oilphaseLab">
+                    <a href="#">Oilphase Lab</a>
+                </li>
+
+                <li id="cementing">
+                    <a href="#">Cementing</a>
+                </li>
+                
+            </ul>
+        </div>
+        <!--Wireline Logging -->
+        <div class="col-md-9 col-sm-8" id="wireLineDV">
+            <h1 class="page-header">
+                WireLine Logging
+                <small>For Deeper Customization</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Home", "Index", "Home")
+
+                </li>
+                <li class="active">WireLine Logging</li>
+            </ol>
+            <p><div class="row contClass" style="margin-left:1%">
+    <div class="col-md-7 col-sm-7">
+        <br />
+        <ul class="list-group">
+            <li> <b>History</b></li>
+            <li>
+                <b>Electrical logs.</b>
+                <ul>
+                    <li>Resistivity log.</li>
+                    <li> Borehole Imaging.</li>
+                </ul>
+
+            </li>
+            <li>
+                <b>Porosity logs.</b>
+                <ul>
+                    <li>Density. </li>
+                    <li> Neutron porosity.</li>
+                    <li> Sonic.</li>
+                </ul>
+            </li>
+
+            <li>
+                <b>Lithology logs.</b>
+                <ul>
+                    <li>Gamma ray.</li>
+                    <li>Self/spontaneous potential.</li>
+                </ul>
+            </li>
+
+            <li>
+                <b>Miscellaneous</b>
+                <ul>
+                    <li>Caliper.</li>
+                    <li>Nuclear magnetic resonance.</li>
+                    <li>Spectral noise logging.</li>
+                </ul>
+            </li>
+            <li> <b> Logging while drilling</b> </li>
+            <li><b> Corrosion well logging.</b></li>
+            <li><b> Memory log.</b></li>
+        </ul>
+    </div>
+    <div class="col-md-3 col-sm-3 img-fluid" style="margin-top:10%; margin-right:5%">
+        <img src="~/Images/Services/wirelineLogging.jpg" />
+    </div>
+</div></p>
+        </div>
+
+        <!--Sickline-->
+        <div class="col-md-9 col-sm-8" id="sickLineDV">
+            <h1 class="page-header">
+                Sickline
+                <small>For Deeper Customization</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Home", "Index", "Home")
+
+                </li>
+                <li class="active">Sickline</li>
+            </ol>
+            <p><div class="row contClass" style="margin-left:1%">
+    <div class="col-md-7 col-sm-7">
+        <br />
+        <ul class="list-group">
+            <li> <b>LIVE Digital Slickline Services </b></li>
+            <li>
+                <b>SIMultra Retrievable Bridge Plug </b>
+            </li>
+            <li>
+                <b>Memory Production Logging Services  </b>
+            </li>
+            <li>
+                <b>Slickline Perforating </b>
+            </li>
+            <li>
+                <b>Thermal Profile and Investigation Service  </b>
+            </li>
+            <li>
+                <b>Multifinger Caliper Tool </b>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-3 col-sm-3 img-fluid" style="margin-top:10%; margin-right:5%">
+        <img src="" alt="This is image area" />
+    </div>
+</div>
+
+<br />
+
+<div class="row contClass">
+    <h3 style="margin-left:30%;margin-right:30%; font-weight:700;"> Sickline Tools </h3>
+</div>
+<br />
+<div class="row contClass" style="margin-left:1%">
+    <div class="col-md-7 col-sm-7">
+        <br />
+        <ul class="list-group">
+            <li> <b>Jar </b></li>
+            <li>
+                <b>Stem </b>
+            </li>
+            <li>
+                <b>Pulling Tools  </b>
+            </li>
+            <li>
+                <b>Gauge Cutter (Gauge Ring) </b>
+            </li>
+            <li>
+                <b>Downhole bailer  </b>
+            </li>
+            <li>
+                <b>Sample bailer  </b>
+            </li>
+
+            <li>
+                <b>Stroke bailer  </b>
+            </li>
+
+            <li>
+                <b>Hydrostatic bailer  </b>
+            </li>
+
+            <li>
+                <b>Running Tools   </b>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-3 col-sm-3 img-fluid" style="margin-top:10%; margin-right:5%">
+        <img src="" alt="This is image area" />
+    </div>
+</div></p>
+        </div>
+
+        <!--Surface Well Testing-->
+        <div class="col-md-9 col-sm-8" id="wellTestingDV">
+            <h1 class="page-header">
+                Surface Well Testing
+                <small>For Deeper Customization</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Home", "Index", "Home")
+
+                </li>
+                <li class="active">Surface Well Testing</li>
+            </ol>
+            <p><div class="row contClass" style="margin-left:1%">
+    <div class="col-md-7 col-sm-7">
+        <br />
+        <ul class="list-group">
+
+            <li>
+                <b>Exploration / Development Tests</b>
+                <ul>
+                    <li>Open Hole DST</li>
+                    <li> Cased Hole DST</li>
+                </ul>
+
+            </li>
+
+
+            <li>
+                <b>Production Tests</b>
+                <ul>
+                    <li> Completion Test </li>
+                    <li> Reservoir Limit Test</li>
+                    <li> Interference Test </li>
+                    <li> Early Production Facilities (EPF)</li>
+                    <li> Extended Well Testing</li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+    <div class="col-md-3 col-sm-3 img-fluid" style="margin-top:10%; margin-right:5%">
+        <img src="" alt="This is image area" />
+    </div>
+</div></p>
+        </div>
+
+        <!--Coiled Tubing-->
+        <div class="col-md-9 col-sm-8" id="CoiledTubingDV">
+            <h1 class="page-header">
+                Coiled Tubing
+                <small>For Deeper Customization</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Home", "Index", "Home")
+
+                </li>
+                <li class="active">Coiled Tubing</li>
+            </ol>
+            <p>
+                <div class="row contClass" style="margin-left:1%">
+                    <div class="col-md-7 col-sm-7">
+                        <br />
+                        <ul class="list-group">
+                            <li> <b>Pumping Applications</b></li>
+                            <li>
+                                <b>Mechanical Applications</b>
+
+                            </li>
+                            <li>
+                                <b>General Operations for Flowing Wells </b>
+                                <ul>
+                                    <li>Unloading a Well with Nitrogen. </li>
+                                    <li> Coil Tubing Drilling (CTD) .</li>
+                                    <li> BHA for CTD.</li>
+                                    <li> Logging and perforating.</li>
+                                    <li>  Removing Sand or Fill from a Wellbore.</li>
+                                    <li>  Fracturing / Acidizing a Formation.</li>
+                                    <li>Cementing</li>
+                                </ul>
+                            </li>
+
+
+                        </ul>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="row contClass">
+                    <h3 style="margin-left:30%;margin-right:30%; font-weight:700;display:inline;">Coil tubing Equipment's</h3>
+                </div>
+                <br />
+                <div class="row contClass" style="margin-left:1%">
+                    <div class="col-md-7 col-sm-7">
+                        <br />
+                        <ul class="list-group">
+                            <li> <b>Reel</b></li>
+                            <li>
+                                <b>BOP Stack</b>
+
+                            </li>
+                            <li>
+                                <b>Control panel</b>
+
+                            </li>
+
+                            <li>
+                                <b>Tubing</b>
+
+                            </li>
+                            <li>
+                                <b>Injector </b>
+
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="col-md-3 col-sm-3 img-fluid" style="margin-top: 10%; margin-right: 5%; height:5%; width: 5%;">
+                        <img src="" alt="This is image area" />
+                    </div>
+
+                </div>
+            </p>
+        </div>
+
+        <!--Oilphase Lab-->
+        <div class="col-md-9 col-sm-8" id="oilphaseLabDV">
+            <h1 class="page-header">
+                Oilphase Lab
+                <small>For Deeper Customization</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Home", "Index", "Home")
+
+                </li>
+                <li class="active">Oilphase Lab</li>
+            </ol>
+            <p>
+                <div class="row contClass" style="margin-left:1%">
+                    <div class="col-md-7 col-sm-7">
+                        <br />
+                        <ul class="list-group">
+                            <li>
+                                <b>Reservoir Sampling and Analysis</b>
+
+
+                                <ul>
+                                    <li>Downhole Sampling .</li>
+                                    <li> Surface Sampling .</li>
+                                    <li> Wellsite Fluid Analysis .</li>
+                                    <li> Fluid Laboratory Services.</li>
+                                    <li> Rock Laboratory Services.</li>
+                                </ul>
+
+                            </li>
+
+                            <li>
+                                <b>Deepwater Operations </b>
+
+
+                                <ul>
+                                    <li>Project Readiness.</li>
+                                    <li> Define the Prospect.</li>
+                                    <li> Deepwater Drilling Performance .</li>
+                                    <li> FReservoir Characterization.</li>
+                                    <li> Deepwater Completions.</li>
+                                    <li> Deepwater Production.</li>
+                                </ul>
+
+                            </li>
+                            <li>
+                                <b>
+                                    Oil and Gas Exploration 
+                                </b>
+
+
+                                <ul>
+                                    <li>Play Identification & Evaluation.</li>
+                                    <li> Lead and Prospect Assessment .</li>
+
+                                </ul>
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-3 img-fluid" style="margin-top: 10%; margin-right: 5%; height:50%;width:50%;">
+                        <img src="~/Images/Services/wirelineLogging.jpg" />
+                    </div>
+                </div>
+            </p>
+        </div>
+        
+
+        <!--Cementing-->
+        <div class="col-md-9 col-sm-8" id="cementingDV">
+            <h1 class="page-header">
+                Cementing
+                <small>For Deeper Customization</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Home", "Index", "Home")
+
+                </li>
+                <li class="active">Cementing</li>
+            </ol>
+            <p>
+                <div class="row contClass" style="margin-left:1%">
+                    <div class="col-md-7 col-sm-7">
+                        <br />
+                        <ul class="list-group">
+                            <li> <b>Primary Cementing Job </b></li>
+                            <li>
+                                <b>Single Stage Cementing Job </b>
+                            </li>
+                            <li>
+                                <b>Multi-Stage Cementing Job  </b>
+                            </li>
+                            <li>
+                                <b>Inner String Cementing </b>
+                            </li>
+                            <li>
+                                <b>TSqueeze Cementing Jobs  </b>
+                            </li>
+                            <li>
+                                <b>High pressure squeeze </b>
+                            </li>
+                            <li>
+                                <b>Low pressure squeeze </b>
+                            </li>
+                            <li>
+                                <b>
+                                    Cement Plugs
+                                </b>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-3 img-fluid" style="margin-top: 10%; margin-right: 5%; height: 3%; width: 3%;">
+                        <img src="" />
+                    </div>
+                </div>
+
+            </p>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        function showDiv(x) {
+            //var m = document.getElementById(x);
+            //m.style.display = 'block';
+            var m = '#' + x;
+            $(m).addClass('active');
+            m = m + 'DV';
+            $(m).show();
+           
+           
+        }
+
+        //This code is fucked up and fuck my life -_-
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = window.location.search.substring(1),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                }
+            }
+        };
+
+
+        $(document).ready(function () {
+            $('#wireLineDV').hide();
+            $('#wellTestingDV').hide();
+            $('#sickLineDV').hide();
+            $('#CoiledTubingDV').hide();
+            $('#oilphaseLabDV').hide();
+            $('#cementingDV').hide();
+            var s = getUrlParameter('page');
+            showDiv(s);          
+        });
+
+        $(function () {
+            //LoadData();
+            $("#wireLine").click(function () {
+                $('#wireLineDV').show();
+                $('#wellTestingDV').hide();
+                $('#sickLineDV').hide();
+                $('#CoiledTubingDV').hide();
+                $('#oilphaseLabDV').hide();
+                $('#cementingDV').hide();
+
+                //Hiding active class from side bar
+                $('#wireLine').addClass('active');
+                $('#wellTesting').removeClass('active');
+                $('#sickLine').removeClass('active');
+                $('#CoiledTubing').removeClass('active');
+                $('#oilphaseLab').removeClass('active');
+                $('#cementing').removeClass('active');
+            });
+        });
+
+        $(function () {
+            //LoadData();
+            $("#wellTesting").click(function () {
+                //Hiding and showing the div
+                $('#wireLineDV').hide();
+                $('#wellTestingDV').show();
+                $('#sickLineDV').hide();
+                $('#CoiledTubingDV').hide();
+                $('#oilphaseLabDV').hide();
+                $('#cementingDV').hide();
+
+                //Hiding active class from side bar
+                $('#wireLine').removeClass('active');
+                $('#wellTesting').addClass('active');
+                $('#sickLine').removeClass('active');
+                $('#CoiledTubing').removeClass('active');
+                $('#oilphaseLab').removeClass('active');
+                $('#cementing').removeClass('active');
+
+            });
+        });
+
+        $(function () {
+            //LoadData();
+            $("#sickLine").click(function () {
+                $('#wireLineDV').hide();
+                $('#wellTestingDV').hide();
+                $('#sickLineDV').show();
+                $('#CoiledTubingDV').hide();
+                $('#oilphaseLabDV').hide();
+                $('#cementingDV').hide();
+
+                //Hiding active class from side bar
+                $('#wireLine').removeClass('active');
+                $('#wellTesting').removeClass('active');
+                $('#sickLine').addClass('active');
+                $('#CoiledTubing').removeClass('active');
+                $('#oilphaseLab').removeClass('active');
+                $('#cementing').removeClass('active');
+
+            });
+        });
+
+        $(function () {
+            //LoadData();
+            $("#CoiledTubing").click(function () {
+                $('#wireLineDV').hide();
+                $('#wellTestingDV').hide();
+                $('#sickLineDV').hide();
+                $('#CoiledTubingDV').show();
+                $('#oilphaseLabDV').hide();
+                $('#cementingDV').hide();
+                $('#CoiledTubing').addClass('active');
+
+                //Hiding active class from side bar
+                $('#wireLine').removeClass('active');
+                $('#wellTesting').removeClass('active');
+                $('#sickLine').removeClass('active');
+                $('#CoiledTubing').addClass('active');
+                $('#oilphaseLab').removeClass('active');
+                $('#cementing').removeClass('active');
+            });
+        });
+
+        $(function () {
+            //LoadData();
+            $("#oilphaseLab").click(function () {
+                $('#wireLineDV').hide();
+                $('#wellTestingDV').hide();
+                $('#sickLineDV').hide();
+                $('#CoiledTubingDV').hide();
+                $('#oilphaseLabDV').show();
+                $('#cementingDV').hide();
+
+                //Hiding active class from side bar
+                $('#wireLine').removeClass('active');
+                $('#wellTesting').removeClass('active');
+                $('#sickLine').removeClass('active');
+                $('#CoiledTubing').removeClass('active');
+                $('#oilphaseLab').addClass('active');
+                $('#cementing').removeClass('active');
+                
+            });
+        });
+
+        $(function () {
+            //LoadData();
+            $("#cementing").click(function () {
+                $('#wireLineDV').hide();
+                $('#wellTestingDV').hide();
+                $('#sickLineDV').hide();
+                $('#CoiledTubingDV').hide();
+                $('#oilphaseLabDV').hide();
+                $('#cementingDV').show();
+
+                //Hiding active class from side bar
+                $('#wireLine').removeClass('active');
+                $('#wellTesting').removeClass('active');
+                $('#sickLine').removeClass('active');
+                $('#CoiledTubing').removeClass('active');
+                $('#oilphaseLab').removeClass('active');
+                $('#cementing').addClass('active');
+            });
+        });
+
+
+        
+     </script>
+}  

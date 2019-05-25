@@ -1,0 +1,81 @@
+﻿@model najjar.biz.Models.JobRequest
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>job:@Model.jobName</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>JobRequest</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastModificationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastModificationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FilePath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FilePath)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

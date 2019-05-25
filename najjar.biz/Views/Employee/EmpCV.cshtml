@@ -1,0 +1,106 @@
+﻿@model najjar.biz.Models.Employees
+
+@{
+    ViewBag.Title = "EmpCV";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/CV.css" rel="stylesheet" />
+
+
+
+
+<body>
+
+    <div id="page-wrap">
+        <br/>
+        <br/>
+        <img src="~/Uploads/@Html.DisplayFor(model => model.EmployeeImage)" alt="Employee Image Here" id="pic" style="height:30%; width:30%" />
+
+        <div id="contact-info" class="vcard">
+
+
+            <h1 class="fn">@Html.DisplayFor(model => model.Name)</h1>
+
+            <p>
+                Phone: <span class="tel">@Html.DisplayFor(model => model.PhoneNumber)</span><br />
+                Email: <span class="Email"> @Html.DisplayFor(model => model.Email)</span>
+            </p>
+        </div>
+
+        <div id="objective">
+            <p>
+                Brief Discreption About the Employee
+                Extra Text should be posted here
+            </p>
+        </div>
+
+        <div class="clear"></div>
+
+        <dl>
+            <dd class="clear"></dd>
+
+            <dt>Personan Info</dt>
+            <dd>
+                <h2></h2>
+                <p>
+                    <strong>Name:</strong> @Html.DisplayFor(model => model.Name)<br />
+                    <strong>Birth Date:</strong> @Html.DisplayFor(model => model.BirthDate)<br />
+                    <strong>Birth Place:</strong> @Html.DisplayFor(model => model.BirthDate)<br />
+                    <strong>Joining Date:</strong> @Html.DisplayFor(model => model.StartDate)<br />
+                    <strong>Address:</strong> @Html.DisplayFor(model => model.Address)<br />
+                </p>
+            </dd>
+
+            <dd class="clear"></dd>
+
+            <dt>Skills</dt>
+            <dd>
+                <h2>Office skills</h2>
+                <p>Office and records management, database administration, event organization, customer support, travel coordination</p>
+
+                <h2>Computer skills</h2>
+                <p>Microsoft productivity software (Word, Excel, etc), Adobe Creative Suite, Windows</p>
+            </dd>
+
+            <dd class="clear"></dd>
+
+            <dt>Experience</dt>
+            <dd>
+                <h2>Doomsday Cult <span>Leader/Overlord - Baton Rogue, LA - 1926-2010</span></h2>
+                <ul>
+                    <li>Inspired and won highest peasant death competition among servants</li>
+                    <li>Helped coordinate managers to grow cult following</li>
+                    <li>Provided untimely deaths to all who opposed</li>
+                </ul>
+
+                <h2>The Watering Hole <span>Bartender/Server - Milwaukee, WI - 2009</span></h2>
+                <ul>
+                    <li>Worked on grass-roots promotional campaigns</li>
+                    <li>Reduced theft and property damage percentages</li>
+                    <li>Janitorial work, Laundry</li>
+                </ul>
+            </dd>
+
+            <dd class="clear"></dd>
+
+            <dt>Hobbies</dt>
+            <dd>World Domination, Deep Sea Diving, Murder Most Foul</dd>
+
+            <dd class="clear"></dd>
+
+            <dt>References</dt>
+            <dd>Available on request</dd>
+
+            <dd class="clear"></dd>
+        </dl>
+
+        <div class="clear"></div>
+
+    </div>
+
+</body>
+
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

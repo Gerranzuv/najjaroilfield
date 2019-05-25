@@ -1,0 +1,86 @@
+﻿@model najjar.biz.Models.Articles
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Article", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+       <div class="alert alert-danger" id="error-div" style="display:none">
+           <span id="view-error">
+
+           </span>
+
+       </div>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.title, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.title)
+                @Html.ValidationMessageFor(model => model.title)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.summary, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.summary)
+                @Html.ValidationMessageFor(model => model.summary)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.description)
+                @Html.ValidationMessageFor(model => model.description)
+            </div>
+        </div>
+
+        <div class="form-group">
+           @Html.LabelFor(model => model.attachment, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="upload" id="newsimage"/>
+                @Html.ValidationMessageFor(model => model.attachment)
+            </div>
+        </div>
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Date, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Date)
+                @Html.ValidationMessageFor(model => model.Date)
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" id="save" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section scripts{
+<script>
+    $(function(){
+        $("#save").click(function () {
+            if ($("#newsimage").val == "") {
+                $("#error-div").fadeIn();
+                $("#view-error").append("please select new photo");
+                return false;
+            }
+        });
+        });
+</script>}

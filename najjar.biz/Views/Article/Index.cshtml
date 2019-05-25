@@ -1,0 +1,42 @@
+﻿@model IEnumerable<najjar.biz.Models.Articles>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@*<h2>Articles</h2>
+
+<ul class="nav" style="width:100%">
+    <li class="nav-item cat-btn">
+        <a class="btn btn-primary" href="/Article/">All Articles</a>
+    </li>
+    @foreach (var item in Model)
+    {
+        <li class="nav-item cat-btn">
+            <a class="btn btn-primary" href="?cat=@item.id">@item.title</a>
+        </li>
+    }
+</ul>*@
+<div class="dl-horizontal">
+    @foreach (var item in Model)
+    { 
+        <div class="card">
+            
+            <img class="card-img-bottom"
+                 src="~/Images/@Html.DisplayFor(modelItem => item.attachment)" alt="Card image cap">
+
+            <div class="card-body">
+
+                <h4 class="card-title">@Html.DisplayFor(modelItem => item.title)</h4>
+                <p class="card-text">
+                    @Html.DisplayFor(modelItem => item.description).ToString().Substring(0, item.description.Length > 30 ? 30 : item.description.Length)
+                    <a class="" href="/Article/Details?id=@item.id">read more</a>
+                </p>
+                <p class="card-text text-right"><small class="text-muted">Date: @Html.DisplayFor(modelItem => item.Date)</small></p>
+            </div>
+        </div>
+    }
+</div>

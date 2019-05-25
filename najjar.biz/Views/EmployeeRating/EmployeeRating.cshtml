@@ -1,0 +1,103 @@
+﻿@model IEnumerable<najjar.biz.Models.EmployeeRating>
+
+@{
+    ViewBag.Title = "EmployeeRating";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+    var ratingId = Request.QueryString["Employeeid"];
+}
+
+
+
+<div class="row">
+    <div class="col-md-3 col-sm-4 sidebar">
+        <br />
+        <ul class="nav nav-stacked nav-pills">
+            @*<li>
+                    @Html.ActionLink("Home", "Index", "Home")
+                </li>*@
+            <li id="PersonalInfo">
+                @Html.ActionLink("Personal Information", "PersonalPage", "Employee", new { Employeeid = ratingId }, null)
+            </li>
+            <li id="SalaryInfo">
+                @Html.ActionLink("Salary Information", "SalaryInfo", "Employee", new { Employeeid = ratingId }, null)
+            </li>
+            <li id="EmployeeDocs">
+                @Html.ActionLink("My Documents", "EmployeeDocs", "Support", new { Employeeid = ratingId }, null)
+            </li>
+            <li id="EmployeeVacation">
+                @Html.ActionLink("Employee Vacation", "EmployeeVacation", "EmployeesVacation", new { Employeeid = ratingId }, null)
+            </li>
+            <li id="EmployeeRating" class="active">
+                @Html.ActionLink("Employee Rating", "EmployeeRating", "EmployeeRating", new { Employeeid = ratingId }, null)
+            </li>
+            @*<li id="Termination">
+                @Html.ActionLink(" Termination Status", "SalaryInfo")
+            </li>*@
+
+        </ul>
+    </div>
+
+    <div class="col-md-9 col-sm-8" id="PersonalInfoDV">
+
+       
+        <h2 style="color: #15a589">Employee Rating</h2>
+
+        <p>
+            @Html.ActionLink("Create New", "Create", new { EmployeeId = ratingId })
+        </p>
+        <table class="table">
+            <tr>
+                
+                <th>
+                    @Html.DisplayNameFor(model => model.Year)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rating)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SalaryBeforeUpdate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SalaryAfterUpdate)
+                </th>
+                
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                   
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Year)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rating)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SalaryBeforeUpdate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SalaryAfterUpdate)
+                    </td>
+                    
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+</div>
+
+
+    <!-- /.row -->
+</div>

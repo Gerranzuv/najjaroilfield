@@ -1,0 +1,107 @@
+﻿@model najjar.biz.Models.Employees
+@{
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+
+    var Id = @ViewBag.Employeeid;
+    var Idd = Request.QueryString["Employeeid"];
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 col-sm-4 sidebar">
+            <br />
+            <ul class="nav nav-stacked nav-pills">
+                @*<li>
+                        @Html.ActionLink("Home", "Index", "Home")
+                    </li>*@
+                <li id="PersonalInfo">
+                    @Html.ActionLink("Personal Information", "PersonalPage", new { Employeeid = Idd })
+                </li>
+                <li id="SalaryInfo" class="active">
+                    @Html.ActionLink("Salary Information", "SalaryInfo", new { Employeeid = Idd })
+                </li>
+                <li id="EmployeeDocs" >
+                    @Html.ActionLink("My Documents", "EmployeeDocs", "Support", new { Employeeid = Idd }, null)
+                </li>
+                <li id="EmployeeVacation" >
+                    @Html.ActionLink("Employee Vacation", "EmployeeVacation", "EmployeesVacation", new { Employeeid = Idd }, null)
+                </li>
+                <li id="EmployeeRating">
+                    @Html.ActionLink("Employee Rating", "EmployeeRating", "EmployeeRating", new { Employeeid = Idd }, null)
+                </li>
+                @*<li id="Termination">
+                    @Html.ActionLink(" Termination Status", "SalaryInfo")
+                </li>*@
+
+            </ul>
+        </div>
+
+        <div class="col-md-9 col-sm-8" id="PersonalInfoDV">
+
+            <h2 style="color: #15a589">Salary Information</h2>
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.BasicSalary):
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.BasicSalary)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Trasportation):
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Trasportation)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.HousingAllowance):
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.HousingAllowance)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.FoodAllowance):
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.FoodAllowance)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TotalSalary):
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TotalSalary)
+                </dd>
+
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.SalaryTrasfereMethod):
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SalaryTrasfereMethod)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.SalaryTransfereDestination):
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SalaryTransfereDestination)
+                </dd>
+
+
+
+
+            </dl>
+            <!-- /.row -->
+        </div>
+    </div>
+

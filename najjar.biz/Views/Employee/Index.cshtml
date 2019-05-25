@@ -1,0 +1,147 @@
+﻿@model PagedList.IPagedList<najjar.biz.Models.Employees>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Employees";
+    var Id = Request.QueryString["sourcepage"];
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+    //dynamic Layout;
+    //if (Id == "admin") {
+    //    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+    //}
+        
+    
+    //switch (Id)
+    //{
+    //    case "admin":
+    //        Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+    //        break;
+    //    case "user":
+    //        Layout = "~/Views/Shared/_Layout.cshtml";
+    //        break;
+            
+            
+        //default:
+        //    Layout = "~/Views/Shared/_Layout.cshtml";
+        //    break;
+   
+    
+}
+
+<div >
+    <h2  style="color: #15a589">Employees Management</h2>
+
+    <br />
+    <p  style="float:right;text-decoration-color:white;">
+        
+        <input type="button"  class="btn btn-primary btn-default" value="Create New Employee" onclick="location.href='@Url.Action("Create", "Employee")'" />
+
+    </p>
+
+
+
+    <table id="myTable" class="table table table-striped table-hover col-sm-10 col-md-10">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+
+                <th>
+                    Employee Code
+                </th>
+                <th>
+                    Email
+                </th>
+
+                <th>
+                    Start date
+                </th>
+
+
+               
+
+                <th>
+                    Status
+                </th>
+                <th>
+                    Department
+                </th>
+                <th>
+                   Direct Manager
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(@item.Name, "PersonalPage", new { Employeeid = @item.Id }, null)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmployeeCode)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+
+                   
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Department)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DirectManager)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })  
+                      
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+
+    
+</div>
+
+
+
+@section scripts{
+    <script type="text/javascript" language="javascript" src="//
+cdn.datatables.net/1.10.0/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//
+cdn.datatables.net/plug-ins/be7019ee387/integration/bootstrap/3/
+dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $('#myTable').DataTable( {
+            buttons: [
+        {
+            searching: false,
+            ordering:  false,
+            extend: 'excel',
+            text: 'Save current page',
+            exportOptions: {
+                modifier: {
+                    page: 'current'
+                }
+            }
+        }
+            ]
+        } );
+    </script>
+}

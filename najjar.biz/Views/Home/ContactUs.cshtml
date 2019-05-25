@@ -1,0 +1,135 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Contact <small>We'd Love to Hear From You!</small></h1>
+            <ol class="breadcrumb">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li class="active">Contact</li>
+            </ol>
+        </div>
+        <div class="col-lg-12">
+            <!-- Embedded Google Map using an iframe - to select your location find it on Google maps and paste the link as the iframe src. If you want to use the Google Maps API instead then have at it! -->
+            <iframe width="100%" scrolling="no" height="400px" frameborder="0" src="http://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=37.0625,-95.677068&amp;spn=100.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed" marginwidth="0" marginheight="0"></iframe>
+        </div>
+    </div><!-- /.row -->
+    <div class="row">
+        <div class="col-sm-8">
+            <h3>Let's Get In Touch!</h3>
+            <p>Please leave your message below and we'll contact you asap.</p>
+            <form action="contact-form-submission.php" method="POST" role="form">
+                <div class="row">
+                    <div class="form-group col-lg-4">
+                        <label for="Name">Name</label>
+                        <input type="text" id="Name" class="form-control" name="contact_name">
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label for="Email">Email Address</label>
+                        <input type="email" id="Email" class="form-control" name="contact_email">
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label for="Phone">Phone Number</label>
+                        <input type="phone" id="Phone" class="form-control" name="contact_phone">
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group col-lg-12">
+                        <label for="Message">Message</label>
+                        <textarea id="Message" rows="6" class="form-control" name="contact_message"></textarea>
+                    </div>
+                    <div class="form-group col-lg-12">
+                        @*<input type="hidden" value="contact" name="save">
+                            <button class="btn btn-primary" type="submit" id="btnSave">Submit</button>*@
+                        <input class="btn btn-primary" name="submitButton" id="btnSave" value="Save" type="button">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-4">
+            <h3>Najjar Oilfield Services Company Ltd</h3>
+
+            <p>
+                Syria, Damascus.<br>
+                Dier Attiah, Qalamun Mall, Floor 3.<br>
+            </p>
+            <p><i class="fa fa-phone"></i> <abbr title="Phone">Tel</abbr>: +963 117875555 Ext. 301</p>
+            <p><i class="fa fa-phone"></i> <abbr title="Phone">TeleFax</abbr>: +963 11 7857009</p>
+            <p><i class="fa fa-phone"></i> <abbr title="Phone">P.O.BOX</abbr>: Damascus 11180</p>
+            <p><i class="fa fa-envelope-o"></i> <abbr title="Email">Email</abbr>: <a href="Ask@najjaroilfield.com">Ask@najjaroilfield.com</a></p>
+            <p><i class="fa fa-envelope-o"></i> <abbr title="Email">Web</abbr>: <a href="www.najjaroilfield.com">www.najjaroilfield.com</a></p>
+
+            <p><i class="fa fa-clock-o"></i> <abbr title="Hours">H</abbr>: Monday - Friday: 9:00 AM to 5:00 PM</p>
+            <ul class="list-unstyled list-inline list-social-icons">
+                <li class="tooltip-social facebook-link"><a title="Facebook" data-placement="top" data-toggle="tooltip" href="#facebook-page"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+                <li class="tooltip-social linkedin-link"><a title="LinkedIn" data-placement="top" data-toggle="tooltip" href="#linkedin-company-page"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
+                <li class="tooltip-social twitter-link"><a title="Twitter" data-placement="top" data-toggle="tooltip" href="#twitter-profile"><i class="fa fa-twitter-square fa-2x"></i></a></li>
+                <li class="tooltip-social google-plus-link"><a title="Google+" data-placement="top" data-toggle="tooltip" href="#google-plus-page"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
+            </ul>
+        </div>
+    </div><!-- /.row -->
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+    $(function () {
+        //LoadData();
+        $("#btnSave").click(function () {
+            //alert("");
+            var std = {};
+            std.Name = $("#Name").val();
+            std.Email = $("#Email").val();
+            std.PhoneNumber = $("#Phone").val();
+            std.Message = $("#Message").val();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("addMessage","ContactUs")',
+                data: '{std: ' + JSON.stringify(std) + '}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    alert("Your message was sent, We will contact you asap!");
+                    $("#Name").val('');
+                    $("#Email").val('');
+                    $("#Phone").val('');
+                    $("#Message").val('');
+                },
+                error: function () {
+                    alert("Error while inserting data");
+                }
+            });
+            return false;
+        });
+    });
+
+    @*function LoadData() {
+        $("#tblStudent tbody tr").remove();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("getStudent")',
+            dataType: 'json',
+            data: { id: '' },
+            success: function (data) {
+                var items = '';
+                $.each(data, function (i, item) {
+                    var rows = "<tr>"
+                    + "<td class='prtoducttd'>" + item.studentID + "</td>"
+                    + "<td class='prtoducttd'>" + item.studentName + "</td>"
+                    + "<td class='prtoducttd'>" + item.studentAddress + "</td>"
+                    + "</tr>";
+                    $('#tblStudent tbody').append(rows);
+                });
+            },
+            error: function (ex) {
+                var r = jQuery.parseJSON(response.responseText);
+                alert("Message: " + r.Message);
+                alert("StackTrace: " + r.StackTrace);
+                alert("ExceptionType: " + r.ExceptionType);
+            }
+        });
+        return false;*@
+    //}
+    </script>
+}  

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Cham_United.Models.Employees>
+<link href="~/Content/chamcss.css" rel="stylesheet" />
+@{
+   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    
+        <div class="sidebar">
+            
+
+            @Html.ActionLink("Personal Information", "PersonalInfo")
+            @Html.ActionLink("Salary Information", "SalaryInfo")
+            @Html.ActionLink(" My Documents", "SalaryInfo")
+            @Html.ActionLink(" Termination Status", "SalaryInfo")
+        </div>
+
+        <div class="content">
+
+        </div>
+
+    </body>
+</html>
+
+

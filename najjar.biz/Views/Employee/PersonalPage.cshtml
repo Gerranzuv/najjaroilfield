@@ -1,0 +1,174 @@
+﻿@model najjar.biz.Models.Employees
+@{
+    ViewBag.Title = "Personal Info Page";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+    var Id = Request.QueryString["Employeeid"];
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 col-sm-4 sidebar">
+            <br />
+            <ul class="nav nav-stacked nav-pills">
+                @*<li>
+                    @Html.ActionLink("Home", "Index", "Home")
+                </li>*@
+                <li id="PersonalInfo" class="active" style="color:black !important;">
+                   @Html.ActionLink("Personal Information", "PersonalPage", new { Employeeid = Id })
+                </li>
+                <li id="SalaryInfo" style="color:black !important;">
+                    @Html.ActionLink("Salary Information", "SalaryInfo", new { Employeeid = Id })
+                </li>
+                <li id="EmployeeDocs" style="color:black !important;">
+                    @Html.ActionLink("My Documents", "EmployeeDocs", "Support", new { Employeeid = Id }, null)
+                </li>
+                <li id="EmployeeVacation" style="color:black !important;">
+                    @Html.ActionLink("Employee Vacation", "EmployeeVacation", "EmployeesVacation", new { Employeeid = Id }, null)
+                </li>
+                <li id="EmployeeRating" style="color:black !important;">
+                    @Html.ActionLink("Employee Rating", "EmployeeRating", "EmployeeRating", new { Employeeid = Id }, null)
+                </li>
+                @*<li id="Termination">
+                    <a>Termination</a>
+                </li>*@
+                
+            </ul>
+        </div>
+        
+        <div class="col-md-9 col-sm-8" id="PersonalInfoDV">
+
+            <h2 style="color: #15a589">Personal Information</h2>
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name) :
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.BirthDate) :
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.BirthDate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.BirthPlace) :
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.BirthPlace)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.StartDate) :
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.StartDate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Status) :
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Status)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Department):
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Department)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DirectManager):
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DirectManager)
+                </dd>
+
+            </dl>
+            <hr />
+            <h2 style="color: #15a589">Contact Information</h2>
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PhoneNumber):
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PhoneNumber)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.FixedNumber):
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.FixedNumber)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email):
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Address):
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+            </dl>
+            
+
+            <p style="float:right;text-decoration-color:white;">
+
+                <input type="button" class="btn btn-primary btn-default" value="Edit Info" onclick="location.href='@Url.Action("Edit", "Employee", new { id = Id })'" />
+
+            </p>
+            <hr />
+        </div>
+
+        
+        </div>
+
+    
+
+
+    
+       
+       
+    <!-- /.row -->
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+   
+
+        //        //Hiding active class from side bar
+        //        $('#PersonalInfo').removeClass('active');
+        //        $('#SalaryInfo').removeClass('active');
+        //        $('#EmployeeDocs').removeClass('active');
+        //        $('#Termination').addClass('active');
+        //    });
+        //});
+
+
+        
+     </script>
+}  

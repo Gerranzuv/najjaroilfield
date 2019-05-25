@@ -1,0 +1,153 @@
+﻿@model IEnumerable<najjar.biz.Models.Articles>
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout_main.cshtml";
+}@ViewBag.article
+<!-- Carousel
+    ================================================== -->
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="~/Images/crains_main_1.jpg" alt="First slide">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1><span style="background-color: #15a589; ">Try our new <strong>Cranes</strong></span></h1>
+                    <p></p>
+                    <p><a class="btn btn-lg "style="background-color: #999;color:white;" href="@Url.Action("cranes", "Home")" role="button">Rent Now</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/Images/Drilling_heads_1.jpg" alt="Third slide">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1><span style="background-color: #15a589; ">Drilling Heads from Najjar</span> </h1>
+                    <p></p>
+                    <p><a class="btn btn-lg btn-primary" href="@Url.Action("Quantec", "Services")" role="button">Buy Today</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/Images/slider2.jpg" alt="Second slide">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1></h1>
+                    <p></p>
+                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+</div><!-- /.carousel -->
+<!-- Marketing messaging and featurettes
+    ================================================== -->
+<!-- Wrap the rest of the page in another container to center all the content. -->
+
+<div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+@* @foreach (var item in Model)
+                    {
+        <div class="col-lg-4">
+            <img class="img-circle" src="~/Images/@Html.DisplayFor(modelItem => item.attachment)" alt="Generic placeholder image" style="height: 200px; width: 200px;">
+            <h2>@Html.DisplayFor(modelItem => item.title)</h2>
+            <p>@Html.DisplayFor(modelItem => item.description).ToString().Substring(0, item.description.Length > 200 ? 200 : item.description.Length)</p>
+            <p><a class="btn btn-default" href="/Article/NewsPage?id=@item.id" role="button">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        
+}*@
+
+        <!-- here was the code for foreach var item in model
+            in C:\Users\DELL\Desktop\foreach.txt -->
+        <!-- cranes -->
+
+        <div class="col-lg-4">
+            <img class="img-circle" src="~/Images/cran1.jpg" alt="Generic placeholder image" style="height: 200px; width: 200px;">
+            <h2>Cranes</h2>
+            <p>Compact cranes with single cab for both driving and lifting operation. This compact model has maneuverability capable of accessing narrow specs with all wheel steering, and can be driven on rough or uneven terrain with all wheel driving.</p>
+            <p><a class="btn btn-default" href="@Url.Action("cranes", "Home")" role="button">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <!--quantecs -->
+
+        <div class="col-lg-4">
+            <img class="img-circle" src="~/Images/Services/Quantecs/044_1.png" alt="Generic placeholder image" style="height: 200px; width: 200px;">
+            <h2>Drilling Heads</h2>
+            <p>Rquantec directional PDC bits combine the very latest in HCC bit technology:Best in class cutter technology,superior stability and hydraulic efficiency together with a design philosphy.that is tailored to your drilling objectives</p>
+            <p><a class="btn btn-default" href="@Url.Action("Quantec", "Services")" role="button">View details &raquo;</a></p>
+        </div>
+        <!-- services -->
+
+        <div class="col-lg-4">
+            <img class="img-circle" src="~/Images/2.jpg" alt="Generic placeholder image" style="height: 200px; width: 200px;">
+            <h2>Services</h2>
+            <p>
+                Pumping Applications
+                Mechanical Applications
+                General Operations for Flowing Wells
+                Unloading a Well with Nitrogen.
+                Coil Tubing Drilling (CTD) .
+                BHA for CTD.
+                Logging and perforating.
+                Removing Sand or Fill from a Wellbore.
+            </p>
+            <p><a class="btn btn-default" href="@Url.Action("servicesPage", "services")" role="button">View details &raquo;</a></p>
+        </div>
+    </div><!-- /.row -->
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">Best Oil Services . <span class="text-muted">It'll blow your mind.</span></h2>
+            <p class="lead">NAJJAR has a range of industry-wide products and services from exploration to production, to a better treatment of pipes that improve hydrocarbons, which in turn achieve the best performance of the tank.</p>
+        </div>
+        <div class="col-md-5">
+            <img class="featurette-image img-responsive" src="http://placehold.it/500x500" alt="Generic placeholder image">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-5">
+            <img class="featurette-image img-responsive" src="http://placehold.it/500x500" alt="Generic placeholder image">
+        </div>
+        <div class="col-md-7">
+            <h2 class="featurette-heading">Our future prospects. <span class="text-muted"></span></h2>
+            <p class="lead">We seek for long-term sustainability in our work by introducing new innovations to improve oil and gas production and to try to revive other non-renewable materials with high efficiency, considering the effects of environmental damage which we will try to alleviate them as much as possible.</p>
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">Aregular tests for pipes, <span class="text-muted"> drilling shafts and welds.</span></h2>
+            <p class="lead">The company will make regular tests for pipes, drilling shafts and welds, the disposal of waste of drilling fluids of all kinds will be in suitable ways that do not cause pollution of the environment.</p>
+        </div>
+        <div class="col-md-5">
+            <img class="featurette-image img-responsive" src="http://placehold.it/500x500" alt="Generic placeholder image">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+    <!-- FOOTER -->
+    <footer>
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        @*<p>&copy; 2014 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>*@
+    </footer>
+
+</div><!-- /.container -->

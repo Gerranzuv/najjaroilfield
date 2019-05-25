@@ -1,0 +1,222 @@
+﻿@model najjar.biz.Models.Articles
+@{
+    ViewBag.Title = "News Page";
+    var articleId = Request.QueryString["id"];
+
+}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                @Html.DisplayFor(model => model.title)
+                <small>A Sample Blog Post</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Home", "Index", "Home")
+                </li>
+                <li class="active">Blog Post</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- the actual blog post: title/author/date/content -->
+            <hr>
+            <p>
+                <i class="fa fa-clock-o"></i> Posted on  @Html.DisplayFor(model => model.Date)<a href="#">&nbsp Kinan Abbas</a>
+            </p>
+            <hr>
+            <img class="img-responsive" src="~/Images/@Html.DisplayFor(model=> model.attachment)" style="width:900px;height:300px">
+            <hr>
+            <p class="lead">
+            <p>@Html.DisplayFor(model => model.description)</p>
+            <strong>Placeholder text by:</strong>
+            </p>
+            <ul>
+                <li>
+                    <a href="http://spaceipsum.com/">Space Ipsum</a>
+                </li>
+                <li>
+                    <a href="http://cupcakeipsum.com/">Cupcake Ipsum</a>
+                </li>
+                <li>
+                    <a href="http://tunaipsum.com/">Tuna Ipsum</a>
+                </li>
+            </ul>
+            <hr>
+
+
+            <!-- the comment box -->
+            <div class="well">
+                <h4>Leave a Comment:</h4>
+                <form role="form">
+                    <div class="form-group">
+                        <textarea rows="3" class="form-control" id="Comment"></textarea>
+                    </div>
+                    <input type="hidden" value="@Request.QueryString["id"]" id="myHiddenVar" />
+                    <input class="btn btn-primary" name="submitButton" id="btnSave" value="Submit" type="button">
+                </form>
+            </div>
+            <hr>
+            <!-- the comments -->
+            <table id="myTable">
+                <tr>
+                    @*<h3 id="Comment1">
+                        @*Start Bootstrap*@
+                    @*<small>@*9:41 PM on August 24, 2013*@@*</small>*@
+                    @*</h3>*@
+
+                    @*<p>This has to be the worst blog post I have ever read. It simply makes no sense. You start off by talking about space or something, then you randomly start babbling about cupcakes, and you end off with random fish names.</p>*@
+                </tr>
+                <tr>
+                    <h3 id="Comment2">
+                        @*Start Bootstrap*@
+                        @*<small>9:47 PM on August 24, 2013</small>*@
+                    </h3>
+                    @*<p>Don't listen to this guy, any blog with the categories 'dinosaurs, spaceships, fried foods, wild animals, alien abductions, business casual, robots, and fireworks' has true potential.</p>*@
+                </tr>
+            </table>
+        </div>
+        <div class="col-lg-4">
+            <div class="well">
+                <h4>Blog Search</h4>
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+                <!-- /input-group -->
+            </div>
+            <!-- /well -->
+            <div class="well">
+                <h4>Popular Blog Categories</h4>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="#dinosaurs">Dinosaurs</a>
+                            </li>
+                            <li>
+                                <a href="#spaceships">Spaceships</a>
+                            </li>
+                            <li>
+                                <a href="#fried-foods">Fried Foods</a>
+                            </li>
+                            <li>
+                                <a href="#wild-animals">Wild Animals</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="#alien-abductions">Alien Abductions</a>
+                            </li>
+                            <li>
+                                <a href="#business-casual">Business Casual</a>
+                            </li>
+                            <li>
+                                <a href="#robots">Robots</a>
+                            </li>
+                            <li>
+                                <a href="#fireworks">Fireworks</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /well -->
+            <div class="well">
+                <h4>Side Widget Well</h4>
+                <p>Bootstrap's default well's work great for side widgets! What is a widget anyways...?</p>
+            </div>
+            <!-- /well -->
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+
+    $(function () {
+        LoadData();
+
+
+        $("#btnSave").click(function () {
+            //alert("");
+            //alert("fuck");
+            //var articleId = Request.QueryString["id"];
+            //alert(articleId);
+
+            var std = {};
+            std.Comment = $("#Comment").val();
+            std.Articleid = $("#myHiddenVar").val();
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("addComment", "ArticleComment")',
+                data: '{std: ' + JSON.stringify(std) + '}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    alert("Your comment was added");
+
+                    $("#Comment").val('');
+                    LoadData();
+                },
+                error: function () {
+                    alert("Error while inserting data");
+                }
+            });
+            return false;
+        });
+    });
+
+
+
+
+    function LoadData() {
+      //  $("#tblStudent tbody tr").remove();
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("getComments", "ArticleComment")',
+            dataType: 'json',
+            data: { Aarticleid: $('#myHiddenVar').val() },
+            success: function (data) {
+                var items = '';
+
+
+                $.each(data, function (i, item) {
+                    var dateString = item.Date;
+                    var date = new Date(parseInt(dateString.replace(/\/Date\((\d+)\)\//, '$1')));
+                    //var rows = "<tr>" +
+                    //    "<td style='color:red'>" + item.Comment + "</td>"
+                    //+ "<td class='prtoducttd'>" + item.Articleid + "</td>"
+                    //+ "<td class='prtoducttd'>" + item.Date + "</td>"
+                    //        + "</tr>";
+                    var rowz="<tr><td> <h3>  Guest user"+
+                        "<small>" + date+ "</small>" + "</h3>"
+                    +"<p>"+item.Comment+"</p>"+
+                    "</td></tr>";
+                    //$('#myTable tbody').append(rows);
+                    $('#myTable tbody').append(rowz);
+                });
+            },
+            error: function (ex) {
+                var r = jQuery.parseJSON(response.responseText);
+                alert("Message: " + r.Message);
+                alert("StackTrace: " + r.StackTrace);
+                alert("ExceptionType: " + r.ExceptionType);
+            }
+        });
+        return false;
+    }
+    </script>
+}  

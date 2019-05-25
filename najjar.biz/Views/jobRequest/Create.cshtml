@@ -1,0 +1,101 @@
+﻿@model najjar.biz.Models.JobRequest
+
+@{
+    ViewBag.Title = "Create";
+    var jobId = Request.QueryString["jobId"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<h2 style="color: #15a589">Job:@Model.jobName</h2>
+
+@using (Html.BeginForm("Create", "jobRequest", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <td colspan="1">
+                        <form class="well form-horizontal">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">First Name</label>
+                                    <div class="col-md-8 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                            @Html.EditorFor(model => model.FirstName)
+                                            @Html.ValidationMessageFor(model => model.FirstName)
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Last Name</label>
+                                    <div class="col-md-8 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                            @Html.EditorFor(model => model.LastName)
+                                            @Html.ValidationMessageFor(model => model.LastName)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Phone Number</label>
+                                    <div class="col-md-8 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                            @Html.EditorFor(model => model.PhoneNumber)
+                                            @Html.ValidationMessageFor(model => model.PhoneNumber)
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Email</label>
+                                    <div class="col-md-8 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                            @Html.EditorFor(model => model.EmailAddress)
+                                            @Html.ValidationMessageFor(model => model.EmailAddress)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Upload your CV</label>
+                                    <div class="col-md-8 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-upload"></i></span>
+                                            <input type="file" name="upload" id="imageFile" />
+                                            @Html.ValidationMessageFor(model => model.FilePath)
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.HiddenFor(model => model.jobName, @Model.jobName)
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "jobListForGuest","Job")
+</div>

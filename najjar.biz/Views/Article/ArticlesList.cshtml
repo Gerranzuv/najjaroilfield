@@ -1,0 +1,61 @@
+﻿@model IEnumerable<najjar.biz.Models.Articles>
+@{
+    ViewBag.Title = "Blog Home 2";
+}
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                News Page
+                <small>News Homepage</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    @Html.ActionLink("Home", "Index", "Home")
+                </li>
+                <li class="active">News Page</li>
+            </ol>
+        </div>
+    </div>
+@foreach (var item in Model)
+    {
+    <div class="row">
+        <div class="col-md-1">
+            <p>
+                <i class="fa fa-camera fa-4x"></i>
+            </p>
+            <p>@Html.DisplayFor(modelItem => item.Date)</p>
+        </div>
+        <div class="col-md-5">
+            <a href="/Article/NewsPage?id=@item.id">
+                <img class="img-responsive" src="~/Images/@Html.DisplayFor(modelItem => item.attachment)" style="height:200px;width:350px">
+            </a>
+        </div>
+        <div class="col-md-6">
+            <h3>
+                <a href="/Article/NewsPage?id=@item.id">@Html.DisplayFor(modelItem => item.title)</a>
+            </h3>
+            <p>
+                by <a href="#">Riham and Kinan</a>
+            </p>
+            <p>@Html.DisplayFor(modelItem => item.description).ToString().Substring(0, item.description.Length > 250 ? 250 : item.description.Length)</p>
+            <a href="/Article/NewsPage?id=@item.id" class="btn btn-primary">Read More <i class="fa fa-angle-right"></i></a>
+        </div>
+    </div>
+    <hr>
+    
+}
+    <div class="row">
+        <ul class="pager">
+            <li class="previous">
+                <a href="#">← Older</a>
+            </li>
+            <li class="next">
+                <a href="#">Newer →</a>
+            </li>
+        </ul>
+    </div>
+</div>

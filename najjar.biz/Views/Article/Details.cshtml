@@ -1,0 +1,50 @@
+﻿@model najjar.biz.Models.Articles
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2 class="alert-info">Event Details</h2>
+
+<div>
+    
+	<hr />
+    <dl class="dl-horizontal">
+
+
+
+        <dd>
+            <img class="card-img-bottom"
+                 src="~/Images/@Html.DisplayFor(model=> model.attachment)" alt="Card image cap" style="height:40%; width:40%">
+        </dd>
+        <br />
+
+        <dt>
+            <label>Title Of The Event :</label>
+        </dt>
+
+        <dd>
+            <b> @Html.DisplayFor(model => model.title) </b> 
+        </dd>
+        <br />
+
+
+
+
+        <dt>
+           <label>Details Of The Event :</label>
+        </dt>
+
+        <dd>
+          <b>  @Html.DisplayFor(model => model.description)</b>
+        </dd>
+
+      
+
+    </dl>
+</div>
+<p class="alert-info">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) | @Html.ActionLink("Delete", "Delete", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

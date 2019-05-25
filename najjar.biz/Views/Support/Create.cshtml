@@ -1,0 +1,60 @@
+﻿@model najjar.biz.Models.Support
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+    var IdSupport = Request.QueryString["Employeeid"];
+}
+
+
+
+@using (Html.BeginForm("Create", "Support", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend style="color: #15a589">Add New Document</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Summary)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Summary)
+            @Html.ValidationMessageFor(model => model.Summary) 
+        </div>
+        <div class="editor-label">
+            <label>Files:</label>
+        </div>
+        <div class="editor-field">
+            <input type="file" name="file" multiple="multiple" />
+        </div>
+        <br />
+
+        <p>
+            @Html.HiddenFor(model => model.EmpId, new { Value = IdSupport })
+            <input type="submit" class="btn btn-primary btn-default" value="Create" onsubmit="location.href='@Url.Action("EmployeeDocs", new { Employeeid = IdSupport })'" class="btn btn-lg" />
+      <br/>
+           
+        </p>
+    </fieldset>
+}
+
+
+<div style="color: #15a589">
+
+    @Html.ActionLink("Back to List", "EmployeeDocs", new { Employeeid = IdSupport })
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
