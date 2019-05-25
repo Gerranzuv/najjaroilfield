@@ -440,14 +440,14 @@ namespace najjar.biz.Controllers
         {
             if (ModelState.IsValid)
             {
-                Employees employee = db.EmployeesVacations.Find(employees.id);
-                employee.startDate = employees.startDate;
-                employee.EndDate = employees.EndDate;
-                employee.Status = employees.Status;
-                employee.Duration = (employee.EndDate - employee.startDate).Days;
-                employee.LastModificationDate = DateTime.Now;
-                db.Entry(employee).State = EntityState.Modified;
-                db.SaveChanges();
+                Employees employee = db.Employees.Find(employees.Id);
+                //employee.StartDate = employees.StartDate;
+                //employee.EndDate = employees.EndDate;
+                //employee.Status = employees.Status;
+                //employee.Duration = (employee.EndDate - employee.startDate).Days;
+                //employee.LastModificationDate = DateTime.Now;
+                //db.Entry(employee).State = EntityState.Modified;
+                //db.SaveChanges();
                 return RedirectToAction("SalaryInfo", new { Employeeid = employee.Id });
             }
             return View(employees);
