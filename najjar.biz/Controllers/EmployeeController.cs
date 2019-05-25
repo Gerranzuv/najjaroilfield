@@ -408,6 +408,51 @@ namespace najjar.biz.Controllers
             return RedirectToAction("Index");
         }
 
+
+
+
+        [Authorize]
+        // GET: /Employee/editsalary
+        public ActionResult EditSalary(int? id)
+        {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Employees employee = db.Employees.Find(id);
+            if (employee == null)
+            {
+                return HttpNotFound();
+            }
+            return View(employee);
+        }
+
+
+
+
+
+        //edit salary--post
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateSalary([Bind(Include = "id,startDate,EndDate,Status")] Employees employees)
+        {
+            if (ModelState.IsValid)
+            {
+                Employees employee = db.EmployeesVacations.Find(employees.id);
+                employee.startDate = employees.startDate;
+                employee.EndDate = employees.EndDate;
+                employee.Status = employees.Status;
+                employee.Duration = (employee.EndDate - employee.startDate).Days;
+                employee.LastModificationDate = DateTime.Now;
+                db.Entry(employee).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("SalaryInfo", new { Employeeid = employee.Id });
+            }
+            return View(employees);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
