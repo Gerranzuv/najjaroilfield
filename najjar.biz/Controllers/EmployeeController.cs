@@ -436,18 +436,41 @@ namespace najjar.biz.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UpdateSalary([Bind(Include = "id,startDate,EndDate,Status")] Employees employees)
+        public ActionResult EditSalary(Employees employees)
         {
             if (ModelState.IsValid)
             {
                 Employees employee = db.Employees.Find(employees.Id);
-                //employee.StartDate = employees.StartDate;
-                //employee.EndDate = employees.EndDate;
-                //employee.Status = employees.Status;
-                //employee.Duration = (employee.EndDate - employee.startDate).Days;
-                //employee.LastModificationDate = DateTime.Now;
-                //db.Entry(employee).State = EntityState.Modified;
-                //db.SaveChanges();
+                employee.BasicSalary = employees.BasicSalary;
+                employee.HousingAllowance = employees.HousingAllowance;
+                employee.TrasportAllowance = employees.TrasportAllowance;
+                employee.FoodAllowance = employees.FoodAllowance;
+                employee.TotalSalary = employees.TotalSalary;
+                employee.MonthlySalary = employees.MonthlySalary;
+                employee.OrgUnit = employees.OrgUnit;
+                employee.WorkSchedule = employees.WorkSchedule;
+                employee.PersonalArea = employees.PersonalArea;
+                employee.CostCenter = employees.CostCenter;
+                employee.TelephoneFaxExpenses = employees.TelephoneFaxExpenses;
+                employee.Others = employees.Others;
+                employee.RelocAllowNoTax = employees.RelocAllowNoTax;
+                employee.MiscellaneousDeductions = employees.MiscellaneousDeductions;
+                employee.DSPP = employees.DSPP;
+                employee.NetPay = employees.NetPay;
+                employee.TotalEarnings = employees.TotalEarnings;
+                employee.TotalDeductions = employees.TotalDeductions;
+                employee.MESSAGES = employees.MESSAGES;
+                employee.AccountNumber = employees.AccountNumber;
+                employee.CurrencyPaidIn = employees.CurrencyPaidIn;
+                employee.ExhangeRate = employees.ExhangeRate;
+                         
+                                            
+                
+                
+                
+                employee.lastModificationDate = DateTime.Now;
+                db.Entry(employee).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("SalaryInfo", new { Employeeid = employee.Id });
             }
             return View(employees);
