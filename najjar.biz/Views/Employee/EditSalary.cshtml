@@ -108,7 +108,7 @@
                                                 <label class="col-md-4 control-label">Monthly Salary</label>
                                                 <div class="col-md-8 inputGroupContainer">
                                                     <div class="input-group">
-                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
                                                         @Html.EditorFor(model => model.MonthlySalary)
                                                         @Html.ValidationMessageFor(model => model.MonthlySalary)
                                                     </div>
@@ -118,7 +118,7 @@
                                                 <label class="col-md-4 control-label">Org.Unit</label>
                                                 <div class="col-md-8 inputGroupContainer">
                                                     <div class="input-group">
-                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
                                                         @Html.EditorFor(model => model.OrgUnit)
                                                         @Html.ValidationMessageFor(model => model.OrgUnit)
                                                     </div>
@@ -129,23 +129,14 @@
                                                 <label class="col-md-4 control-label">Work Schedule</label>
                                                 <div class="col-md-8 inputGroupContainer">
                                                     <div class="input-group">
-                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
                                                         @Html.EditorFor(model => model.WorkSchedule)
                                                         @Html.ValidationMessageFor(model => model.WorkSchedule)
                                                     </div>
                                                 </div>
 
                                             </div>
-                                            <div class="form-group">
-                                                <label class="col-md-4 control-label">Personal Area </label>
-                                                <div class="col-md-8 inputGroupContainer">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                                        @Html.EditorFor(model => model.PersonalArea)
-                                                        @Html.ValidationMessageFor(model => model.PersonalArea)
-                                                    </div>
-                                                </div>
-                                            </div>
+                                           
 
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label">Cost Center </label>
@@ -161,7 +152,7 @@
                                                 <label class="col-md-4 control-label"> Telephone,Fax Expenses</label>
                                                 <div class="col-md-8 inputGroupContainer">
                                                     <div class="input-group">
-                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
                                                         @Html.EditorFor(model => model.TelephoneFaxExpenses)
                                                         @Html.ValidationMessageFor(model => model.TelephoneFaxExpenses)
                                                     </div>
@@ -173,7 +164,16 @@
                                 <td colspan="1">
 
                                     <fieldset>
-                                        
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Personal Area </label>
+                                            <div class="col-md-8 inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                                    @Html.EditorFor(model => model.PersonalArea)
+                                                    @Html.ValidationMessageFor(model => model.PersonalArea)
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Others</label>
                                             <div class="col-md-8 inputGroupContainer">
@@ -217,6 +217,17 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                            <label class="col-md-4 control-label">Exhange Rate</label>
+                                            <div class="col-md-8 inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                                    @Html.EditorFor(model => model.ExhangeRate)
+                                                    @Html.ValidationMessageFor(model => model.ExhangeRate)
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                        @*<div class="form-group">
                                             <label class="col-md-4 control-label">Total Earnings</label>
                                             <div class="col-md-8 inputGroupContainer">
                                                 <div class="input-group">
@@ -235,7 +246,7 @@
                                                     @Html.ValidationMessageFor(model => model.TotalDeductions)
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>*@
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">MESSAGES</label>
                                             <div class="col-md-8 inputGroupContainer">
@@ -263,16 +274,6 @@
                                                     <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
                                                     @Html.EditorFor(model => model.CurrencyPaidIn)
                                                     @Html.ValidationMessageFor(model => model.CurrencyPaidIn)
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label">Exhange Rate</label>
-                                            <div class="col-md-8 inputGroupContainer">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                                                    @Html.EditorFor(model => model.ExhangeRate)
-                                                    @Html.ValidationMessageFor(model => model.ExhangeRate)
                                                 </div>
                                             </div>
                                         </div>
