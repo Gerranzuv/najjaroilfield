@@ -463,15 +463,14 @@ namespace najjar.biz.Controllers
                 employee.AccountNumber = employees.AccountNumber;
                 employee.CurrencyPaidIn = employees.CurrencyPaidIn;
                 employee.ExhangeRate = employees.ExhangeRate;
-                         
-                                            
-                
-                
-                
+                       
+                                      
+                                                
                 employee.lastModificationDate = DateTime.Now;
                 db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("SalaryInfo", new { Employeeid = employee.Id });
+                return RedirectToAction("SalaryInfo", new { Employeeid = employees.Id });
+
             }
             return View(employees);
         }

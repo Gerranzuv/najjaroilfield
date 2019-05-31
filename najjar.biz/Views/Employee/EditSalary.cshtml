@@ -23,6 +23,30 @@
           
                 <div class="container">
                     <table class="table table-striped">
+
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.Name)
+                        @Html.HiddenFor(model => model.EId)
+                        @Html.HiddenFor(model => model.PhoneNumber)
+                        @Html.HiddenFor(model => model.AddressInArabic)
+                        @Html.HiddenFor(model => model.StartDate)
+                        @Html.HiddenFor(model => model.Country)
+                        @Html.HiddenFor(model => model.EmployeeCode)
+                        @Html.HiddenFor(model => model.BirthDate)
+                        @Html.HiddenFor(model => model.BirthPlace)
+                        @Html.HiddenFor(model => model.MaritalStatus)
+                        @Html.HiddenFor(model => model.Department)
+                        @Html.HiddenFor(model => model.militaryService)
+                        @Html.HiddenFor(model => model.DirectManager)
+                        @Html.HiddenFor(model => model.Email)
+                        @Html.HiddenFor(model => model.Address)
+                        @Html.HiddenFor(model => model.Status)
+                        @Html.HiddenFor(model => model.Grade)
+                        @Html.HiddenFor(model => model.position)
+
+
+                        @Html.ValidationSummary(true)
                         <tbody>
                             <tr>
                                 <td colspan="1">
@@ -274,7 +298,7 @@
 
      <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Edit Now" class="btn btn-primary btn-lg" style="margin-top:6px; margin-bottom:9px" />
             </div>
         </div>
          
