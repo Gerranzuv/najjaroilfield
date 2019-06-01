@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="jumbotron">
+    <h2>
+        Welcome to Najjar Online Exam System
+    </h2>
+</div>
+
+<div class="row row-bottom-margin">
+    <div class="col-xs-12 col-sm-5">
+        <h3>Good Luck @User.Identity.GetUserName()!</h3>
+    </div>
+</div>
+
+<div class="row row-bottom-margin">
+    <div class="col-xs-12 col-sm-offset-2 col-sm-5">
+        <span class="text-danger">
+            @Html.Raw(TempData["errMessage"])
+        </span>
+    </div>
+</div>
+@using (Html.BeginForm("InstructionPage", "OnlineExam", FormMethod.Post))
+{
+    <div class="row row-bottom-margin">
+        <div class="form-group">
+            @Html.Label("Enter Employee Code", new { @class = "control-label col-12 col-sm-2" })
+            <div class="col-xs-12 col-sm-5">
+                @Html.TextBox("employee_code", null, new { @class="form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="row row-bottom-margin">
+        <div class="form-group">
+            @Html.Label("Select a Test", new { @class = "control-label col-12 col-sm-2" })
+            <div class="col-xs-12 col-sm-5">
+                @Html.DropDownList("TestId",
+                    new SelectList(ViewBag.Tests, "Id", "Name"),
+                    "-- Select a Test",
+                    new { @class="form-control"})
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <div class="col-xs-12 col-sm-5 col-sm-offset-2">
+                <input type="submit" value="Continue" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

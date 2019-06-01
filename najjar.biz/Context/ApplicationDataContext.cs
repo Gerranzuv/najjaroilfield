@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using najjar.biz.Models;
+using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace najjar.biz.Context
@@ -16,26 +17,44 @@ namespace najjar.biz.Context
 
         }
 
-        public System.Data.Entity.DbSet<najjar.biz.Models.Employees> Employees { get; set; }
+        public DbSet<Employees> Employees { get; set; }
 
-        public System.Data.Entity.DbSet<najjar.biz.Models.Support> Supports { get; set; }
+        public DbSet<Support> Supports { get; set; }
 
-        public System.Data.Entity.DbSet<najjar.biz.Models.FileDetail> FileDetails { get; set; }
+        public DbSet<FileDetail> FileDetails { get; set; }
 
-        public System.Data.Entity.DbSet<najjar.biz.Models.Articles> Articles { get; set; }
+        public DbSet<Articles> Articles { get; set; }
 
-        public System.Data.Entity.DbSet<najjar.biz.Models.RoleViewModel> RoleViewModels { get; set; }
+        public DbSet<RoleViewModel> RoleViewModels { get; set; }
 
-        public System.Data.Entity.DbSet<najjar.biz.Models.ContactUs> ContactUs { get; set; }
+        public DbSet<ContactUs> ContactUs { get; set; }
 
-        public System.Data.Entity.DbSet<najjar.biz.Models.ArticleComment> ArticleComments { get; set; }
+        public DbSet<ArticleComment> ArticleComments { get; set; }
 
-        public System.Data.Entity.DbSet<najjar.biz.Models.Job> Jobs { get; set; }
+        public DbSet<Job> Jobs { get; set; }
 
-        public System.Data.Entity.DbSet<najjar.biz.Models.JobRequest> JobRequests { get; set; }
+        public DbSet<JobRequest> JobRequests { get; set; }
 
-        public System.Data.Entity.DbSet<najjar.biz.Models.EmployeesVacation> EmployeesVacations { get; set; }
+        public DbSet<EmployeesVacation> EmployeesVacations { get; set; }
 
-        public System.Data.Entity.DbSet<najjar.biz.Models.EmployeeRating> EmployeeRatings { get; set; }
+        public DbSet<EmployeeRating> EmployeeRatings { get; set; }
+
+        // Online Exam System Entities
+
+        public DbSet<Registration> Registrations { get; set; }
+
+        public DbSet<QuestionCategory> QuestionCategories { get; set; }
+
+        public DbSet<Question> Questions { get; set; }
+
+        public DbSet<Test> Tests { get; set; }
+
+        public DbSet<Choice> Choices { get; set; }
+
+        public DbSet<TestXPaper> TestXPapers { get; set; }
+
+        public DbSet<TestXQuestion> TestXQuestions { get; set; }
+
+        public DbSet<QuestionXDuration> QuestionXDurations { get; set; }
     }
 }
