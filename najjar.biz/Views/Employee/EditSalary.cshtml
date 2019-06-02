@@ -1,0 +1,307 @@
+﻿@model najjar.biz.Models.Employees
+
+@{
+    ViewBag.Title = "EditSalary";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
+<h2 style="color: #15a589">Edit Employee's Salary Information</h2>
+
+@using (Html.BeginForm("EditSalary", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+   
+          
+                <div class="container">
+                    <table class="table table-striped">
+
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.Name)
+                        @Html.HiddenFor(model => model.EId)
+                        @Html.HiddenFor(model => model.PhoneNumber)
+                        @Html.HiddenFor(model => model.AddressInArabic)
+                        @Html.HiddenFor(model => model.StartDate)
+                        @Html.HiddenFor(model => model.Country)
+                        @Html.HiddenFor(model => model.EmployeeCode)
+                        @Html.HiddenFor(model => model.BirthDate)
+                        @Html.HiddenFor(model => model.BirthPlace)
+                        @Html.HiddenFor(model => model.MaritalStatus)
+                        @Html.HiddenFor(model => model.Department)
+                        @Html.HiddenFor(model => model.militaryService)
+                        @Html.HiddenFor(model => model.DirectManager)
+                        @Html.HiddenFor(model => model.Email)
+                        @Html.HiddenFor(model => model.Address)
+                        @Html.HiddenFor(model => model.Status)
+                        @Html.HiddenFor(model => model.Grade)
+                        @Html.HiddenFor(model => model.position)
+
+
+                        @Html.ValidationSummary(true)
+                        <tbody>
+                            <tr>
+                                <td colspan="1">
+                                    <form class="well form-horizontal" onsubmit="alert(1); validateMyForm(event);">
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Basic Salary </label>
+                                                <div class="col-md-8 inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                                        @Html.EditorFor(model => model.BasicSalary)
+                                                        @Html.ValidationMessageFor(model => model.BasicSalary)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Housing Allowance</label>
+                                                <div class="col-md-8 inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                                        @Html.EditorFor(model => model.HousingAllowance)
+                                                        @Html.ValidationMessageFor(model => model.HousingAllowance)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Trasport  Allowance</label>
+                                                <div class="col-md-8 inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                                        @Html.EditorFor(model => model.TrasportAllowance)
+                                                        @Html.ValidationMessageFor(model => model.TrasportAllowance)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Food Allowance</label>
+                                                <div class="col-md-8 inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                                        @Html.EditorFor(model => model.FoodAllowance)
+                                                        @Html.ValidationMessageFor(model => model.FoodAllowance)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Total Salary</label>
+                                                <div class="col-md-8 inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                                        @Html.EditorFor(model => model.TotalSalary)
+                                                        @Html.ValidationMessageFor(model => model.TotalSalary)
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                           
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Monthly Salary</label>
+                                                <div class="col-md-8 inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                                        @Html.EditorFor(model => model.MonthlySalary)
+                                                        @Html.ValidationMessageFor(model => model.MonthlySalary)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Org.Unit</label>
+                                                <div class="col-md-8 inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                                        @Html.EditorFor(model => model.OrgUnit)
+                                                        @Html.ValidationMessageFor(model => model.OrgUnit)
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Work Schedule</label>
+                                                <div class="col-md-8 inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                                        @Html.EditorFor(model => model.WorkSchedule)
+                                                        @Html.ValidationMessageFor(model => model.WorkSchedule)
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                           
+
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Cost Center </label>
+                                                <div class="col-md-8 inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                                        @Html.EditorFor(model => model.CostCenter)
+                                                        @Html.ValidationMessageFor(model => model.CostCenter)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label"> Telephone,Fax Expenses</label>
+                                                <div class="col-md-8 inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                                        @Html.EditorFor(model => model.TelephoneFaxExpenses)
+                                                        @Html.ValidationMessageFor(model => model.TelephoneFaxExpenses)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </td>
+                                <td colspan="1">
+
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Personal Area </label>
+                                            <div class="col-md-8 inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                                    @Html.EditorFor(model => model.PersonalArea)
+                                                    @Html.ValidationMessageFor(model => model.PersonalArea)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Others</label>
+                                            <div class="col-md-8 inputGroupContainer">
+                                                <div class="input-group">
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                                    @Html.EditorFor(model => model.Others)
+                                                    @Html.ValidationMessageFor(model => model.Others)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Reloc Allow No Tax</label>
+                                            <div class="col-md-8 inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                                    @Html.EditorFor(model => model.RelocAllowNoTax)
+                                                    @Html.ValidationMessageFor(model => model.RelocAllowNoTax)
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">DSPP</label>
+                                            <div class="col-md-8 inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                                    @Html.EditorFor(model => model.DSPP)
+                                                    @Html.ValidationMessageFor(model => model.DSPP)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Net Pay</label>
+                                            <div class="col-md-8 inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                                    @Html.EditorFor(model => model.NetPay)
+                                                    @Html.ValidationMessageFor(model => model.NetPay)
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Exhange Rate</label>
+                                            <div class="col-md-8 inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                                    @Html.EditorFor(model => model.ExhangeRate)
+                                                    @Html.ValidationMessageFor(model => model.ExhangeRate)
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                        @*<div class="form-group">
+                                            <label class="col-md-4 control-label">Total Earnings</label>
+                                            <div class="col-md-8 inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                                    @Html.EditorFor(model => model.TotalEarnings)
+                                                    @Html.ValidationMessageFor(model => model.TotalEarnings)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Total Deductions</label>
+                                            <div class="col-md-8 inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                                    @Html.EditorFor(model => model.TotalDeductions)
+                                                    @Html.ValidationMessageFor(model => model.TotalDeductions)
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">MESSAGES</label>
+                                            <div class="col-md-8 inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-user"></i></span>
+                                                    @Html.EditorFor(model => model.MESSAGES)
+                                                    @Html.ValidationMessageFor(model => model.MESSAGES)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">A/C Number</label>
+                                            <div class="col-md-8 inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-user"></i></span>
+                                                    @Html.EditorFor(model => model.AccountNumber)
+                                                    @Html.ValidationMessageFor(model => model.AccountNumber)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Currency Paid In</label>
+                                            <div class="col-md-8 inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                                    @Html.EditorFor(model => model.CurrencyPaidIn)
+                                                    @Html.ValidationMessageFor(model => model.CurrencyPaidIn)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Miscellaneous Deductions</label>
+                                            <div class="col-md-8 inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                                    @Html.EditorFor(model => model.MiscellaneousDeductions)
+                                                    @Html.ValidationMessageFor(model => model.MiscellaneousDeductions)
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                    </fieldset>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+     <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Edit Now" class="btn btn-primary btn-lg" style="margin-top:6px; margin-bottom:9px" />
+            </div>
+        </div>
+         
+      
+}

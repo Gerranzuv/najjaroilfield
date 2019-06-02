@@ -408,6 +408,73 @@ namespace najjar.biz.Controllers
             return RedirectToAction("Index");
         }
 
+
+
+
+        [Authorize]
+        // GET: /Employee/editsalary
+        public ActionResult EditSalary(int? id)
+        {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Employees employee = db.Employees.Find(id);
+            if (employee == null)
+            {
+                return HttpNotFound();
+            }
+            return View(employee);
+        }
+
+
+
+
+
+        //edit salary--post
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditSalary(Employees employees)
+        {
+            if (ModelState.IsValid)
+            {
+                Employees employee = db.Employees.Find(employees.Id);
+                employee.BasicSalary = employees.BasicSalary;
+                employee.HousingAllowance = employees.HousingAllowance;
+                employee.TrasportAllowance = employees.TrasportAllowance;
+                employee.FoodAllowance = employees.FoodAllowance;
+                employee.TotalSalary = employees.TotalSalary;
+                employee.MonthlySalary = employees.MonthlySalary;
+                employee.OrgUnit = employees.OrgUnit;
+                employee.WorkSchedule = employees.WorkSchedule;
+                employee.PersonalArea = employees.PersonalArea;
+                employee.CostCenter = employees.CostCenter;
+                employee.TelephoneFaxExpenses = employees.TelephoneFaxExpenses;
+                employee.Others = employees.Others;
+                employee.RelocAllowNoTax = employees.RelocAllowNoTax;
+                employee.MiscellaneousDeductions = employees.MiscellaneousDeductions;
+                employee.DSPP = employees.DSPP;
+                employee.NetPay = employees.NetPay;
+                employee.TotalEarnings = employees.TotalEarnings;
+                employee.TotalDeductions = employees.TotalDeductions;
+                employee.MESSAGES = employees.MESSAGES;
+                employee.AccountNumber = employees.AccountNumber;
+                employee.CurrencyPaidIn = employees.CurrencyPaidIn;
+                employee.ExhangeRate = employees.ExhangeRate;
+                       
+                                      
+                                                
+                employee.lastModificationDate = DateTime.Now;
+                db.Entry(employee).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("SalaryInfo", new { Employeeid = employees.Id });
+
+            }
+            return View(employees);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

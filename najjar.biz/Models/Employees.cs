@@ -78,9 +78,9 @@ namespace najjar.biz.Models
         public Double BasicSalary{ get; set; }
 
 
-        
-        [Display(Name = "Trasportation ")]
-        public Double Trasportation{ get; set; }
+
+        [Display(Name = "Trasport  Allowance")]
+        public Double TrasportAllowance { get; set; }
 
        
         [Display(Name = "Housing Allowance ")]
@@ -149,6 +149,69 @@ namespace najjar.biz.Models
         [Display(Name = "Employee Code")]
         public String EmployeeCode { get; set; }
 
+
         public List<Registration> Registrations { get; set; }
+
+        [Display(Name = "Monthly Salary ")]
+        public Double MonthlySalary { get; set; }
+
+        [Required]
+        [Display(Name = "Org.Unit")]
+        public String OrgUnit { get; set; }
+
+        [Required]
+        [Display(Name = "Work Schedule")]
+        public String WorkSchedule { get; set; }
+
+
+        [Required]
+        [Display(Name = "Personal Area")]
+        public String PersonalArea { get; set; }
+
+        [Display(Name = "Cost Center ")]
+        public Double CostCenter { get; set; }
+
+        [Display(Name = "Telephone,Fax Expenses ")]
+        public Double TelephoneFaxExpenses { get; set; }
+
+        [Display(Name = "Others")]
+        public Double Others { get; set; }
+
+        [Display(Name = "Reloc Allow No Tax")]
+        public Double RelocAllowNoTax { get; set; }
+
+        [Display(Name = "Miscellaneous Deductions")]
+        public Double MiscellaneousDeductions { get; set; }
+
+        [Display(Name = "DSPP")]
+        public Double DSPP { get; set; }
+
+        [Display(Name = "Net Pay")]
+        public Double NetPay { get; set; }
+
+        [Display(Name = "Total Earnings" )]
+        public Double TotalEarnings { get; set; }
+
+        [Display(Name = "Total Deductions")]
+        public Double TotalDeductions { get; set; }
+
+
+        [Required]
+        [Display(Name = "MESSAGES")]
+        public String MESSAGES { get; set; }
+
+
+        [Display(Name = "A/C Number")]
+        public Double AccountNumber { get; set; }
+
+        [Required]
+        [Display(Name = "Currency Paid In")]
+        public String CurrencyPaidIn { get; set; }
+
+
+        [Display(Name = "Exhange Rate")]
+        public Double ExhangeRate { get; set; }
+
+
     }
     }
