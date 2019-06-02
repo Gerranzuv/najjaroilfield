@@ -135,7 +135,7 @@
                 </dd>
             </dl>
         </div>
-        <div class="col-md-2 col-sm-6" id="PersonalInfoDV" style="margin-top: -24%; margin-left: 50%">
+        <div class="col-md-2 col-sm-6" id="PersonalInfoDV" style="margin-top: -24%; margin-left: 60%">
 
             <dl class="dl-horizontal">
                 <dt>
@@ -179,22 +179,22 @@
                 </dd>
 
 
-                <dt>
+                @*<dt>
                     @Html.DisplayNameFor(model => model.TotalEarnings):
                 </dt>
 
                 <dd>
                     @Html.DisplayFor(model => model.TotalEarnings)
-                </dd>
+                </dd>*@
 
 
-                <dt>
+                @*<dt>
                     @Html.DisplayNameFor(model => model.TotalDeductions):
                 </dt>
 
                 <dd>
                     @Html.DisplayFor(model => model.TotalDeductions)
-                </dd>
+                </dd>*@
 
 
                 <dt>
@@ -239,10 +239,12 @@
         </div>
 
         <td>
-            @Html.ActionLink("EditSalary", "EditSalary", new { id = Model.Id }) 
-           
 
-        </td>
+            <p  style="margin-top: 25%; margin-left: 50%">
+                @Html.ActionLink("Update Salary Info", "EditSalary", new { id = Model.Id })
+
+            </p>
+</td>
     </div>
 
 </div>
