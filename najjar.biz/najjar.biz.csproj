@@ -311,7 +311,6 @@
     <Compile Include="Migrations\201905170800302_kinan2020.Designer.cs">
       <DependentUpon>201905170800302_kinan2020.cs</DependentUpon>
     </Compile>
-
     <Compile Include="Migrations\201905302255461_ExamSystemMigration.cs" />
     <Compile Include="Migrations\201905302255461_ExamSystemMigration.Designer.cs">
       <DependentUpon>201905302255461_ExamSystemMigration.cs</DependentUpon>
@@ -323,10 +322,18 @@
     <Compile Include="Migrations\201905311706158_UpdateRegistration_Employee_Models.cs" />
     <Compile Include="Migrations\201905311706158_UpdateRegistration_Employee_Models.Designer.cs">
       <DependentUpon>201905311706158_UpdateRegistration_Employee_Models.cs</DependentUpon>
-
+    </Compile>
     <Compile Include="Migrations\201905251008430_account1.cs" />
     <Compile Include="Migrations\201905251008430_account1.Designer.cs">
       <DependentUpon>201905251008430_account1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906021311091_test10.cs" />
+    <Compile Include="Migrations\201906021311091_test10.Designer.cs">
+      <DependentUpon>201906021311091_test10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906021322581_kinan000.cs" />
+    <Compile Include="Migrations\201906021322581_kinan000.Designer.cs">
+      <DependentUpon>201906021322581_kinan000.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArticleComment.cs" />
@@ -712,7 +719,6 @@
     <EmbeddedResource Include="Migrations\201905170800302_kinan2020.resx">
       <DependentUpon>201905170800302_kinan2020.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="Migrations\201905302255461_ExamSystemMigration.resx">
       <DependentUpon>201905302255461_ExamSystemMigration.cs</DependentUpon>
     </EmbeddedResource>
@@ -721,9 +727,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905311706158_UpdateRegistration_Employee_Models.resx">
       <DependentUpon>201905311706158_UpdateRegistration_Employee_Models.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905251008430_account1.resx">
       <DependentUpon>201905251008430_account1.cs</DependentUpon>
-
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906021311091_test10.resx">
+      <DependentUpon>201906021311091_test10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906021322581_kinan000.resx">
+      <DependentUpon>201906021322581_kinan000.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -903,7 +915,6 @@
     <Content Include="Views\OnlineExam\_single_choice_partial.cshtml" />
     <Content Include="Views\OnlineExam\_multi_choice_partial.cshtml" />
     <Content Include="Views\OnlineExam\FinalResult.cshtml" />
-
     <Content Include="Views\Employee\EditSalary.cshtml" />
   </ItemGroup>
   <ItemGroup />
