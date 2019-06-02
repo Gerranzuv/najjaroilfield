@@ -212,6 +212,7 @@
     <Compile Include="Controllers\jobController.cs" />
     <Compile Include="Controllers\jobRequestController.cs" />
     <Compile Include="Controllers\OnlineExamController.cs" />
+    <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\SupportController.cs" />
@@ -916,6 +917,11 @@
     <Content Include="Views\OnlineExam\_multi_choice_partial.cshtml" />
     <Content Include="Views\OnlineExam\FinalResult.cshtml" />
     <Content Include="Views\Employee\EditSalary.cshtml" />
+    <Content Include="Views\Question\Create.cshtml" />
+    <Content Include="Views\Question\Delete.cshtml" />
+    <Content Include="Views\Question\Details.cshtml" />
+    <Content Include="Views\Question\Edit.cshtml" />
+    <Content Include="Views\Question\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
