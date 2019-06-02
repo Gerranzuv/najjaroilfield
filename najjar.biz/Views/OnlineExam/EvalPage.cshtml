@@ -1,0 +1,160 @@
+﻿@model najjar.biz.ViewModels.QuestionModel
+@{ 
+    var endTime = DateTime.Now.AddMinutes(Model.DurationInMinutes);
+    var timeRemaining = TimeSpan.FromTicks(endTime.Ticks - DateTime.Now.Ticks).TotalSeconds;
+}
+<div class="row">
+    <div class="col-xs-6 col-sm-4">
+        <h3>@Model.TestName</h3>
+        <p>
+            TimeRemaining:&nbsp;<span id="minRemaining"></span>&nbsp;:&nbsp;<span id="secRemaining"></span>
+        </p>
+    </div>
+    <div class="col-xs-6 col-sm-4 col-sm-offset-4">
+        <a href="javascript:void(0);" onclick="finishExam(this);" class="btn btn-primary">
+            Finish The Exam
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-3">
+        <h3>Question Number:&nbsp;@Model.QuestionNumber</h3>
+    </div>
+</div>
+<div class="jumbotron">
+    @Model.Question
+</div>
+
+@using (Html.BeginForm("PostAnswer", "OnlineExam", FormMethod.Post, new { @id = "formAnswer" }))
+{
+
+    <input type="hidden" name="Token" value="@Session["TOKEN"]" />
+    <input type="hidden" name="Direction" value="forward" />
+    <input type="hidden" name="TestId" value="@Model.TestId" />
+    <input type="hidden" name="QuestionId" value="@Model.QuestionNumber" />
+
+    if (Model.QuestionType.Equals("multi_choice", StringComparison.InvariantCultureIgnoreCase))
+    {
+        Html.RenderPartial("_multi_choice_partial", Model);
+    }
+    else
+    {
+        Html.RenderPartial("_single_choice_partial", Model);
+    }
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2 cols-sm-6 col-sm-offset-3">
+            <table class="table table-responsive">
+                <tr>
+                    <td>
+                        <a href="javascript:void(0);" onclick="saveBackward(this)" class="btn btn-primary">
+                            Save and Previous
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("EvalPage", "OnlineExam", new { @token = Request.Params["token"], @qno = Model.QuestionNumber - 1 })" class="btn btn-default">
+                            &lt;&lt;Previous
+                        </a>
+                    </td>
+                    @for (int i = 1; i <= Model.TotalQuestionInSet; i++)
+                    {
+                        <td>
+                            <a href="@Url.Action("EvalPage", "OnlineExam", new { @token = Request.Params["token"], @qno = i })" class="btn btn-primary">
+                                @i
+                            </a>
+                        </td>
+                    }
+                    <td>
+                        <a href="@Url.Action("EvalPage", "OnlineExam", new { @token = Request.Params["token"], @qno = Model.QuestionNumber + 1 })" class="btn btn-default">
+                            Next&gt;&gt;
+                        </a>
+                    </td>
+                    <td>
+                        <a href="javascript:void(0);" onclick="saveForward(this)" class="btn btn-primary">
+                            Save and Next
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+}
+
+@using(Html.BeginForm("FinalResult", "OnlineExam", FormMethod.Post, new { @id="finalRsltForm" }))
+{
+    <input type="hidden" name="token" value="@Session["TOKEN"]" />
+    <input type="hidden" name="TestId" value="@Model.TestId" />
+}
+
+<script type="text/javascript">
+
+    // Save and Next ----->
+    function saveForward(sender) {
+
+        $('input[name="Direction"]').val('forward');
+        document.getElementById('formAnswer').submit();
+    }
+
+    // Save and Previous ----->
+    function saveBackward(sender) {
+
+        $('input[name="Direction"]').val('backward');
+        document.getElementById('formAnswer').submit();
+    }
+
+    function finishExam(sender) {
+        document.getElementById('finalRsltForm').submit();
+    }
+
+    $(document).ready(function () {
+
+    var remainingSeconds = @timeRemaining;
+    var secondsCounter = remainingSeconds % 60;
+
+    function formatNumber(number) {
+        return number < 10 ? '0' + number : '' + number;
+    }
+
+    function startTick() {
+
+        document.getElementById('minRemaining').innerText = parseInt(remainingSeconds / 60);
+        document.getElementById('secRemaining').innerText = formatNumber(secondsCounter);
+
+        var _tick = setInterval(function () {
+
+            if (remainingSeconds > 0) {
+                if (secondsCounter == 0) {
+                    secondsCounter = 60;
+                }
+
+                remainingSeconds -= 1;
+                secondsCounter -= 1;
+                document.getElementById('minRemaining').innerText = parseInt(remainingSeconds / 60);
+                document.getElementById('secRemaining').innerText = formatNumber(secondsCounter);
+            } else {
+                alert('Your Time Has expired!. You will redirected to the Final Result Page!');
+
+                setTimeout(function () {
+                    window.location = "/";
+                }, 2500);
+                clearInterval(_tick);
+            }
+        }, 1000);
+    }
+
+    startTick();
+
+        // Select only one radio Button.
+
+        $('input[type="radio"]').on('click', function () {
+
+        var clickedRadioBtn = $(this).attr('name');
+
+            $('input[type="radio"]').not('[name="' + clickedRadioBtn + '"]').each(function (i, e) {
+                $(e).prop("checked", false);
+
+        });
+
+    });
+
+});
+</script>

@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-
+using System.ComponentModel.DataAnnotations.Schema;
 namespace najjar.biz.Models
 {
     public class Employees
     {
-        
-       [Key]
-       public int Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [Display(Name = "Name")]
@@ -151,6 +149,9 @@ namespace najjar.biz.Models
         [Display(Name = "Employee Code")]
         public String EmployeeCode { get; set; }
 
+
+        public List<Registration> Registrations { get; set; }
+
         [Display(Name = "Monthly Salary ")]
         public Double MonthlySalary { get; set; }
 
@@ -210,6 +211,7 @@ namespace najjar.biz.Models
 
         [Display(Name = "Exhange Rate")]
         public Double ExhangeRate { get; set; }
+
 
     }
     }

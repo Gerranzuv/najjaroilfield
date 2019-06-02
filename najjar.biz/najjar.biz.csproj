@@ -24,6 +24,8 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -58,6 +60,12 @@
     <Reference Include="EcmaScript.NET, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\EcmaScript.Net.1.0.1.0\lib\net20\EcmaScript.NET.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Fasterflect, Version=2.1.3.0, Culture=neutral, PublicKeyToken=38d18473284c1ca7, processorArchitecture=MSIL">
       <HintPath>..\packages\fasterflect.2.1.3\lib\net40\Fasterflect.dll</HintPath>
@@ -147,12 +155,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -209,9 +211,11 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\jobController.cs" />
     <Compile Include="Controllers\jobRequestController.cs" />
+    <Compile Include="Controllers\OnlineExamController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\SupportController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -307,12 +311,26 @@
     <Compile Include="Migrations\201905170800302_kinan2020.Designer.cs">
       <DependentUpon>201905170800302_kinan2020.cs</DependentUpon>
     </Compile>
+
+    <Compile Include="Migrations\201905302255461_ExamSystemMigration.cs" />
+    <Compile Include="Migrations\201905302255461_ExamSystemMigration.Designer.cs">
+      <DependentUpon>201905302255461_ExamSystemMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905311118193_UpdatedExamSystemMigration.cs" />
+    <Compile Include="Migrations\201905311118193_UpdatedExamSystemMigration.Designer.cs">
+      <DependentUpon>201905311118193_UpdatedExamSystemMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905311706158_UpdateRegistration_Employee_Models.cs" />
+    <Compile Include="Migrations\201905311706158_UpdateRegistration_Employee_Models.Designer.cs">
+      <DependentUpon>201905311706158_UpdateRegistration_Employee_Models.cs</DependentUpon>
+
     <Compile Include="Migrations\201905251008430_account1.cs" />
     <Compile Include="Migrations\201905251008430_account1.Designer.cs">
       <DependentUpon>201905251008430_account1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArticleComment.cs" />
+    <Compile Include="Models\ExamSystemModels\Choice.cs" />
     <Compile Include="Models\EmployeeRating.cs" />
     <Compile Include="Models\EmployeesVacation.cs" />
     <Compile Include="Models\ContactUs.cs" />
@@ -323,13 +341,23 @@
     <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Models\Job Request.cs" />
     <Compile Include="Models\Job.cs" />
+    <Compile Include="Models\ExamSystemModels\Question.cs" />
+    <Compile Include="Models\ExamSystemModels\QuestionCategory.cs" />
+    <Compile Include="Models\ExamSystemModels\QuestionXDuration.cs" />
+    <Compile Include="Models\ExamSystemModels\Registration.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\Support.cs" />
+    <Compile Include="Models\ExamSystemModels\Test.cs" />
+    <Compile Include="Models\ExamSystemModels\TestXPaper.cs" />
+    <Compile Include="Models\ExamSystemModels\TestXQuestion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModels\ChoiceModel.cs" />
+    <Compile Include="ViewModels\InstructionPageModel.cs" />
+    <Compile Include="ViewModels\QuestionModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\aspnet-najjar.biz-20140225031045.mdf" />
@@ -408,6 +436,7 @@
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\carousel.css" />
+    <Content Include="css\site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -683,8 +712,18 @@
     <EmbeddedResource Include="Migrations\201905170800302_kinan2020.resx">
       <DependentUpon>201905170800302_kinan2020.cs</DependentUpon>
     </EmbeddedResource>
+
+    <EmbeddedResource Include="Migrations\201905302255461_ExamSystemMigration.resx">
+      <DependentUpon>201905302255461_ExamSystemMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905311118193_UpdatedExamSystemMigration.resx">
+      <DependentUpon>201905311118193_UpdatedExamSystemMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905311706158_UpdateRegistration_Employee_Models.resx">
+      <DependentUpon>201905311706158_UpdateRegistration_Employee_Models.cs</DependentUpon>
     <EmbeddedResource Include="Migrations\201905251008430_account1.resx">
       <DependentUpon>201905251008430_account1.cs</DependentUpon>
+
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -855,6 +894,16 @@
     <Content Include="Static\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Static\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Static\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Views\OnlineExam\Index.cshtml" />
+    <Content Include="Views\OnlineExam\InstructionPage.cshtml" />
+    <Content Include="Views\Test\Create.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Test\_ViewStart.cshtml" />
+    <Content Include="Views\OnlineExam\EvalPage.cshtml" />
+    <Content Include="Views\OnlineExam\_single_choice_partial.cshtml" />
+    <Content Include="Views\OnlineExam\_multi_choice_partial.cshtml" />
+    <Content Include="Views\OnlineExam\FinalResult.cshtml" />
+
     <Content Include="Views\Employee\EditSalary.cshtml" />
   </ItemGroup>
   <ItemGroup />

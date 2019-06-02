@@ -1,0 +1,35 @@
+﻿@model najjar.biz.ViewModels.InstructionPageModel
+
+@{
+    ViewBag.Title = "InstructionPage";
+}
+
+<h2>Instruction Page for <strong>@Model.Test.Name</strong> Test. Good Luck!</h2>
+<div class="row">
+    <div class="col-xs-6">
+        <h4>@Model.Test.Name</h4>
+    </div>
+    <div class="col-xs-6">
+        <h4>Time:&nbsp;@Model.Test.DurationInMinutes</h4>
+    </div>
+</div>
+<div class="row row-bottom-margin">
+    <div class="col-xs-offset-6 col-xs-6">
+        <h4>
+            Number of Questions:&nbsp;@Model.Test.TestXQuestions.Count(q => q.IsActive)
+        </h4>
+    </div>
+</div>
+<div class="jumbotron">
+    @Model.Test.Description
+</div>
+@using (Html.BeginForm("Register", "OnlineExam", FormMethod.Post, new { @id = "registerForm" }))
+{
+    @Html.Hidden("TestId", Model.Test.Id)
+    @Html.Hidden("employee_code", Model.employee.EmployeeCode)
+    <a href="javascript:void(0);" onclick="getElementById('registerForm').submit()" class="btn btn-primary">
+        Register and start
+    </a>
+}
+
+

@@ -16,7 +16,7 @@ namespace najjar.biz.Controllers
         private ApplicationDataContext db = new ApplicationDataContext();
 
         // GET: /job/
-        public ActionResult Index(string searchString,string status,String category)
+        public ActionResult Index(string searchString,string status,string category)
         {
             var jobs = from s in db.Jobs
                        select s;

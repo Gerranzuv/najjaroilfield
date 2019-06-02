@@ -1,0 +1,12 @@
+﻿@model najjar.biz.ViewModels.QuestionModel
+
+@for(int index = 0; index < Model.Options.Count; index++)
+{
+    <input type="hidden" name="UserSelectedChoices[@index].ChoiceId" value="@Model.Options[index].ChoiceId" />
+    <div class="checkbox">
+        <label><input name="UserSelectedChoices[@index].IsChecked" 
+                      type="checkbox"
+                      @(!string.IsNullOrEmpty(Model.Options[index].Answer) ? "CHECKED" : "")
+                      />@Model.Options[index].Label</label>
+    </div>
+}

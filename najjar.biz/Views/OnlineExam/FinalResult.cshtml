@@ -1,0 +1,40 @@
+﻿@model IEnumerable<najjar.biz.Models.TestXPaper>
+
+<h3>Your Final Result</h3>
+<div class="row">
+    <div class="col-sm-offset-3 col-sm-6">
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Your Choice</th>
+                    <th>Mark Scored</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.TestXQuestion.QuestionNumber
+                        </td>
+                        <td>
+                            @item.Choice.Label
+                        </td>
+                        <td>
+                            @item.MarkScored
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td>
+                        <strong>Final Result</strong>
+                    </td>
+                    <td>
+                        @Model.Sum(x => x.MarkScored)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
