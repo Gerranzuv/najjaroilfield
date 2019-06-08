@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -19,124 +19,115 @@ namespace najjar.biz.Models
         [Display(Name = "EId")]
         public string EId { get; set; }
 
-        
         [Display(Name = "Last Modification Date")]
-        public DateTime lastModificationDate{ get; set; }
+        public DateTime lastModificationDate { get; set; }
 
-        
         [Display(Name = "Creation Date")]
-        public DateTime creationDate{ get; set; }
+        public DateTime creationDate { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
         [Display(Name = "Birth Date")]
-        public DateTime BirthDate{ get; set; }
+        public DateTime BirthDate { get; set; }
 
         [Required]
         [Display(Name = "Birth Place")]
-        public String BirthPlace{ get; set; }
+        public String BirthPlace { get; set; }
 
         [Required]
         [Display(Name = "Marital Status")]
-        public String MaritalStatus{ get; set; }
+        public String MaritalStatus { get; set; }
 
         [Required]
         [Display(Name = "Phone Number")]
-        public String PhoneNumber{ get; set; }
+        public String PhoneNumber { get; set; }
 
 
-       
+
         [Display(Name = "Fixed Number")]
-        public String FixedNumber{ get; set; }
+        public String FixedNumber { get; set; }
 
         [Required]
         [EmailAddress]
         [Display(Name = "Email ")]
-       
-        public String Email{ get; set; }
+
+        public String Email { get; set; }
 
 
         [Required]
         [Display(Name = "Address")]
-        public String Address{ get; set; }
+        public String Address { get; set; }
 
 
         [Required]
-        [Display(Name = "Address In Arabic")]        
-        public String AddressInArabic{ get; set; }
+        [Display(Name = "Address In Arabic")]
+        public String AddressInArabic { get; set; }
 
         [Required]
         [Display(Name = "Military Service")]
-        public String militaryService{ get; set; }
+        public String militaryService { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
         [Display(Name = "Start Date ")]
-        public DateTime StartDate{ get; set; }
+        public DateTime StartDate { get; set; }
 
-
-       
         [Display(Name = "Basic Salary ")]
-        public Double BasicSalary{ get; set; }
-
-
+        public double BasicSalary { get; set; }
 
         [Display(Name = "Trasport  Allowance")]
         public Double TrasportAllowance { get; set; }
 
-       
         [Display(Name = "Housing Allowance ")]
-        public Double HousingAllowance{ get; set; }
+        public double HousingAllowance { get; set; }
 
-        
+
         [Display(Name = "Food Allowance ")]
-        public Double FoodAllowance{ get; set; }
+        public Double FoodAllowance { get; set; }
 
         [Required]
         [Display(Name = "Total Salary ")]
-        public Double TotalSalary{ get; set; }
+        public double TotalSalary { get; set; }
 
-        
+
         [Display(Name = "Type of Employee ")]
-        public String TypeOfEmployee{ get; set; }
+        public String TypeOfEmployee { get; set; }
 
-       
+
         [Display(Name = " Transfere Method ")]
-        public String SalaryTrasfereMethod{ get; set; }
+        public String SalaryTrasfereMethod { get; set; }
 
-        
         [Display(Name = " Trasfere Destination ")]
-        public String SalaryTransfereDestination{ get; set; }
+        public String SalaryTransfereDestination { get; set; }
 
         [Required]
         [Display(Name = "Status ")]
-        public String Status{ get; set; }
+        public String Status { get; set; }
 
         [Required]
         [Display(Name = "Department ")]
-        public String Department{ get; set; }
+        public String Department { get; set; }
 
         [Required]
         [Display(Name = "DirectManager")]
-        public String DirectManager{ get; set; }
+        public String DirectManager { get; set; }
 
         [Display(Name = "Termination Reason ")]
-        public String TerminationReason{ get; set; }
+        public String TerminationReason { get; set; }
 
         [Display(Name = "Termination Date ")]
-        public DateTime TerminationDate{ get; set; }
+        public DateTime TerminationDate { get; set; }
 
 
-        
+
         [Display(Name = "Employee image")]
         public string EmployeeImage { get; set; }
 
         [Display(Name = "Location")]
         public String Location { get; set; }
 
-
-        [Required]
         [Display(Name = "Grade")]
         public int Grade { get; set; }
-
 
         [Required]
         [Display(Name = "Position")]
@@ -155,16 +146,12 @@ namespace najjar.biz.Models
         [Display(Name = "Monthly Salary ")]
         public Double MonthlySalary { get; set; }
 
-        [Required]
         [Display(Name = "Org.Unit")]
         public String OrgUnit { get; set; }
 
-        [Required]
         [Display(Name = "Work Schedule")]
         public String WorkSchedule { get; set; }
 
-
-        [Required]
         [Display(Name = "Personal Area")]
         public String PersonalArea { get; set; }
 
@@ -189,14 +176,12 @@ namespace najjar.biz.Models
         [Display(Name = "Net Pay")]
         public Double NetPay { get; set; }
 
-        [Display(Name = "Total Earnings" )]
+        [Display(Name = "Total Earnings")]
         public Double TotalEarnings { get; set; }
 
         [Display(Name = "Total Deductions")]
         public Double TotalDeductions { get; set; }
 
-
-        [Required]
         [Display(Name = "MESSAGES")]
         public String MESSAGES { get; set; }
 
@@ -204,7 +189,6 @@ namespace najjar.biz.Models
         [Display(Name = "A/C Number")]
         public Double AccountNumber { get; set; }
 
-        [Required]
         [Display(Name = "Currency Paid In")]
         public String CurrencyPaidIn { get; set; }
 
@@ -214,4 +198,4 @@ namespace najjar.biz.Models
 
 
     }
-    }
+}

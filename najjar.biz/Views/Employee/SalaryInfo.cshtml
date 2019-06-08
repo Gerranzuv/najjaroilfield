@@ -7,15 +7,17 @@
     var Id = @ViewBag.Employeeid;
     var Idd = Request.QueryString["Employeeid"];
 }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
 <div class="container">
-    <div class="row">
+    <div class="row" id="1r">
         <div class="col-md-3 col-sm-4 sidebar">
             <br />
             <ul class="nav nav-stacked nav-pills">
                 @*<li>
                         @Html.ActionLink("Home", "Index", "Home")
                     </li>*@
-                <li id="PersonalInfo">
+                <li id="PersonalInfo" >
                     @Html.ActionLink("Personal Information", "PersonalPage", new { Employeeid = Idd })
                 </li>
                 <li id="SalaryInfo" class="active">
@@ -37,218 +39,251 @@
             </ul>
         </div>
         <h2 style="color: #15a589">Salary Information</h2>
-        <div class="col-md-6 col-sm-8" id="PersonalInfoDV" style="margin-top: 2%; margin-left: 1%">
+        <div id="salary">
+            <div class="col-md-3 col-sm-8" id="PersonalInfoDV" style="margin-top: 2%; margin-left: 1%">
+
+                <dl class="dl-horizontal">
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.BasicSalary):
+                    </dt>
+
+                    <dd style="text-align:left">
+                        @Html.DisplayFor(model => model.BasicSalary)
+                    </dd>
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.TrasportAllowance):
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TrasportAllowance)
+                    </dd>
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.HousingAllowance):
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.HousingAllowance)
+                    </dd>
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.FoodAllowance):
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.FoodAllowance)
+                    </dd>
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.TotalSalary):
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TotalSalary)
+                    </dd>
 
 
-            <dl class="dl-horizontal">
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.MonthlySalary):
+                    </dt>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.BasicSalary):
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.BasicSalary)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.TrasportAllowance):
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.TrasportAllowance)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.HousingAllowance):
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.HousingAllowance)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.FoodAllowance):
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.FoodAllowance)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.TotalSalary):
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.TotalSalary)
-                </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.MonthlySalary)
+                    </dd>
 
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.MonthlySalary):
-                </dt>
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.OrgUnit):
+                    </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.MonthlySalary)
-                </dd>
-
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.OrgUnit):
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.OrgUnit)
-                </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.OrgUnit)
+                    </dd>
 
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.WorkSchedule):
-                </dt>
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.WorkSchedule):
+                    </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.WorkSchedule)
-                </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.WorkSchedule)
+                    </dd>
 
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.PersonalArea):
-                </dt>
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.PersonalArea):
+                    </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.PersonalArea)
-                </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.PersonalArea)
+                    </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.CostCenter):
-                </dt>
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.CostCenter):
+                    </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.CostCenter)
-                </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.CostCenter)
+                    </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.TelephoneFaxExpenses):
-                </dt>
+                    <dt style="text-align: left;">
+                        @Html.DisplayNameFor(model => model.TelephoneFaxExpenses):
+                    </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.TelephoneFaxExpenses)
-                </dd>
-            </dl>
+                    <dd>
+                        @Html.DisplayFor(model => model.TelephoneFaxExpenses)
+                    </dd>
+                </dl>
+            </div>
+            <br />
+            <div class="col-md-6 col-sm-6" id="PersonalInfoDV2" style="margin-top: -24%; margin-left: 60%">
+
+                <dl class="dl-horizontal">
+                    <br />
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.Others):
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Others)
+                    </dd>
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.RelocAllowNoTax):
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.RelocAllowNoTax)
+                    </dd>
+
+                    <dt style="text-align: left; width: 50%;">
+                        @Html.DisplayNameFor(model => model.MiscellaneousDeductions):
+                    </dt>
+
+                    <dd style="text-align:left">
+                        @Html.DisplayFor(model => model.MiscellaneousDeductions)
+                    </dd>
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.DSPP):
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.DSPP)
+                    </dd>
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.NetPay):
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NetPay)
+                    </dd>
+
+
+                    @*<dt>
+                        @Html.DisplayNameFor(model => model.TotalEarnings):
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TotalEarnings)
+                    </dd>*@
+
+
+                    @*<dt>
+                        @Html.DisplayNameFor(model => model.TotalDeductions):
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TotalDeductions)
+                    </dd>*@
+
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.MESSAGES):
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MESSAGES)
+                    </dd>
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.AccountNumber):
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.AccountNumber)
+                    </dd>
+
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.CurrencyPaidIn):
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.CurrencyPaidIn)
+                    </dd>
+
+
+                    <dt style="text-align:left">
+                        @Html.DisplayNameFor(model => model.ExhangeRate):
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ExhangeRate)
+                    </dd>
+
+
+
+
+                </dl>
+                <!-- /.row -->
+            </div>
         </div>
-        <div class="col-md-2 col-sm-6" id="PersonalInfoDV" style="margin-top: -24%; margin-left: 60%">
-
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Others):
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Others)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.RelocAllowNoTax):
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.RelocAllowNoTax)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.MiscellaneousDeductions):
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.MiscellaneousDeductions)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.DSPP):
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.DSPP)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.NetPay):
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.NetPay)
-                </dd>
-
-
-                @*<dt>
-                    @Html.DisplayNameFor(model => model.TotalEarnings):
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.TotalEarnings)
-                </dd>*@
-
-
-                @*<dt>
-                    @Html.DisplayNameFor(model => model.TotalDeductions):
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.TotalDeductions)
-                </dd>*@
-
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.MESSAGES):
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.MESSAGES)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.AccountNumber):
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.AccountNumber)
-                </dd>
-
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.CurrencyPaidIn):
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.CurrencyPaidIn)
-                </dd>
-
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.ExhangeRate):
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.ExhangeRate)
-                </dd>
-
-
-
-
-            </dl>
-            <!-- /.row -->
-        </div>
-
         <td>
 
             <p  style="margin-top: 25%; margin-left: 50%">
                 @Html.ActionLink("Update Salary Info", "EditSalary", new { id = Model.Id })
 
+                @*<input type="button" onclick="printJS('1r', 'html')" value="print a div!" />*@
+                <input type="button" id="pdfDownloader" value="print a div!" />
+                
             </p>
 </td>
     </div>
 
 </div>
 
+@section Scripts
+{
+<script type="text/javascript">
+  
+    $(document).ready(function () {
+
+      
+        $("#pdfDownloader").click(function () {
+
+            html2canvas(document.getElementById("1r"), {
+                onrendered: function (canvas) {
+
+                    var imgData = canvas.toDataURL('image/png');
+                    console.log('Report Image URL: ' + imgData);
+                    var doc = new jsPDF('p', 'mm', 'A4'); //210mm wide and 297mm high
+
+                    doc.addImage(imgData, 'PNG', 10, 10);
+                    doc.save('sample.pdf');
+                }
+            });
+
+        });
+
+
+    })
+
+</script>
+}  
 
 
 

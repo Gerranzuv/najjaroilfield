@@ -157,7 +157,8 @@
                                            @Html.DropDownList("Country", new List<SelectListItem>
                                             { new SelectListItem { Text="Syria", Value="Syria"},
                                               new SelectListItem{Text="Lebanon", Value="Lebanon"},
-                                              new SelectListItem{Text="Egypt", Value="Egypt"}
+                                              new SelectListItem{Text="Egypt", Value="Egypt"},
+                                              new SelectListItem{Text="Iraq", Value="Iraq"}
                                             }, "Select Country")
                                            @Html.ValidationMessageFor(model => model.Country)
                                        </div>
@@ -289,12 +290,37 @@
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
             @Html.DropDownList("position", new List<SelectListItem>
-                            { new SelectListItem { Text="Manager", Value="Manager"},
-                            new SelectListItem{Text="Engineer", Value="Engineer"},
-                           new SelectListItem{Text="Employee", Value="Employee"},
-                         new SelectListItem{Text="CEO", Value="CEO"},
-                          new SelectListItem{Text="Vice Manager", Value="Vice Manager"}
-                            }, "Select Position")
+                                            { new SelectListItem { Text="CEO", Value="CEO"},
+                                            new SelectListItem{Text="Area Manager", Value="Area Manager"},
+                                            new SelectListItem{Text="Country Manager", Value="Country Manager"},
+                                            new SelectListItem{Text="Operation Manager ", Value="Operation Manager"},
+                                            new SelectListItem{Text="Field Service Manager", Value="Field Service Manager"},
+                                            new SelectListItem{Text="Cell Leader", Value="Cell Leader"},
+                                            new SelectListItem{Text="Engineer In Charge", Value="Engineer In Charge"},
+                                            new SelectListItem{Text="Field Engineer", Value="Field Engineer"},
+                                            new SelectListItem{Text="Training Field Engineer", Value="Training Field Engineer"},
+                                            new SelectListItem{Text="Field Supervisor", Value="Field Supervisor"},
+                                            new SelectListItem{Text="Training Field Supervisor", Value="Training Field Supervisor"},
+                                            new SelectListItem{Text=" Field Senior Operator", Value=" Field Senior Operator"},
+                                            new SelectListItem{Text="Field Operator", Value="Field Operator"},
+                                            new SelectListItem{Text="Assistant Operator", Value="Assistant Operator"},
+                                            new SelectListItem{Text="Helper", Value="Helper"},
+                                            new SelectListItem{Text="Driver", Value="Driver"},
+                                            new SelectListItem{Text="For-men", Value="For-men"},
+                                            new SelectListItem{Text="Heavy Track Operator", Value="Heavy Track Operator"},
+                                            new SelectListItem{Text="Crane Operator", Value="Crane Operator"},
+                                            new SelectListItem{Text="Reservoir Engineer", Value="Reservoir Engineer"},
+                                            new SelectListItem{Text="Data specialist", Value="Data specialist"},
+                                            new SelectListItem{Text="secretary", Value="secretary"},
+                                            new SelectListItem{Text="Executive secretary", Value="Executive secretary"},
+                                            new SelectListItem{Text="delegate", Value="delegate"},
+                                            new SelectListItem{Text="Sales Manager", Value="Sales Manager"},
+                                            new SelectListItem{Text="Seals Engineer", Value="Seals Engineer"},
+                                            new SelectListItem{Text="Public Relationship", Value="Public Relationship"},
+                                            new SelectListItem{Text="Marketing Manager", Value="Marketing Manager"},
+                                            new SelectListItem{Text=" Accounting & Financial Manager", Value=" Accounting & Financial Manager"},
+
+                                            }, "Select Position")
             @Html.ValidationMessageFor(model => model.position)
         </div>
     </div>

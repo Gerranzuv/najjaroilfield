@@ -329,13 +329,25 @@
     <Compile Include="Migrations\201905251008430_account1.Designer.cs">
       <DependentUpon>201905251008430_account1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906021311091_test10.cs" />
-    <Compile Include="Migrations\201906021311091_test10.Designer.cs">
-      <DependentUpon>201906021311091_test10.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201906021322581_kinan000.cs" />
     <Compile Include="Migrations\201906021322581_kinan000.Designer.cs">
       <DependentUpon>201906021322581_kinan000.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906022033358_employeeAccount.cs" />
+    <Compile Include="Migrations\201906022033358_employeeAccount.Designer.cs">
+      <DependentUpon>201906022033358_employeeAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906022059068_test6000.cs" />
+    <Compile Include="Migrations\201906022059068_test6000.Designer.cs">
+      <DependentUpon>201906022059068_test6000.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906080919384_6-8-2019.cs" />
+    <Compile Include="Migrations\201906080919384_6-8-2019.Designer.cs">
+      <DependentUpon>201906080919384_6-8-2019.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906081304307_2019.cs" />
+    <Compile Include="Migrations\201906081304307_2019.Designer.cs">
+      <DependentUpon>201906081304307_2019.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArticleComment.cs" />
@@ -369,7 +381,6 @@
     <Compile Include="ViewModels\QuestionModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-najjar.biz-20140225031045.mdf" />
     <Content Include="App_Data\combres.xml" />
     <Content Include="App_Data\combres_full_with_annotation.xml" />
     <Content Include="App_Data\combres_minimal.xml" />
@@ -522,6 +533,8 @@
     <Content Include="Images\ؤ.png" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
+    <Content Include="css\print.min.css" />
+    <Content Include="js\print.min.js" />
     <Content Include="Static\404.html" />
     <Content Include="Static\500.html" />
     <Content Include="Static\blank-page.html" />
@@ -733,11 +746,20 @@
     <EmbeddedResource Include="Migrations\201905251008430_account1.resx">
       <DependentUpon>201905251008430_account1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906021311091_test10.resx">
-      <DependentUpon>201906021311091_test10.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906021322581_kinan000.resx">
       <DependentUpon>201906021322581_kinan000.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906022033358_employeeAccount.resx">
+      <DependentUpon>201906022033358_employeeAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906022059068_test6000.resx">
+      <DependentUpon>201906022059068_test6000.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906080919384_6-8-2019.resx">
+      <DependentUpon>201906080919384_6-8-2019.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906081304307_2019.resx">
+      <DependentUpon>201906081304307_2019.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -745,7 +767,6 @@
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
@@ -758,7 +779,6 @@
     <Content Include="Views\Roles\View1.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Employee\Delete.cshtml" />
     <Content Include="Views\Employee\Details.cshtml" />
     <Content Include="Views\Employee\Documents.cshtml" />
@@ -928,6 +948,8 @@
     <Content Include="Views\Choice\Details.cshtml" />
     <Content Include="Views\Choice\Edit.cshtml" />
     <Content Include="Views\Choice\Index.cshtml" />
+    <Content Include="Views\Employee\Create.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

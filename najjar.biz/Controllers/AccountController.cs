@@ -73,7 +73,9 @@ namespace najjar.biz.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.UserType = new SelectList(db.Roles,"Name","Name");
+            ViewBag.Employees = db.Employees;
+            ViewBag.UserType = new SelectList(db.Roles, "Name", "Name");
+            //ViewBag.Roles = db.Roles;
             return View();
         }
 
@@ -380,8 +382,10 @@ namespace najjar.biz.Controllers
             if (Url.IsLocalUrl(returnUrl))
             {
                 string[] s=returnUrl.Split(new Char [] {'/'});
-
-                return RedirectToAction(s[2], s[1]);
+                if(s.Length<=2)
+                    return RedirectToAction("Index",s[1]);
+                else
+                    return RedirectToAction(s[2], s[1]);
                 //return RedirectToAction("Index", "Employee");
                 
             }

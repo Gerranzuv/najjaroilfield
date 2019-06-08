@@ -279,9 +279,9 @@ namespace najjar.biz.Controllers
                     depMap.Add("Quality Management", "06");
                     depMap.Add("HSE", "07");
                     depMap.Add("WireLine", "08");
-                    depMap.Add("Sickline", "09");
+                    depMap.Add("Slickline", "09");
                     depMap.Add("Coiled Tubing", "10");
-                    depMap.Add("SRAC Bumping", "11");
+                    depMap.Add("FRAC Pumping", "11");
                     depMap.Add("Drilling", "12");
                     depMap.Add("Testing", "13");
 
@@ -289,6 +289,7 @@ namespace najjar.biz.Controllers
                     countryMap.Add("Syria", "63");
                     countryMap.Add("Lebanon", "61");
                     countryMap.Add("Egypt", "20");
+                    countryMap.Add("Iraq", "64");
 
                     string month = employees.StartDate.ToString("MM");
                     string year = employees.StartDate.ToString("yy");
@@ -337,9 +338,9 @@ namespace najjar.biz.Controllers
                     depMap.Add("Quality Management", "06");
                     depMap.Add("HSE", "07");
                     depMap.Add("WireLine", "08");
-                    depMap.Add("Sickline", "09");
+                    depMap.Add("Slickline", "09");
                     depMap.Add("Coiled Tubing", "10");
-                    depMap.Add("SRAC Bumping", "11");
+                    depMap.Add("FRAC Pumping", "11");
                     depMap.Add("Drilling", "12");
                     depMap.Add("Testing", "13");
 
@@ -347,6 +348,7 @@ namespace najjar.biz.Controllers
                     countryMap.Add("Syria", "63");
                     countryMap.Add("Lebanon", "61");
                     countryMap.Add("Egypt", "20");
+                    countryMap.Add("Iraq", "64");
 
                     string month = employees.StartDate.ToString("MM");
                     string year = employees.StartDate.ToString("yy");
