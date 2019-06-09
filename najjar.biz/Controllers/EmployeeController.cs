@@ -405,6 +405,15 @@ namespace najjar.biz.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Employees employees = db.Employees.Find(id);
+            var vac = db.EmployeesVacations.Where(x => x.EmployeeId.Equals(id));
+            db.EmployeesVacations.RemoveRange(vac);
+
+            var ratings = db.EmployeeRatings.Where(x => x.EmployeeId.Equals(id));
+            db.EmployeeRatings.RemoveRange(ratings);
+
+            var files = db.Supports.Where(x => x.EmpId.Equals(id));
+            db.Supports.RemoveRange(files);
+
             db.Employees.Remove(employees);
             db.SaveChanges();
             return RedirectToAction("Index");

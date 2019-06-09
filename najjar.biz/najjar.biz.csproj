@@ -534,7 +534,6 @@
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="css\print.min.css" />
-    <Content Include="js\print.min.js" />
     <Content Include="Static\404.html" />
     <Content Include="Static\500.html" />
     <Content Include="Static\blank-page.html" />
@@ -950,6 +949,7 @@
     <Content Include="Views\Choice\Index.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\_LoginPartialv2.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
