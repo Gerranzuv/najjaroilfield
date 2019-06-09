@@ -315,6 +315,8 @@ namespace najjar.biz.Controllers
                     System.IO.File.Delete(oldpath);
                     string path = Path.Combine(Server.MapPath("~/Images"), upload.FileName);
                     upload.SaveAs(path);
+                    employees.EmployeeImage = upload.FileName;
+                }
                     var depMap = new Dictionary<string, string>
                     {
                         { "Management", "01" },
@@ -344,12 +346,10 @@ namespace najjar.biz.Controllers
                     string year = employees.StartDate.ToString("yy");
 
                     employees.EmployeeCode = depMap[employees.Department] + month + year + countryMap[employees.Country] + employees.EId;
-                    employees.EmployeeImage = upload.FileName;
                     employees.lastModificationDate = DateTime.Now;
                     db.Entry(employees).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("PersonalPage", new { Employeeid = employees.Id });
-                }
             }
             return View(employees);
         }
