@@ -8,35 +8,28 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-3 col-sm-4 sidebar">
+        <div class="col-md-4 col-sm-4 sidebar">
             <br />
             <ul class="nav nav-stacked nav-pills">
-                @*<li>
-                    @Html.ActionLink("Home", "Index", "Home")
-                </li>*@
-                <li id="PersonalInfo" class="active" style="color:black !important;">
+                <li id="PersonalInfo" class="active">
                    @Html.ActionLink("Personal Information", "PersonalPage", new { Employeeid = Id })
                 </li>
-                <li id="SalaryInfo" style="color:black !important;">
+                <li id="SalaryInfo">
                     @Html.ActionLink("Salary Information", "SalaryInfo", new { Employeeid = Id })
                 </li>
-                <li id="EmployeeDocs" style="color:black !important;">
+                <li id="EmployeeDocs">
                     @Html.ActionLink("My Documents", "EmployeeDocs", "Support", new { Employeeid = Id }, null)
                 </li>
-                <li id="EmployeeVacation" style="color:black !important;">
+                <li id="EmployeeVacation">
                     @Html.ActionLink("Employee Vacation", "EmployeeVacation", "EmployeesVacation", new { Employeeid = Id }, null)
                 </li>
-                <li id="EmployeeRating" style="color:black !important;">
+                <li id="EmployeeRating">
                     @Html.ActionLink("Employee Rating", "EmployeeRating", "EmployeeRating", new { Employeeid = Id }, null)
                 </li>
-                @*<li id="Termination">
-                    <a>Termination</a>
-                </li>*@
-                
             </ul>
         </div>
         
-        <div class="col-md-9 col-sm-8" id="PersonalInfoDV">
+        <div class="col-md-5" id="PersonalInfoDV">
 
             <h2 style="color: #15a589">Personal Information</h2>
             <dl class="dl-horizontal">
@@ -95,7 +88,12 @@
                 <dd>
                     @Html.DisplayFor(model => model.DirectManager)
                 </dd>
-
+                <dt>
+                    @Html.DisplayNameFor(model => model.EmployeeCode):
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.EmployeeCode)
+                </dd>
             </dl>
             <hr />
             <h2 style="color: #15a589">Contact Information</h2>
@@ -133,25 +131,23 @@
                     @Html.DisplayFor(model => model.Address)
                 </dd>
             </dl>
-            
-
-            <p style="float:right;text-decoration-color:white;">
-
-                <input type="button" class="btn btn-primary btn-default" value="Edit Info" onclick="location.href='@Url.Action("Edit", "Employee", new { id = Id })'" />
-
-            </p>
             <hr />
+            <div class="row">
+                <div class="col-md-5">
+                    <input type="button"
+                           class="btn btn-primary" value="Edit Info"
+                           onclick="location.href='@Url.Action("Edit", "Employee", new { id = Id })'" />
+                </div>
+            </div>
         </div>
-
-        
+        <div class="col-md-3">
+            @if (Model.EmployeeImage != null)
+            {
+                var path = Path.Combine("/Images/", Model.EmployeeImage);
+                <img src="@path" alt="@Model.Name" title="@Model.Name" class="img-thumbnail" height="200" />
+            }
         </div>
-
-    
-
-
-    
-       
-       
+    </div> 
     <!-- /.row -->
 </div>
 

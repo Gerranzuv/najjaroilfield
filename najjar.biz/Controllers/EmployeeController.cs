@@ -166,10 +166,6 @@ namespace najjar.biz.Controllers
         [Authorize]
         public ActionResult Employeecv(int Employeeid)
         {
-            if (Employeeid == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Employees employees = db.Employees.Find(Employeeid);
             if (employees == null)
             {
@@ -180,21 +176,15 @@ namespace najjar.biz.Controllers
 
         }
 
-
-
         [Authorize]
         public ActionResult SalaryInfo(int Employeeid)
         {
-            if (Employeeid == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Employees employees = db.Employees.Find(Employeeid);
+
             if (employees == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Employeeid = Employeeid;
             return View(employees);
         }
 
@@ -223,10 +213,6 @@ namespace najjar.biz.Controllers
         [Authorize]
         public ActionResult PersonalPage(int Employeeid)
         {
-            if (Employeeid == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Employees employees = db.Employees.Find(Employeeid);
             if (employees == null)
             {
@@ -329,26 +315,30 @@ namespace najjar.biz.Controllers
                     System.IO.File.Delete(oldpath);
                     string path = Path.Combine(Server.MapPath("~/Images"), upload.FileName);
                     upload.SaveAs(path);
-                    var depMap = new Dictionary<String, String>();
-                    depMap.Add("Management", "01");
-                    depMap.Add("HR", "02");
-                    depMap.Add("IT", "03");
-                    depMap.Add("Accounting", "04");
-                    depMap.Add("Marketing & Selling", "05");
-                    depMap.Add("Quality Management", "06");
-                    depMap.Add("HSE", "07");
-                    depMap.Add("WireLine", "08");
-                    depMap.Add("Slickline", "09");
-                    depMap.Add("Coiled Tubing", "10");
-                    depMap.Add("FRAC Pumping", "11");
-                    depMap.Add("Drilling", "12");
-                    depMap.Add("Testing", "13");
+                    var depMap = new Dictionary<string, string>
+                    {
+                        { "Management", "01" },
+                        { "HR", "02" },
+                        { "IT", "03" },
+                        { "Accounting", "04" },
+                        { "Marketing & Selling", "05" },
+                        { "Quality Management", "06" },
+                        { "HSE", "07" },
+                        { "WireLine", "08" },
+                        { "Slickline", "09" },
+                        { "Coiled Tubing", "10" },
+                        { "FRAC Pumping", "11" },
+                        { "Drilling", "12" },
+                        { "Testing", "13" }
+                    };
 
-                    var countryMap = new Dictionary<String, String>();
-                    countryMap.Add("Syria", "63");
-                    countryMap.Add("Lebanon", "61");
-                    countryMap.Add("Egypt", "20");
-                    countryMap.Add("Iraq", "64");
+                    var countryMap = new Dictionary<string, string>
+                    {
+                        { "Syria", "63" },
+                        { "Lebanon", "61" },
+                        { "Egypt", "20" },
+                        { "Iraq", "64" }
+                    };
 
                     string month = employees.StartDate.ToString("MM");
                     string year = employees.StartDate.ToString("yy");
@@ -419,9 +409,6 @@ namespace najjar.biz.Controllers
             return RedirectToAction("Index");
         }
 
-
-
-
         [Authorize]
         // GET: /Employee/editsalary
         public ActionResult EditSalary(int? id)
@@ -438,9 +425,6 @@ namespace najjar.biz.Controllers
             }
             return View(employee);
         }
-
-
-
 
 
         //edit salary--post
@@ -475,8 +459,7 @@ namespace najjar.biz.Controllers
                 employee.CurrencyPaidIn = employees.CurrencyPaidIn;
                 employee.ExhangeRate = employees.ExhangeRate;
                        
-                                      
-                                                
+                                                              
                 employee.lastModificationDate = DateTime.Now;
                 db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();
@@ -496,14 +479,10 @@ namespace najjar.biz.Controllers
         }
 
         [Authorize]
-        public FileResult Download(String p, String d)
+        public FileResult Download(string p)
         {
-            return File(Path.Combine(Server.MapPath("~/Images/"), p), System.Net.Mime.MediaTypeNames.Application.Octet, d);
+            return File(Path.Combine(Server.MapPath("~/Images/"), p),
+                "image/jpeg", p);
         }
-
-
     }
-
-
-
 }
