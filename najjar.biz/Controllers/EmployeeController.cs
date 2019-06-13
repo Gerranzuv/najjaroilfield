@@ -177,6 +177,7 @@ namespace najjar.biz.Controllers
         }
 
         [Authorize]
+        // GET: /Employee/TErmination info
         public ActionResult SalaryInfo(int Employeeid)
         {
             Employees employees = db.Employees.Find(Employeeid);
@@ -188,7 +189,19 @@ namespace najjar.biz.Controllers
             return View(employees);
         }
 
+        [Authorize]
+        // GET: /Employee/TErmination info
 
+        public ActionResult TerminationInfo(int Employeeid)
+        {
+            Employees employees = db.Employees.Find(Employeeid);
+
+            if (employees == null)
+            {
+                return HttpNotFound();
+            }
+            return View(employees);
+        }
 
         [Authorize]
         // GET: /Employee/Details/5
@@ -427,6 +440,25 @@ namespace najjar.biz.Controllers
         }
 
 
+
+        [Authorize]
+        // GET: /Employee/editTermination
+        public ActionResult EditTermination(int? id)
+        {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Employees employee = db.Employees.Find(id);
+            if (employee == null)
+            {
+                return HttpNotFound();
+            }
+            return View(employee);
+        }
+
+
         //edit salary--post
 
         [HttpPost]
@@ -468,6 +500,35 @@ namespace najjar.biz.Controllers
             }
             return View(employees);
         }
+
+
+
+
+        //EditTermination--post
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditTermination(Employees employees)
+        {
+            if (ModelState.IsValid)
+            {
+                Employees employee = db.Employees.Find(employees.Id);
+
+                employee.TerminationReason = employees.TerminationReason;
+                employee.TerminationMode = employees.TerminationMode;
+                employee.TerminationDate = employees.TerminationDate;
+                employee.Status = "terminated";
+
+                employee.lastModificationDate = DateTime.Now;
+                db.Entry(employee).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("TerminationInfo", new { Employeeid = employees.Id });
+
+            }
+            return View(employees);
+        }
+
+        
 
         protected override void Dispose(bool disposing)
         {

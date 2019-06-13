@@ -118,6 +118,11 @@ namespace najjar.biz.Models
         [Display(Name = "Termination Date ")]
         public DateTime TerminationDate { get; set; }
 
+        [Display(Name = "Termination Mode ")]
+        public String TerminationMode { get; set; }
+
+        
+
         [Display(Name = "Employee image")]
         public string EmployeeImage { get; set; }
 
@@ -193,6 +198,10 @@ namespace najjar.biz.Models
 
         [Display(Name = "Exhange Rate")]
         public Double ExhangeRate { get; set; }
+
+
+        [Display(Name = "Contract")]
+        public String Contract { get; set; }
 
 
     }

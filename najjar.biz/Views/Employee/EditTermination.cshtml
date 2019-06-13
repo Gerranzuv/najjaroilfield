@@ -1,0 +1,154 @@
+﻿@model najjar.biz.Models.Employees
+
+@{
+    ViewBag.Title = "EditTermination";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
+<h2 style="color: #15a589">Edit Employee's Termination Information</h2>
+
+@using (Html.BeginForm("EditTermination", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+   
+          
+                <div class="container">
+                    <table class="table table-striped">
+
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.Name)
+                        @Html.HiddenFor(model => model.EId)
+                        @Html.HiddenFor(model => model.PhoneNumber)
+                        @Html.HiddenFor(model => model.AddressInArabic)
+                        @Html.HiddenFor(model => model.StartDate)
+                        @Html.HiddenFor(model => model.Country)
+                        @Html.HiddenFor(model => model.EmployeeCode)
+                        @Html.HiddenFor(model => model.BirthDate)
+                        @Html.HiddenFor(model => model.BirthPlace)
+                        @Html.HiddenFor(model => model.MaritalStatus)
+                        @Html.HiddenFor(model => model.Department)
+                        @Html.HiddenFor(model => model.militaryService)
+                        @Html.HiddenFor(model => model.DirectManager)
+                        @Html.HiddenFor(model => model.Email)
+                        @Html.HiddenFor(model => model.Address)
+                        @Html.HiddenFor(model => model.Status)
+                        @Html.HiddenFor(model => model.Grade)
+                        @Html.HiddenFor(model => model.position)
+
+
+                        @Html.ValidationSummary(true)
+                        <tbody>
+                            <tr>
+                                <td colspan="1">
+                                    <form class="well form-horizontal" onsubmit="alert(1); validateMyForm(event);">
+                                        <fieldset>
+                                            
+                                           
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Termination Reason</label>
+                                                <div class="col-md-8 inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                                        @Html.DropDownList("TerminationReason", new List<SelectListItem>
+                                      { new SelectListItem { Text="Needs more salary", Value="Needs more salary"},
+                                         new SelectListItem{Text="Harassad Company Rights", Value="Harassad Company Rights"},
+                                         new SelectListItem{Text="Stealing", Value="Stealing"},
+                                         new SelectListItem{Text="Got new job", Value="Got new job"},
+                                         new SelectListItem{Text="Traveling", Value="Traveling"}
+                                         }, "Select TerminationReason")
+                                                        @Html.ValidationMessageFor(model => model.TerminationReason)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">TerminationDate</label>
+                                                <div class="col-md-8 inputGroupContainer">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                                        @Html.TextBoxFor(model => model.TerminationDate, new { type = "date", @Value = Model.TerminationDate.ToString("yyyy-MM-dd") })
+                                                        @Html.ValidationMessageFor(model => model.TerminationDate)
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                           
+                                        
+                                          
+                                        </fieldset>
+                                    </form>
+                                </td>
+                                <td colspan="1">
+
+                                    <fieldset>
+                                        
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label"> Termination Mode</label>
+                                            <div class="col-md-8 inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                                    @Html.DropDownList("TerminationMode", new List<SelectListItem>
+                                      { new SelectListItem { Text="Fired", Value="Fired"},
+                                        new SelectListItem{Text="Quit", Value="Quit"}
+                                         }, "Select TerminationMode")
+                                                    @Html.ValidationMessageFor(model => model.TerminationReason)
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                       
+                                      
+                                       
+                                    </fieldset>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+     <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Edit Now" class="btn btn-primary btn-lg" style="margin-top:6px; margin-bottom:9px" />
+            </div>
+        </div>
+
+
+}
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        $('.deleteItem').click(function (e) {
+            e.preventDefault();
+            var $ctrl = $(this);
+            if (confirm('Do you really want to delete this file?')) {
+                $.ajax({
+                    url: '@Url.Action("DeleteFile")',
+                    type: 'POST',
+                    data: { id: $(this).data('id') }
+                }).done(function (data) {
+                    if (data.Result == "OK") {
+                        $ctrl.closest('li').remove();
+                    }
+                    else if (data.Result.Message) {
+                        alert(data.Result.Message);
+                    }
+                }).fail(function () {
+                    alert("There is something wrong. Please try again.");
+                })
+
+            }
+        });
+    </script>
+}

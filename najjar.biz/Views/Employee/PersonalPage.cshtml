@@ -26,6 +26,9 @@
                 <li id="EmployeeRating">
                     @Html.ActionLink("Employee Rating", "EmployeeRating", "EmployeeRating", new { Employeeid = Id }, null)
                 </li>
+                <li id="EmployeeRating" style="color: #15a589 !important;">
+                    @Html.ActionLink("Termination Info", "TerminationInfo", new { Employeeid = Model.Id }, null)
+                </li>
             </ul>
         </div>
         
@@ -92,7 +95,7 @@
                     @Html.DisplayNameFor(model => model.EmployeeCode):
                 </dt>
                 <dd>
-                    @Html.DisplayFor(model => model.EmployeeCode)
+                    @Html.DisplayFor(model => model.EId)
                 </dd>
             </dl>
             <hr />

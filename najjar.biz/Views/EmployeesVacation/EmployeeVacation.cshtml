@@ -31,6 +31,9 @@
             <li id="EmployeeRating">
                 @Html.ActionLink("Employee Rating", "EmployeeRating", "EmployeeRating", new { Employeeid = vacId }, null)
             </li>
+            <li id="EmployeeRating" style="color: #15a589 !important;">
+                @Html.ActionLink("Termination Info", "TerminationInfo", "Employee", new { Employeeid = vacId }, null)
+            </li>
             @*<li id="Termination">
                 @Html.ActionLink(" Termination Status", "SalaryInfo")
             </li>*@

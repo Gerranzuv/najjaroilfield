@@ -196,21 +196,182 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Military Service</label>
-                                <div class="col-md-8 inputGroupContainer">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="glyphicon glyphicon-home"></i>
-                                        </span>
-                                        @Html.DropDownList("militaryService", new List<SelectListItem>
-                                  { new SelectListItem { Text="Done", Value="Done"},
-                                    new SelectListItem{Text="Not Yet", Value="Not Yet"}
-                              }, "Select militaryService")
-                                        @Html.ValidationMessageFor(model => model.militaryService)
-                                    </div>
-                                </div>
-                            </div>
+                           <div class="form-group">
+                               <label class="col-md-4 control-label">Military Service</label>
+                               <div class="col-md-8 inputGroupContainer">
+                                   <div class="input-group">
+                                       <span class="input-group-addon">
+                                           <i class="glyphicon glyphicon-home"></i>
+                                       </span>
+                                       @Html.DropDownList("militaryService", new List<SelectListItem>
+                                 { new SelectListItem { Text="Done", Value="Done"},
+                                   new SelectListItem{Text="Not Yet", Value="Not Yet"}
+                             }, "Select militaryService")
+                                       @Html.ValidationMessageFor(model => model.militaryService)
+                                   </div>
+                               </div>
+                           </div>
+
+
+                           <div class="form-group">
+                               <label class="col-md-4 control-label">Start Date</label>
+                               <div class="col-md-8 inputGroupContainer">
+                                   <div class="input-group">
+                                       <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                       @Html.TextBoxFor(model => model.StartDate, new { type = "date", @Value = Model.StartDate.ToString("yyyy-MM-dd") })
+
+
+                                       @Html.ValidationMessageFor(model => model.StartDate)
+                                   </div>
+                               </div>
+                           </div>
+
+                           <div class="form-group">
+                               <label class="col-md-4 control-label">Contract</label>
+                               <div class="col-md-8 inputGroupContainer">
+                                   <div class="input-group">
+                                       <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                       @Html.DropDownList("Contract", new List<SelectListItem>
+                               { new SelectListItem { Text="International Contract (IC)", Value="International Contract (IC)"},
+                                new SelectListItem{Text="Home Residence Contract (HRC)", Value="Home Residence Contract (HRC)"},
+                                new SelectListItem{Text="Temporary Contract (TC)", Value="Temporary Contract (TC)"},
+                                new SelectListItem{Text="Consultant Short Contract (CSC)", Value="Consultant Short Contract (CSC)"},
+                                new SelectListItem{Text="Consultant Long Contract (CLC)", Value="Consultant Long Contract (CLC)"}
+                                                     }, "Select Contract")
+                                       @Html.ValidationMessageFor(model => model.Contract)
+                                   </div>
+                               </div>
+                           </div>
+
+                           <div class="form-group">
+                               <label class="col-md-4 control-label">Total Salary</label>
+                               <div class="col-md-8 inputGroupContainer">
+                                   <div class="input-group">
+                                       <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                       @Html.EditorFor(model => model.TotalSalary)
+                                       @Html.ValidationMessageFor(model => model.TotalSalary)
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="form-group">
+                               <label class="col-md-4 control-label">Status</label>
+                               <div class="col-md-8 inputGroupContainer">
+                                   <div class="input-group">
+                                       <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                       @Html.DropDownList("Status", new List<SelectListItem>
+                               { new SelectListItem { Text="Active", Value="Active"},
+                                new SelectListItem{Text="Not Active", Value="Not Active"}
+                          }, "Select Status")
+                                       @Html.ValidationMessageFor(model => model.Status)
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="form-group">
+                               <label class="col-md-4 control-label">Department</label>
+                               <div class="col-md-8 inputGroupContainer">
+                                   <div class="input-group">
+                                       <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                       @Html.DropDownList("Department", new List<SelectListItem>
+                                         {
+                                             new SelectListItem{ Text="Management", Value="Management"},
+                                             new SelectListItem{ Text="HR", Value="HR"},
+                                             new SelectListItem{ Text="IT", Value="IT"},
+                                             new SelectListItem{Text="Marketing & Selling", Value="Marketing & Selling"},
+                                             new SelectListItem{Text="Quality Management", Value="Quality Management"},
+                                             new SelectListItem{Text="HSE", Value="HSE"},
+                                             new SelectListItem{Text="WireLine", Value="WireLine"},
+                                             new SelectListItem{Text="Sickline", Value="Sickline"},
+                                             new SelectListItem{Text="Coiled Tubing", Value="Coiled Tubing"},
+                                             new SelectListItem{Text="SRAC Bumping", Value="SRAC Bumping"},
+                                             new SelectListItem{Text="Drilling", Value="Drilling"},
+                                             new SelectListItem{Text="Testing", Value="Testing"}
+                                          }, "Select Department")
+                                       @Html.ValidationMessageFor(model => model.Department)
+                                   </div>
+                               </div>
+                           </div><div class="form-group">
+    <label class="col-md-4 control-label">Direct Manager</label>
+    <div class="col-md-8 inputGroupContainer">
+        <div class="input-group">
+            <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-user"></i></span>
+            @Html.EditorFor(model => model.DirectManager)
+            @Html.ValidationMessageFor(model => model.DirectManager)
+        </div>
+    </div>
+</div>
+                           <div class="form-group">
+                               <label class="col-md-4 control-label">Position</label>
+                               <div class="col-md-8 inputGroupContainer">
+                                   <div class="input-group">
+                                       <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                       @Html.DropDownList("position", new List<SelectListItem>
+                                            { new SelectListItem { Text="CEO", Value="CEO"},
+                                            new SelectListItem{Text="Area Manager", Value="Area Manager"},
+                                            new SelectListItem{Text="Country Manager", Value="Country Manager"},
+                                            new SelectListItem{Text="HR Manager", Value="HR Manager"},
+                                            new SelectListItem{Text="Engineer", Value="Engineer"},
+                                            new SelectListItem{Text="IT Engineer", Value="IT Engineer"},
+                                            new SelectListItem{Text="Developer", Value="Developer"},
+                                            new SelectListItem{Text="Operation Manager ", Value="Operation Manager"},
+                                            new SelectListItem{Text="Field Service Manager", Value="Field Service Manager"},
+                                            new SelectListItem{Text="Cell Leader", Value="Cell Leader"},
+                                            new SelectListItem{Text="Engineer In Charge", Value="Engineer In Charge"},
+                                            new SelectListItem{Text="Field Engineer", Value="Field Engineer"},
+                                            new SelectListItem{Text="Training Field Engineer", Value="Training Field Engineer"},
+                                            new SelectListItem{Text="Field Supervisor", Value="Field Supervisor"},
+                                            new SelectListItem{Text="Training Field Supervisor", Value="Training Field Supervisor"},
+                                            new SelectListItem{Text=" Field Senior Operator", Value=" Field Senior Operator"},
+                                            new SelectListItem{Text="Field Operator", Value="Field Operator"},
+                                            new SelectListItem{Text="Assistant Operator", Value="Assistant Operator"},
+                                            new SelectListItem{Text="Helper", Value="Helper"},
+                                            new SelectListItem{Text="Driver", Value="Driver"},
+                                            new SelectListItem{Text="For-men", Value="For-men"},
+                                            new SelectListItem{Text="Heavy Track Operator", Value="Heavy Track Operator"},
+                                            new SelectListItem{Text="Crane Operator", Value="Crane Operator"},
+                                            new SelectListItem{Text="Reservoir Engineer", Value="Reservoir Engineer"},
+                                            new SelectListItem{Text="Data specialist", Value="Data specialist"},
+                                            new SelectListItem{Text="secretary", Value="secretary"},
+                                            new SelectListItem{Text="Executive secretary", Value="Executive secretary"},
+                                            new SelectListItem{Text="delegate", Value="delegate"},
+                                            new SelectListItem{Text="Sales Manager", Value="Sales Manager"},
+                                            new SelectListItem{Text="Seals Engineer", Value="Seals Engineer"},
+                                            new SelectListItem{Text="Public Relationship", Value="Public Relationship"},
+                                            new SelectListItem{Text="Marketing Manager", Value="Marketing Manager"},
+                                            new SelectListItem{Text=" Accounting & Financial Manager", Value=" Accounting & Financial Manager"},
+
+                                            }, "Select Position")
+                                       @Html.ValidationMessageFor(model => model.position)
+                                   </div>
+                               </div>
+                           </div>        
+
+                                          
+                                        
+<div class="form-group">
+    <label class="col-md-4 control-label">Employee Image</label>
+    <div class="col-md-8 inputGroupContainer">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-upload"></i></span>
+            <input type="file" name="upload" id="imageFile" />
+            @Html.ValidationMessageFor(model => model.EmployeeImage)
+        </div>
+        <br />
+        <div class="text-center">
+            @if (Model.EmployeeImage != null)
+            {
+                var path = "/Images/" + Model.EmployeeImage;
+                <a href="@Url.Action("Download", new { p = Model.EmployeeImage })">
+                    <img src="@path"
+                         alt="@Model.Name"
+                         width="100"
+                         height="100"
+                         title="@Model.Name"
+                         class="img-thumbnail" />
+                </a>
+            }
+        </div>
+    </div>
+</div>
 
 
                             <div class="form-group">
