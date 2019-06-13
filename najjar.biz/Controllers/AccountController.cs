@@ -70,7 +70,7 @@ namespace najjar.biz.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+        
         public ActionResult Register()
         {
             ViewBag.Employees = db.Employees;

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0pull5m" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.14.0">
+  <bpmn:process id="Process_1" isExecutable="true">
+    <bpmn:sequenceFlow id="SequenceFlow_0n6gp3a" sourceRef="Task_1pgt83t" targetRef="ExclusiveGateway_14s1oww" />
+    <bpmn:task id="Task_09ah8mb" name="create a to do to maid manger &#34;maid doesnt want to sign termination papers&#34; ">
+      <bpmn:incoming>SequenceFlow_0nccz3w</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0zpf1ey</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="ExclusiveGateway_0jzgx25">
+      <bpmn:incoming>SequenceFlow_0zpf1ey</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0d3nqu0</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_0k7geoc</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_0zpf1ey" sourceRef="Task_09ah8mb" targetRef="ExclusiveGateway_0jzgx25" />
+    <bpmn:endEvent id="EndEvent_1wzgad5" name="maid terminated">
+      <bpmn:incoming>SequenceFlow_0d3nqu0</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0d3nqu0" name="maid signs termination paper" sourceRef="ExclusiveGateway_0jzgx25" targetRef="EndEvent_1wzgad5" />
+    <bpmn:sequenceFlow id="SequenceFlow_0k7geoc" name="maid doesnt sign termination paper " sourceRef="ExclusiveGateway_0jzgx25" targetRef="EndEvent_1u4zu1n" />
+    <bpmn:endEvent id="EndEvent_1u4zu1n" name="Do Nothing">
+      <bpmn:incoming>SequenceFlow_0k7geoc</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:exclusiveGateway id="ExclusiveGateway_14s1oww">
+      <bpmn:incoming>SequenceFlow_0n6gp3a</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0nccz3w</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_0q5k9o5</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_0nccz3w" name="maid refuses to sign termination papers" sourceRef="ExclusiveGateway_14s1oww" targetRef="Task_09ah8mb" />
+    <bpmn:endEvent id="EndEvent_129x0lc" name="maid terminated">
+      <bpmn:incoming>SequenceFlow_0q5k9o5</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0q5k9o5" name="maid signs termination documents" sourceRef="ExclusiveGateway_14s1oww" targetRef="EndEvent_129x0lc" />
+    <bpmn:manualTask id="Task_1pgt83t" name="Document Manager terminating a maid from Document Manager screen">
+      <bpmn:outgoing>SequenceFlow_0n6gp3a</bpmn:outgoing>
+    </bpmn:manualTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">
+      <bpmndi:BPMNEdge id="SequenceFlow_0n6gp3a_di" bpmnElement="SequenceFlow_0n6gp3a">
+        <di:waypoint x="989" y="181" />
+        <di:waypoint x="1040" y="181" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="969.5" y="156" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Task_09ah8mb_di" bpmnElement="Task_09ah8mb">
+        <dc:Bounds x="1207" y="141" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ExclusiveGateway_0jzgx25_di" bpmnElement="ExclusiveGateway_0jzgx25" isMarkerVisible="true">
+        <dc:Bounds x="1462" y="156" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1442" y="126" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0zpf1ey_di" bpmnElement="SequenceFlow_0zpf1ey">
+        <di:waypoint x="1307" y="181" />
+        <di:waypoint x="1462" y="181" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1339.5" y="156" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_1wzgad5_di" bpmnElement="EndEvent_1wzgad5">
+        <dc:Bounds x="1645" y="163" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1625" y="206" width="77" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0d3nqu0_di" bpmnElement="SequenceFlow_0d3nqu0">
+        <di:waypoint x="1512" y="181" />
+        <di:waypoint x="1645" y="181" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1532" y="123" width="86" height="24" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0k7geoc_di" bpmnElement="SequenceFlow_0k7geoc">
+        <di:waypoint x="1487" y="206" />
+        <di:waypoint x="1487" y="291" />
+        <di:waypoint x="1759" y="291" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1374" y="148" width="86" height="24" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_1u4zu1n_di" bpmnElement="EndEvent_1u4zu1n">
+        <dc:Bounds x="1759" y="273" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1751" y="316" width="54" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ExclusiveGateway_14s1oww_di" bpmnElement="ExclusiveGateway_14s1oww" isMarkerVisible="true">
+        <dc:Bounds x="1040" y="156" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1020" y="126" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0nccz3w_di" bpmnElement="SequenceFlow_0nccz3w">
+        <di:waypoint x="1090" y="181" />
+        <di:waypoint x="1207" y="181" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1104" y="136" width="78" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_129x0lc_di" bpmnElement="EndEvent_129x0lc">
+        <dc:Bounds x="1191" y="273" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1170" y="316" width="79" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0q5k9o5_di" bpmnElement="SequenceFlow_0q5k9o5">
+        <di:waypoint x="1065" y="206" />
+        <di:waypoint x="1065" y="291" />
+        <di:waypoint x="1191" y="291" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1095" y="234" width="54" height="36" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ManualTask_0ka3sw3_di" bpmnElement="Task_1pgt83t">
+        <dc:Bounds x="889" y="141" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
