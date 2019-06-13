@@ -226,7 +226,22 @@
                                </div>
                            </div>
 
-
+                           <div class="form-group">
+                               <label class="col-md-4 control-label">Contract</label>
+                               <div class="col-md-8 inputGroupContainer">
+                                   <div class="input-group">
+                                       <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                       @Html.DropDownList("Contract", new List<SelectListItem>
+                               { new SelectListItem { Text="International Contract (IC)", Value="International Contract (IC)"},
+                                new SelectListItem{Text="Home Residence Contract (HRC)", Value="Home Residence Contract (HRC)"},
+                                new SelectListItem{Text="Temporary Contract (TC)", Value="Temporary Contract (TC)"},
+                                new SelectListItem{Text="Consultant Short Contract (CSC)", Value="Consultant Short Contract (CSC)"},
+                                new SelectListItem{Text="Consultant Long Contract (CLC)", Value="Consultant Long Contract (CLC)"}
+                                                     }, "Select Contract")
+                                       @Html.ValidationMessageFor(model => model.Contract)
+                                   </div>
+                               </div>
+                           </div>
 
                            <div class="form-group">
                                <label class="col-md-4 control-label">Total Salary</label>
@@ -284,15 +299,19 @@
         </div>
     </div>
 </div>
-<div class="form-group">
-    <label class="col-md-4 control-label">Position</label>
-    <div class="col-md-8 inputGroupContainer">
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-            @Html.DropDownList("position", new List<SelectListItem>
+                           <div class="form-group">
+                               <label class="col-md-4 control-label">Position</label>
+                               <div class="col-md-8 inputGroupContainer">
+                                   <div class="input-group">
+                                       <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                       @Html.DropDownList("position", new List<SelectListItem>
                                             { new SelectListItem { Text="CEO", Value="CEO"},
                                             new SelectListItem{Text="Area Manager", Value="Area Manager"},
                                             new SelectListItem{Text="Country Manager", Value="Country Manager"},
+                                            new SelectListItem{Text="HR Manager", Value="HR Manager"},
+                                            new SelectListItem{Text="Engineer", Value="Engineer"},
+                                            new SelectListItem{Text="IT Engineer", Value="IT Engineer"},
+                                            new SelectListItem{Text="Developer", Value="Developer"},
                                             new SelectListItem{Text="Operation Manager ", Value="Operation Manager"},
                                             new SelectListItem{Text="Field Service Manager", Value="Field Service Manager"},
                                             new SelectListItem{Text="Cell Leader", Value="Cell Leader"},
@@ -321,11 +340,10 @@
                                             new SelectListItem{Text=" Accounting & Financial Manager", Value=" Accounting & Financial Manager"},
 
                                             }, "Select Position")
-            @Html.ValidationMessageFor(model => model.position)
-        </div>
-    </div>
-</div>
-                                   
+                                       @Html.ValidationMessageFor(model => model.position)
+                                   </div>
+                               </div>
+                           </div>        
 
                                           
                                         

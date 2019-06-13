@@ -349,6 +349,14 @@
     <Compile Include="Migrations\201906081304307_2019.Designer.cs">
       <DependentUpon>201906081304307_2019.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906091908572_contract.cs" />
+    <Compile Include="Migrations\201906091908572_contract.Designer.cs">
+      <DependentUpon>201906091908572_contract.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906101145119_termi.cs" />
+    <Compile Include="Migrations\201906101145119_termi.Designer.cs">
+      <DependentUpon>201906101145119_termi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArticleComment.cs" />
     <Compile Include="Models\ExamSystemModels\Choice.cs" />
@@ -760,6 +768,12 @@
     <EmbeddedResource Include="Migrations\201906081304307_2019.resx">
       <DependentUpon>201906081304307_2019.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906091908572_contract.resx">
+      <DependentUpon>201906091908572_contract.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906101145119_termi.resx">
+      <DependentUpon>201906101145119_termi.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -950,6 +964,8 @@
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartialv2.cshtml" />
+    <Content Include="Views\Employee\TerminationInfo.cshtml" />
+    <Content Include="Views\Employee\EditTermination.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
