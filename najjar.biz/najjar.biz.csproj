@@ -357,6 +357,10 @@
     <Compile Include="Migrations\201906101145119_termi.Designer.cs">
       <DependentUpon>201906101145119_termi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906150818585_test2.cs" />
+    <Compile Include="Migrations\201906150818585_test2.Designer.cs">
+      <DependentUpon>201906150818585_test2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArticleComment.cs" />
     <Compile Include="Models\ExamSystemModels\Choice.cs" />
@@ -488,7 +492,6 @@
     <Content Include="Images\file-6.png" />
     <Content Include="Images\hh.jpg" />
     <Content Include="Images\images.jpg" />
-    <Content Include="Images\Logo Final.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\Logo_new.png" />
     <Content Include="Images\najjarwhite.png" />
@@ -773,6 +776,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906101145119_termi.resx">
       <DependentUpon>201906101145119_termi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906150818585_test2.resx">
+      <DependentUpon>201906150818585_test2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
