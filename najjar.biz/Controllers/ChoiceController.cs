@@ -1,13 +1,10 @@
-﻿using System;
+﻿using najjar.biz.Context;
+using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using najjar.biz.Models;
-using najjar.biz.Context;
 
 namespace najjar.biz.Controllers
 {
@@ -15,119 +12,85 @@ namespace najjar.biz.Controllers
     {
         private ApplicationDataContext db = new ApplicationDataContext();
 
-        // GET: /Choice/
-        public ActionResult Index()
+        // GET: Add New Choice
+        [HttpGet]
+        public ActionResult AddNewChoice(int QuestionId)
         {
-            var choices = db.Choices.Include(c => c.Question);
-            return View(choices.ToList());
-        }
+            Question question = db.Questions.Where(q => q.Id == QuestionId).FirstOrDefault();
+            int TestId = db
+                .TestXQuestions
+                .Where(txq => txq.QuestionId == QuestionId)
+                .Select(x => x.TestId)
+                .FirstOrDefault();
 
-        // GET: /Choice/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
+            if(question != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                ViewBag.Question = question;
+                ViewBag.TestId = TestId;
+                return View();
             }
-            Choice choice = db.Choices.Find(id);
-            if (choice == null)
+            else
             {
-                return HttpNotFound();
+                return View("Error");
             }
-            return View(choice);
         }
 
-        // GET: /Choice/Create
-        public ActionResult Create()
-        {
-            ViewBag.QuestionId = new SelectList(db.Questions, "Id", "QuestionType");
-            return View();
-        }
-
-        // POST: /Choice/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,QuestionId,Label,points,IsActive")] Choice choice)
+        public ActionResult AddNewChoice(Choice choice, int TestId)
         {
             if (ModelState.IsValid)
             {
                 db.Choices.Add(choice);
+
+                // Saveing to the database
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                return RedirectToAction("QuestionPage", "Question", new { TestId});
             }
 
-            ViewBag.QuestionId = new SelectList(db.Questions, "Id", "QuestionType", choice.QuestionId);
-            return View(choice);
+            return View();
         }
 
-        // GET: /Choice/Edit/5
-        public ActionResult Edit(int? id)
+        [HttpGet]
+        public ActionResult Edit(int ChoiceId, int QuestionId)
         {
-            if (id == null)
+            Choice choice = db.Choices.Find(ChoiceId);
+
+            if(choice != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+                int TestId = db
+                    .TestXQuestions
+                    .Where(txq => txq.QuestionId == QuestionId)
+                    .Select(x => x.TestId)
+                    .FirstOrDefault();
+
+                ViewBag.Question = db.Questions.Find(QuestionId);
+                ViewBag.TestId = TestId;
+                return View(choice);
             }
-            Choice choice = db.Choices.Find(id);
-            if (choice == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.QuestionId = new SelectList(db.Questions, "Id", "QuestionType", choice.QuestionId);
-            return View(choice);
+
+            return HttpNotFound();
         }
 
-        // POST: /Choice/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,QuestionId,Label,points,IsActive")] Choice choice)
+        public ActionResult Edit(Choice choice, int TestId)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(choice).State = EntityState.Modified;
+                Choice choiceToUpdate = db.Choices.Find(choice.Id);
+                TryUpdateModel(choiceToUpdate);
+                db.Entry(choiceToUpdate).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.QuestionId = new SelectList(db.Questions, "Id", "QuestionType", choice.QuestionId);
-            return View(choice);
-        }
 
-        // GET: /Choice/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("QuestionPage", "Question", new { TestId });
             }
-            Choice choice = db.Choices.Find(id);
-            if (choice == null)
+            else
             {
-                return HttpNotFound();
+                ViewBag.Question = db.Questions.Find(choice.QuestionId);
+                ViewBag.TestId = TestId;
+                return View(choice);
             }
-            return View(choice);
-        }
-
-        // POST: /Choice/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Choice choice = db.Choices.Find(id);
-            db.Choices.Remove(choice);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
