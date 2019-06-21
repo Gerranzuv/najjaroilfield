@@ -20,6 +20,13 @@
         </h4>
     </div>
 </div>
+<div class="row row-bottom-margin">
+    <div class="col-xs-offset-6 col-xs-6">
+        <h4>
+            Total Mark:&nbsp;@Model.Test.TestXQuestions.Where(q => q.IsActive).Sum(q => q.Question.points)
+        </h4>
+    </div>
+</div>
 <div class="jumbotron">
     @Model.Test.Description
 </div>

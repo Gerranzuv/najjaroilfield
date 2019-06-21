@@ -1,70 +1,72 @@
 ﻿@model najjar.biz.Models.Question
+@using najjar.biz.Models
 
 @{
-    ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+    ViewBag.Title = "AddNewQuestion";
+    Test test = ((Test)ViewBag.Test);
 }
 
-<h2>Edit</h2>
+<div class="row">
+    <div class="col-xs-12 text-center">
+        <h2>Add Questions for @test.Name</h2>
+    </div>
+</div>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Question", FormMethod.Post))
 {
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Question</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Id) // QuestionId
+    @Html.Hidden("TestId", test.Id) // TestId
 
+    <div class="row">
         <div class="form-group">
-            @Html.LabelFor(model => model.CategoryId, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CategoryId)
-                @Html.ValidationMessageFor(model => model.CategoryId)
+            <label class="control-label col-xs-12 col-sm-2">
+                Question Text:
+            </label>
+            <div class="col-xs-12 col-sm-10">
+                @Html.TextAreaFor(model => model.QuestionText, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.QuestionText,"",
+                        new { @class="text-danger" })
             </div>
         </div>
-
+    </div>
+    <div class="row">
         <div class="form-group">
-            @Html.LabelFor(model => model.points, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.points)
-                @Html.ValidationMessageFor(model => model.points)
+            <label class="control-label col-xs-12 col-sm-2">
+                Question Points:
+            </label>
+            <div class="col-xs-12 col-sm-10">
+                @Html.TextBoxFor(model => model.points, new { @class = "form-control", @type = "number" })
+                @Html.ValidationMessageFor(model => model.points,"",
+                        new { @class="text-danger" })
             </div>
         </div>
-
+    </div>
+    <div class="row">
         <div class="form-group">
-            @Html.LabelFor(model => model.QuestionType, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.QuestionType)
-                @Html.ValidationMessageFor(model => model.QuestionType)
+            <label class="control-label col-xs-12 col-sm-2">
+                Question Category:
+            </label>
+            <div class="col-xs-12 col-sm-10">
+                @Html.DropDownListFor(model => model.CategoryId,(SelectList)ViewBag.Categories, "Please Select a Category",new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.QuestionText,"",
+                        new { @class="text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.QuestionText, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.QuestionText)
-                @Html.ValidationMessageFor(model => model.QuestionText)
+    </div>
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-2">
+            <div class="checkbox">
+                <label>
+                    @Html.CheckBoxFor(model => model.IsActive, new { @checked = "checked" })
+                    Is Active
+                </label>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsActive, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IsActive)
-                @Html.ValidationMessageFor(model => model.IsActive)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-offset-2 col-xs-10">
+            <input type="submit" value="Edit" class="btn btn-default" />
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

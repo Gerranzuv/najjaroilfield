@@ -1,7 +1,7 @@
 ﻿@model najjar.biz.ViewModels.QuestionModel
 @{ 
-    var endTime = DateTime.Now.AddMinutes(Model.DurationInMinutes);
-    var timeRemaining = TimeSpan.FromTicks(endTime.Ticks - DateTime.Now.Ticks).TotalSeconds;
+    var endTime = Model.ExpiryDate;
+    var timeRemaining = TimeSpan.FromTicks(endTime.Ticks - DateTime.Now.Ticks).TotalSeconds.ToString("#");
 }
 <div class="row">
     <div class="col-xs-6 col-sm-4">
@@ -11,7 +11,7 @@
         </p>
     </div>
     <div class="col-xs-6 col-sm-4 col-sm-offset-4">
-        <a href="javascript:void(0);" onclick="finishExam(this);" class="btn btn-primary">
+        <a href="javascript:void(0);" onclick="finishExam(false, false);" class="btn btn-primary">
             Finish The Exam
         </a>
     </div>
@@ -46,7 +46,7 @@
             <table class="table table-responsive">
                 <tr>
                     <td>
-                        <a href="javascript:void(0);" onclick="saveBackward(this)" class="btn btn-primary">
+                        <a href="javascript:void(0);" onclick="saveBackward();" class="btn btn-primary">
                             Save and Previous
                         </a>
                     </td>
@@ -58,7 +58,7 @@
                     @for (int i = 1; i <= Model.TotalQuestionInSet; i++)
                     {
                         <td>
-                            <a href="@Url.Action("EvalPage", "OnlineExam", new { @token = Request.Params["token"], @qno = i })" class="btn btn-primary">
+                            <a href="@Url.Action("EvalPage", "OnlineExam", new { @token = Request.Params["token"], @qno = i })" id="question_@i" class="btn btn-primary">
                                 @i
                             </a>
                         </td>
@@ -69,7 +69,7 @@
                         </a>
                     </td>
                     <td>
-                        <a href="javascript:void(0);" onclick="saveForward(this)" class="btn btn-primary">
+                        <a href="javascript:void(0);" onclick="saveForward();" class="btn btn-primary">
                             Save and Next
                         </a>
                     </td>
@@ -79,7 +79,7 @@
     </div>
 }
 
-@using(Html.BeginForm("FinalResult", "OnlineExam", FormMethod.Post, new { @id="finalRsltForm" }))
+@using(Html.BeginForm("FinalResult", "OnlineExam", FormMethod.Get, new { @id="finalRsltForm" }))
 {
     <input type="hidden" name="token" value="@Session["TOKEN"]" />
     <input type="hidden" name="TestId" value="@Model.TestId" />
@@ -87,74 +87,109 @@
 
 <script type="text/javascript">
 
-    // Save and Next ----->
-    function saveForward(sender) {
+        // Save and Next ----->
+    function saveForward() {
 
-        $('input[name="Direction"]').val('forward');
-        document.getElementById('formAnswer').submit();
+        var QuestionNumber = @Model.QuestionNumber;
+
+        if (QuestionNumber < @Model.TotalQuestionInSet) {
+            $('input[name="Direction"]').val('forward');
+            document.getElementById('formAnswer').submit();
+        } else {
+            finishExam(false, false);
+        }
     }
 
     // Save and Previous ----->
-    function saveBackward(sender) {
+    function saveBackward() {
 
-        $('input[name="Direction"]').val('backward');
-        document.getElementById('formAnswer').submit();
+        var QuestionNumber = @Model.QuestionNumber;
+
+        if (QuestionNumber > 1) {
+            $('input[name="Direction"]').val('backward');
+            document.getElementById('formAnswer').submit();
+        }
     }
 
-    function finishExam(sender) {
-        document.getElementById('finalRsltForm').submit();
+    // finish Exam
+    function finishExam(timeFinished, redirect) {
+
+        if (redirect) {
+
+            document.getElementById('finalRsltForm').submit();
+        } else {
+
+            var finishExam = confirm("Are you sure you want to finish the Exam?") || timeFinished;
+            if (finishExam) {
+                document.getElementById('finalRsltForm').submit();
+            }
+        }
+
     }
 
     $(document).ready(function () {
 
-    var remainingSeconds = @timeRemaining;
-    var secondsCounter = remainingSeconds % 60;
+        // JavaScript Timer
+        var remainingSeconds = @timeRemaining;
+        var secondsCounter = remainingSeconds % 60;
 
-    function formatNumber(number) {
-        return number < 10 ? '0' + number : '' + number;
-    }
+        function formatNumber(number) {
+            return number < 10 ? '0' + number : '' + number;
+        }
 
-    function startTick() {
+        function startTick() {
 
-        document.getElementById('minRemaining').innerText = parseInt(remainingSeconds / 60);
-        document.getElementById('secRemaining').innerText = formatNumber(secondsCounter);
+            document.getElementById('minRemaining').innerText = parseInt(remainingSeconds / 60);
+            document.getElementById('secRemaining').innerText = formatNumber(secondsCounter);
 
-        var _tick = setInterval(function () {
+            var _tick = setInterval(function () {
 
-            if (remainingSeconds > 0) {
-                if (secondsCounter == 0) {
-                    secondsCounter = 60;
+
+                if (remainingSeconds > 0) {
+                    if (secondsCounter == 0) {
+                        secondsCounter = 60;
+                    }
+
+                    remainingSeconds -= 1;
+                    secondsCounter -= 1;
+                    document.getElementById('minRemaining').innerText = parseInt(remainingSeconds / 60);
+                    document.getElementById('secRemaining').innerText = formatNumber(secondsCounter);
+                } else {
+                    alert('Your Time Has expired!. You will redirected to the Final Result Page!');
+
+                    setTimeout(function () {
+
+                        finishExam(true, true);
+                    }, 2500);
+                    clearInterval(_tick);
                 }
+            }, 1000);
+        }
 
-                remainingSeconds -= 1;
-                secondsCounter -= 1;
-                document.getElementById('minRemaining').innerText = parseInt(remainingSeconds / 60);
-                document.getElementById('secRemaining').innerText = formatNumber(secondsCounter);
-            } else {
-                alert('Your Time Has expired!. You will redirected to the Final Result Page!');
+        function activateLink() {
 
-                setTimeout(function () {
-                    window.location = "/";
-                }, 2500);
-                clearInterval(_tick);
-            }
-        }, 1000);
-    }
+            var qno = @Model.QuestionNumber;
 
-    startTick();
+            $('#question_'+qno).css({
+                'background-color': 'gray'
+            });
+        }
 
-        // Select only one radio Button.
+        startTick();
+        activateLink();
+
+            // Select only one radio Button.
 
         $('input[type="radio"]').on('click', function () {
 
-        var clickedRadioBtn = $(this).attr('name');
+            var clickedRadioBtn = $(this).attr('name');
 
-            $('input[type="radio"]').not('[name="' + clickedRadioBtn + '"]').each(function (i, e) {
-                $(e).prop("checked", false);
+                $('input[type="radio"]').not('[name="' + clickedRadioBtn + '"]').each(function (i, e) {
+                    $(e).prop("checked", false);
+
+            });
 
         });
-
-    });
 
 });
 </script>

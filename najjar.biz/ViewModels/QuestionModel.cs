@@ -17,6 +17,8 @@ namespace najjar.biz.ViewModels
         public string QuestionType { get; set; }
         public double Points { get; set; }
         public List<QXOModel> Options { get; set; }
+
+        public DateTime ExpiryDate { get; set; }
     }
 
     public class QXOModel

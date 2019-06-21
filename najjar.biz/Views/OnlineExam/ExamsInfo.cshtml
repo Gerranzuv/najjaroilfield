@@ -1,0 +1,68 @@
+﻿@model najjar.biz.ViewModels.ExamsInfoViewModel
+@{
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+    ViewBag.Title = "Exams Info";
+}
+
+<div class="container">
+    <div class="col-md-4">
+        <ul class="nav nav-stacked nav-pills">
+            <li id="PersonalInfo">
+                @Html.ActionLink("Personal Information", "PersonalPage", "Employee", new { Employeeid = Model.EmployeeId }, null)
+            </li>
+            <li id="SalaryInfo">
+                @Html.ActionLink("Salary Information", "SalaryInfo", "Employee", new { Employeeid = Model.EmployeeId }, null)
+            </li>
+            <li id="EmployeeDocs">
+                @Html.ActionLink("My Documents", "EmployeeDocs", "Support", new { Employeeid = Model.EmployeeId }, null)
+            </li>
+            <li id="EmployeeVacation">
+                @Html.ActionLink("Employee Vacation", "EmployeeVacation", "EmployeesVacation", new { Employeeid = Model.EmployeeId }, null)
+            </li>
+
+            <li id="EmployeeRating">
+                @Html.ActionLink("Employee Rating", "EmployeeRating", "EmployeeRating", new { Employeeid = Model.EmployeeId }, null)
+            </li>
+            <li id="EmployeeRating" style="color: #15a589 !important;">
+                @Html.ActionLink("Termination Info", "TerminationInfo", "Employee", new { Employeeid = Model.EmployeeId }, null)
+            </li>
+            <li id="EmployeeRating"
+                class="active"
+                style="color: #15a589 !important;">
+                @Html.ActionLink("Exams Info", "ExamsInfo", "OnlineExam", new { Employeeid = Model.EmployeeId }, null)
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-8">
+        <h2>ExamsInfo for @Model.EmployeeName</h2>
+        <table class="table table-responsive table-hover">
+            <tr>
+                <th>Test</th>
+                <th>Total Mark</th>
+                <th>Mark Scored</th>
+                <th>Final Result</th>
+            </tr>
+            @foreach(var item in Model.Tests)
+            {
+                <tr>
+                    <td>@item.TestName</td>
+                    <td>@item.TotalMark</td>
+                    <td>@item.MarkScored</td>
+                    <td>
+                        @if (item.MarkScored / item.TotalMark >= 0.5)
+                        {
+                            <span class="text-success">Suceeded!</span>
+                        }
+                        else
+                        {
+                            <span class="text-danger">Failed!</span>
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Review Exam", "OnlineExam", null, new { @href="#"})
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

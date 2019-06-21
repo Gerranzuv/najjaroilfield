@@ -12,9 +12,6 @@
     <div class="col-md-3 col-sm-4 sidebar">
         <br />
         <ul class="nav nav-stacked nav-pills">
-            @*<li>
-                    @Html.ActionLink("Home", "Index", "Home")
-                </li>*@
             <li id="PersonalInfo">
                 @Html.ActionLink("Personal Information", "PersonalPage", "Employee", new { Employeeid = ratingId }, null)
             </li>
@@ -33,10 +30,9 @@
             <li id="EmployeeRating" style="color: #15a589 !important;">
                 @Html.ActionLink("Termination Info", "TerminationInfo", "Employee", new { Employeeid = ratingId }, null)
             </li>
-            @*<li id="Termination">
-                @Html.ActionLink(" Termination Status", "SalaryInfo")
-            </li>*@
-
+            <li id="EmployeeRating" style="color: #15a589 !important;">
+                @Html.ActionLink("Exams Info", "ExamsInfo", "OnlineExam", new { Employeeid = ratingId }, null)
+            </li>
         </ul>
     </div>
 

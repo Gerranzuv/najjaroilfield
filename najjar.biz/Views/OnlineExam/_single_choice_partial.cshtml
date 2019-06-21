@@ -8,6 +8,6 @@
             <input name="UserSelectedChoices[@index].IsChecked"
                    type="radio"
                    @(!string.IsNullOrEmpty(Model.Options[index].Answer) ? "CHECKED" : "") />@Model.Options[index].Label
-            </label>
-        </div>
+        </label>
+    </div>
     }
