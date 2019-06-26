@@ -4,145 +4,170 @@
     Layout = "~/Views/Shared/_Admin_Layout.cshtml";
     var Id = Request.QueryString["Employeeid"];
 }
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"
+        integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
+        crossorigin="anonymous"></script>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-4 col-sm-4 sidebar">
-            <br />
-            <ul class="nav nav-stacked nav-pills">
-                <li id="PersonalInfo" class="active">
-                   @Html.ActionLink("Personal Information", "PersonalPage", new { Employeeid = Id })
-                </li>
-                <li id="SalaryInfo">
-                    @Html.ActionLink("Salary Information", "SalaryInfo", new { Employeeid = Id })
-                </li>
-                <li id="EmployeeDocs">
-                    @Html.ActionLink("My Documents", "EmployeeDocs", "Support", new { Employeeid = Id }, null)
-                </li>
-                <li id="EmployeeVacation">
-                    @Html.ActionLink("Employee Vacation", "EmployeeVacation", "EmployeesVacation", new { Employeeid = Id }, null)
-                </li>
-                <li id="EmployeeRating">
-                    @Html.ActionLink("Employee Rating", "EmployeeRating", "EmployeeRating", new { Employeeid = Id }, null)
-                </li>
-                <li id="EmployeeRating" style="color: #15a589 !important;">
-                    @Html.ActionLink("Termination Info", "TerminationInfo", new { Employeeid = Model.Id }, null)
-                </li>
+        <div class="col-md-4 ">
+                   <ul class="nav nav-stacked nav-pills">
+                       <li id="PersonalInfo" class="active"  style="color: #15a589 !important;">
+                           @Html.ActionLink("Personal Information", "PersonalPage", new { Employeeid = Id })
+                       </li>
+                       <li id="SalaryInfo"  style="color: #15a589 !important;">
+                           @Html.ActionLink("Salary Information", "SalaryInfo", new { Employeeid = Id })
+                       </li>
+                       <li id="EmployeeDocs" style="color: #15a589 !important;">
+                           @Html.ActionLink("My Documents", "EmployeeDocs", "Support", new { Employeeid = Id }, null)
+                       </li>
+                       <li id="EmployeeVacation" style="color: #15a589 !important;">
+                           @Html.ActionLink("Employee Vacation", "EmployeeVacation", "EmployeesVacation", new { Employeeid = Id }, null)
+                       </li>
+                       <li id="EmployeeRating" style="color: #15a589 !important;">
+                           @Html.ActionLink("Employee Rating", "EmployeeRating", "EmployeeRating", new { Employeeid = Id }, null)
+                       </li>
+                       <li id="TerminationInfo" style="color: #15a589 !important;">
+                           @Html.ActionLink("Termination Info", "TerminationInfo", new { Employeeid = Model.Id }, null)
+                       </li>
             </ul>
         </div>
         
         <div class="col-md-5" id="PersonalInfoDV">
+            <h2 class="text-center" style="color: #15a589 !important;">Personal Information</h2>
+            <table class="table table-responsive">
+                <tr>
+                    <th>
 
-            <h2 style="color: #15a589">Personal Information</h2>
-            <dl class="dl-horizontal">
+                        @Html.DisplayNameFor(model => model.Name) :
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Name)
+                    </td>
+                </tr>
+                <tr>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Name) :
-                </dt>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BirthDate) :
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.BirthDate)
+                    </td>
+                </tr>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Name)
-                </dd>
+                <tr>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.BirthDate) :
-                </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.BirthDate)
-                </dd>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BirthPlace) :
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.BirthPlace)
+                    </td>
+                </tr>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.BirthPlace) :
-                </dt>
+                <tr>
 
-                <dd>
-                    @Html.DisplayFor(model => model.BirthPlace)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.StartDate) :
-                </dt>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StartDate) :
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.StartDate)
+                    </td>
+                </tr>
 
-                <dd>
-                    @Html.DisplayFor(model => model.StartDate)
-                </dd>
+                <tr>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Status) :
-                </dt>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status) :
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Status)
+                    </td>
+                </tr>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Status)
-                </dd>
+                <tr>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Department):
-                </dt>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Department):
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Department)
+                    </td>
+                </tr>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Department)
-                </dd>
+                <tr>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.DirectManager):
-                </dt>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DirectManager):
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.DirectManager)
+                    </td>
+                </tr>
 
-                <dd>
-                    @Html.DisplayFor(model => model.DirectManager)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.EmployeeCode):
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.EId)
-                </dd>
-            </dl>
-            <hr />
-            <h2 style="color: #15a589">Contact Information</h2>
-            <dl class="dl-horizontal">
+                <tr>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.PhoneNumber):
-                </dt>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EmployeeCode):
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.EId)
+                    </td>
+                </tr>
+            </table>
 
-                <dd>
-                    @Html.DisplayFor(model => model.PhoneNumber)
-                </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.FixedNumber):
-                </dt>
+                  
+                    <hr />
+            <h2 class="text-center" style="color: #15a589 !important;">Contact Information</h2>
+            <table class="table table-responsive">
 
-                <dd>
-                    @Html.DisplayFor(model => model.FixedNumber)
-                </dd>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PhoneNumber):
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                    </td>
+                </tr>
+                <tr>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Email):
-                </dt>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FixedNumber):
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.FixedNumber)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email):
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Email)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Address):
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Address)
+                    </td>
+                </tr>
+            </table>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Email)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Address):
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Address)
-                </dd>
-            </dl>
-            <hr />
-            <div class="row">
-                <div class="col-md-5">
-                    <input type="button"
-                           class="btn btn-primary" value="Edit Info"
-                           onclick="location.href='@Url.Action("Edit", "Employee", new { id = Id })'" />
-                </div>
-            </div>
-        </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-5">
+                            <input type="button"
+                                   class="btn btn-primary" value="Edit Info"
+                                   onclick="location.href='@Url.Action("Edit", "Employee", new { id = Id })'" />
+                        </div>
+                    </div>
+</div>
         <div class="col-md-3">
             @if (Model.EmployeeImage != null)
             {

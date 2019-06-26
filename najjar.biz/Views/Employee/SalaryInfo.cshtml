@@ -26,7 +26,7 @@
                 <li id="EmployeeRating" style="color: #15a589 !important;">
                     @Html.ActionLink("Employee Rating", "EmployeeRating", "EmployeeRating", new { Employeeid = Model.Id }, null)
                 </li>
-                <li id="EmployeeRating" style="color: #15a589 !important;">
+                <li id="TerminationInfo" style="color: #15a589 !important;">
                     @Html.ActionLink("Termination Info", "TerminationInfo", new { Employeeid = Model.Id }, null)
                 </li>
             </ul>
@@ -137,10 +137,10 @@
                 <!-- /.row -->
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-offset-4 col-md-4">
-            @Html.ActionLink("Update Salary Info", "EditSalary", new { id = Model.Id }, new { @class="btn btn-default" })
-            </div>
+    <div class="row" >
+        <div class="col-md-offset-4 col-md-4" >
+            @Html.ActionLink("Update Salary Info", "EditSalary", new { id = Model.Id }, new { @class = "btn btn-default" })
+        </div>
         <div class="col-md-4">
             <input type="button" id="pdfDownloader" value="print salary Info" class="btn btn-success" />
         </div>
