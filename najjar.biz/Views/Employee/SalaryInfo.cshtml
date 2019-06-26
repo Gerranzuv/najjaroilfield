@@ -29,6 +29,9 @@
                 <li id="EmployeeRating" style="color: #15a589 !important;">
                     @Html.ActionLink("Termination Info", "TerminationInfo", new { Employeeid = Model.Id }, null)
                 </li>
+                <li id="EmployeeRating" style="color: #15a589 !important;">
+                    @Html.ActionLink("Exams Info", "ExamsInfo", "OnlineExam", new { Employeeid = Model.Id }, null)
+                </li>
             </ul>
         </div>
         <div id="salary-info" class="col-md-8">

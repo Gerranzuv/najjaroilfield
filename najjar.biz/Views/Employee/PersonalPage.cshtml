@@ -12,7 +12,7 @@
             <br />
             <ul class="nav nav-stacked nav-pills">
                 <li id="PersonalInfo" class="active">
-                   @Html.ActionLink("Personal Information", "PersonalPage", new { Employeeid = Id })
+                    @Html.ActionLink("Personal Information", "PersonalPage", new { Employeeid = Id })
                 </li>
                 <li id="SalaryInfo">
                     @Html.ActionLink("Salary Information", "SalaryInfo", new { Employeeid = Id })
@@ -28,6 +28,9 @@
                 </li>
                 <li id="EmployeeRating" style="color: #15a589 !important;">
                     @Html.ActionLink("Termination Info", "TerminationInfo", new { Employeeid = Model.Id }, null)
+                </li>
+                <li id="EmployeeRating" style="color: #15a589 !important;">
+                    @Html.ActionLink("Exams Info","ExamsInfo", "OnlineExam", new { Employeeid = Model.Id }, null)
                 </li>
             </ul>
         </div>

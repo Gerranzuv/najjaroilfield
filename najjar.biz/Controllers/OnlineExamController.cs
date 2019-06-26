@@ -25,14 +25,18 @@ namespace najjar.biz.Controllers
 
         public ActionResult InstructionPage(int? TestId, string employee_code)
         {
-            Employees selectedEmloyee = db.Employees.FirstOrDefault(emp => emp.EmployeeCode.Equals(employee_code, StringComparison.InvariantCultureIgnoreCase));
+            Employees selectedEmloyee = db
+                .Employees
+                .FirstOrDefault(emp => emp.EmployeeCode.Equals(employee_code, StringComparison.InvariantCultureIgnoreCase));
             if (selectedEmloyee == null)
             {
                 TempData["errMessage"] = "Please Enter A Valid Employee Code!";
                 return RedirectToAction("Index");
             }
             else {
-                Test selectedTest = db.Tests.Include("TestXQuestions").FirstOrDefault(t => t.Id == TestId);
+
+                Test selectedTest = db.Tests.Include("TestXQuestions").Include("TestXQuestions.Question").FirstOrDefault(t => t.Id == TestId);
+
 
                 if (selectedTest != null)
                 {
@@ -67,10 +71,12 @@ namespace najjar.biz.Controllers
                 .FirstOrDefault(reg => reg.TestId == TestId && reg.EmployeeId == employee.Id );
 
             // If the employee has already registered for the Test --->
-            if(registration != null)
+
+            if (registration != null)
             {
                 Session["TOKEN"] = registration.Token;
-                Session["ExpireDate"] = registration.ExpiresDate;
+
+                return RedirectToAction("FinalResult", new { TestId , token = registration.Token });
             }
 
             // Create New Registration
@@ -92,6 +98,7 @@ namespace najjar.biz.Controllers
 
                 Session["TOKEN"] = newRegistration.Token;
                 Session["ExpireDate"] = newRegistration.ExpiresDate;
+                Session.Timeout = test.DurationInMinutes;
             }
 
             return RedirectToAction("EvalPage", new { @token = Session["TOKEN"] });
@@ -99,22 +106,31 @@ namespace najjar.biz.Controllers
 
         public ActionResult EvalPage(Guid token, int? qno)
         {
-            if(token == null)
+            Registration registration = db
+                .Registrations
+                .FirstOrDefault(r => r.Token.Equals(token));
+
+            if (registration == null)
             {
                 TempData["errMessage"] = "You have an invalid Token. Please Register for the Test again!";
                 return RedirectToAction("Index");
             }
 
-            Registration registration = db.Registrations.FirstOrDefault(r => r.Token.Equals(token));
-
-            if(registration.ExpiresDate < DateTime.Now)
+            // If The Test Has expired
+            if(registration.ExpiresDate <= DateTime.Now)
             {
                 TempData["errMessage"] = "The Test has expired at " + registration.ExpiresDate.ToString();
 
-                db.Registrations.Remove(registration);
-                db.SaveChanges();
+                //  If the Test expires, The User is allowed to Take the exam again!
+                //  db.Registrations.Remove(registration);
+                //  db.SaveChanges();
 
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                int remainingTimeInminutes = registration.ExpiresDate.Subtract(DateTime.Now).Minutes;
+                Session.Timeout = remainingTimeInminutes;
             }
 
             if (qno.GetValueOrDefault() < 1 || qno.GetValueOrDefault() > db.TestXQuestions.Where(x => x.TestId == registration.TestId && x.IsActive).Count())
@@ -154,8 +170,6 @@ namespace najjar.biz.Controllers
                         .ToList()
                     }).FirstOrDefault();
 
-                    EvalPageModel.DurationInMinutes = registration.ExpiresDate.Subtract(DateTime.Now).Minutes;
-
                 // If the Question is already answered. Set the Choices of the Employee
 
                 var savedAnsweres = db
@@ -172,7 +186,9 @@ namespace najjar.biz.Controllers
                         .Answer = savedAnswer.Answer;
                 }
 
-                    return View(EvalPageModel);
+                EvalPageModel.ExpiryDate = registration.ExpiresDate;
+
+                return View(EvalPageModel);
             }
             return View("Error");
         }
@@ -264,7 +280,7 @@ namespace najjar.biz.Controllers
             }
             else
             {
-                // Get The Next Question Number from the Database
+                // Get The Previous Question Number from the Database
                 nextQuestionNumber = db.TestXQuestions.Where(x => x.TestId == choices.TestId
                     && x.QuestionNumber < choices.QuestionId)
                     .OrderByDescending(x => x.QuestionNumber)
@@ -284,22 +300,23 @@ namespace najjar.biz.Controllers
             });
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult FinalResult(int TestId, Guid token)
         {
-            if(token == null)
-            {
-                TempData["errMessage"] = "Invalid Token. Please Register again for the Test";
-                return RedirectToAction("Index");
-            }
-
             Registration registration = db.Registrations.Where(r => r.Token.Equals(token)).FirstOrDefault();
 
-            if(registration == null)
+            if (registration == null)
             {
                 TempData["errMessage"] = "Invalid Token. Please Register again for the Test";
                 return RedirectToAction("Index");
             }
+
+            // Total Mark for the Test
+            ViewBag.TotalMark = db
+                .TestXQuestions
+                .Include("Question")
+                .Where(txq => txq.TestId == registration.TestId)
+                .Sum(x => x.Question.points);
 
             var textXPapers = db
                 .TestXPapers
@@ -308,7 +325,50 @@ namespace najjar.biz.Controllers
                 .Where(x => x.RegistrationId == registration.Id)
                 .ToList();
 
+            Session["TOKEN"] = null;
+
             return View(textXPapers);
+        }
+
+        [HttpGet]
+        public ActionResult ExamsInfo(int Employeeid)
+        {
+            var employee = db
+                .Employees
+                .Where(e => e.Id == Employeeid)
+                .FirstOrDefault();
+
+            var registrations = db
+                .Registrations
+                .Include("Test")
+                .Include("Test.TestXQuestions")
+                .Include("Test.TestXQuestions.Question")
+                .Include("TestXPapers")
+                .Where(reg => reg.EmployeeId == Employeeid);
+
+            List<TestInfoModel> tests = new List<TestInfoModel>();
+
+            foreach(var reg in registrations)
+            {
+                TestInfoModel test = new TestInfoModel()
+                {
+                    TestId = reg.TestId,
+                    TestName = reg.Test.Name,
+                    TotalMark = reg.Test.TestXQuestions.Sum(txq => txq.Question.points),
+                    MarkScored = reg.TestXPapers.Sum(txp => txp.MarkScored)
+                };
+
+                tests.Add(test);
+            }
+
+            ExamsInfoViewModel examsInfoViewModel = new ExamsInfoViewModel()
+            {
+                EmployeeId = Employeeid,
+                EmployeeName = employee.Name,
+                Tests = tests
+            };
+
+            return View(examsInfoViewModel);
         }
     }
 }
