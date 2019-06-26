@@ -37,5 +37,38 @@ namespace najjar.biz.Controllers
 
             return View(test);
         }
+
+        [HttpGet]
+        public ActionResult Edit(int TestId)
+        {
+            Test testToEdit = db.Tests.Find(TestId);
+
+            if(testToEdit == null)
+            {
+                return HttpNotFound("The Test with the Test Id: " + TestId + " Couldn't be found!");
+            }
+            else
+            {
+                return View(testToEdit);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Test test)
+        {
+            if (ModelState.IsValid)
+            {
+
+                Test testToUpdate = db.Tests.Find(test.Id);
+                TryUpdateModel(testToUpdate);
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(test);
+            }
+        }
     }
 }

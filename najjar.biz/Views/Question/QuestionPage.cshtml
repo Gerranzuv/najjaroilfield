@@ -1,0 +1,91 @@
+﻿@model najjar.biz.Models.Test
+
+@{
+    ViewBag.Title = "QuestionPage for " + Model.Name;
+    var testXQuestions = Model.TestXQuestions;
+}
+
+<div class="row text-center">
+    <div class="col-xs-12">
+        <h2>Question Page for @Model.Name</h2>
+    </div>
+</div>
+
+<div class="row text-center">
+    <div class="col-xs-12">
+        @Html.ActionLink("Add New Question", "AddNewQuestion", "Question",
+            new { TestId = Model.Id }, new { @class="btn btn-default" })
+    </div>
+</div>
+
+@while (testXQuestions.Count() > 0)
+{
+    <div class="row">
+        @foreach (var item in testXQuestions.Take(2))
+        {
+            <div class="col-xs-12 col-sm-6">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <h3>@item.QuestionNumber&sdot;</h3>&nbsp;
+                    </div>
+                    <div class="col-xs-5">
+                        <strong>@item.Question.QuestionText</strong>
+                    </div>
+                    <div class="col-xs-5">
+                        <p class="text-success">
+                            @item.Question.points&nbsp;Points
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col-xs-offset-1 col-xs-10">
+                        @foreach (var choice in item.Question.Choices)
+                        {
+                            if (item.Question.QuestionType.Equals("single_choice", 
+                                StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                <div class="radio">
+                                    <label style="overflow-wrap:break-word">
+                                        <input type="radio" disabled />
+                                        @choice.Label
+                                    </label>
+                                    &nbsp;
+                                    <span class="text-success">
+                                        @choice.points&nbsp;Points
+                                    </span>
+                                    &nbsp;|&nbsp;
+                                    @Html.ActionLink("Edit", "Edit", "Choice",
+                                        new { ChoiceId = choice.Id, QuestionId = item.QuestionId }, null)
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="checkbox">
+                                    <label style="overflow-wrap:break-word">
+                                        <input type="checkbox" disabled />
+                                        @choice.Label
+                                    </label>
+                                    <span class="text-success">
+                                        @choice.points&nbsp;Points
+                                    </span>
+                                    &nbsp;|&nbsp;
+                                    @Html.ActionLink("Edit", "Edit", "Choice",
+                                        new { ChoiceId = choice.Id, QuestionId = item.QuestionId }, null)
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-2">
+                        @Html.ActionLink("Add new Choice", "AddNewChoice", "Choice",
+                            new { QuestionId = item.QuestionId }, null)&nbsp;|&nbsp;
+                        @Html.ActionLink("Edit This Question", "Edit", "Question",
+                            new { QuestionId = item.QuestionId, TestId = Model.Id}, null)
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    testXQuestions = testXQuestions.Skip(2).ToList();
+}

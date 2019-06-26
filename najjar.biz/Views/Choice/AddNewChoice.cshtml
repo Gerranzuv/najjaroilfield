@@ -1,25 +1,24 @@
 ﻿@model najjar.biz.Models.Choice
 @using najjar.biz.Models;
 @{
-    ViewBag.Title = "Edit Choice";
+    ViewBag.Title = "AddNewChoice";
     Question question = ((Question)ViewBag.Question);
     int testId = Convert.ToInt32(ViewBag.TestId);
 }
 
-<h2>Edit This Choice</h2>
+<h2>AddNewChoice</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
         <div class="jumbotron">
             @question.QuestionText
         </div>
         @Html.ValidationSummary(true)
-
-        @Html.HiddenFor(model => model.Id)
-        @Html.HiddenFor(model => model.QuestionId)
+        
+        @Html.Hidden("QuestionId", question.Id)
         @Html.Hidden("TestId", testId)
 
         <div class="row">
@@ -35,7 +34,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Label, htmlAttributes: new { @class = "control-label col-xs-12 col-sm-2" })
             <div class="col-xs-12 col-sm-5">
-                @Html.TextBoxFor(model => model.Label, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.Label, new { @class="form-control" })
                 @Html.ValidationMessageFor(model => model.Label)
             </div>
         </div>
@@ -43,7 +42,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.points, htmlAttributes: new { @class = "control-label col-xs-12 col-sm-2" })
             <div class="col-xs-12 col-sm-5">
-                @Html.TextBoxFor(model => model.points, new { @class = "form-control", @type = "number" })
+                @Html.TextBoxFor(model => model.points, new { @class="form-control", @type="number"})
                 @Html.ValidationMessageFor(model => model.points)
             </div>
         </div>
@@ -61,15 +60,13 @@
 
         <div class="form-group">
             <div class="col-xs-offset-2 col-xs-10">
-                <input type="submit" value="Edit" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 <div>
-    @Html.ActionLink("Back to Question List", "QuestionPage", "Question",
-        new { TestId = testId },
+    @Html.ActionLink("Back to Question List", "QuestionPage", "Question", 
+        new { TestId = testId }, 
         new { @class="btn btn-default" } )
 </div>
-
-

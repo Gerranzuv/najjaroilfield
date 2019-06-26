@@ -1,0 +1,69 @@
+﻿@using najjar.biz.Models
+@model najjar.biz.Models.Question
+
+@{
+    ViewBag.Title = "AddNewQuestion";
+    Test test = (Test)ViewBag.Test;
+}
+
+<div class="row">
+    <div class="col-xs-12 text-center">
+        <h2>Add Questions for @test.Name</h2>
+    </div>
+</div>
+
+@using (Html.BeginForm("AddNewQuestion", "Question", FormMethod.Post))
+{
+    @Html.Hidden("TestId", test.Id)
+
+<div class="row">
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">
+            Question Text:
+        </label>
+        <div class="col-xs-12 col-sm-10">
+            @Html.TextAreaFor(model => model.QuestionText, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.QuestionText,"",
+                    new { @class="text-danger" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">
+            Question Points:
+        </label>
+        <div class="col-xs-12 col-sm-10">
+            @Html.TextBoxFor(model => model.points, new { @class = "form-control", @type = "number" })
+            @Html.ValidationMessageFor(model => model.points,"",
+                    new { @class="text-danger" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">
+            Question Category:
+        </label>
+        <div class="col-xs-12 col-sm-10">
+            @Html.DropDownListFor(model => model.CategoryId, (SelectList)ViewBag.Categories, "Please Select a Category", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.QuestionText,"",
+                    new { @class="text-danger" })
+        </div>
+    </div>
+</div>
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-2">
+            <div class="checkbox">
+                <label>
+                    @Html.CheckBoxFor(model => model.IsActive, new { @checked = "checked" })
+                    Is Active
+                </label>
+            </div>
+        </div>
+    </div>
+<div class="row">
+    <input type="submit" value="Add New Question" class="btn btn-primary" />
+</div>
+}
+

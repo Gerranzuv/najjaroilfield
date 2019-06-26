@@ -1,13 +1,10 @@
-﻿using System;
+﻿using najjar.biz.Context;
+using najjar.biz.Models;
+using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using najjar.biz.Models;
-using najjar.biz.Context;
 
 namespace najjar.biz.Controllers
 {
@@ -15,114 +12,151 @@ namespace najjar.biz.Controllers
     {
         private ApplicationDataContext db = new ApplicationDataContext();
 
-        // GET: /Question/
-        public ActionResult Index()
+        public ActionResult QuestionPage(int TestId)
         {
-            return View(db.Questions.ToList());
-        }
+            Test test = db
+                .Tests
+                .Include("TestXQuestions")
+                .Include("TestXQuestions.Question")
+                .Include("TestXQuestions.Question.Choices")
+                .Where(t => t.Id == TestId)
+                .FirstOrDefault();
 
-        // GET: /Question/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
+            if(test != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View(test);
+
             }
-            Question question = db.Questions.Find(id);
-            if (question == null)
+            else
             {
-                return HttpNotFound();
+                return View("Error");
             }
-            return View(question);
         }
-
-        // GET: /Question/Create
-        public ActionResult Create()
+        
+        [HttpGet]
+        public ActionResult AddNewQuestion(int TestId)
         {
-            return View();
+
+            Test test = db.Tests.FirstOrDefault(t => t.Id == TestId);
+
+            if(test != null)
+            {
+                ViewBag.Categories = new SelectList(db.QuestionCategories.ToList(), "Id", "Category");
+                ViewBag.Test = test;
+
+                return View();
+            }
+            else
+            {
+                return View("Error");
+            }
+
         }
 
-        // POST: /Question/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,CategoryId,points,QuestionType,QuestionText,IsActive")] Question question)
+        public ActionResult AddNewQuestion(Question question, int TestId)
         {
             if (ModelState.IsValid)
             {
+                string category = db
+                    .QuestionCategories
+                    .Where(cat => cat.Id == question.CategoryId)
+                    .Select(cat => cat.Category)
+                    .FirstOrDefault();
+
+                question.QuestionType = category;
+
+                int nextQuestionNumber = db
+                        .TestXQuestions
+                        .Where(txq => txq.TestId == TestId)
+                        .Count() + 1;
+
                 db.Questions.Add(question);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                Question lastInsertedQuestion = db
+                    .Questions
+                    .OrderByDescending(q => q.Id)
+                    .FirstOrDefault();
+
+                TestXQuestion testXQuestion = new TestXQuestion()
+                {
+                    TestId = TestId,
+                    QuestionId = lastInsertedQuestion.Id,
+                    QuestionNumber = nextQuestionNumber,
+                    IsActive = question.IsActive
+                };
+
+                db.TestXQuestions.Add(testXQuestion);
+
+                db.SaveChanges();
+
+                return RedirectToAction("QuestionPage", new { TestId });
+            }
+
+            // if an Error Occurred!
+
+            Test test = db.Tests.FirstOrDefault(t => t.Id == TestId);
+
+            if (test != null)
+            {
+                ViewBag.Categories = new SelectList(db.QuestionCategories.ToList(), "Id", "Category");
+                ViewBag.Test = test;
             }
 
             return View(question);
         }
-
-        // GET: /Question/Edit/5
-        public ActionResult Edit(int? id)
+        [HttpGet]
+        public ActionResult Edit(int QuestionId, int TestId)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Question question = db.Questions.Find(id);
-            if (question == null)
-            {
-                return HttpNotFound();
-            }
-            return View(question);
-        }
+            Question question = db.Questions.Find(QuestionId);
+            Test test = db.Tests.Where(t => t.Id == TestId).FirstOrDefault();
 
-        // POST: /Question/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+            if(question != null && test != null)
+            {
+                ViewBag.Categories = new SelectList(db.QuestionCategories.ToList(), "Id", "Category");
+                ViewBag.Test = test;
+                return View(question);
+            }
+            else
+            {
+                return HttpNotFound("The Question with the Question Id: " + 
+                    QuestionId + 
+                    " Couldn't be found! Or The Test with TestId: "
+                    +TestId+" couldn't be found!");
+            }
+        }
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,CategoryId,points,QuestionType,QuestionText,IsActive")] Question question)
+        public ActionResult Edit(Question question, int TestId)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(question).State = EntityState.Modified;
+                Question questionToUpdate = db
+                    .Questions
+                    .Where(q => q.Id == question.Id)
+                    .FirstOrDefault();
+                TryUpdateModel(questionToUpdate);
+
+                questionToUpdate.QuestionType = db
+                    .QuestionCategories
+                    .Where(cat => cat.Id == question.CategoryId)
+                    .Select(cat => cat.Category)
+                    .FirstOrDefault();
+
+                db.Entry(questionToUpdate).State = System.Data.Entity.EntityState.Modified;
+
                 db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(question);
-        }
 
-        // GET: /Question/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("QuestionPage", new { TestId });
             }
-            Question question = db.Questions.Find(id);
-            if (question == null)
+            else
             {
-                return HttpNotFound();
+                ViewBag.Test = db
+                    .Tests
+                    .Where(t => t.Id == TestId)
+                    .FirstOrDefault();
+                return View(question);
             }
-            return View(question);
-        }
-
-        // POST: /Question/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Question question = db.Questions.Find(id);
-            db.Questions.Remove(question);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

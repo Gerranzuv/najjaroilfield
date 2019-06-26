@@ -1,8 +1,25 @@
 ﻿@model IEnumerable<najjar.biz.Models.TestXPaper>
-
-<h3>Your Final Result</h3>
+@{ 
+    var totalMark = ViewBag.TotalMark;
+    var MarkScored = Model.Sum(x => x.MarkScored);
+}
 <div class="row">
-    <div class="col-sm-offset-3 col-sm-6">
+    <div class="col-xs-6 col-sm-3">
+        <h3>Your Final Result</h3>
+    </div>
+    <div class="col-xs-6 col-sm-5">
+        @if (MarkScored / totalMark >= 0.5)
+        {
+            <h3 class="text-success">Succeeded!</h3>
+        }
+        else
+        {
+            <h3 class="text-danger">Failed!</h3>
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-offset-3 col-sm-6">
         <table class="table table-responsive">
             <thead>
                 <tr>
@@ -12,7 +29,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach(var item in Model)
+                @foreach (var item in Model)
                 {
                     <tr>
                         <td>
@@ -31,10 +48,26 @@
                         <strong>Final Result</strong>
                     </td>
                     <td>
-                        @Model.Sum(x => x.MarkScored)
+                        @if (MarkScored / totalMark >= 0.5)
+                        {
+                            <span class="text-success">
+                                You have Scored @MarkScored Out of @totalMark
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="text-danger">
+                                You have Scored @MarkScored Out of @totalMark
+                            </span>
+                        }
                     </td>
                 </tr>
             </tbody>
         </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+        @Html.ActionLink("Back to List", "Index", null, new { @class="btn btn-primary" })
     </div>
 </div>
