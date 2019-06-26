@@ -62,10 +62,12 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Fasterflect, Version=2.1.3.0, Culture=neutral, PublicKeyToken=38d18473284c1ca7, processorArchitecture=MSIL">
       <HintPath>..\packages\fasterflect.2.1.3\lib\net40\Fasterflect.dll</HintPath>
@@ -475,6 +477,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\1.jpg" />
+    <Content Include="Images\1111.png" />
+    <Content Include="Images\1111_burned.png" />
     <Content Include="Images\2.jpg" />
     <Content Include="Images\3.jpg" />
     <Content Include="Images\4.jpg" />
@@ -494,7 +498,14 @@
     <Content Include="Images\file-6.png" />
     <Content Include="Images\hh.jpg" />
     <Content Include="Images\images.jpg" />
+    <Content Include="Images\Logo-najjar3.png" />
+    <Content Include="Images\logo-najjar4.png" />
+    <Content Include="Images\logo-najjar6.png" />
+    <Content Include="Images\logo-najjar5.png" />
+    <Content Include="Images\logo_Najjar2.png" />
+    <Content Include="Images\logo-najjar.png" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\logo_Najjar1.png" />
     <Content Include="Images\Logo_new.png" />
     <Content Include="Images\najjarwhite.png" />
     <Content Include="Images\Oil-Company-in-Lagos-Nigeria.jpg" />

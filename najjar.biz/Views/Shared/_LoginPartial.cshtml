@@ -19,15 +19,22 @@ else
 {
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Join Us", "jobListForGuest", "Job")
-        </li>
+            <ul style ="font-size: large; margin-left: -80%" >
+                @Html.ActionLink("Join Us", "jobListForGuest", "Job")
+                </ul>
+</li>
 
         <li>
-            @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
-        </li>
+            <ul style="font-size: large; margin-left:-15%">
+
+                @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                </ul>
+</li>
 
         <li>
-            @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
-        </li>
+            <ul style="font-size: large; margin-top: -30%; ">
+                @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                </ul>
+</li>
     </ul>
 }

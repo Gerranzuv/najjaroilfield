@@ -8,8 +8,9 @@
     <meta name="author" content="">
     <title>@ViewBag.Title</title>
     <!-- Bootstrap core CSS -->
-    <link href="@Url.Content("~/css/bootstrap.css")" rel="stylesheet">
+    <link href="@Url.Content("~/css/bootstrap.min.css")" rel="stylesheet">
     <link href="@Url.Content("~/css/carousel.css")" rel="stylesheet">
+    <link href="@Url.Content("~/css/site.css")" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -19,87 +20,97 @@
 </head>
 
 <body>
-    <div class="navbar-wrapper">
+    <div style="background-color: #15a589">
         <div class="container">
-
-            <div class="navbar navbar-inverse navbar-static-top" role="navigation">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" 
-                                data-target=".navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a href="/Home" class="navbar-brand">
-
-                            <img src="~/Images/testlogo.png" class="logo-size" />
-                        </a>
-                        
-                        </div>
-                    <div class="navbar-collapse collapse" style="margin-right: 25px;">
+            <div class="row logo-container">
+                <div class="col-xs-6">
+                    <a href="/Home">
+                        <img src="~/Images/logo-najjar6.png" class="logo-size" style=" margin-top:-10%; margin-left: -1% " />
+                    </a>
+                    @*<img src="~/Images/1111_burned.png" class="logo-size" style=" margin-top:-1%; margin-left: -18% " />*@
+                </div>
+                <div class="col-xs-3 col-xs-offset-3">
+                    <ul class="nav navbar-nav" style=" margin-top:-25%">
+                        @Html.Partial("_LoginPartial")
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="navbar navbar-inverse" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                @*<div class="navbar-collapse collapse" style="margin-right: 25px;">
 
                         @Html.Partial("_LoginPartial")
-                    </div>
-                    <div class="container">
-                        <div class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                                <li class="active"><a href="/Home">Home</a></li>
-                                <!-- Service And Products-->
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Services and Products <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="@Url.Action("ServicesPage", "Services", new { page="wireLine"})">WireLine Logging</a> </li>
-                                        <li><a href="@Url.Action("ServicesPage", "Services", new { page = "sickLine" })">Slickline</a></li>
-                                        <li><a href="@Url.Action("ServicesPage", "Services", new { page = "wellTesting" })">Surface Well Testing</a></li>
-                                        @*<li><a class="dropdown-item list-group-item list-group-item-dark" style="background-color:black;color:white" href="@Url.Action("Sickline", "Services")">Frac Pump</a></li>*@
-                                        <li><a href="@Url.Action("ServicesPage", "Services", new { page = "CoiledTubing" })">Coiled Tubing</a></li>
-                                        <li><a href="@Url.Action("ServicesPage", "Services", new { page = "oilphaseLab" })">Oilphase Lab</a></li>
-                                        <li><a href="@Url.Action("ServicesPage", "Services", new { page = "cementing" })">Cementing</a></li>
+                    </div>*@
+                <div class="container">
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active" style="font-size:large"><a href="/Home">Home</a></li>
+                            <!-- Service And Products-->
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"style="font-size:large">Services and Products <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("ServicesPage", "Services", new { page="wireLine"})">WireLine Logging</a> </li>
+                                    <li><a href="@Url.Action("ServicesPage", "Services", new { page = "sickLine" })">Slickline</a></li>
+                                    <li><a href="@Url.Action("ServicesPage", "Services", new { page = "wellTesting" })">Surface Well Testing</a></li>
+                                    @*<li><a class="dropdown-item list-group-item list-group-item-dark" style="background-color:black;color:white" href="@Url.Action("Sickline", "Services")">Frac Pump</a></li>*@
+                                    <li><a href="@Url.Action("ServicesPage", "Services", new { page = "CoiledTubing" })">Coiled Tubing</a></li>
+                                    <li><a href="@Url.Action("ServicesPage", "Services", new { page = "oilphaseLab" })">Oilphase Lab</a></li>
+                                    <li><a href="@Url.Action("ServicesPage", "Services", new { page = "cementing" })">Cementing</a></li>
 
-                                        @*<li class="divider"></li>
-                            <li class="dropdown-header">Nav header</li>*@
-                                    </ul>
-                                </li>
-                                <!-- Renting-->
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Renting<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="@Url.Action("cranes", "Home")">Cranes</a> </li>
+                                    @*<li class="divider"></li>
+                                        <li class="dropdown-header">Nav header</li>*@
+                                </ul>
+                            </li>
+                            <!-- Renting-->
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size:large">Renting<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("cranes", "Home")">Cranes</a> </li>
 
-                                    </ul>
-                                </li>
-                                <!-- Selling -->
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Selling <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="@Url.Action("Quantec", "Services")">Drilling pits</a> </li>
+                                </ul>
+                            </li>
+                            <!-- Selling -->
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size:large">Selling <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("Quantec", "Services")">Drilling pits</a> </li>
 
-                                    </ul>
-                                </li>
-                                <!--HSE Dropdown List-->
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">HSE<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="@Url.Action("HsePage", "Services", new { page = "HSE" })">HSE</a> </li>
-                                        <li><a href="@Url.Action("HsePage", "Services", new { page = "HSEenv" })">HSE Environment</a></li>
-                                    </ul>
-                                </li>
+                                </ul>
+                            </li>
+                            <!--HSE Dropdown List-->
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size:large">HSE<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("HsePage", "Services", new { page = "HSE" })">HSE</a> </li>
+                                    <li><a href="@Url.Action("HsePage", "Services", new { page = "HSEenv" })">HSE Environment</a></li>
+                                </ul>
+                            </li>
 
-                                <!--Employees Mgmt-->
+                            <!--Employees Mgmt-->
 
-                                <li>
-                                    @if (User.Identity.IsAuthenticated)
+                            <li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("administrator"))
                                     {
-                                        if (User.IsInRole("administrator"))
-                                        {
-                                        <li><a href="@Url.Action("Index", "Employee")">Employee Management</a></li>
-                                        }
+                                    <li><a href="@Url.Action("Index", "Employee")" style="font-size:large">Employee Management</a></li>
                                     }
-                                    </li>
+                                }
+                                </li>
 
-                                    @*Employees Information
+                                @*Employees Information
                                     <li>
                                         @if (User.Identity.IsAuthenticated)
                                         {
@@ -110,14 +121,14 @@
                                             }
                                         }
                                         </li>*@
-                               
+
 
                                 <!--Articles List-->
-                                <li><a href="@Url.Action("ArticlesList", "Article")">Articles</a></li>
+                                <li><a href="@Url.Action("ArticlesList", "Article")" style="font-size:large">Articles</a></li>
 
                                 <!--About us-->
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">About us<b class="caret"></b></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size:large">About us<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="@Url.Action("WhoWeAre", "Home")">Who We Are?</a> </li>
                                         <li><a href="@Url.Action("CompanyGoals", "Home")">Company Goals</a></li>
@@ -127,92 +138,89 @@
 
 
                                 <!--Contact us-->
-                                <li><a href="@Url.Action("ContactUs", "Home")">Contact us</a></li>
+                                <li><a href="@Url.Action("ContactUs", "Home")" style="font-size:large">Contact us</a></li>
 
 
                             </ul>
 
 
                         </div>
-
                     </div>
-                    </div>
+                </div>
             </div>
-
         </div>
-    </div>
-    @RenderBody()
-    
+        @RenderBody()
+
 
         @*<div class="container body-content" style="padding-top:120px">
-            @RenderBody()
-            <hr />
-        </div>*@
-    
+                @RenderBody()
+                <hr />
+            </div>*@
 
-    <!--footer-->
-    <footer class="myfooter" style="padding-top: 1px; ">
-        <div class="container">
-            <div class=" row">
-                <div class="col-md-4">
-                    <h3>About Us</h3>
-                    <ul>
-                        <li>
-                            <a href="#">Facebook</a>
-                        </li>
-                        <li>
-                            <a href="#">Twiter</a>
-                        </li>
-                        <li>
-                            <a href="#">Leave a Message</a>
-                        </li>
-                    </ul>
+
+        <!--footer-->
+        <footer class="myfooter" style="padding-top: 1px; ">
+            <div class="container">
+                <div class=" row">
+                    <div class="col-md-4">
+                        <h3>About Us</h3>
+                        <ul>
+                            <li>
+                                <a href="#">Facebook</a>
+                            </li>
+                            <li>
+                                <a href="#">Twiter</a>
+                            </li>
+                            <li>
+                                <a href="#">Leave a Message</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Important Links</h3>
+                        <ul>
+                            <li>
+                                <a href="#">Services and Products</a>
+                            </li>
+                            <li>
+                                <a href="#">Technical Challenges</a>
+                            </li>
+                            <li>
+                                <a href="#">Businesses</a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h3>Contact US</h3>
+                        <ul>
+                            <li>
+                                <a href="/Home/Contact">Contct Information</a>
+                            </li>
+                            <li>
+                                <a href="#">Company Departments</a>
+                            </li>
+                            <li>
+                                <a href="#">Businesses</a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+
+
                 </div>
-                <div class="col-md-4">
-                    <h3>Important Links</h3>
-                    <ul>
-                        <li>
-                            <a href="#">Services and Products</a>
-                        </li>
-                        <li>
-                            <a href="#">Technical Challenges</a>
-                        </li>
-                        <li>
-                            <a href="#">Businesses</a>
-                        </li>
-
-
-                    </ul>
-                </div>
-
-                <div class="col-md-4">
-                    <h3>Contact US</h3>
-                    <ul>
-                        <li>
-                            <a href="/Home/Contact">Contct Information</a>
-                        </li>
-                        <li>
-                            <a href="#">Company Departments</a>
-                        </li>
-                        <li>
-                            <a href="#">Businesses</a>
-                        </li>
-
-
-                    </ul>
-                </div>
-
 
             </div>
 
-        </div>
-
-        <div class="subfooter">
-            <p>&copy; @DateTime.Now.Year - NAJJAR Limited.All rights reserved.</p>
-        </div>
-    </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="@Url.Content("~/js/bootstrap.js")"></script>
-    @RenderSection("scripts", required: false)
-</body>
+            <div class="subfooter">
+                <p>&copy; @DateTime.Now.Year - NAJJAR Limited.All rights reserved.</p>
+            </div>
+        </footer>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="@Url.Content("~/js/bootstrap.js")"></script>
+        @RenderSection("scripts", required: false)
+    </body>
 </html>
