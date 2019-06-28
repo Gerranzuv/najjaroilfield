@@ -10,17 +10,15 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using najjar.biz.Models;
 using najjar.biz.Context;
-using najjar.Models;
+using najjar.biz.ViewModels;
 
 namespace najjar.biz.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        public ApplicationDataContext db;
+        private ApplicationDataContext db;
 
-
-        
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDataContext())))
         {
@@ -39,6 +37,10 @@ namespace najjar.biz.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -70,10 +72,10 @@ namespace najjar.biz.Controllers
 
         //
         // GET: /Account/Register
-        
+        [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.Employees = db.Employees;
+            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name");
             ViewBag.UserType = new SelectList(db.Roles, "Name", "Name");
             //ViewBag.Roles = db.Roles;
             return View();
@@ -88,8 +90,19 @@ namespace najjar.biz.Controllers
         {
             if (ModelState.IsValid)
             {
-                ViewBag.UserType = new SelectList(db.Roles, "Name", "Name");
-                var user = new ApplicationUser() { UserName = model.UserName ,UserType=model.UserType };
+                if(db.Users.Count(u => u.EmployeeId == model.EmployeeId) > 0)
+                {
+                    string employee_name = db
+                        .Employees
+                        .Where(e => e.Id == model.EmployeeId)
+                        .FirstOrDefault().Name;
+
+                    ModelState.AddModelError("", "There is already a User Account associated with " + employee_name);
+                    ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name");
+                    ViewBag.UserType = new SelectList(db.Roles, "Name", "Name");
+                    return View(model);
+                }
+                var user = new ApplicationUser() { UserName = model.UserName ,UserType=model.UserType,EmployeeId = model.EmployeeId};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -105,6 +118,8 @@ namespace najjar.biz.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name");
+            ViewBag.UserType = new SelectList(db.Roles, "Name", "Name");
             return View(model);
         }
 
@@ -333,6 +348,75 @@ namespace najjar.biz.Controllers
             base.Dispose(disposing);
         }
 
+        [HttpGet]
+        public ActionResult AssignUserRole(string UserId)
+        {
+            ViewBag.SelectedRole = new SelectList(db.Roles, "Id", "Name");
+
+            var roleViewModel = new AssignRoleViewModel()
+            {
+                UserId = UserId,
+                UserName = db.Users.Find(UserId).UserName
+            };
+
+            return View(roleViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult AssignUserRole(AssignRoleViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = db.Users.Find(model.UserId);
+
+                if(user != null)
+                {
+                    if(user.Roles.Count(x => x.UserId == model.UserId && x.RoleId == model.SelectedRole) > 0)
+                    {
+                        ModelState.AddModelError("", "The User already assigned to the specified Role!");
+                        ViewBag.SelectedRole = new SelectList(db.Roles, "Id", "Name");
+                        return View(model);
+                    }
+                    else
+                    {
+                        user.Roles.Add(new IdentityUserRole()
+                        {
+                            UserId = model.UserId,
+                            RoleId = model.SelectedRole
+                        });
+
+                        db.SaveChanges();
+
+                        return RedirectToAction("UsersByRole", new { RoleId = model.SelectedRole });
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "The User does not exists in the database!");
+                    ViewBag.SelectedRole = new SelectList(db.Roles, "Id", "Name");
+                    return View(model);
+                }
+
+            }
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult UsersByRole(string RoleId)
+        {
+            var users = db
+                .Users
+                .Where(u => u.Roles.Count(role => role.RoleId.Equals(RoleId, StringComparison.InvariantCultureIgnoreCase)) > 0)
+                .ToList();
+            return View(users);
+        }
+
+        [HttpGet]
+        public ActionResult UsersList()
+        {
+            var users = db.Users.ToList();
+            return View(users);
+        }
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";

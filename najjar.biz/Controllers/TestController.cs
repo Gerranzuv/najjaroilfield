@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace najjar.biz.Controllers
 {
+    [Authorize]
     public class TestController : Controller
     {
         private ApplicationDataContext db = new ApplicationDataContext();

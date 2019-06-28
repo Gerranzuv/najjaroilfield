@@ -17,6 +17,14 @@ namespace najjar.biz.Context
 
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder
+                .Properties<DateTime>()
+                .Configure(p => p.HasColumnType("datetime2"));
+        }
+
         public DbSet<Employees> Employees { get; set; }
 
         public DbSet<Support> Supports { get; set; }

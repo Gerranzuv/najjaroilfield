@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace najjar.biz.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Testing")]
     public class OnlineExamController : Controller
     {
         private ApplicationDataContext db = new ApplicationDataContext();

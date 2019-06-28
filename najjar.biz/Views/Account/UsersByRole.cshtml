@@ -1,0 +1,28 @@
+﻿@model List<najjar.biz.Models.ApplicationUser>
+@{
+    ViewBag.Title = "Users By Role";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-offset-2 col-md-10">
+        <table class="table table-responsive table-hover">
+            <tr>
+                <th>User Name</th>
+            </tr>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.UserName</td>
+                    <td>
+                        @Html.ActionLink("Personal Page",
+                            "PersonalPage","Employee",
+                            new { @Employeeid = user.EmployeeId},null)
+                    </td>
+                    <td>@Html.ActionLink("Assign User to Role", "AssignUserRole", "Account", new { @UserId = user.Id }, null)</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
