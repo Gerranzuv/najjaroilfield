@@ -25,7 +25,7 @@
             <div class="row logo-container">
                 <div class="col-xs-6">
                     <a href="/Home">
-                        <img src="~/Images/logo-najjar6.png" class="logo-size" style=" margin-top:-8%; margin-left: -1% " />
+                        <img src="~/Images/logo-najjar6.png" class="logo-size" style=" margin-top:-8%; margin-left: 5% " />
                     </a>
                     @*<img src="~/Images/1111_burned.png" class="logo-size" style=" margin-top:-1%; margin-left: -18% " />*@
                 </div>
@@ -56,10 +56,10 @@
                 <div class="container">
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active" style="font-size:large"><a href="/Home">Home</a></li>
+                            <li class="active" style="font-size:large"><a href="/Home"><b>Home</b></a></li>
                             <!-- Service And Products-->
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"style="font-size:large">Services and Products <b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"style="font-size:large"><b>Services and Products</b> <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="@Url.Action("ServicesPage", "Services", new { page="wireLine"})">WireLine Logging</a> </li>
                                     <li><a href="@Url.Action("ServicesPage", "Services", new { page = "sickLine" })">Slickline</a></li>
@@ -75,7 +75,7 @@
                             </li>
                             <!-- Renting-->
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size:large">Renting<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size:large"><b>Renting</b><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="@Url.Action("cranes", "Home")">Cranes</a> </li>
 
@@ -83,7 +83,7 @@
                             </li>
                             <!-- Selling -->
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size:large">Selling <b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size:large"><b>Selling</b> <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="@Url.Action("Quantec", "Services")">Drilling pits</a> </li>
 
@@ -91,7 +91,7 @@
                             </li>
                             <!--HSE Dropdown List-->
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size:large">HSE<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size:large"><b>HSE</b><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="@Url.Action("HsePage", "Services", new { page = "HSE" })">HSE</a> </li>
                                     <li><a href="@Url.Action("HsePage", "Services", new { page = "HSEenv" })">HSE Environment</a></li>
@@ -105,7 +105,7 @@
                                 {
                                     if (User.IsInRole("administrator"))
                                     {
-                                    <li><a href="@Url.Action("Index", "Employee")" style="font-size:large">Employee Management</a></li>
+                                    <li><a href="@Url.Action("Index", "Employee")" style="font-size:large"><b>Employee Management</b></a></li>
                                     }
                                 }
                                 </li>
@@ -124,11 +124,11 @@
 
 
                                 <!--Articles List-->
-                                <li><a href="@Url.Action("ArticlesList", "Article")" style="font-size:large">Articles</a></li>
+                                <li><a href="@Url.Action("ArticlesList", "Article")" style="font-size:large"><b>Articles</b></a></li>
 
                                 <!--About us-->
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size:large">About us<b class="caret"></b></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size:large"><b>About us</b><b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="@Url.Action("WhoWeAre", "Home")">Who We Are?</a> </li>
                                         <li><a href="@Url.Action("CompanyGoals", "Home")">Company Goals</a></li>
@@ -138,7 +138,7 @@
 
 
                                 <!--Contact us-->
-                                <li><a href="@Url.Action("ContactUs", "Home")" style="font-size:large">Contact us</a></li>
+                                <li><a href="@Url.Action("ContactUs", "Home")" style="font-size:large"><b>Contact us</b></a></li>
 
 
                             </ul>
