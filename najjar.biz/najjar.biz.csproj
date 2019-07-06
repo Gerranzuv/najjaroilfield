@@ -994,6 +994,8 @@
     <Content Include="Views\Account\UsersList.cshtml" />
     <Content Include="Views\Account\AssignUserRole.cshtml" />
     <Content Include="Views\Account\UsersByRole.cshtml" />
+    <Content Include="Views\Shared\_Layout_main1.cshtml" />
+    <Content Include="Views\Shared\_Layout1.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
