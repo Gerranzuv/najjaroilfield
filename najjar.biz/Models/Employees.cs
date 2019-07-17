@@ -42,8 +42,6 @@ namespace najjar.biz.Models
         [Display(Name = "Phone Number")]
         public String PhoneNumber { get; set; }
 
-
-
         [Display(Name = "Fixed Number")]
         public String FixedNumber { get; set; }
 
@@ -143,7 +141,6 @@ namespace najjar.biz.Models
         [Display(Name = "Employee Code")]
         public String EmployeeCode { get; set; }
 
-
         public List<Registration> Registrations { get; set; }
 
         [Display(Name = "Monthly Salary ")]
@@ -202,7 +199,5 @@ namespace najjar.biz.Models
 
         [Display(Name = "Contract")]
         public String Contract { get; set; }
-
-
     }
 }

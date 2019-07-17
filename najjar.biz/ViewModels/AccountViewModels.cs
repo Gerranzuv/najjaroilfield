@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using najjar.biz.Models;
 
-namespace najjar.Models
+namespace najjar.biz.ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {
@@ -67,6 +67,17 @@ namespace najjar.Models
         public string ConfirmPassword { get; set; }
 
         [Display(Name = "Employee")]
-        public Employees Employee { get; set; }
+        public int EmployeeId { get; set; }
+    }
+
+    public class AssignRoleViewModel
+    {
+        [Required(ErrorMessage = "Role User is Required")]
+        [Display(Name = "Select a Role")]
+        public string SelectedRole { get; set; }
+        [Required]
+        public string UserId { get; set; }
+        public string UserName { get; set; }
+
     }
 }

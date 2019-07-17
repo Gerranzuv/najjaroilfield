@@ -120,6 +120,7 @@
                         <ul class="treeview-menu">
                             @*<li><a href="@Url.Action("Index", "Roles")"><i class="fa fa-angle-right"></i> Users List</a></li>*@
                             <li><a href="@Url.Action("Register", "Account")"><i class="fa fa-angle-right"></i> Register New User</a></li>
+                            <li><a href="@Url.Action("UsersList", "Account")"><i class="fa fa-angle-right"></i> Users List</a></li>
                             <li>@Html.ActionLink("Change Password", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
                         </ul>
                     </li>

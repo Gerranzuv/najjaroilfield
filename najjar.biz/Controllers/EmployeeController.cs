@@ -16,8 +16,6 @@ namespace najjar.biz.Controllers
     public class EmployeeController : Controller
     {
         private ApplicationDataContext db = new ApplicationDataContext();
-
-        [Authorize]
         // GET: /Employee/
         
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
@@ -211,7 +209,10 @@ namespace najjar.biz.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employees employees = db.Employees.Find(id);
+            Employees employees = db
+                .Employees
+                .Where(e => e.Id == id)
+                .FirstOrDefault();
             Session["EmpId"] = id;
             if (employees == null)
             {
@@ -224,9 +225,12 @@ namespace najjar.biz.Controllers
 
 
         [Authorize]
-        public ActionResult PersonalPage(int Employeeid)
+        public ActionResult PersonalPage(int? Employeeid)
         {
-            Employees employees = db.Employees.Find(Employeeid);
+            Employees employees = db
+                .Employees
+                .Where(e => e.Id == Employeeid)
+                .FirstOrDefault();
             if (employees == null)
             {
                 return HttpNotFound();

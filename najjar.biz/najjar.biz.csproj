@@ -363,6 +363,10 @@
     <Compile Include="Migrations\201906150818585_test2.Designer.cs">
       <DependentUpon>201906150818585_test2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906281122069_employee-user-one2one.cs" />
+    <Compile Include="Migrations\201906281122069_employee-user-one2one.Designer.cs">
+      <DependentUpon>201906281122069_employee-user-one2one.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArticleComment.cs" />
     <Compile Include="Models\ExamSystemModels\Choice.cs" />
@@ -793,6 +797,9 @@
     <EmbeddedResource Include="Migrations\201906150818585_test2.resx">
       <DependentUpon>201906150818585_test2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906281122069_employee-user-one2one.resx">
+      <DependentUpon>201906281122069_employee-user-one2one.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -984,6 +991,9 @@
     <Content Include="Views\Choice\AddNewChoice.cshtml" />
     <Content Include="Views\Choice\_ViewStart.cshtml" />
     <Content Include="Views\Test\Edit.cshtml" />
+    <Content Include="Views\Account\UsersList.cshtml" />
+    <Content Include="Views\Account\AssignUserRole.cshtml" />
+    <Content Include="Views\Account\UsersByRole.cshtml" />
     <Content Include="Views\Shared\_Layout_main1.cshtml" />
     <Content Include="Views\Shared\_Layout1.cshtml" />
   </ItemGroup>
