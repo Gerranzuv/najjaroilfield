@@ -62,11 +62,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fasterflect, Version=2.1.3.0, Culture=neutral, PublicKeyToken=38d18473284c1ca7, processorArchitecture=MSIL">
@@ -220,6 +220,7 @@
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\SupportController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Extra\AccessDeniedAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -366,6 +367,10 @@
     <Compile Include="Migrations\201906281122069_employee-user-one2one.cs" />
     <Compile Include="Migrations\201906281122069_employee-user-one2one.Designer.cs">
       <DependentUpon>201906281122069_employee-user-one2one.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907181122581_final_fuck.cs" />
+    <Compile Include="Migrations\201907181122581_final_fuck.Designer.cs">
+      <DependentUpon>201907181122581_final_fuck.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArticleComment.cs" />
@@ -664,6 +669,7 @@
     </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -671,7 +677,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Roles\Create.cshtml" />
@@ -798,6 +803,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906281122069_employee-user-one2one.resx">
       <DependentUpon>201906281122069_employee-user-one2one.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907181122581_final_fuck.resx">
+      <DependentUpon>201907181122581_final_fuck.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -940,7 +948,6 @@
     <Content Include="Views\jobRequest\Index.cshtml" />
     <Content Include="Views\job\Create.cshtml" />
     <Content Include="Views\job\Delete.cshtml" />
-    <Content Include="Views\job\Details.cshtml" />
     <Content Include="Views\job\Edit.cshtml" />
     <Content Include="Views\job\Index.cshtml" />
     <Content Include="Views\job\jobListForGuest.cshtml" />
@@ -993,8 +1000,9 @@
     <Content Include="Views\Account\UsersList.cshtml" />
     <Content Include="Views\Account\AssignUserRole.cshtml" />
     <Content Include="Views\Account\UsersByRole.cshtml" />
-    <Content Include="Views\Shared\_Layout_main1.cshtml" />
-    <Content Include="Views\Shared\_Layout1.cshtml" />
+    <Content Include="Views\job\Details.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\Unauthorized.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

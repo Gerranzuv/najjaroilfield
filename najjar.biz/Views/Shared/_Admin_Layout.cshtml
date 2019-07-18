@@ -40,7 +40,8 @@
             width: 100%;
             height: 295px;
         }
-        #homeLink{
+
+        #homeLink {
             display: inline-block;
             width: 100%;
             text-align: center;
@@ -49,7 +50,7 @@
     </style>
     <!--pie-chart --><!-- index page sales reviews visitors pie chart -->
     <script src="~/Content/Admin/js/pie-chart.js" type="text/javascript"></script>
-   
+
     <!-- //pie-chart --><!-- index page sales reviews visitors pie chart -->
     <!-- requried-jsfiles-for owl -->
     <link href="~/Content/Admin/css/owl.carousel.css" rel="stylesheet">
@@ -69,210 +70,240 @@
 </head>
 <body class="cbp-spmenu-push">
     <div class="main-content">
-      
-    <div class="row">
-        <div class="col-md-1">
-        <div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
-    <!--left-fixed -navigation-->
-    <aside class="sidebar-left">
-        <nav class="navbar navbar-inverse">
-            <div class="navbar-header" style="background-color:white; border:hidden">
-                <button id="navPress" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".collapse" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a id="homeLink"
-                   href="@Url.Action("Index", "Home")">
-                    <img src="~/Images/logo-najjar6.png"
-                         width="90"
-                         height="60"
-                         alt="najjar Oilfield"
-                         title="najjar Oilfield" />
-                </a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="sidebar-menu">
-                    <li class="header">MAIN NAVIGATION</li>
-                    <li class="treeview">
-                        <a href="@Url.Action("AdminPage", "Roles")">
-                            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-laptop"></i>
-                            <span>Roles</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("Index", "Roles")"><i class="fa fa-angle-right"></i> Roles List</a></li>
-                            <li><a href="@Url.Action("Create", "Roles")"><i class="fa fa-angle-right"></i> Add new Role</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-laptop"></i>
-                            <span>Users Management</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            @*<li><a href="@Url.Action("Index", "Roles")"><i class="fa fa-angle-right"></i> Users List</a></li>*@
-                            <li><a href="@Url.Action("Register", "Account")"><i class="fa fa-angle-right"></i> Register New User</a></li>
-                            <li><a href="@Url.Action("UsersList", "Account")"><i class="fa fa-angle-right"></i> Users List</a></li>
-                            <li>@Html.ActionLink("Change Password", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-laptop"></i>
-                            <span>Employees Managment</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("Index", "Employee")"><i class="fa fa-angle-right"></i> Employees List</a></li>
-                            <li><a href="@Url.Action("Create", "Employee")"><i class="fa fa-angle-right"></i> Add new Employee</a></li>
-                            <li><a href="@Url.Action("Index", "EmployeeRating")"><i class="fa fa-angle-right"></i> Employees Ratings</a></li>
-                            <li><a href="@Url.Action("Index", "EmployeesVacation")"><i class="fa fa-angle-right"></i> Employees Vacations</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-pie-chart"></i>
-                            <span>Job Vacancies Mgmt</span>
-                            <span class="fa fa-angle-left pull-right"></span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("Index", "Job", new { sourcepage = "admin" })"><i class="fa fa-angle-right"></i> Vacancies List</a></li>
-                            <li><a href="@Url.Action("Create", "Job")"><i class="fa fa-angle-right"></i> Add new Vacancy</a></li>
-                            <li><a href="@Url.Action("Index", "jobRequest")"><i class="fa fa-angle-right"></i> Job Requests</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-pie-chart"></i>
-                            <span>Contact Us Messages</span>
-                            <span class="fa fa-angle-left pull-right"></span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("Index", "ContactUs")"><i class="fa fa-angle-right"></i> Received Messages</a></li>
-                            <li><a href="@Url.Action("Create", "ContactUs")"><i class="fa fa-angle-right"></i> Add new Message</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-pie-chart"></i>
-                            <span>Articles Management</span>
-                            <span class="fa fa-angle-left pull-right"></span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("Index", "Article")"><i class="fa fa-angle-right"></i> Articles List</a></li>
-                            <li><a href="@Url.Action("Create", "Article")"><i class="fa fa-angle-right"></i> Add new Article</a></li>
-                            <li><a href="@Url.Action("Index", "ArticleComment")"><i class="fa fa-angle-right"></i> All Articles Comments</a></li>
-                        </ul>
-                    </li>
 
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-pie-chart"></i>
-                            <span>Documents Management</span>
-                            <span class="fa fa-angle-left pull-right"></span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("Index", "Support")"><i class="fa fa-angle-right"></i> All Employees Documents</a></li>
-                            <li><a href="@Url.Action("Create", "Support")"><i class="fa fa-angle-right"></i> Add new Document</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-pie-chart"></i>
-                            <span>Online Exam System</span>
-                            <span class="fa fa-angle-left pull-right"></span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="@Url.Action("Create", "Test")"><i class="fa fa-angle-right"></i>Add New Test</a></li>
-                            <li><a href="@Url.Action("Index", "Test")"><i class="fa fa-angle-right"></i>All Tests</a></li>
-                            <li><a href="@Url.Action("Index", "OnlineExam")"><i class="fa fa-angle-right"></i>Online Exam</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                    @*<li class="treeview">
+        <div class="row">
+            <div class="col-md-1">
+                <div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+                    <!--left-fixed -navigation-->
+                    <aside class="sidebar-left">
+                        <nav class="navbar navbar-inverse">
+                            <div class="navbar-header" style="background-color:white; border:hidden">
+                                <button id="navPress" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".collapse" aria-expanded="false">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a id="homeLink"
+                                   href="@Url.Action("Index", "Home")">
+                                    <img src="~/Images/logo-najjar6.png"
+                                         width="90"
+                                         height="60"
+                                         alt="najjar Oilfield"
+                                         title="najjar Oilfield" />
+                                </a>
+                            </div>
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="sidebar-menu">
+                                    <li class="header">MAIN NAVIGATION</li>
+                                    @if (User.IsInRole("Administrator"))
+                                    {
+                                        <li class="treeview">
+                                            <a href="@Url.Action("AdminPage", "Roles")">
+                                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                                            </a>
+                                        </li>
+                                    }
+                                    @if (User.IsInRole("Administrator"))
+                                    {
+                                        <li class="treeview">
+                                            <a href="#">
+                                                <i class="fa fa-laptop"></i>
+                                                <span>Roles</span>
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                            </a>
+                                            <ul class="treeview-menu">
+                                                <li><a href="@Url.Action("Index", "Roles")"><i class="fa fa-angle-right"></i> Roles List</a></li>
+                                                <li><a href="@Url.Action("Create", "Roles")"><i class="fa fa-angle-right"></i> Add new Role</a></li>
+                                            </ul>
+                                        </li>
+                                    }
 
-            <li>
-                <a href="widgets.html">
-                    <i class="fa fa-th"></i> <span>Widgets</span>
-                    <small class="label pull-right label-info">08</small>
-                </a>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-edit"></i> <span>Forms</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="forms.html"><i class="fa fa-angle-right"></i> General Forms</a></li>
-                    <li><a href="validation.html"><i class="fa fa-angle-right"></i> Form Validations</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-table"></i> <span>Tables</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="tables.html"><i class="fa fa-angle-right"></i> Simple tables</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-envelope"></i> <span>Mailbox </span>
-                    <i class="fa fa-angle-left pull-right"></i><small class="label pull-right label-info1">08</small><span class="label label-primary1 pull-right">02</span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="inbox.html"><i class="fa fa-angle-right"></i> Mail Inbox </a></li>
-                    <li><a href="compose.html"><i class="fa fa-angle-right"></i> Compose Mail </a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-folder"></i> <span>Examples</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="login.html"><i class="fa fa-angle-right"></i> Login</a></li>
-                    <li><a href="signup.html"><i class="fa fa-angle-right"></i> Register</a></li>
-                    <li><a href="404.html"><i class="fa fa-angle-right"></i> 404 Error</a></li>
-                    <li><a href="500.html"><i class="fa fa-angle-right"></i> 500 Error</a></li>
-                    <li><a href="blank-page.html"><i class="fa fa-angle-right"></i> Blank Page</a></li>
-                </ul>
-            </li>
-            <li class="header">LABELS</li>
-            <li><a href="#"><i class="fa fa-angle-right text-red"></i> <span>Important</span></a></li>
-            <li><a href="#"><i class="fa fa-angle-right text-yellow"></i> <span>Warning</span></a></li>
-            <li><a href="#"><i class="fa fa-angle-right text-aqua"></i> <span>Information</span></a></li>
-        </ul>*@
-</div>
-            <!-- /.navbar-collapse -->
-        </nav>
-    </aside>
-</div>
-                </div>
-                <div class="col-md-11 col-sm-11 col-xs-11"  id="maidDiv">
-                    <div class="container body-content" style="padding-top:140px;">
-                        @RenderBody()
-                        <hr />
-                    </div>
+                                    @if (User.IsInRole("Administrator"))
+                                    {
+                                        <li class="treeview">
+                                            <a href="#">
+                                                <i class="fa fa-laptop"></i>
+                                                <span>Users Management</span>
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                            </a>
+                                            <ul class="treeview-menu">
+                                                @*<li><a href="@Url.Action("Index", "Roles")"><i class="fa fa-angle-right"></i> Users List</a></li>*@
+                                                <li><a href="@Url.Action("Register", "Account")"><i class="fa fa-angle-right"></i> Register New User</a></li>
+                                                <li><a href="@Url.Action("UsersList", "Account")"><i class="fa fa-angle-right"></i> Users List</a></li>
+                                                <li>@Html.ActionLink("Change Password", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+                                            </ul>
+                                        </li>
+                                    }
+                                    @if (User.IsInRole("Administrator"))
+                                    {
+                                        <li class="treeview">
+                                            <a href="#">
+                                                <i class="fa fa-laptop"></i>
+                                                <span>Employees Managment</span>
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                            </a>
+                                            <ul class="treeview-menu">
+                                                <li><a href="@Url.Action("Index", "Employee")"><i class="fa fa-angle-right"></i> Employees List</a></li>
+                                                <li><a href="@Url.Action("Create", "Employee")"><i class="fa fa-angle-right"></i> Add new Employee</a></li>
+                                                <li><a href="@Url.Action("Index", "EmployeeRating")"><i class="fa fa-angle-right"></i> Employees Ratings</a></li>
+                                                <li><a href="@Url.Action("Index", "EmployeesVacation")"><i class="fa fa-angle-right"></i> Employees Vacations</a></li>
+                                            </ul>
+                                        </li>
+                                    }
+
+                                    @if (User.IsInRole("Administrator"))
+                                    {
+                                        <li class="treeview">
+                                            <a href="#">
+                                                <i class="fa fa-pie-chart"></i>
+                                                <span>Job Vacancies Mgmt</span>
+                                                <span class="fa fa-angle-left pull-right"></span>
+                                            </a>
+                                            <ul class="treeview-menu">
+                                                <li><a href="@Url.Action("Index", "Job", new { sourcepage = "admin" })"><i class="fa fa-angle-right"></i> Vacancies List</a></li>
+                                                <li><a href="@Url.Action("Create", "Job")"><i class="fa fa-angle-right"></i> Add new Vacancy</a></li>
+                                                <li><a href="@Url.Action("Index", "jobRequest")"><i class="fa fa-angle-right"></i> Job Requests</a></li>
+                                            </ul>
+                                        </li>
+                                    }
+
+                                    @if (User.IsInRole("Administrator"))
+                                    {
+                                        <li class="treeview">
+                                            <a href="#">
+                                                <i class="fa fa-pie-chart"></i>
+                                                <span>Contact Us Messages</span>
+                                                <span class="fa fa-angle-left pull-right"></span>
+                                            </a>
+                                            <ul class="treeview-menu">
+                                                <li><a href="@Url.Action("Index", "ContactUs")"><i class="fa fa-angle-right"></i> Received Messages</a></li>
+                                                <li><a href="@Url.Action("Create", "ContactUs")"><i class="fa fa-angle-right"></i> Add new Message</a></li>
+                                            </ul>
+                                        </li>
+                                    }
+
+                                    @if (User.IsInRole("Administrator"))
+                                    {
+                                        <li class="treeview">
+                                            <a href="#">
+                                                <i class="fa fa-pie-chart"></i>
+                                                <span>Articles Management</span>
+                                                <span class="fa fa-angle-left pull-right"></span>
+                                            </a>
+                                            <ul class="treeview-menu">
+                                                <li><a href="@Url.Action("Index", "Article")"><i class="fa fa-angle-right"></i> Articles List</a></li>
+                                                <li><a href="@Url.Action("Create", "Article")"><i class="fa fa-angle-right"></i> Add new Article</a></li>
+                                                <li><a href="@Url.Action("Index", "ArticleComment")"><i class="fa fa-angle-right"></i> All Articles Comments</a></li>
+                                            </ul>
+                                        </li>
+                                    }
+                                    @if (User.IsInRole("Administrator"))
+                                    {
+
+                                        <li class="treeview">
+                                            <a href="#">
+                                                <i class="fa fa-pie-chart"></i>
+                                                <span>Documents Management</span>
+                                                <span class="fa fa-angle-left pull-right"></span>
+                                            </a>
+                                            <ul class="treeview-menu">
+                                                <li><a href="@Url.Action("Index", "Support")"><i class="fa fa-angle-right"></i> All Employees Documents</a></li>
+                                                <li><a href="@Url.Action("Create", "Support")"><i class="fa fa-angle-right"></i> Add new Document</a></li>
+                                            </ul>
+                                        </li>
+                                    }
+                                    @if (User.IsInRole("Administrator"))
+                                    {
+                                        <li class="treeview">
+                                            <a href="#">
+                                                <i class="fa fa-pie-chart"></i>
+                                                <span>Online Exam System</span>
+                                                <span class="fa fa-angle-left pull-right"></span>
+                                            </a>
+                                            <ul class="treeview-menu">
+                                                <li><a href="@Url.Action("Create", "Test")"><i class="fa fa-angle-right"></i>Add New Test</a></li>
+                                                <li><a href="@Url.Action("Index", "Test")"><i class="fa fa-angle-right"></i>All Tests</a></li>
+                                                <li><a href="@Url.Action("Index", "OnlineExam")"><i class="fa fa-angle-right"></i>Online Exam</a></li>
+                                            </ul>
+                                        </li>
+                                    }
+                                </ul>
+                                @*<li class="treeview">
+
+                                        <li>
+                                            <a href="widgets.html">
+                                                <i class="fa fa-th"></i> <span>Widgets</span>
+                                                <small class="label pull-right label-info">08</small>
+                                            </a>
+                                        </li>
+                                        <li class="treeview">
+                                            <a href="#">
+                                                <i class="fa fa-edit"></i> <span>Forms</span>
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                            </a>
+                                            <ul class="treeview-menu">
+                                                <li><a href="forms.html"><i class="fa fa-angle-right"></i> General Forms</a></li>
+                                                <li><a href="validation.html"><i class="fa fa-angle-right"></i> Form Validations</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="treeview">
+                                            <a href="#">
+                                                <i class="fa fa-table"></i> <span>Tables</span>
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                            </a>
+                                            <ul class="treeview-menu">
+                                                <li><a href="tables.html"><i class="fa fa-angle-right"></i> Simple tables</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="treeview">
+                                            <a href="#">
+                                                <i class="fa fa-envelope"></i> <span>Mailbox </span>
+                                                <i class="fa fa-angle-left pull-right"></i><small class="label pull-right label-info1">08</small><span class="label label-primary1 pull-right">02</span>
+                                            </a>
+                                            <ul class="treeview-menu">
+                                                <li><a href="inbox.html"><i class="fa fa-angle-right"></i> Mail Inbox </a></li>
+                                                <li><a href="compose.html"><i class="fa fa-angle-right"></i> Compose Mail </a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="treeview">
+                                            <a href="#">
+                                                <i class="fa fa-folder"></i> <span>Examples</span>
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                            </a>
+                                            <ul class="treeview-menu">
+                                                <li><a href="login.html"><i class="fa fa-angle-right"></i> Login</a></li>
+                                                <li><a href="signup.html"><i class="fa fa-angle-right"></i> Register</a></li>
+                                                <li><a href="404.html"><i class="fa fa-angle-right"></i> 404 Error</a></li>
+                                                <li><a href="500.html"><i class="fa fa-angle-right"></i> 500 Error</a></li>
+                                                <li><a href="blank-page.html"><i class="fa fa-angle-right"></i> Blank Page</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="header">LABELS</li>
+                                        <li><a href="#"><i class="fa fa-angle-right text-red"></i> <span>Important</span></a></li>
+                                        <li><a href="#"><i class="fa fa-angle-right text-yellow"></i> <span>Warning</span></a></li>
+                                        <li><a href="#"><i class="fa fa-angle-right text-aqua"></i> <span>Information</span></a></li>
+                                    </ul>*@
+                            </div>
+                            <!-- /.navbar-collapse -->
+                        </nav>
+                    </aside>
                 </div>
             </div>
-            
-            <!--left-fixed -navigation-->
-            <!-- header-starts -->
-            
-            <!-- //header-ends -->
-            <!-- main content start-->
-            
-      
+            <div class="col-md-11 col-sm-11 col-xs-11" id="maidDiv">
+                <div class="container body-content" style="padding-top:140px;">
+                    @RenderBody()
+                    <hr />
+                </div>
+            </div>
+        </div>
+
+        <!--left-fixed -navigation-->
+        <!-- header-starts -->
+        <!-- //header-ends -->
+        <!-- main content start-->
+
+
         <div class="sticky-header header-section ">
             <div class="header-left">
                 <!--toggle button start-->
@@ -457,7 +488,7 @@
                 <div class="clearfix"> </div>
             </div>
             <div class="header-right">
-                
+
                 <!--search-box-->
                 <div class="search-box">
                     <form class="input">
@@ -492,7 +523,7 @@
                                 <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>
                                 <li> <a href="#"><i class="fa fa-user"></i> My Account</a> </li>
                                 <li> <a href="#"><i class="fa fa-suitcase"></i> Profile</a> </li>
-                                @Html.Partial("_LoginPartialv2") 
+                                @Html.Partial("_LoginPartialv2")
                             </ul>
                         </li>
                     </ul>
@@ -501,11 +532,11 @@
             </div>
             <div class="clearfix"> </div>
         </div>
-            <!--footer-->
-            <div class="footer">
-                <p>&copy; 2019 Najjar OilField Company Ltd. All Rights Reserved </p>
-            </div>
-            <!--//footer-->
+        <!--footer-->
+        <div class="footer">
+            <p>&copy; 2019 Najjar OilField Company Ltd. All Rights Reserved </p>
+        </div>
+        <!--//footer-->
     </div>
 
     <!-- new added graphs chart js-->
@@ -662,14 +693,11 @@
         $('.sidebar-menu').SidebarNav()
     </script>
     <!-- //side nav js -->
-    
-   
     <!-- //for index page weekly sales java script -->
     <!-- Bootstrap Core JavaScript -->
-    
+
     <script src="~/Content/Admin/js/bootstrap.js"></script>
     <!-- //Bootstrap Core JavaScript -->
-
     <!-- Classie --><!-- for toggle left push menu script -->
     <script src="~/Content/Admin/js/classie.js"></script>
     <script>

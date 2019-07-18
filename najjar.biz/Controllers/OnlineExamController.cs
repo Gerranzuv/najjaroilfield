@@ -1,4 +1,5 @@
 ﻿using najjar.biz.Context;
+using najjar.biz.Extra;
 using najjar.biz.Models;
 using najjar.biz.ViewModels;
 using System;
@@ -9,7 +10,7 @@ using System.Web.Mvc;
 
 namespace najjar.biz.Controllers
 {
-    [Authorize(Roles = "Testing")]
+ 
     public class OnlineExamController : Controller
     {
         private ApplicationDataContext db = new ApplicationDataContext();

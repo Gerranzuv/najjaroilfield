@@ -1,0 +1,1035 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7F88E760-CFA0-4D95-ACD2-3CB76C9E4AE2}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>najjar.biz</RootNamespace>
+    <AssemblyName>najjar.biz</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxMin, Version=5.14.5506.26196, Culture=neutral, PublicKeyToken=21ef50ce11b5d80f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxMin.5.14.5506.26202\lib\net40\AjaxMin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Combres, Version=2.3.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\combres.2.3.0.4\lib\net40\Combres.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="dotless.Core, Version=1.4.1.0, Culture=neutral, PublicKeyToken=96b446c9e63eae34, processorArchitecture=MSIL">
+      <HintPath>..\packages\dotless.1.4.1.0\lib\dotless.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EcmaScript.NET, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EcmaScript.Net.1.0.1.0\lib\net20\EcmaScript.NET.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fasterflect, Version=2.1.3.0, Culture=neutral, PublicKeyToken=38d18473284c1ca7, processorArchitecture=MSIL">
+      <HintPath>..\packages\fasterflect.2.1.3\lib\net40\Fasterflect.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.1\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0.6\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Yahoo.Yui.Compressor, Version=2.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\YUICompressor.NET.2.7.0.0\lib\NET20\Yahoo.Yui.Compressor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.1.0.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.1.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.2.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.0.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.2.0.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.0.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.0.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.2.0.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.2.0.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.2.0.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\Combres.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Context\ApplicationDataContext.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ArticleCommentController.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\ChoiceController.cs" />
+    <Compile Include="Controllers\ContactUsController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\EmployeeRatingController.cs" />
+    <Compile Include="Controllers\EmployeesVacationController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\jobController.cs" />
+    <Compile Include="Controllers\jobRequestController.cs" />
+    <Compile Include="Controllers\OnlineExamController.cs" />
+    <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\ServicesController.cs" />
+    <Compile Include="Controllers\SupportController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Extra\AccessDeniedAuthorizeAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902071258585_first.cs" />
+    <Compile Include="Migrations\201902071258585_first.Designer.cs">
+      <DependentUpon>201902071258585_first.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902071334083_first1.cs" />
+    <Compile Include="Migrations\201902071334083_first1.Designer.cs">
+      <DependentUpon>201902071334083_first1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902071428152_first11.cs" />
+    <Compile Include="Migrations\201902071428152_first11.Designer.cs">
+      <DependentUpon>201902071428152_first11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902091941247_contactUs.cs" />
+    <Compile Include="Migrations\201902091941247_contactUs.Designer.cs">
+      <DependentUpon>201902091941247_contactUs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902092011270_ArticleComment.cs" />
+    <Compile Include="Migrations\201902092011270_ArticleComment.Designer.cs">
+      <DependentUpon>201902092011270_ArticleComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902171452290_test.cs" />
+    <Compile Include="Migrations\201902171452290_test.Designer.cs">
+      <DependentUpon>201902171452290_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902181038437_employees.cs" />
+    <Compile Include="Migrations\201902181038437_employees.Designer.cs">
+      <DependentUpon>201902181038437_employees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902181114153_employees1.cs" />
+    <Compile Include="Migrations\201902181114153_employees1.Designer.cs">
+      <DependentUpon>201902181114153_employees1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902181139081_employeessssss.cs" />
+    <Compile Include="Migrations\201902181139081_employeessssss.Designer.cs">
+      <DependentUpon>201902181139081_employeessssss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902241446596_fuck.cs" />
+    <Compile Include="Migrations\201902241446596_fuck.Designer.cs">
+      <DependentUpon>201902241446596_fuck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902241459479_fuck1.cs" />
+    <Compile Include="Migrations\201902241459479_fuck1.Designer.cs">
+      <DependentUpon>201902241459479_fuck1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903281552114_obada.cs" />
+    <Compile Include="Migrations\201903281552114_obada.Designer.cs">
+      <DependentUpon>201903281552114_obada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903311926248_test1.cs" />
+    <Compile Include="Migrations\201903311926248_test1.Designer.cs">
+      <DependentUpon>201903311926248_test1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904151050577_article_comment.cs" />
+    <Compile Include="Migrations\201904151050577_article_comment.Designer.cs">
+      <DependentUpon>201904151050577_article_comment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905031136114_article_comment1.cs" />
+    <Compile Include="Migrations\201905031136114_article_comment1.Designer.cs">
+      <DependentUpon>201905031136114_article_comment1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905031136262_jobRequest.cs" />
+    <Compile Include="Migrations\201905031136262_jobRequest.Designer.cs">
+      <DependentUpon>201905031136262_jobRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905031144342_jobRequest1.cs" />
+    <Compile Include="Migrations\201905031144342_jobRequest1.Designer.cs">
+      <DependentUpon>201905031144342_jobRequest1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905031931230_employeeVacation.cs" />
+    <Compile Include="Migrations\201905031931230_employeeVacation.Designer.cs">
+      <DependentUpon>201905031931230_employeeVacation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905031938139_employeeVacation2.cs" />
+    <Compile Include="Migrations\201905031938139_employeeVacation2.Designer.cs">
+      <DependentUpon>201905031938139_employeeVacation2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905032110344_employeeRating.cs" />
+    <Compile Include="Migrations\201905032110344_employeeRating.Designer.cs">
+      <DependentUpon>201905032110344_employeeRating.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905032121082_employeeRating2.cs" />
+    <Compile Include="Migrations\201905032121082_employeeRating2.Designer.cs">
+      <DependentUpon>201905032121082_employeeRating2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905041354339_employeen.cs" />
+    <Compile Include="Migrations\201905041354339_employeen.Designer.cs">
+      <DependentUpon>201905041354339_employeen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905170800302_kinan2020.cs" />
+    <Compile Include="Migrations\201905170800302_kinan2020.Designer.cs">
+      <DependentUpon>201905170800302_kinan2020.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905302255461_ExamSystemMigration.cs" />
+    <Compile Include="Migrations\201905302255461_ExamSystemMigration.Designer.cs">
+      <DependentUpon>201905302255461_ExamSystemMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905311118193_UpdatedExamSystemMigration.cs" />
+    <Compile Include="Migrations\201905311118193_UpdatedExamSystemMigration.Designer.cs">
+      <DependentUpon>201905311118193_UpdatedExamSystemMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905311706158_UpdateRegistration_Employee_Models.cs" />
+    <Compile Include="Migrations\201905311706158_UpdateRegistration_Employee_Models.Designer.cs">
+      <DependentUpon>201905311706158_UpdateRegistration_Employee_Models.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905251008430_account1.cs" />
+    <Compile Include="Migrations\201905251008430_account1.Designer.cs">
+      <DependentUpon>201905251008430_account1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906021322581_kinan000.cs" />
+    <Compile Include="Migrations\201906021322581_kinan000.Designer.cs">
+      <DependentUpon>201906021322581_kinan000.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906022033358_employeeAccount.cs" />
+    <Compile Include="Migrations\201906022033358_employeeAccount.Designer.cs">
+      <DependentUpon>201906022033358_employeeAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906022059068_test6000.cs" />
+    <Compile Include="Migrations\201906022059068_test6000.Designer.cs">
+      <DependentUpon>201906022059068_test6000.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906080919384_6-8-2019.cs" />
+    <Compile Include="Migrations\201906080919384_6-8-2019.Designer.cs">
+      <DependentUpon>201906080919384_6-8-2019.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906081304307_2019.cs" />
+    <Compile Include="Migrations\201906081304307_2019.Designer.cs">
+      <DependentUpon>201906081304307_2019.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906091908572_contract.cs" />
+    <Compile Include="Migrations\201906091908572_contract.Designer.cs">
+      <DependentUpon>201906091908572_contract.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906101145119_termi.cs" />
+    <Compile Include="Migrations\201906101145119_termi.Designer.cs">
+      <DependentUpon>201906101145119_termi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906150818585_test2.cs" />
+    <Compile Include="Migrations\201906150818585_test2.Designer.cs">
+      <DependentUpon>201906150818585_test2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906281122069_employee-user-one2one.cs" />
+    <Compile Include="Migrations\201906281122069_employee-user-one2one.Designer.cs">
+      <DependentUpon>201906281122069_employee-user-one2one.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ArticleComment.cs" />
+    <Compile Include="Models\ExamSystemModels\Choice.cs" />
+    <Compile Include="Models\EmployeeRating.cs" />
+    <Compile Include="Models\EmployeesVacation.cs" />
+    <Compile Include="Models\ContactUs.cs" />
+    <Compile Include="Models\Articles.cs" />
+    <Compile Include="Models\Employees.cs" />
+    <Compile Include="Models\FileDetail.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IndexViewModel.cs" />
+    <Compile Include="Models\Job Request.cs" />
+    <Compile Include="Models\Job.cs" />
+    <Compile Include="Models\ExamSystemModels\Question.cs" />
+    <Compile Include="Models\ExamSystemModels\QuestionCategory.cs" />
+    <Compile Include="Models\ExamSystemModels\QuestionXDuration.cs" />
+    <Compile Include="Models\ExamSystemModels\Registration.cs" />
+    <Compile Include="Models\RoleViewModel.cs" />
+    <Compile Include="Models\Support.cs" />
+    <Compile Include="Models\ExamSystemModels\Test.cs" />
+    <Compile Include="Models\ExamSystemModels\TestXPaper.cs" />
+    <Compile Include="Models\ExamSystemModels\TestXQuestion.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AccountViewModels.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\ChoiceModel.cs" />
+    <Compile Include="ViewModels\ExamsInfoViewModel.cs" />
+    <Compile Include="ViewModels\InstructionPageModel.cs" />
+    <Compile Include="ViewModels\QuestionModel.cs" />
+    <Compile Include="ViewModels\TestInfoModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\combres.xml" />
+    <Content Include="App_Data\combres_full_with_annotation.xml" />
+    <Content Include="App_Data\combres_minimal.xml" />
+    <Content Include="Content\Admin\css\animate.css" />
+    <Content Include="Content\Admin\css\bootstrap.css" />
+    <Content Include="Content\Admin\css\custom.css" />
+    <Content Include="Content\Admin\css\export.css" />
+    <Content Include="Content\Admin\css\font-awesome.css" />
+    <Content Include="Content\Admin\css\graph.css" />
+    <Content Include="Content\Admin\css\jqcandlestick.css" />
+    <Content Include="Content\Admin\css\monthly.css" />
+    <Content Include="Content\Admin\css\owl.carousel.css" />
+    <Content Include="Content\Admin\css\SidebarNav.min.css" />
+    <Content Include="Content\Admin\css\style.css" />
+    <Content Include="Content\Admin\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Admin\images\2.jpg" />
+    <Content Include="Content\Admin\images\3.jpg" />
+    <Content Include="Content\Admin\images\4.jpg" />
+    <Content Include="Content\Admin\images\a.png" />
+    <Content Include="Content\Admin\images\i1.png" />
+    <Content Include="Content\Admin\images\i2.png" />
+    <Content Include="Content\Admin\images\i3.png" />
+    <Content Include="Content\Admin\images\i4.png" />
+    <Content Include="Content\Admin\images\img-sprite.png" />
+    <Content Include="Content\Admin\images\img1.png" />
+    <Content Include="Content\Admin\images\lock.png" />
+    <Content Include="Content\Admin\images\mail.png" />
+    <Content Include="Content\Admin\images\search-icon.png" />
+    <Content Include="Content\Admin\images\slider1.jpg" />
+    <Content Include="Content\Admin\images\slider2.jpg" />
+    <Content Include="Content\Admin\images\slider3.jpg" />
+    <Content Include="Content\Admin\images\slider4.jpg" />
+    <Content Include="Content\Admin\images\slider5.jpg" />
+    <Content Include="Content\Admin\images\slider6.jpg" />
+    <Content Include="Content\Admin\images\slider7.jpg" />
+    <Content Include="Content\Admin\images\tick.png" />
+    <Content Include="Content\Admin\images\user.png" />
+    <Content Include="Content\Admin\images\weather.jpg" />
+    <Content Include="Content\Admin\js\amcharts.js" />
+    <Content Include="Content\Admin\js\bootstrap.js" />
+    <Content Include="Content\Admin\js\Chart.bundle.js" />
+    <Content Include="Content\Admin\js\Chart.js" />
+    <Content Include="Content\Admin\js\Chart.min.js" />
+    <Content Include="Content\Admin\js\chartinator.js" />
+    <Content Include="Content\Admin\js\classie.js" />
+    <Content Include="Content\Admin\js\custom.js" />
+    <Content Include="Content\Admin\js\export.min.js" />
+    <Content Include="Content\Admin\js\images\dragIconRoundBig.svg" />
+    <Content Include="Content\Admin\js\images\lens.svg" />
+    <Content Include="Content\Admin\js\index.js" />
+    <Content Include="Content\Admin\js\index1.js" />
+    <Content Include="Content\Admin\js\index2.js" />
+    <Content Include="Content\Admin\js\jquery-1.11.1.min.js" />
+    <Content Include="Content\Admin\js\jquery.flot.js" />
+    <Content Include="Content\Admin\js\jquery.jqcandlestick.min.js" />
+    <Content Include="Content\Admin\js\jquery.nicescroll.js" />
+    <Content Include="Content\Admin\js\light.js" />
+    <Content Include="Content\Admin\js\metisMenu.min.js" />
+    <Content Include="Content\Admin\js\modernizr.custom.js" />
+    <Content Include="Content\Admin\js\monthly.js" />
+    <Content Include="Content\Admin\js\owl.carousel.js" />
+    <Content Include="Content\Admin\js\pie-chart.js" />
+    <Content Include="Content\Admin\js\scripts.js" />
+    <Content Include="Content\Admin\js\serial.js" />
+    <Content Include="Content\Admin\js\SidebarNav.min.js" />
+    <Content Include="Content\Admin\js\SimpleChart.js" />
+    <Content Include="Content\Admin\js\utils.js" />
+    <Content Include="Content\Admin\js\validator.min.js" />
+    <Content Include="Content\chamcss.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="css\bootstrap-theme.css" />
+    <Content Include="css\bootstrap-theme.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\carousel.css" />
+    <Content Include="css\site.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\1.jpg" />
+    <Content Include="Images\1111.png" />
+    <Content Include="Images\1111_burned.png" />
+    <Content Include="Images\2.jpg" />
+    <Content Include="Images\3.jpg" />
+    <Content Include="Images\4.jpg" />
+    <Content Include="Images\atmos_international_news_arrests_made_in_refinery_pipeline_oil_theft.jpg" />
+    <Content Include="Images\coiltubing.jpg" />
+    <Content Include="Images\Assad.jpg" />
+    <Content Include="Images\crains_main_1.jpg" />
+    <Content Include="Images\cran1.jpg" />
+    <Content Include="Images\cran2.jpg" />
+    <Content Include="Images\cran3.jpg" />
+    <Content Include="Images\cran4.jpg" />
+    <Content Include="Images\cran5.jpg" />
+    <Content Include="Images\cran6.jpg" />
+    <Content Include="Images\crane_main.jpg" />
+    <Content Include="Images\Drilling_heads_1.jpg" />
+    <Content Include="Images\file-6.jpeg" />
+    <Content Include="Images\file-6.png" />
+    <Content Include="Images\hh.jpg" />
+    <Content Include="Images\images.jpg" />
+    <Content Include="Images\Logo-najjar3.png" />
+    <Content Include="Images\logo-najjar4.png" />
+    <Content Include="Images\logo-najjar6.png" />
+    <Content Include="Images\logo_Najjar2.png" />
+    <Content Include="Images\logo-najjar.png" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\logo_Najjar1.png" />
+    <Content Include="Images\Logo_new.png" />
+    <Content Include="Images\najjarwhite.png" />
+    <Content Include="Images\Oil-Company-in-Lagos-Nigeria.jpg" />
+    <Content Include="Images\oil_workerssss.jpg" />
+    <Content Include="Images\product1.gif" />
+    <Content Include="Images\profile.jpg" />
+    <Content Include="Images\qq.jpg" />
+    <Content Include="Images\Salim.jpeg" />
+    <Content Include="Images\Services\cementing.jpg" />
+    <Content Include="Images\Services\coiltubing.jpg" />
+    <Content Include="Images\Services\download.jpg" />
+    <Content Include="Images\Services\Quantecs\044_1.png" />
+    <Content Include="Images\Services\Quantecs\044_2.png" />
+    <Content Include="Images\Services\Quantecs\32_33_1.png" />
+    <Content Include="Images\Services\Quantecs\32_33_2.png" />
+    <Content Include="Images\Services\Quantecs\35_1.png" />
+    <Content Include="Images\Services\Quantecs\35_2.png" />
+    <Content Include="Images\Services\Quantecs\65_1.png" />
+    <Content Include="Images\Services\Quantecs\65_2.png" />
+    <Content Include="Images\Services\Quantecs\66_1.png" />
+    <Content Include="Images\Services\Quantecs\66_2.png" />
+    <Content Include="Images\Services\Quantecs\68_1.png" />
+    <Content Include="Images\Services\Quantecs\68_2.png" />
+    <Content Include="Images\Services\Quantecs\69_1.png" />
+    <Content Include="Images\Services\Quantecs\69_2.png" />
+    <Content Include="Images\Services\Quantecs\75_1.png" />
+    <Content Include="Images\Services\Quantecs\75_2.png" />
+    <Content Include="Images\Services\Quantecs\76_1.png" />
+    <Content Include="Images\Services\Quantecs\76_2.png" />
+    <Content Include="Images\Services\Quantecs\80_81_1.png" />
+    <Content Include="Images\Services\Quantecs\80_81_2.png" />
+    <Content Include="Images\Services\Quantecs\81_1.png" />
+    <Content Include="Images\Services\Quantecs\81_2.png" />
+    <Content Include="Images\Services\Quantecs\82_1.png" />
+    <Content Include="Images\Services\Quantecs\82_2.png" />
+    <Content Include="Images\Services\Quantecs\844_1.png" />
+    <Content Include="Images\Services\Quantecs\844_2.png" />
+    <Content Include="Images\Services\Quantecs\93_1.png" />
+    <Content Include="Images\Services\Quantecs\93_2.png" />
+    <Content Include="Images\Services\wirelineLogging.jpg" />
+    <Content Include="Images\slider1.jpg" />
+    <Content Include="Images\slider2.jpg" />
+    <Content Include="Images\slider3.jpg" />
+    <Content Include="Images\testlogo.png" />
+    <Content Include="Images\Test_Logo.png" />
+    <Content Include="Images\unnamed.png" />
+    <Content Include="Images\whitelogo.png" />
+    <Content Include="Images\ww.jpg" />
+    <Content Include="Images\ؤ.png" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="css\print.min.css" />
+    <Content Include="Static\404.html" />
+    <Content Include="Static\500.html" />
+    <Content Include="Static\blank-page.html" />
+    <Content Include="Static\buttons.html" />
+    <Content Include="Static\charts.html" />
+    <Content Include="Static\compose.html" />
+    <Content Include="Static\css\animate.css" />
+    <Content Include="Static\css\bootstrap.css" />
+    <Content Include="Static\css\custom.css" />
+    <Content Include="Static\css\export.css" />
+    <Content Include="Static\css\font-awesome.css" />
+    <Content Include="Static\css\graph.css" />
+    <Content Include="Static\css\jqcandlestick.css" />
+    <Content Include="Static\css\monthly.css" />
+    <Content Include="Static\css\owl.carousel.css" />
+    <Content Include="Static\css\SidebarNav.min.css" />
+    <Content Include="Static\css\style.css" />
+    <Content Include="Static\fonts\fontawesome-webfont.svg" />
+    <Content Include="Static\forms.html" />
+    <Content Include="Static\general.html" />
+    <Content Include="Static\grids.html" />
+    <Content Include="Static\icons.html" />
+    <Content Include="Static\images\1.jpg" />
+    <Content Include="Static\images\2.jpg" />
+    <Content Include="Static\images\3.jpg" />
+    <Content Include="Static\images\4.jpg" />
+    <Content Include="Static\images\a.png" />
+    <Content Include="Static\images\i1.png" />
+    <Content Include="Static\images\i2.png" />
+    <Content Include="Static\images\i3.png" />
+    <Content Include="Static\images\i4.png" />
+    <Content Include="Static\images\img-sprite.png" />
+    <Content Include="Static\images\img1.png" />
+    <Content Include="Static\images\lock.png" />
+    <Content Include="Static\images\mail.png" />
+    <Content Include="Static\images\search-icon.png" />
+    <Content Include="Static\images\slider1.jpg" />
+    <Content Include="Static\images\slider2.jpg" />
+    <Content Include="Static\images\slider3.jpg" />
+    <Content Include="Static\images\slider4.jpg" />
+    <Content Include="Static\images\slider5.jpg" />
+    <Content Include="Static\images\slider6.jpg" />
+    <Content Include="Static\images\slider7.jpg" />
+    <Content Include="Static\images\tick.png" />
+    <Content Include="Static\images\user.png" />
+    <Content Include="Static\images\weather.jpg" />
+    <Content Include="Static\inbox.html" />
+    <Content Include="Static\index.html" />
+    <Content Include="Static\js\amcharts.js" />
+    <Content Include="Static\js\bootstrap.js" />
+    <Content Include="Static\js\Chart.bundle.js" />
+    <Content Include="Static\js\Chart.js" />
+    <Content Include="Static\js\Chart.min.js" />
+    <Content Include="Static\js\chartinator.js" />
+    <Content Include="Static\js\classie.js" />
+    <Content Include="Static\js\custom.js" />
+    <Content Include="Static\js\export.min.js" />
+    <Content Include="Static\js\images\dragIconRoundBig.svg" />
+    <Content Include="Static\js\images\lens.svg" />
+    <Content Include="Static\js\index.js" />
+    <Content Include="Static\js\index1.js" />
+    <Content Include="Static\js\index2.js" />
+    <Content Include="Static\js\jquery-1.11.1.min.js" />
+    <Content Include="Static\js\jquery.flot.js" />
+    <Content Include="Static\js\jquery.jqcandlestick.min.js" />
+    <Content Include="Static\js\jquery.nicescroll.js" />
+    <Content Include="Static\js\light.js" />
+    <Content Include="Static\js\metisMenu.min.js" />
+    <Content Include="Static\js\modernizr.custom.js" />
+    <Content Include="Static\js\monthly.js" />
+    <Content Include="Static\js\owl.carousel.js" />
+    <Content Include="Static\js\pie-chart.js" />
+    <Content Include="Static\js\scripts.js" />
+    <Content Include="Static\js\serial.js" />
+    <Content Include="Static\js\SidebarNav.min.js" />
+    <Content Include="Static\js\SimpleChart.js" />
+    <Content Include="Static\js\utils.js" />
+    <Content Include="Static\js\validator.min.js" />
+    <Content Include="Static\login.html" />
+    <Content Include="Static\media.html" />
+    <Content Include="Static\signup.html" />
+    <Content Include="Static\tables.html" />
+    <Content Include="Static\typography.html" />
+    <Content Include="Static\validation.html" />
+    <Content Include="Static\widgets.html" />
+    <Content Include="Uploads\5b8eeb69-e570-41c3-aa20-f4c6275cc705.jpg" />
+    <Content Include="Uploads\atmos_international_news_arrests_made_in_refinery_pipeline_oil_theft.jpg" />
+    <Content Include="Uploads\cementing.jpg" />
+    <Content Include="Uploads\coiltubing.jpg" />
+    <Content Include="Uploads\file-6.jpeg" />
+    <Content Include="Uploads\images.jpg" />
+    <Content Include="Uploads\Oil-Company-in-Lagos-Nigeria.jpg" />
+    <Content Include="Uploads\oil_workerssss.jpg" />
+    <Content Include="Uploads\profile.jpg" />
+    <Content Include="Uploads\qq.jpg" />
+    <Content Include="Uploads\riham.jpg" />
+    <Content Include="Uploads\slider2.jpg" />
+    <Content Include="Uploads\ww.jpg" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201902071258585_first.resx">
+      <DependentUpon>201902071258585_first.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902071334083_first1.resx">
+      <DependentUpon>201902071334083_first1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902071428152_first11.resx">
+      <DependentUpon>201902071428152_first11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902091941247_contactUs.resx">
+      <DependentUpon>201902091941247_contactUs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902092011270_ArticleComment.resx">
+      <DependentUpon>201902092011270_ArticleComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902171452290_test.resx">
+      <DependentUpon>201902171452290_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902181038437_employees.resx">
+      <DependentUpon>201902181038437_employees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902181114153_employees1.resx">
+      <DependentUpon>201902181114153_employees1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902181139081_employeessssss.resx">
+      <DependentUpon>201902181139081_employeessssss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902241446596_fuck.resx">
+      <DependentUpon>201902241446596_fuck.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902241459479_fuck1.resx">
+      <DependentUpon>201902241459479_fuck1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903281552114_obada.resx">
+      <DependentUpon>201903281552114_obada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903311926248_test1.resx">
+      <DependentUpon>201903311926248_test1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904151050577_article_comment.resx">
+      <DependentUpon>201904151050577_article_comment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905031136114_article_comment1.resx">
+      <DependentUpon>201905031136114_article_comment1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905031136262_jobRequest.resx">
+      <DependentUpon>201905031136262_jobRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905031144342_jobRequest1.resx">
+      <DependentUpon>201905031144342_jobRequest1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905031931230_employeeVacation.resx">
+      <DependentUpon>201905031931230_employeeVacation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905031938139_employeeVacation2.resx">
+      <DependentUpon>201905031938139_employeeVacation2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905032110344_employeeRating.resx">
+      <DependentUpon>201905032110344_employeeRating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905032121082_employeeRating2.resx">
+      <DependentUpon>201905032121082_employeeRating2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905041354339_employeen.resx">
+      <DependentUpon>201905041354339_employeen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905170800302_kinan2020.resx">
+      <DependentUpon>201905170800302_kinan2020.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905302255461_ExamSystemMigration.resx">
+      <DependentUpon>201905302255461_ExamSystemMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905311118193_UpdatedExamSystemMigration.resx">
+      <DependentUpon>201905311118193_UpdatedExamSystemMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905311706158_UpdateRegistration_Employee_Models.resx">
+      <DependentUpon>201905311706158_UpdateRegistration_Employee_Models.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905251008430_account1.resx">
+      <DependentUpon>201905251008430_account1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906021322581_kinan000.resx">
+      <DependentUpon>201906021322581_kinan000.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906022033358_employeeAccount.resx">
+      <DependentUpon>201906022033358_employeeAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906022059068_test6000.resx">
+      <DependentUpon>201906022059068_test6000.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906080919384_6-8-2019.resx">
+      <DependentUpon>201906080919384_6-8-2019.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906081304307_2019.resx">
+      <DependentUpon>201906081304307_2019.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906091908572_contract.resx">
+      <DependentUpon>201906091908572_contract.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906101145119_termi.resx">
+      <DependentUpon>201906101145119_termi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906150818585_test2.resx">
+      <DependentUpon>201906150818585_test2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906281122069_employee-user-one2one.resx">
+      <DependentUpon>201906281122069_employee-user-one2one.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Roles\About1.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Roles\View1.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Employee\Delete.cshtml" />
+    <Content Include="Views\Employee\Details.cshtml" />
+    <Content Include="Views\Employee\Documents.cshtml" />
+    <Content Include="Views\Employee\Edit.cshtml" />
+    <Content Include="Views\Employee\EmpCV.cshtml" />
+    <Content Include="Views\Employee\Employeecv.cshtml" />
+    <Content Include="Views\Employee\EmployeesPage.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Employee\SalaryInfo.cshtml" />
+    <Content Include="Views\Employee\view.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Sidebar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Article\Create.cshtml" />
+    <Content Include="Views\Article\Delete.cshtml" />
+    <Content Include="Views\Article\Details.cshtml" />
+    <Content Include="Views\Article\Edit.cshtml" />
+    <Content Include="Views\Article\Index.cshtml" />
+    <Content Include="Views\Article\post.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Article\ArticlesList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Article\NewsPage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\WhoWeAre.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\ContactUs.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ContactUs\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ContactUs\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ContactUs\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ContactUs\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ContactUs\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ArticleComment\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ArticleComment\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ArticleComment\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ArticleComment\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ArticleComment\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Services\ServicesPage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\articles.cshtml" />
+    <Content Include="Views\Home\CompanyFutureProspects.cshtml" />
+    <Content Include="Views\Home\CompanyGoals.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Hse.cshtml" />
+    <Content Include="Views\Home\Hse_mngt_sys.cshtml" />
+    <Content Include="Views\Home\Hse_policy.cshtml" />
+    <Content Include="Views\Home\Services.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout_main.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Admin\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Admin\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Admin\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Admin\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Admin\fonts\FontAwesome.otf" />
+    <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="combres.readme" />
+    <None Include="Properties\PublishProfiles\goDaddy.pubxml" />
+    <Content Include="Views\Roles\Delete.cshtml" />
+    <Content Include="Views\Roles\Details.cshtml" />
+    <Content Include="Views\Roles\Edit.cshtml" />
+    <Content Include="Views\Support\Create.cshtml" />
+    <Content Include="Views\Support\Delete.cshtml" />
+    <Content Include="Views\Support\Details.cshtml" />
+    <Content Include="Views\Support\Edit.cshtml" />
+    <Content Include="Views\Support\EmployeeDocs.cshtml" />
+    <Content Include="Views\Support\Index.cshtml" />
+    <Content Include="Views\Employee\PersonalPage.cshtml" />
+    <Content Include="Views\Employee\SideBar1.cshtml" />
+    <Content Include="Views\Services\HsePage.cshtml" />
+    <Content Include="Views\Home\FullWidth1.cshtml" />
+    <Content Include="Views\Home\OneColumn1.cshtml" />
+    <Content Include="Views\Home\Services1.cshtml" />
+    <Content Include="Views\Home\cranes.cshtml" />
+    <Content Include="Views\Home\TwoColumn1.cshtml" />
+    <Content Include="Views\Services\Quantec.cshtml" />
+    <Content Include="Views\Shared\_Admin_Layout.cshtml" />
+    <Content Include="Views\Roles\AdminPage.cshtml" />
+    <Content Include="Views\jobRequest\Create.cshtml" />
+    <Content Include="Views\jobRequest\Delete.cshtml" />
+    <Content Include="Views\jobRequest\Details.cshtml" />
+    <Content Include="Views\jobRequest\Edit.cshtml" />
+    <Content Include="Views\jobRequest\Index.cshtml" />
+    <Content Include="Views\job\Create.cshtml" />
+    <Content Include="Views\job\Delete.cshtml" />
+    <Content Include="Views\job\Edit.cshtml" />
+    <Content Include="Views\job\Index.cshtml" />
+    <Content Include="Views\job\jobListForGuest.cshtml" />
+    <Content Include="Views\EmployeesVacation\Create.cshtml" />
+    <Content Include="Views\EmployeesVacation\Delete.cshtml" />
+    <Content Include="Views\EmployeesVacation\Details.cshtml" />
+    <Content Include="Views\EmployeesVacation\Edit.cshtml" />
+    <Content Include="Views\EmployeesVacation\Index.cshtml" />
+    <Content Include="Views\EmployeesVacation\EmployeeVacation.cshtml" />
+    <Content Include="Views\EmployeeRating\Create.cshtml" />
+    <Content Include="Views\EmployeeRating\Delete.cshtml" />
+    <Content Include="Views\EmployeeRating\Details.cshtml" />
+    <Content Include="Views\EmployeeRating\Edit.cshtml" />
+    <Content Include="Views\EmployeeRating\Index.cshtml" />
+    <Content Include="Views\EmployeeRating\EmployeeRating.cshtml" />
+    <None Include="Properties\PublishProfiles\SmarterASP.pubxml" />
+    <Content Include="Static\fonts\fontawesome-webfont.eot" />
+    <Content Include="Static\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Static\fonts\fontawesome-webfont.woff" />
+    <Content Include="Static\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Static\fonts\FontAwesome.otf" />
+    <Content Include="Static\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Static\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Static\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Static\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Views\OnlineExam\Index.cshtml" />
+    <Content Include="Views\OnlineExam\InstructionPage.cshtml" />
+    <Content Include="Views\Test\Create.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Test\_ViewStart.cshtml" />
+    <Content Include="Views\OnlineExam\EvalPage.cshtml" />
+    <Content Include="Views\OnlineExam\_single_choice_partial.cshtml" />
+    <Content Include="Views\OnlineExam\_multi_choice_partial.cshtml" />
+    <Content Include="Views\OnlineExam\FinalResult.cshtml" />
+    <Content Include="Views\Employee\EditSalary.cshtml" />
+    <Content Include="Views\Question\Edit.cshtml" />
+    <Content Include="Views\Choice\Edit.cshtml" />
+    <Content Include="Views\Employee\Create.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\_LoginPartialv2.cshtml" />
+    <Content Include="Views\Employee\TerminationInfo.cshtml" />
+    <Content Include="Views\Employee\EditTermination.cshtml" />
+    <Content Include="Views\OnlineExam\ExamsInfo.cshtml" />
+    <Content Include="Views\Question\AddNewQuestion.cshtml" />
+    <Content Include="Views\Question\QuestionPage.cshtml" />
+    <Content Include="Views\Question\_ViewStart.cshtml" />
+    <Content Include="Views\Choice\AddNewChoice.cshtml" />
+    <Content Include="Views\Choice\_ViewStart.cshtml" />
+    <Content Include="Views\Test\Edit.cshtml" />
+    <Content Include="Views\Account\UsersList.cshtml" />
+    <Content Include="Views\Account\AssignUserRole.cshtml" />
+    <Content Include="Views\Account\UsersByRole.cshtml" />
+    <Content Include="Views\job\Details.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\Unauthorized.cshtml" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:45072/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

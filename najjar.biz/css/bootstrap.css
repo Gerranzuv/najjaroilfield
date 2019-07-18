@@ -3023,7 +3023,7 @@ input[type="button"].btn-block {
   margin: 2px 0 0;
   list-style: none;
   font-size: 15px;
-  background-color: #ffffff;
+  background-color: #071689;
   border: 1px solid #cccccc;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
@@ -3047,7 +3047,7 @@ input[type="button"].btn-block {
   clear: both;
   font-weight: normal;
   line-height: 1.42857143;
-  color: #7b8a8b;
+  color: #fff;
   white-space: nowrap;
 }
 .dropdown-menu > li > a:hover,
