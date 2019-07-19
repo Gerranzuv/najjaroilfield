@@ -38,15 +38,18 @@
 
     <div class="col-md-9 col-sm-8" id="PersonalInfoDV">
 
-       
+
         <h2 style="color: #071689">Employee Rating</h2>
 
-        <p>
-            @Html.ActionLink("Create New", "Create", new { EmployeeId = ratingId })
-        </p>
+        @if (User.IsInRole("Administrator"))
+        {
+            <p>
+                @Html.ActionLink("Create New", "Create", new { EmployeeId = ratingId })
+            </p>
+        }
         <table class="table">
             <tr>
-                
+
                 <th>
                     @Html.DisplayNameFor(model => model.Year)
                 </th>
@@ -62,14 +65,14 @@
                 <th>
                     @Html.DisplayNameFor(model => model.SalaryAfterUpdate)
                 </th>
-                
+
                 <th></th>
             </tr>
 
             @foreach (var item in Model)
             {
                 <tr>
-                   
+
                     <td>
                         @Html.DisplayFor(modelItem => item.Year)
                     </td>
@@ -85,18 +88,21 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.SalaryAfterUpdate)
                     </td>
-                    
+
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                        @if (User.IsInRole("Administrator"))
+                        {
+                            <div>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                            </div>
+                        }
                     </td>
                 </tr>
             }
 
         </table>
-</div>
-
-
+    </div>
     <!-- /.row -->
 </div>

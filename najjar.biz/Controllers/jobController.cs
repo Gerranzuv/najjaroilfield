@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using najjar.biz.Models;
 using najjar.biz.Context;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace najjar.biz.Controllers
 {
@@ -18,6 +20,7 @@ namespace najjar.biz.Controllers
         // GET: /job/
         public ActionResult Index(string searchString,string status,string category)
         {
+            fillUserData();
             var jobs = from s in db.Jobs
                        select s;
             if (!String.IsNullOrEmpty(searchString))
@@ -42,6 +45,7 @@ namespace najjar.biz.Controllers
 
         public ActionResult jobListForGuest()
         {
+
             return View(db.Jobs.ToList());
         }
         // GET: /job/Details/5
@@ -62,6 +66,7 @@ namespace najjar.biz.Controllers
         // GET: /job/Create
         public ActionResult Create()
         {
+            fillUserData();
             return View();
         }
 
@@ -88,6 +93,7 @@ namespace najjar.biz.Controllers
         // GET: /job/Edit/5
         public ActionResult Edit(int? id)
         {
+            fillUserData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -135,6 +141,7 @@ namespace najjar.biz.Controllers
         // GET: /job/Delete/5
         public ActionResult Delete(int? id)
         {
+            fillUserData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -166,5 +173,12 @@ namespace najjar.biz.Controllers
             }
             base.Dispose(disposing);
         }
+        public void fillUserData()
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDataContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            ViewBag.CurrentUser = user;
+        }
     }
+
 }

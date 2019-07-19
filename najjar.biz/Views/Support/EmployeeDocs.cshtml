@@ -26,7 +26,7 @@
                     @Html.ActionLink("My Documents", "EmployeeDocs", "Support", new { Employeeid = DocsId }, null)
                 </li>
 
-                <li id="EmployeeVacation" >
+                <li id="EmployeeVacation">
                     @Html.ActionLink("Employee Vacation", "EmployeeVacation", "EmployeesVacation", new { Employeeid = DocsId }, null)
                 </li>
                 <li id="EmployeeRating">
@@ -36,8 +36,8 @@
                     @Html.ActionLink("Termination Info", "TerminationInfo", "Employee", new { Employeeid = DocsId }, null)
                 </li>
                 @*<li id="Termination">
-                    @Html.ActionLink(" Termination Status", "SalaryInfo")
-                </li>*@
+                        @Html.ActionLink(" Termination Status", "SalaryInfo")
+                    </li>*@
 
             </ul>
         </div>
@@ -45,11 +45,14 @@
         <div class="col-md-9 col-sm-8" id="PersonalInfoDV">
 
             <hr />
-            <h2  style="color:#071689">Employees Documents</h2>
-            <p>
-                @Html.ActionLink("Create New", "Create", new { Employeeid = DocsId })
+            <h2 style="color:#071689">Employees Documents</h2>
+            @if (User.IsInRole("Administrator"))
+            {
+                <p>
+                    @Html.ActionLink("Create New", "Create", new { Employeeid = DocsId })
 
-            </p>
+                </p>
+            }
             <table class="table">
                 <tr>
                     <th>
@@ -102,8 +105,13 @@
                         </td>
 
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.SupportId }) |
-                            <a href="javascript:void(0);" data-id="@item.SupportId" class="deleteItem">Delete</a>
+                            @if (User.IsInRole("Administrator"))
+                            {
+                                <div>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.SupportId }) |
+                                <a href="javascript:void(0);" data-id="@item.SupportId" class="deleteItem">Delete</a>
+                            </div>
+                            }
                         </td>
                     </tr>
                 }
@@ -117,30 +125,30 @@
 
         <!-- /.row -->
     </div>
-    </div>
+</div>
 
-    @section Scripts {
+@section Scripts {
 
-        <script>
-            $('.deleteItem').click(function (e) {
-                e.preventDefault();
-                var $ctrl = $(this);
-                if (confirm('Do you really want to delete this item?')) {
-                    $.ajax({
-                        url: '@Url.Action("Delete")',
-                        type: 'POST',
-                        data: { id: $(this).data('id') }
-                    }).done(function (data) {
-                        if (data.Result == "OK") {
-                            $ctrl.closest('tr').remove();
-                        }
-                        else if (data.Result.Message) {
-                            alert(data.Result.Message);
-                        }
-                    }).fail(function () {
-                        alert("There is something wrong. Please try again.");
-                    })
-                }
-            });
-        </script>
-    }
+    <script>
+        $('.deleteItem').click(function (e) {
+            e.preventDefault();
+            var $ctrl = $(this);
+            if (confirm('Do you really want to delete this item?')) {
+                $.ajax({
+                    url: '@Url.Action("Delete")',
+                    type: 'POST',
+                    data: { id: $(this).data('id') }
+                }).done(function (data) {
+                    if (data.Result == "OK") {
+                        $ctrl.closest('tr').remove();
+                    }
+                    else if (data.Result.Message) {
+                        alert(data.Result.Message);
+                    }
+                }).fail(function () {
+                    alert("There is something wrong. Please try again.");
+                })
+            }
+        });
+    </script>
+}

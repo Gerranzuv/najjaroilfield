@@ -33,11 +33,11 @@
                     @Html.ActionLink("Termination Info", "TerminationInfo", new { Employeeid = Model.Id }, null)
                 </li>
                 <li id="EmployeeRating" style="color: #071689 !important;">
-                    @Html.ActionLink("Exams Info","ExamsInfo", "OnlineExam", new { Employeeid = Model.Id }, null)
+                    @Html.ActionLink("Exams Info", "ExamsInfo", "OnlineExam", new { Employeeid = Model.Id }, null)
                 </li>
             </ul>
         </div>
-        
+
         <div class="col-md-5" id="PersonalInfoDV">
             <h2 class="text-center" style="color: #071689 !important;">Personal Information</h2>
             <table class="table table-responsive">
@@ -123,8 +123,8 @@
             </table>
 
 
-                  
-                    <hr />
+
+            <hr />
             <h2 class="text-center" style="color: #071689 !important;">Contact Information</h2>
             <table class="table table-responsive">
 
@@ -163,15 +163,18 @@
                 </tr>
             </table>
 
-                    <hr />
-                    <div class="row">
-                        <div class="col-md-5">
-                            <input type="button"
-                                   class="btn btn-primary" value="Edit Info"
-                                   onclick="location.href='@Url.Action("Edit", "Employee", new { id = Id })'" />
-                        </div>
+            <hr />
+            @if (User.IsInRole("Administrator"))
+            {
+                <div class="row">
+                    <div class="col-md-5">
+                        <input type="button"
+                               class="btn btn-primary" value="Edit Info"
+                               onclick="location.href='@Url.Action("Edit", "Employee", new { id = Id })'" />
                     </div>
-</div>
+                </div>
+            }
+        </div>
         <div class="col-md-3">
             @if (Model.EmployeeImage != null)
             {
@@ -179,14 +182,14 @@
                 <img src="@path" alt="@Model.Name" title="@Model.Name" class="img-thumbnail" height="200" />
             }
         </div>
-    </div> 
+    </div>
     <!-- /.row -->
 </div>
 
 @section Scripts
 {
     <script type="text/javascript">
-   
+
 
         //        //Hiding active class from side bar
         //        $('#PersonalInfo').removeClass('active');
@@ -197,6 +200,6 @@
         //});
 
 
-        
-     </script>
+
+    </script>
 }  

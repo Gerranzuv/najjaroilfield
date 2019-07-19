@@ -11,6 +11,8 @@ using PagedList;
 using System.IO;
 
 using najjar.biz.Context;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 namespace najjar.biz.Controllers
 {
     public class EmployeeController : Controller
@@ -20,7 +22,8 @@ namespace najjar.biz.Controllers
         
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-
+            fillUserData();
+            
             ViewBag.CurrentSort = sortOrder;
             //Initialize viewBag with search parameters
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -143,6 +146,7 @@ namespace najjar.biz.Controllers
         [Authorize]
         public ActionResult Edit(int? id)
         {
+            fillUserData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -164,6 +168,7 @@ namespace najjar.biz.Controllers
         [Authorize]
         public ActionResult Employeecv(int Employeeid)
         {
+            fillUserData();
             Employees employees = db.Employees.Find(Employeeid);
             if (employees == null)
             {
@@ -178,6 +183,7 @@ namespace najjar.biz.Controllers
         // GET: /Employee/TErmination info
         public ActionResult SalaryInfo(int Employeeid)
         {
+            fillUserData();
             Employees employees = db.Employees.Find(Employeeid);
 
             if (employees == null)
@@ -192,6 +198,7 @@ namespace najjar.biz.Controllers
 
         public ActionResult TerminationInfo(int Employeeid)
         {
+            fillUserData();
             Employees employees = db.Employees.Find(Employeeid);
 
             if (employees == null)
@@ -205,6 +212,7 @@ namespace najjar.biz.Controllers
         // GET: /Employee/Details/5
         public ActionResult Details(int? id)
         {
+            fillUserData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -227,6 +235,7 @@ namespace najjar.biz.Controllers
         [Authorize]
         public ActionResult PersonalPage(int? Employeeid)
         {
+            fillUserData();
             Employees employees = db
                 .Employees
                 .Where(e => e.Id == Employeeid)
@@ -235,6 +244,10 @@ namespace najjar.biz.Controllers
             {
                 return HttpNotFound();
             }
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDataContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            ViewBag.CurrentUser = user;
+
             ViewBag.Employeeid = Employeeid;
             return View(employees);
         }
@@ -245,6 +258,7 @@ namespace najjar.biz.Controllers
         // GET: /Employee/Create
         public ActionResult Create()
         {
+            fillUserData();
             return View();
         }
 
@@ -253,6 +267,7 @@ namespace najjar.biz.Controllers
         // GET: /Employee/AddNewEmployee
         public ActionResult AddNewEmployee()
         {
+            fillUserData();
             return View();
         }
 
@@ -376,6 +391,7 @@ namespace najjar.biz.Controllers
         // GET: /Employee/EmpCV/5
         public ActionResult EmpCV(int? id)
         {
+            fillUserData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -393,6 +409,7 @@ namespace najjar.biz.Controllers
         [Authorize]
         public ActionResult Delete(int? id)
         {
+            fillUserData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -430,7 +447,7 @@ namespace najjar.biz.Controllers
         // GET: /Employee/editsalary
         public ActionResult EditSalary(int? id)
         {
-
+            fillUserData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -449,7 +466,7 @@ namespace najjar.biz.Controllers
         // GET: /Employee/editTermination
         public ActionResult EditTermination(int? id)
         {
-
+            fillUserData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -548,6 +565,18 @@ namespace najjar.biz.Controllers
         {
             return File(Path.Combine(Server.MapPath("~/Images/"), p),
                 "image/jpeg", p);
+        }
+
+        public void fillUserData() {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDataContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            var employee = db.Employees.Find(user.EmployeeId);
+            ViewBag.CurrentUser = user;
+            ViewBag.CurrentEmployee = employee;
+            //if (employee == null)
+            //    ViewBag.CurrentEmployee = "logo-najjar6";
+            //else
+            //    ViewBag.CurrentEmployee = employee.EmployeeImage;
         }
     }
 }

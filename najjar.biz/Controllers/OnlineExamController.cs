@@ -1,4 +1,6 @@
-﻿using najjar.biz.Context;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using najjar.biz.Context;
 using najjar.biz.Extra;
 using najjar.biz.Models;
 using najjar.biz.ViewModels;
@@ -17,6 +19,7 @@ namespace najjar.biz.Controllers
         // GET: OnlineExam
         public ActionResult Index()
         {
+            fillUserData();
             ViewBag.Tests = db.Tests
                 .Where(Test => Test.isActive)
                 .Select(Test => new { Test.Id, Test.Name })
@@ -26,6 +29,7 @@ namespace najjar.biz.Controllers
 
         public ActionResult InstructionPage(int? TestId, string employee_code)
         {
+            fillUserData();
             Employees selectedEmloyee = db
                 .Employees
                 .FirstOrDefault(emp => emp.EmployeeCode.Equals(employee_code, StringComparison.InvariantCultureIgnoreCase));
@@ -304,6 +308,7 @@ namespace najjar.biz.Controllers
         [HttpGet]
         public ActionResult FinalResult(int TestId, Guid token)
         {
+            fillUserData();
             Registration registration = db.Registrations.Where(r => r.Token.Equals(token)).FirstOrDefault();
 
             if (registration == null)
@@ -334,6 +339,7 @@ namespace najjar.biz.Controllers
         [HttpGet]
         public ActionResult ExamsInfo(int Employeeid)
         {
+            fillUserData();
             var employee = db
                 .Employees
                 .Where(e => e.Id == Employeeid)
@@ -370,6 +376,13 @@ namespace najjar.biz.Controllers
             };
 
             return View(examsInfoViewModel);
+        }
+
+        public void fillUserData()
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDataContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            ViewBag.CurrentUser = user;
         }
     }
 }

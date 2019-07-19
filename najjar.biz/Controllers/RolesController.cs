@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using najjar.biz.Context;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity;
 
 namespace najjar.biz.Controllers
 {
@@ -17,6 +18,7 @@ namespace najjar.biz.Controllers
         // GET: /Roles/
         public ActionResult Index()
         {
+            fillUserData();
             return View(db.Roles.ToList());
         }
 
@@ -24,6 +26,7 @@ namespace najjar.biz.Controllers
         // GET: /Roles/Details/5
         public ActionResult Details(string id)
         {
+            fillUserData();
             var role = db.Roles.Find(id);
             if (role == null)
             {
@@ -36,7 +39,7 @@ namespace najjar.biz.Controllers
         // GET: /Roles/Create
         public ActionResult Create( )
         {
-           
+            fillUserData();
             return View();
         }
 
@@ -60,6 +63,7 @@ namespace najjar.biz.Controllers
         // GET: /Roles/Edit/5
         public ActionResult Edit(string id)
         {
+            fillUserData();
             var role = db.Roles.Find(id);
             if (role == null)
             {
@@ -88,6 +92,7 @@ namespace najjar.biz.Controllers
         // GET: /Roles/Delete/5
         public ActionResult Delete(string id)
         {
+            fillUserData();
             var role = db.Roles.Find(id);
             if (role == null)
             {
@@ -129,6 +134,13 @@ namespace najjar.biz.Controllers
             {
                 return View(role);
             }
+        }
+
+        public void fillUserData()
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDataContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            ViewBag.CurrentUser = user;
         }
     }
 }

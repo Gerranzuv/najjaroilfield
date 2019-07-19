@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using najjar.biz.Models;
 using najjar.biz.Context;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace najjar.biz.Controllers
 {
@@ -18,12 +20,14 @@ namespace najjar.biz.Controllers
         // GET: /EmployeesVacation/
         public ActionResult Index()
         {
+            fillUserData();
             return View(db.EmployeesVacations.ToList());
         }
 
         // GET: /EmployeesVacation/
         public ActionResult EmployeeVacation(int  Employeeid)
         {
+            fillUserData();
             return View(db.EmployeesVacations.Where(x => x.EmployeeId == Employeeid).ToList());
         }
 
@@ -31,6 +35,7 @@ namespace najjar.biz.Controllers
         // GET: /EmployeesVacation/Details/5
         public ActionResult Details(int? id)
         {
+            fillUserData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -46,6 +51,7 @@ namespace najjar.biz.Controllers
         // GET: /EmployeesVacation/Create
         public ActionResult Create()
         {
+            fillUserData();
             return View();
         }
 
@@ -72,6 +78,7 @@ namespace najjar.biz.Controllers
         // GET: /EmployeesVacation/Edit/5
         public ActionResult Edit(int? id)
         {
+            fillUserData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -109,6 +116,7 @@ namespace najjar.biz.Controllers
         // GET: /EmployeesVacation/Delete/5
         public ActionResult Delete(int? id)
         {
+            fillUserData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -139,6 +147,13 @@ namespace najjar.biz.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public void fillUserData()
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDataContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            ViewBag.CurrentUser = user;
         }
     }
 }

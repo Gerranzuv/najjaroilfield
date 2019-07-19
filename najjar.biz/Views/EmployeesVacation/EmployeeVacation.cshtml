@@ -41,13 +41,16 @@
 
         <h2 style="color: #071689">Employee Vacation</h2>
 
-        <p>
-            @Html.ActionLink("Create New", "Create", new { Employeeid = vacId })
+        @if (User.IsInRole("Administrator"))
+        {
+            <p>
+                @Html.ActionLink("Create New", "Create", new { Employeeid = vacId })
 
-        </p>
+            </p>
+        }
         <table class="table">
             <tr>
-              
+
                 <th>
                     @Html.DisplayNameFor(model => model.startDate)
                 </th>
@@ -69,7 +72,7 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    
+
                     <td>
                         @Html.DisplayFor(modelItem => item.startDate)
                     </td>
@@ -86,8 +89,13 @@
                         @Html.DisplayFor(modelItem => item.EmployeeId)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                        @if (User.IsInRole("Administrator"))
+                        {
+                            <div>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                            </div>
+                        }
                     </td>
                 </tr>
             }
@@ -102,5 +110,3 @@
 
     <!-- /.row -->
 </div>
-
-

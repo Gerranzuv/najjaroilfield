@@ -37,6 +37,7 @@ namespace najjar.biz.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Index", "Home");
@@ -75,6 +76,8 @@ namespace najjar.biz.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+
+            fillUserData();
             ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name");
             ViewBag.UserType = new SelectList(db.Roles, "Name", "Name");
             //ViewBag.Roles = db.Roles;
@@ -88,6 +91,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 if(db.Users.Count(u => u.EmployeeId == model.EmployeeId) > 0)
@@ -129,6 +133,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Disassociate(string loginProvider, string providerKey)
         {
+            fillUserData();
             ManageMessageId? message = null;
             IdentityResult result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey));
             if (result.Succeeded)
@@ -146,6 +151,7 @@ namespace najjar.biz.Controllers
         // GET: /Account/Manage
         public ActionResult Manage(ManageMessageId? message)
         {
+            fillUserData();
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
@@ -163,6 +169,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Manage(ManageUserViewModel model)
         {
+            fillUserData();
             bool hasPassword = HasPassword();
             ViewBag.HasLocalPassword = hasPassword;
             ViewBag.ReturnUrl = Url.Action("Manage");
@@ -215,6 +222,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
+            fillUserData();
             // Request a redirect to the external login provider
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
@@ -224,6 +232,7 @@ namespace najjar.biz.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
+            fillUserData();
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
             if (loginInfo == null)
             {
@@ -252,6 +261,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider)
         {
+            fillUserData();
             // Request a redirect to the external login provider to link a login for the current user
             return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Account"), User.Identity.GetUserId());
         }
@@ -260,6 +270,7 @@ namespace najjar.biz.Controllers
         // GET: /Account/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
         {
+            fillUserData();
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
             if (loginInfo == null)
             {
@@ -280,6 +291,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
+            fillUserData();
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Manage");
@@ -317,6 +329,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            fillUserData();
             AuthenticationManager.SignOut();
             Session.Abandon();
             return RedirectToAction("Index", "Home");
@@ -327,12 +340,15 @@ namespace najjar.biz.Controllers
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {
+
+            fillUserData();
             return View();
         }
 
         [ChildActionOnly]
         public ActionResult RemoveAccountList()
         {
+            fillUserData();
             var linkedAccounts = UserManager.GetLogins(User.Identity.GetUserId());
             ViewBag.ShowRemoveButton = HasPassword() || linkedAccounts.Count > 1;
             return (ActionResult)PartialView("_RemoveAccountPartial", linkedAccounts);
@@ -351,6 +367,7 @@ namespace najjar.biz.Controllers
         [HttpGet]
         public ActionResult AssignUserRole(string UserId)
         {
+            fillUserData();
             ViewBag.SelectedRole = new SelectList(db.Roles, "Id", "Name");
 
             var roleViewModel = new AssignRoleViewModel()
@@ -365,6 +382,7 @@ namespace najjar.biz.Controllers
         [HttpPost]
         public ActionResult AssignUserRole(AssignRoleViewModel model)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 var user = db.Users.Find(model.UserId);
@@ -404,6 +422,7 @@ namespace najjar.biz.Controllers
         [HttpGet]
         public ActionResult UsersByRole(string RoleId)
         {
+            fillUserData();
             var users = db
                 .Users
                 .Where(u => u.Roles.Count(role => role.RoleId.Equals(RoleId, StringComparison.InvariantCultureIgnoreCase)) > 0)
@@ -414,6 +433,7 @@ namespace najjar.biz.Controllers
         [HttpGet]
         public ActionResult UsersList()
         {
+            fillUserData();
             var users = db.Users.ToList();
             return View(users);
         }
@@ -508,5 +528,12 @@ namespace najjar.biz.Controllers
             }
         }
         #endregion
+
+        public void fillUserData()
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDataContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            ViewBag.CurrentUser = user;
+        }
     }
 }

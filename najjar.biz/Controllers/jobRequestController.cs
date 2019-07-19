@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using najjar.biz.Models;
 using najjar.biz.Context;
 using System.IO;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace najjar.biz.Controllers
 {
@@ -19,6 +21,7 @@ namespace najjar.biz.Controllers
         // GET: /jobRequest/
         public ActionResult Index()
         {
+            fillUserData();
             return View(db.JobRequests.ToList());
         }
 
@@ -78,6 +81,7 @@ namespace najjar.biz.Controllers
         // GET: /jobRequest/Edit/5
         public ActionResult Edit(int? id)
         {
+            fillUserData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -109,6 +113,7 @@ namespace najjar.biz.Controllers
         // GET: /jobRequest/Delete/5
         public ActionResult Delete(int? id)
         {
+            fillUserData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -146,6 +151,12 @@ namespace najjar.biz.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public void fillUserData()
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDataContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            ViewBag.CurrentUser = user;
         }
     }
 }

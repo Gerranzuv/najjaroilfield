@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using najjar.biz.Models;
 using najjar.biz.Context;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MultipleFileUpload.Controllers
 {
@@ -20,6 +22,7 @@ namespace MultipleFileUpload.Controllers
 
         public ActionResult Index()
         {
+            fillUserData();
             return View(db.Supports.ToList());
         }
 
@@ -28,6 +31,7 @@ namespace MultipleFileUpload.Controllers
 
         public ActionResult Create()
         {
+            fillUserData();
             return View();
         }
 
@@ -78,6 +82,7 @@ namespace MultipleFileUpload.Controllers
 
         public ActionResult Edit(int? id)
         {
+            fillUserData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -221,6 +226,7 @@ namespace MultipleFileUpload.Controllers
         // Post: /Support/EmployeeDocs/5
         public ActionResult EmployeeDocs(int Employeeid)
         {
+            fillUserData();
             if (Employeeid == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -234,6 +240,12 @@ namespace MultipleFileUpload.Controllers
         {
             db.Dispose();
             base.Dispose(disposing);
+        }
+        public void fillUserData()
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDataContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            ViewBag.CurrentUser = user;
         }
     }
 }

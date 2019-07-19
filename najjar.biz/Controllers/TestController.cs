@@ -1,4 +1,6 @@
-﻿using najjar.biz.Context;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using najjar.biz.Context;
 using najjar.biz.Models;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,7 @@ namespace najjar.biz.Controllers
         // GET: Test
         public ActionResult Index()
         {
+            fillUserData();
             List<Test> tests = db.Tests.Include("TestXQuestions").ToList();
             return View(tests);
         }
@@ -22,6 +25,7 @@ namespace najjar.biz.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            fillUserData();
             return View();
         }
 
@@ -42,6 +46,7 @@ namespace najjar.biz.Controllers
         [HttpGet]
         public ActionResult Edit(int TestId)
         {
+            fillUserData();
             Test testToEdit = db.Tests.Find(TestId);
 
             if(testToEdit == null)
@@ -70,6 +75,13 @@ namespace najjar.biz.Controllers
             {
                 return View(test);
             }
+        }
+
+        public void fillUserData()
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDataContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            ViewBag.CurrentUser = user;
         }
     }
 }
