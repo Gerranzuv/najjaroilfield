@@ -97,14 +97,13 @@
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="sidebar-menu">
                                     <li class="header">MAIN NAVIGATION</li>
-                                    @if (User.IsInRole("Administrator"))
-                                    {
+                                   
                                         <li class="treeview">
                                             <a href="@Url.Action("AdminPage", "Roles")">
                                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                                             </a>
                                         </li>
-                                    }
+                                    
                                     @if (User.IsInRole("Administrator"))
                                     {
                                         <li class="treeview">

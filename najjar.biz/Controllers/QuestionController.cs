@@ -1,4 +1,6 @@
-﻿using najjar.biz.Context;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using najjar.biz.Context;
 using najjar.biz.Models;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,7 @@ namespace najjar.biz.Controllers
 
         public ActionResult QuestionPage(int TestId)
         {
+            fillUserData();
             Test test = db
                 .Tests
                 .Include("TestXQuestions")
@@ -36,7 +39,7 @@ namespace najjar.biz.Controllers
         [HttpGet]
         public ActionResult AddNewQuestion(int TestId)
         {
-
+            fillUserData();
             Test test = db.Tests.FirstOrDefault(t => t.Id == TestId);
 
             if(test != null)
@@ -56,6 +59,7 @@ namespace najjar.biz.Controllers
         [HttpPost]
         public ActionResult AddNewQuestion(Question question, int TestId)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 string category = db
@@ -109,6 +113,7 @@ namespace najjar.biz.Controllers
         [HttpGet]
         public ActionResult Edit(int QuestionId, int TestId)
         {
+            fillUserData();
             Question question = db.Questions.Find(QuestionId);
             Test test = db.Tests.Where(t => t.Id == TestId).FirstOrDefault();
 
@@ -129,6 +134,7 @@ namespace najjar.biz.Controllers
         [HttpPost]
         public ActionResult Edit(Question question, int TestId)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 Question questionToUpdate = db
@@ -157,6 +163,14 @@ namespace najjar.biz.Controllers
                     .FirstOrDefault();
                 return View(question);
             }
+        }
+
+
+        public void fillUserData()
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDataContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            ViewBag.CurrentUser = user;
         }
     }
 }

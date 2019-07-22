@@ -65,5 +65,14 @@ namespace najjar.biz.Controllers
         {
             return View();
         }
+
+        public ActionResult FourOhFour1()
+        {
+            return View();
+        }
+        public ActionResult Faq1()
+        {
+            return View();
+        }
     }
 }

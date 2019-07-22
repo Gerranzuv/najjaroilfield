@@ -32,7 +32,7 @@ namespace najjar.biz.Controllers
             fillUserData();
             Employees selectedEmloyee = db
                 .Employees
-                .FirstOrDefault(emp => emp.EmployeeCode.Equals(employee_code, StringComparison.InvariantCultureIgnoreCase));
+                .FirstOrDefault(emp => emp.EId.Equals(employee_code, StringComparison.InvariantCultureIgnoreCase));
             if (selectedEmloyee == null)
             {
                 TempData["errMessage"] = "Please Enter A Valid Employee Code!";
@@ -67,21 +67,22 @@ namespace najjar.biz.Controllers
             Employees employee = db
                 .Employees
                 .Include("Registrations")
-                .FirstOrDefault(emp => emp.EmployeeCode.Equals(employee_code, StringComparison.InvariantCultureIgnoreCase));
+                .FirstOrDefault(emp => emp.EId.Equals(employee_code, StringComparison.InvariantCultureIgnoreCase));
 
             Test test = db.Tests.FirstOrDefault(t => t.Id == TestId);
 
-            Registration registration = db
+            List<Registration> registrations = db
                 .Registrations
-                .FirstOrDefault(reg => reg.TestId == TestId && reg.EmployeeId == employee.Id );
+                .Where(reg => reg.TestId == TestId && reg.EmployeeId == employee.Id ).ToList();
 
             // If the employee has already registered for the Test --->
 
-            if (registration != null)
+            if (registrations.Count()>=2)
             {
-                Session["TOKEN"] = registration.Token;
-
-                return RedirectToAction("FinalResult", new { TestId , token = registration.Token });
+                Session["TOKEN"] = registrations[0].Token;
+                TempData["errMessage"] = "You can only take the test twice!";
+                return RedirectToAction("InstructionPage", new { TestId, employee_code });
+                //return RedirectToAction("FinalResult", new { TestId, token = registrations[0].Token });
             }
 
             // Create New Registration

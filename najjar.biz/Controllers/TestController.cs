@@ -37,7 +37,7 @@ namespace najjar.biz.Controllers
                 db.Tests.Add(test);
                 db.SaveChanges();
 
-                return RedirectToAction("List");
+                return RedirectToAction("index");
             }
 
             return View(test);

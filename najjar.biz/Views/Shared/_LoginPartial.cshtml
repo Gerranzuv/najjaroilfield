@@ -3,38 +3,63 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Join Us", "jobListForGuest", "Job")</li>
-        <li>
-            @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })*@
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Roles")
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <ul style="font-size: large;">
+                    <b> @Html.ActionLink("Join Us", "jobListForGuest", "Job")</b>
+                </ul>
+            
+            </li>
+            <li>
+                @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+                @if (User.IsInRole("Administrator"))
+                {
+                    <ul style="font-size: large;">
+                        <b> @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Roles")</b>
+                    </ul>
+
+                }
+                @if (!User.IsInRole("Administrator"))
+                {
+
+                    <ul style="font-size: large;">
+
+                        <b>  @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Roles")</b>
+                    </ul>
+                }
+            </li>
+            <li>
+                <ul style="font-size: large;">
+
+                    <b>  <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></b>
+                </ul>
+            
+            </li>
+        </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
         <li>
-            <ul style ="font-size: large; margin-left: -110%" >
-               <b> @Html.ActionLink("Join Us", "jobListForGuest", "Job")</b>
-                </ul>
-</li>
+            <ul style="font-size: large;">
+                <b> @Html.ActionLink("Join Us", "jobListForGuest", "Job")</b>
+            </ul>
+        </li>
 
         <li>
-            <ul style="font-size: large; margin-left: -120%">
+            <ul style="font-size: large;">
 
-              <b>  @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</b>
-                </ul>
-</li>
+                <b>  @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</b>
+            </ul>
+        </li>
 
         <li>
-            <ul style="font-size: large; margin-top: 0%; margin-left: -175%">
-              <b>  @Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</b>
-                </ul>
-</li>
+            <ul style="font-size: large;">
+                <b>  @Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</b>
+            </ul>
+        </li>
     </ul>
 }
