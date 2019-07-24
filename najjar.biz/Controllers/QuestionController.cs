@@ -5,6 +5,7 @@ using najjar.biz.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -13,6 +14,29 @@ namespace najjar.biz.Controllers
     public class QuestionController : Controller
     {
         private ApplicationDataContext db = new ApplicationDataContext();
+
+        // GET: /Question/
+        public ActionResult Index()
+        {
+            fillUserData();
+            return View(db.Questions.ToList());
+        }
+
+        // GET: /Question/Details/5
+        public ActionResult Details(int? id)
+        {
+            fillUserData();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Question question = db.Questions.Find(id);
+            if (question == null)
+            {
+                return HttpNotFound();
+            }
+            return View(question);
+        }
 
         public ActionResult QuestionPage(int TestId)
         {
@@ -25,7 +49,7 @@ namespace najjar.biz.Controllers
                 .Where(t => t.Id == TestId)
                 .FirstOrDefault();
 
-            if(test != null)
+            if (test != null)
             {
                 return View(test);
 
@@ -35,14 +59,14 @@ namespace najjar.biz.Controllers
                 return View("Error");
             }
         }
-        
+
         [HttpGet]
         public ActionResult AddNewQuestion(int TestId)
         {
             fillUserData();
             Test test = db.Tests.FirstOrDefault(t => t.Id == TestId);
 
-            if(test != null)
+            if (test != null)
             {
                 ViewBag.Categories = new SelectList(db.QuestionCategories.ToList(), "Id", "Category");
                 ViewBag.Test = test;
@@ -117,7 +141,7 @@ namespace najjar.biz.Controllers
             Question question = db.Questions.Find(QuestionId);
             Test test = db.Tests.Where(t => t.Id == TestId).FirstOrDefault();
 
-            if(question != null && test != null)
+            if (question != null && test != null)
             {
                 ViewBag.Categories = new SelectList(db.QuestionCategories.ToList(), "Id", "Category");
                 ViewBag.Test = test;
@@ -125,12 +149,40 @@ namespace najjar.biz.Controllers
             }
             else
             {
-                return HttpNotFound("The Question with the Question Id: " + 
-                    QuestionId + 
+                return HttpNotFound("The Question with the Question Id: " +
+                    QuestionId +
                     " Couldn't be found! Or The Test with TestId: "
-                    +TestId+" couldn't be found!");
+                    + TestId + " couldn't be found!");
             }
         }
+        // GET: /Question/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            fillUserData();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Question question = db.Questions.Find(id);
+            if (question == null)
+            {
+                return HttpNotFound();
+            }
+            return View(question);
+        }
+
+        // POST: /Question/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            fillUserData();
+            Question question = db.Questions.Find(id);
+            db.Questions.Remove(question);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         [HttpPost]
         public ActionResult Edit(Question question, int TestId)
         {

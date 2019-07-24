@@ -54,6 +54,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,Comment,Date")] ArticleComment articlecomment)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 db.ArticleComments.Add(articlecomment);
@@ -87,6 +88,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,Comment,Date")] ArticleComment articlecomment)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 db.Entry(articlecomment).State = EntityState.Modified;
@@ -117,6 +119,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            fillUserData();
             ArticleComment articlecomment = db.ArticleComments.Find(id);
             db.ArticleComments.Remove(articlecomment);
             db.SaveChanges();
@@ -126,6 +129,7 @@ namespace najjar.biz.Controllers
         [HttpPost]
         public ActionResult addComment(ArticleComment std)
         {
+
             std.Date = DateTime.Now;
             db.ArticleComments.Add(std);
             db.SaveChanges();

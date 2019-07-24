@@ -85,6 +85,7 @@ namespace najjar.biz.Controllers
         [Authorize]
         public ActionResult EmployeesPage(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            fillUserData();
 
             ViewBag.CurrentSort = sortOrder;
             //Initialize viewBag with search parameters
@@ -284,6 +285,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Employees employees, HttpPostedFileBase upload)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 if (upload != null)
@@ -339,6 +341,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit( Employees employees, HttpPostedFileBase upload)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 string oldpath = employees.EmployeeImage;
@@ -428,6 +431,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            fillUserData();
             Employees employees = db.Employees.Find(id);
             var vac = db.EmployeesVacations.Where(x => x.EmployeeId.Equals(id));
             db.EmployeesVacations.RemoveRange(vac);
@@ -486,6 +490,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditSalary(Employees employees)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 Employees employee = db.Employees.Find(employees.Id);
@@ -531,6 +536,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditTermination(Employees employees)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 Employees employee = db.Employees.Find(employees.Id);

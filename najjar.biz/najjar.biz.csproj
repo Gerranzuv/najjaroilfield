@@ -219,7 +219,7 @@
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\SupportController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\TestContoller.cs" />
     <Compile Include="Extra\AccessDeniedAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -485,9 +485,9 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
-    <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\carousel.css" />
+    <Content Include="css\DropDownAdminPage.css" />
     <Content Include="css\site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -522,6 +522,9 @@
     <Content Include="Images\logo.png" />
     <Content Include="Images\logo_Najjar1.png" />
     <Content Include="Images\Logo_new.png" />
+    <Content Include="Images\main_page_1.jpg" />
+    <Content Include="Images\main_page_2.jpg" />
+    <Content Include="Images\main_page_3.jpg" />
     <Content Include="Images\najjarwhite.png" />
     <Content Include="Images\Oil-Company-in-Lagos-Nigeria.jpg" />
     <Content Include="Images\oil_workerssss.jpg" />
@@ -928,6 +931,7 @@
     <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="combres.readme" />
+    <Content Include="css\bootstrap.css" />
     <None Include="Properties\PublishProfiles\goDaddy.pubxml" />
     <Content Include="Views\Roles\Delete.cshtml" />
     <Content Include="Views\Roles\Details.cshtml" />
@@ -1013,6 +1017,16 @@
     <Content Include="Views\Shared\Unauthorized.cshtml" />
     <Content Include="Views\Services\FourOhFour1.cshtml" />
     <Content Include="Views\Services\Faq1.cshtml" />
+    <Content Include="Views\Test\Delete.cshtml" />
+    <Content Include="Views\Test\Details.cshtml" />
+    <Content Include="Views\Question\Create.cshtml" />
+    <Content Include="Views\Question\Delete.cshtml" />
+    <Content Include="Views\Question\Details.cshtml" />
+    <Content Include="Views\Question\Index.cshtml" />
+    <Content Include="Views\Choice\Create.cshtml" />
+    <Content Include="Views\Choice\Delete.cshtml" />
+    <Content Include="Views\Choice\Details.cshtml" />
+    <Content Include="Views\Choice\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

@@ -5,6 +5,7 @@ using najjar.biz.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -32,6 +33,7 @@ namespace najjar.biz.Controllers
         [HttpPost]
         public ActionResult Create(Test test)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 db.Tests.Add(test);
@@ -49,7 +51,7 @@ namespace najjar.biz.Controllers
             fillUserData();
             Test testToEdit = db.Tests.Find(TestId);
 
-            if(testToEdit == null)
+            if (testToEdit == null)
             {
                 return HttpNotFound("The Test with the Test Id: " + TestId + " Couldn't be found!");
             }
@@ -62,6 +64,7 @@ namespace najjar.biz.Controllers
         [HttpPost]
         public ActionResult Edit(Test test)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
 
@@ -75,6 +78,55 @@ namespace najjar.biz.Controllers
             {
                 return View(test);
             }
+        }
+
+        // GET: /Test/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            fillUserData();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Test test = db.Tests.Find(id);
+            if (test == null)
+            {
+                return HttpNotFound();
+            }
+            return View(test);
+        }
+
+        // POST: /Test/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            fillUserData();
+            Test test = db.Tests.Find(id);
+            List<TestXQuestion> questions = new List<TestXQuestion>();
+            if(test.TestXQuestions!=null)
+             questions = test.TestXQuestions.ToList();
+
+            if (questions.ToList().Count > 0) {
+                foreach (var item in questions)
+                {
+                    var choices = item.TestXPapers;
+                    if (choices.ToList().Count > 0)
+                        db.TestXPapers.RemoveRange(choices);
+                    db.TestXQuestions.Remove(item);
+                }
+            }
+            
+            List<Registration> registrations = db.Registrations.Where(s => s.TestId.Equals(id)).ToList();
+
+            foreach (var item in registrations)
+            {
+                db.Registrations.Remove(item);
+            }
+
+            db.Tests.Remove(test);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public void fillUserData()

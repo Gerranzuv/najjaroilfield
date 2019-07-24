@@ -62,6 +62,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="id,startDate,EndDate,Duration,EmployeeId,Status")] EmployeesVacation employeesvacation)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 employeesvacation.CreationDate = DateTime.Now;
@@ -98,6 +99,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="id,startDate,EndDate,Status")] EmployeesVacation employeesvacation)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 EmployeesVacation vacOld = db.EmployeesVacations.Find(employeesvacation.id);
@@ -134,6 +136,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            fillUserData();
             EmployeesVacation employeesvacation = db.EmployeesVacations.Find(id);
             db.EmployeesVacations.Remove(employeesvacation);
             db.SaveChanges();

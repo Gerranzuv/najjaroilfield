@@ -75,6 +75,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="id,title,summary,description,attachment,date")] Articles articles, HttpPostedFileBase upload )
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 string path = Path.Combine(Server.MapPath("~/Images"), upload.FileName);
@@ -113,6 +114,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="id,title,summary,description,attachment")] Articles articles,HttpPostedFileBase upload)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 string path = Path.Combine(Server.MapPath("~/Images"), upload.FileName);
@@ -129,6 +131,7 @@ namespace najjar.biz.Controllers
         // GET: /Article/Details/5
         public ActionResult post(int? id)
         {
+            fillUserData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -161,6 +164,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            fillUserData();
             Articles articles = db.Articles.Find(id);
             db.Articles.Remove(articles);
             db.SaveChanges();

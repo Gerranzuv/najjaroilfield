@@ -48,6 +48,7 @@ namespace najjar.biz.Controllers
         [HttpPost]
         public ActionResult Create(IdentityRole role)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 db.Roles.Add(role);
@@ -77,6 +78,7 @@ namespace najjar.biz.Controllers
         [HttpPost]
         public ActionResult Edit(IdentityRole role)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 db.Entry(role).State = EntityState.Modified;
@@ -108,6 +110,7 @@ namespace najjar.biz.Controllers
 
         public ActionResult AdminPage()
         {
+            fillUserData();
 
             return View();
         }
@@ -122,6 +125,7 @@ namespace najjar.biz.Controllers
         [HttpPost]
         public ActionResult Delete(IdentityRole role)
         {
+            fillUserData();
             try
             {
                 var myrole = db.Roles.Find(role.Id);

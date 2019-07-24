@@ -68,6 +68,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="id,Year,Rating,Status,EmployeeId")] EmployeeRating employeerating)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 employeerating.CreationDate = DateTime.Now;
@@ -130,6 +131,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="id,Year,Rating,Status")] EmployeeRating employeerating)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 EmployeeRating oldRating = db.EmployeeRatings.Find(employeerating.id);
@@ -167,6 +169,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            fillUserData();
             EmployeeRating employeerating = db.EmployeeRatings.Find(id);
             db.EmployeeRatings.Remove(employeerating);
             db.SaveChanges();

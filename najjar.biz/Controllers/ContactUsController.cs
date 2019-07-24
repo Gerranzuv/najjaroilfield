@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using najjar.biz.Models;
 using najjar.biz.Context;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace najjar.biz.Controllers
 {
@@ -18,12 +20,14 @@ namespace najjar.biz.Controllers
         // GET: /ContactUs/
         public ActionResult Index()
         {
+            fillUserData();
             return View(db.ContactUs.ToList());
         }
 
         // GET: /ContactUs/Details/5
         public ActionResult Details(int? id)
         {
+            fillUserData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +43,7 @@ namespace najjar.biz.Controllers
         // GET: /ContactUs/Create
         public ActionResult Create()
         {
+            fillUserData();
             return View();
         }
 
@@ -49,6 +54,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="id,Name,Email,Message,Date")] ContactUs contactus)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 db.ContactUs.Add(contactus);
@@ -62,6 +68,7 @@ namespace najjar.biz.Controllers
         // GET: /ContactUs/Edit/5
         public ActionResult Edit(int? id)
         {
+            fillUserData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -81,6 +88,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="id,Name,Email,Message,Date")] ContactUs contactus)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 db.Entry(contactus).State = EntityState.Modified;
@@ -93,6 +101,7 @@ namespace najjar.biz.Controllers
         // GET: /ContactUs/Delete/5
         public ActionResult Delete(int? id)
         {
+            fillUserData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -110,6 +119,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            fillUserData();
             ContactUs contactus = db.ContactUs.Find(id);
             db.ContactUs.Remove(contactus);
             db.SaveChanges();
@@ -141,6 +151,13 @@ namespace najjar.biz.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public void fillUserData()
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDataContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            ViewBag.CurrentUser = user;
         }
     }
 }

@@ -41,6 +41,7 @@ namespace MultipleFileUpload.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Support support)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 List<FileDetail> fileDetails = new List<FileDetail>();
@@ -99,6 +100,7 @@ namespace MultipleFileUpload.Controllers
 
         public FileResult Download(String p, String d)
         {
+            fillUserData();
             return File(Path.Combine(Server.MapPath("~/Images/"), p), System.Net.Mime.MediaTypeNames.Application.Octet, d);
         }
 
@@ -111,6 +113,7 @@ namespace MultipleFileUpload.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Support support)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
 
@@ -149,6 +152,7 @@ namespace MultipleFileUpload.Controllers
         [HttpPost]
         public JsonResult DeleteFile(string id)
         {
+            fillUserData();
             if (String.IsNullOrEmpty(id))
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;

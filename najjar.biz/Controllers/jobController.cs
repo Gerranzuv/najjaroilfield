@@ -77,6 +77,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Job job)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 job.CreationDate = DateTime.Now;
@@ -114,6 +115,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,AnnouncementDate,ClosingDate,Title,Location,MilitaryService,Status,Category,Breifdescreption,Detaileddescreption,jobRequierment,AverageSalary")] Job job)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 Job oldJob = db.Jobs.Find(job.id);
