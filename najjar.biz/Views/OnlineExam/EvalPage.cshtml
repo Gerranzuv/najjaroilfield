@@ -43,7 +43,7 @@
     }
     <div class="row">
         <div class="col-xs-8 col-xs-offset-2 cols-sm-6 col-sm-offset-3">
-            <table class="table table-responsive">
+            <table class="table table-responsive" id="myTable">
                 <tr>
                     <td>
                         <a href="javascript:void(0);" onclick="saveBackward();" class="btn btn-primary">
@@ -57,11 +57,23 @@
                     </td>
                     @for (int i = 1; i <= Model.TotalQuestionInSet; i++)
                     {
+                        if (i <= 5 && i < Model.TotalQuestionInSet) { 
                         <td>
                             <a href="@Url.Action("EvalPage", "OnlineExam", new { @token = Request.Params["token"], @qno = i })" id="question_@i" class="btn btn-primary">
                                 @i
                             </a>
                         </td>
+                        }
+                        else
+                        {
+                            <td style="display:none;">
+                                <a href="@Url.Action("EvalPage", "OnlineExam", new { @token = Request.Params["token"], @qno = i })" id="question_@i" class="display:none;">
+                                    @i
+                                </a>
+                            </td>
+                        }
+
+
                     }
                     <td>
                         <a href="@Url.Action("EvalPage", "OnlineExam", new { @token = Request.Params["token"], @qno = Model.QuestionNumber + 1 })" class="btn btn-default">
@@ -109,6 +121,12 @@
             $('input[name="Direction"]').val('backward');
             document.getElementById('formAnswer').submit();
         }
+    }
+
+    function addrow() {
+
+        var rowz="<tr><td>";
+        $('#myTable tbody').append(rowz);
     }
 
     // finish Exam
