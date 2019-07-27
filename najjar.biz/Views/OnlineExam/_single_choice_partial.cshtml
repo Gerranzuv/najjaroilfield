@@ -3,11 +3,12 @@
 @for (int index = 0; index < Model.Options.Count; index++)
 {
     <input type="hidden" name="UserSelectedChoices[@index].ChoiceId" value="@Model.Options[index].ChoiceId" />
-    <div class="radio">
-        <label>
-            <input name="UserSelectedChoices[@index].IsChecked"
+    <div class="custom-control custom-radio">
+        
+            <input class="custom-control-input" name="UserSelectedChoices[@index].IsChecked"
                    type="radio"
-                   @(!string.IsNullOrEmpty(Model.Options[index].Answer) ? "CHECKED" : "") />@Model.Options[index].Label
-        </label>
-    </div>
-    }
+                   @(!string.IsNullOrEmpty(Model.Options[index].Answer) ? "CHECKED" : "") />
+        <label class="custom-control-label"> @Model.Options[index].Label </label>
+        </div>
+}
+

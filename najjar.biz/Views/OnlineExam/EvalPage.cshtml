@@ -3,25 +3,25 @@
     var endTime = Model.ExpiryDate;
     var timeRemaining = TimeSpan.FromTicks(endTime.Ticks - DateTime.Now.Ticks).TotalSeconds.ToString("#");
 }
-<div class="row">
+<div class="row" style="margin-top:5%">
     <div class="col-xs-6 col-sm-4">
-        <h3>@Model.TestName</h3>
-        <p>
-            TimeRemaining:&nbsp;<span id="minRemaining"></span>&nbsp;:&nbsp;<span id="secRemaining"></span>
+        <h1>@Model.TestName</h1>
+        <p style="color:red;font-size:larger">
+            <b>Time Remaining:</b>&nbsp;<span id="minRemaining"></span>&nbsp;:&nbsp;<span id="secRemaining"></span>
         </p>
     </div>
-    <div class="col-xs-6 col-sm-4 col-sm-offset-4">
-        <a href="javascript:void(0);" onclick="finishExam(false, false);" class="btn btn-primary">
+    <div class="col-xs-6 col-sm-4 col-sm-offset-4" style="margin-top:2%">
+        <a href="javascript:void(0);" onclick="finishExam(false, false);" class="btn btn-danger">
             Finish The Exam
         </a>
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-3">
-        <h3>Question Number:&nbsp;@Model.QuestionNumber</h3>
+        <h4>Question Number:&nbsp;@Model.QuestionNumber</h4>
     </div>
 </div>
-<div class="jumbotron">
+<div class="jumbotron" style="font-size:x-large">
     @Model.Question
 </div>
 
@@ -50,14 +50,14 @@
                             Save and Previous
                         </a>
                     </td>
-                    <td>
+                    @*<td>
                         <a href="@Url.Action("EvalPage", "OnlineExam", new { @token = Request.Params["token"], @qno = Model.QuestionNumber - 1 })" class="btn btn-default">
                             &lt;&lt;Previous
                         </a>
-                    </td>
+                    </td>*@
                     @for (int i = 1; i <= Model.TotalQuestionInSet; i++)
                     {
-                        if (i <= 5 && i < Model.TotalQuestionInSet) { 
+                        if (i <= 5 || i > Model.TotalQuestionInSet-1) { 
                         <td>
                             <a href="@Url.Action("EvalPage", "OnlineExam", new { @token = Request.Params["token"], @qno = i })" id="question_@i" class="btn btn-primary">
                                 @i
@@ -75,11 +75,11 @@
 
 
                     }
-                    <td>
+                    @*<td>
                         <a href="@Url.Action("EvalPage", "OnlineExam", new { @token = Request.Params["token"], @qno = Model.QuestionNumber + 1 })" class="btn btn-default">
                             Next&gt;&gt;
                         </a>
-                    </td>
+                    </td>*@
                     <td>
                         <a href="javascript:void(0);" onclick="saveForward();" class="btn btn-primary">
                             Save and Next

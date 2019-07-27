@@ -998,7 +998,6 @@
     <Content Include="Views\Test\Create.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Test\_ViewStart.cshtml" />
-    <Content Include="Views\OnlineExam\EvalPage.cshtml" />
     <Content Include="Views\OnlineExam\_single_choice_partial.cshtml" />
     <Content Include="Views\OnlineExam\_multi_choice_partial.cshtml" />
     <Content Include="Views\OnlineExam\FinalResult.cshtml" />
@@ -1035,6 +1034,9 @@
     <Content Include="Views\Choice\Delete.cshtml" />
     <Content Include="Views\Choice\Details.cshtml" />
     <Content Include="Views\Choice\Index.cshtml" />
+    <Content Include="Views\OnlineExam\EvalPage.cshtml" />
+    <Content Include="Views\Shared\_Layouttest.cshtml" />
+    <Content Include="Views\OnlineExam\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
