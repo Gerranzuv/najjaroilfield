@@ -11,25 +11,25 @@
     <div class="row">
         <div class="col-md-4">
             <ul class="nav nav-stacked nav-pills">
-                <li id="PersonalInfo" style="color: #071689 !important;">
+                <li id="PersonalInfo" style="color: #071689 !important; font-size: larger">
                     @Html.ActionLink("Personal Information", "PersonalPage", new { Employeeid = Model.Id })
                 </li>
-                <li id="SalaryInfo" style="color: #071689 !important;">
+                <li id="SalaryInfo" style="color: #071689 !important; font-size: larger">
                     @Html.ActionLink("Salary Information", "SalaryInfo", new { Employeeid = Model.Id })
                 </li>
-                <li id="EmployeeDocs" style="color: #071689 !important;">
+                <li id="EmployeeDocs" style="color: #071689 !important; font-size: larger">
                     @Html.ActionLink("My Documents", "EmployeeDocs", "Support", new { Employeeid = Model.Id }, null)
                 </li>
-                <li id="EmployeeVacation" style="color: #071689 !important;">
+                <li id="EmployeeVacation" style="color: #071689 !important; font-size: larger">
                     @Html.ActionLink("Employee Vacation", "EmployeeVacation", "EmployeesVacation", new { Employeeid = Model.Id }, null)
                 </li>
-                <li id="EmployeeRating" style="color: #071689 !important;">
+                <li id="EmployeeRating" style="color: #071689 !important; font-size: larger">
                     @Html.ActionLink("Employee Rating", "EmployeeRating", "EmployeeRating", new { Employeeid = Model.Id }, null)
                 </li>
-                <li id="EmployeeRating" class="active" style="color: #071689 !important;">
+                <li id="EmployeeRating" class="active" style="color: #071689 !important; font-size: larger">
                     @Html.ActionLink("Termination Info", "TerminationInfo", new { Employeeid = Model.Id }, null)
                 </li>
-                <li id="EmployeeRating" style="color: #071689 !important;">
+                <li id="EmployeeRating" style="color: #071689 !important; font-size: larger">
                     @Html.ActionLink("Exams Info", "ExamsInfo", "OnlineExam", new { Employeeid = Model.Id }, null)
                 </li>
             </ul>

@@ -16,28 +16,31 @@
                 @*<li>
                         @Html.ActionLink("Home", "Index", "Home")
                     </li>*@
-                <li id="PersonalInfo">
+                <li id="PersonalInfo" style="color: #071689 !important; font-size: larger" >
                     @Html.ActionLink("Personal Information", "PersonalPage", "Employee", new { Employeeid = DocsId }, null)
                 </li>
-                <li id="SalaryInfo">
+                <li id="SalaryInfo" style="color: #071689 !important; font-size: larger">
                     @Html.ActionLink("Salary Information", "SalaryInfo", "Employee", new { Employeeid = DocsId }, null)
                 </li>
-                <li id="EmployeeDocs" class="active">
+                <li id="EmployeeDocs" class="active" style="color: #071689 !important; font-size: larger">
                     @Html.ActionLink("My Documents", "EmployeeDocs", "Support", new { Employeeid = DocsId }, null)
                 </li>
 
-                <li id="EmployeeVacation">
+                <li id="EmployeeVacation" style="color: #071689 !important; font-size: larger">
                     @Html.ActionLink("Employee Vacation", "EmployeeVacation", "EmployeesVacation", new { Employeeid = DocsId }, null)
                 </li>
-                <li id="EmployeeRating">
+                <li id="EmployeeRating" style="color: #071689 !important; font-size: larger">
                     @Html.ActionLink("Employee Rating", "EmployeeRating", "EmployeeRating", new { Employeeid = DocsId }, null)
                 </li>
-                <li id="EmployeeRating" style="color: #071689 !important;">
+                <li id="EmployeeRating" style="color: #071689 !important; font-size: larger">
                     @Html.ActionLink("Termination Info", "TerminationInfo", "Employee", new { Employeeid = DocsId }, null)
                 </li>
                 @*<li id="Termination">
                         @Html.ActionLink(" Termination Status", "SalaryInfo")
                     </li>*@
+                <li id="EmployeeRating" style="color: #071689 !important; font-size: larger">
+                    @Html.ActionLink("Exams Info", "ExamsInfo", "OnlineExam", new { Employeeid = DocsId }, null)
+                </li>
 
             </ul>
         </div>

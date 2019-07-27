@@ -12,26 +12,26 @@
     <div class="col-md-3 col-sm-4 sidebar">
         <br />
         <ul class="nav nav-stacked nav-pills">
-            <li id="PersonalInfo">
+            <li id="PersonalInfo" style="color: #071689 !important; font-size: larger">
                 @Html.ActionLink("Personal Information", "PersonalPage", "Employee", new { Employeeid = vacId }, null)
             </li>
-            <li id="SalaryInfo">
+            <li id="SalaryInfo" style="color: #071689 !important; font-size: larger">
                 @Html.ActionLink("Salary Information", "SalaryInfo", "Employee", new { Employeeid = vacId }, null)
             </li>
-            <li id="EmployeeDocs">
+            <li id="EmployeeDocs" style="color: #071689 !important; font-size: larger">
                 @Html.ActionLink("My Documents", "EmployeeDocs", "Support", new { Employeeid = vacId }, null)
             </li>
-            <li id="EmployeeVacation" class="active">
+            <li id="EmployeeVacation" class="active" style="color: #071689 !important; font-size: larger">
                 @Html.ActionLink("Employee Vacation", "EmployeeVacation", "EmployeesVacation", new { Employeeid = vacId }, null)
             </li>
 
-            <li id="EmployeeRating">
+            <li id="EmployeeRating" style="color: #071689 !important; font-size: larger">
                 @Html.ActionLink("Employee Rating", "EmployeeRating", "EmployeeRating", new { Employeeid = vacId }, null)
             </li>
-            <li id="EmployeeRating" style="color: #071689 !important;">
+            <li id="EmployeeRating" style="color: #071689 !important; font-size: larger">
                 @Html.ActionLink("Termination Info", "TerminationInfo", "Employee", new { Employeeid = vacId }, null)
             </li>
-            <li id="EmployeeRating" style="color: #071689 !important;">
+            <li id="EmployeeRating" style="color: #071689 !important; font-size: larger">
                 @Html.ActionLink("Exams Info", "ExamsInfo", "OnlineExam", new { Employeeid = vacId }, null)
             </li>
         </ul>
@@ -39,16 +39,24 @@
 
     <div class="col-md-9 col-sm-8" id="PersonalInfoDV">
 
-        <h2 style="color: #071689">Employee Vacation</h2>
+        <h2 style="color: #071689">Employee Vacations</h2>
 
         @if (User.IsInRole("Administrator"))
         {
-            <p>
+            @*<p>
                 @Html.ActionLink("Create New", "Create", new { Employeeid = vacId })
 
-            </p>
+            </p>*@
+            
+            <div class="row" style="margin-top:3%">
+                    <div >
+                        <input type="button"
+                               class="btn btn-primary" style="float:right;" value="Add New Vacation"
+                               onclick="location.href='@Url.Action("Create", new { Employeeid = vacId })'" />
+                    </div>
+                </div>
         }
-        <table class="table">
+        <table class="table" style="margin-top:3%">
             <tr>
 
                 <th>

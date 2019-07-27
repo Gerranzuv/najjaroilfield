@@ -3,49 +3,110 @@
 @{
     ViewBag.Title = "InstructionPage";
 }
+<head>
+    <title>Instruction Page</title>
 
-<h2 class="headertekst"  style="margin-top: 5%; ">Instructions for <strong>@Model.Test.Name</strong> Test. Good Luck!</h2>
-<div class="row" style="margin-top:5%">
-    <div class="col-xs-6">
-        <h4>@Model.Test.Name</h4>
-    </div>
-    <div class="col-xs-6">
-        <h4>Time:&nbsp;@Model.Test.DurationInMinutes</h4>
-    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<div class="page-header text-center">
+    <h1 class="headertekst" style="margin-top: 5%; ">Instructions for <strong>@Model.Test.Name</strong> Test</h1>
 </div>
-<div class="row row-bottom-margin">
+@*<div class="row" style="margin-top:5%">
+        <div class="col-xs-6">
+            <h3>@Model.Test.Name</h3>
+        </div>
+        <div class="col-xs-6">
+            <span class="label label-info" style="font-size:x-large">Time:&nbsp;@Model.Test.DurationInMinutes</span>
+        </div>
+    </div>*@
+
+<div class="row">
+    <span class="label label-info" style="font-size:x-large">
+        Time:&nbsp;@Model.Test.DurationInMinutes minutes
+    </span>
+</div>
+
+<div class="row" style="margin-top:3%">
+    <span class="label label-info" style="font-size:x-large">
+        Number of Questions:&nbsp;@Model.Test.TestXQuestions.Count(q => q.IsActive)
+    </span>
+</div>
+
+<div class="row" style="margin-top:3%">
+    <span class="label label-info" style="font-size:x-large">
+        Total Mark:&nbsp;@Model.Test.TestXQuestions.Where(q => q.IsActive).Sum(q => q.Question.points)
+    </span>
+</div>
+
+@*<div class="row row-bottom-margin">
     <div class="col-xs-offset-6 col-xs-6">
-        <h4>
+        <span class="label label-info" style="font-size:x-large">
             Number of Questions:&nbsp;@Model.Test.TestXQuestions.Count(q => q.IsActive)
-        </h4>
+        </span>
     </div>
 </div>
 <div class="row row-bottom-margin">
     <div class="col-xs-offset-6 col-xs-6">
-        <h4>
+        <span class="label label-info" style="font-size:x-large">
             Total Mark:&nbsp;@Model.Test.TestXQuestions.Where(q => q.IsActive).Sum(q => q.Question.points)
-        </h4>
+        </span>
+    </div>
+</div>*@
+<div class="row">
+    <div class="jumbotron"  style="margin-top:3%;font-size:x-large" >
+        @Model.Test.Description
     </div>
 </div>
-<div class="jumbotron">
-    @Model.Test.Description
-</div>
-@using (Html.BeginForm("Register", "OnlineExam", FormMethod.Post, new { @id = "registerForm" }))
+
+@*@using (Html.BeginForm("Register", "OnlineExam", FormMethod.Post, new { @id = "registerForm" }))
 {
     @Html.Hidden("TestId", Model.Test.Id)
     @Html.Hidden("employee_code", Model.employee.EmployeeCode)
-    <a href="javascript:void(0);" onclick="getElementById('registerForm').submit()" class="btn btn-primary">
-        Register and start
+    <a href="javascript:void(0);" onclick="alert('Please don\'t close browser session or you will fail in the exam!');
+    getElementById('registerForm').submit()" class="btn btn-primary">
+         Start Exam
     </a>
     
-}
-
-
-<div class="row row-bottom-margin">
-    <div class="col-xs-12 col-sm-offset-2 col-sm-6">
-        <span class="text-danger" style="font-size:x-large">
+}*@
+<div class="text-center">
+    <button type="button" class="btn btn-primary" style="align-content:center" data-toggle="modal" data-target="#myModal">Start Exam</button>
+</div>
+<div class="row row-bottom-margin " style="margin-top:3%">
+    <div class="text-center">
+        <span class="alert-danger" role="alert" style="font-size:x-large">
             @Html.Raw(TempData["errMessage"])
         </span>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Final notes before the exam</h2>
+            </div>
+            <div class="modal-body">
+                <p style="font-size:x-large">Please don't close browser session before you answer all the questions or you will fail in the exam!.</p>
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm("Register", "OnlineExam", FormMethod.Post, new { @id = "registerForm" }))
+                {
+                    @Html.Hidden("TestId", Model.Test.Id)
+                    @Html.Hidden("employee_code", Model.employee.EmployeeCode)
+                    <a href="javascript:void(0);" onclick="getElementById('registerForm').submit()" class="btn btn-primary">
+                        Start Exam
+                    </a>
+
+                }
+            </div>
+        </div>
+
     </div>
 </div>
 

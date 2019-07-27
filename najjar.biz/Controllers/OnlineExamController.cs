@@ -80,7 +80,7 @@ namespace najjar.biz.Controllers
             if (registrations.Count()>=2)
             {
                 Session["TOKEN"] = registrations[0].Token;
-                TempData["errMessage"] = "You can only take the test twice!";
+                TempData["errMessage"] = "You can only take the test twice, If you believe that there is something wrong please contact your direct manager";
                 return RedirectToAction("InstructionPage", new { TestId, employee_code });
                 //return RedirectToAction("FinalResult", new { TestId, token = registrations[0].Token });
             }

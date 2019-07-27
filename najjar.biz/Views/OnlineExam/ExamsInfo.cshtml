@@ -7,35 +7,35 @@
 <div class="container">
     <div class="col-md-4">
         <ul class="nav nav-stacked nav-pills">
-            <li id="PersonalInfo">
+            <li id="PersonalInfo" style="color: #071689 !important; font-size: larger">
                 @Html.ActionLink("Personal Information", "PersonalPage", "Employee", new { Employeeid = Model.EmployeeId }, null)
             </li>
-            <li id="SalaryInfo">
+            <li id="SalaryInfo" style="color: #071689 !important; font-size: larger">
                 @Html.ActionLink("Salary Information", "SalaryInfo", "Employee", new { Employeeid = Model.EmployeeId }, null)
             </li>
-            <li id="EmployeeDocs">
+            <li id="EmployeeDocs" style="color: #071689 !important; font-size: larger">
                 @Html.ActionLink("My Documents", "EmployeeDocs", "Support", new { Employeeid = Model.EmployeeId }, null)
             </li>
-            <li id="EmployeeVacation">
+            <li id="EmployeeVacation" style="color: #071689 !important; font-size: larger">
                 @Html.ActionLink("Employee Vacation", "EmployeeVacation", "EmployeesVacation", new { Employeeid = Model.EmployeeId }, null)
             </li>
 
-            <li id="EmployeeRating">
+            <li id="EmployeeRating" style="color: #071689 !important; font-size: larger">
                 @Html.ActionLink("Employee Rating", "EmployeeRating", "EmployeeRating", new { Employeeid = Model.EmployeeId }, null)
             </li>
-            <li id="EmployeeRating" style="color: #071689 !important;">
+            <li id="EmployeeRating" style="color: #071689 !important; font-size: larger">
                 @Html.ActionLink("Termination Info", "TerminationInfo", "Employee", new { Employeeid = Model.EmployeeId }, null)
             </li>
             <li id="EmployeeRating"
                 class="active"
-                style="color: #071689 !important;">
+                style="color: #071689 !important; font-size: larger">
                 @Html.ActionLink("Exams Info", "ExamsInfo", "OnlineExam", new { Employeeid = Model.EmployeeId }, null)
             </li>
         </ul>
     </div>
     <div class="col-md-8">
-        <h2>ExamsInfo for @Model.EmployeeName</h2>
-        <table class="table table-responsive table-hover">
+        <h2>Taken Exams By @Model.EmployeeName</h2>
+        <table class="table table-responsive table-hover" style="margin-top:3%">
             <tr>
                 <th>Test</th>
                 <th>Total Mark</th>
