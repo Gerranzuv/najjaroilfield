@@ -333,6 +333,7 @@ namespace najjar.biz.Controllers
                 .ToList();
 
             Session["TOKEN"] = null;
+            ViewBag.EmployeeId = registration.EmployeeId;
 
             return View(textXPapers);
         }

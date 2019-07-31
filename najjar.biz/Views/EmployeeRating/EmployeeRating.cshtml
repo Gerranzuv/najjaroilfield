@@ -5,104 +5,107 @@
     Layout = "~/Views/Shared/_Admin_Layout.cshtml";
     var ratingId = Request.QueryString["Employeeid"];
 }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"
+        integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
+        crossorigin="anonymous"></script>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-4">
+            <ul class="nav nav-stacked nav-pills">
+                <li id="PersonalInfo" style="color: #071689 !important; font-size: larger">
+                    @Html.ActionLink("Personal Information", "PersonalPage", "Employee", new { Employeeid = ratingId }, null)
+                </li>
+                <li id="SalaryInfo" style="color: #071689 !important; font-size: larger">
+                    @Html.ActionLink("Salary Information", "SalaryInfo", "Employee", new { Employeeid = ratingId }, null)
+                </li>
+                <li id="EmployeeDocs" style="color: #071689 !important; font-size: larger">
+                    @Html.ActionLink("My Documents", "EmployeeDocs", "Support", new { Employeeid = ratingId }, null)
+                </li>
+                <li id="EmployeeVacation" style="color: #071689 !important; font-size: larger">
+                    @Html.ActionLink("Employee Vacation", "EmployeeVacation", "EmployeesVacation", new { Employeeid = ratingId }, null)
+                </li>
+                <li id="EmployeeRating" class="active" style="color: #071689 !important; font-size: larger">
+                    @Html.ActionLink("Employee Rating", "EmployeeRating", "EmployeeRating", new { Employeeid = ratingId }, null)
+                </li>
+                <li id="EmployeeRating" style="color: #071689 !important; font-size: larger">
+                    @Html.ActionLink("Termination Info", "TerminationInfo", "Employee", new { Employeeid = ratingId }, null)
+                </li>
+                <li id="EmployeeRating" style="color: #071689 !important; font-size: larger">
+                    @Html.ActionLink("Exams Info", "ExamsInfo", "OnlineExam", new { Employeeid = ratingId }, null)
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-md-8" id="PersonalInfoDV">
+
+            <h2 class="text-center" style="color: #071689 !important;">Employee Rating</h2>
 
 
-
-<div class="row">
-    <div class="col-md-3 col-sm-4 sidebar">
-        <br />
-        <ul class="nav nav-stacked nav-pills">
-            <li id="PersonalInfo" style="color: #071689 !important; font-size: larger">
-                @Html.ActionLink("Personal Information", "PersonalPage", "Employee", new { Employeeid = ratingId }, null)
-            </li>
-            <li id="SalaryInfo" style="color: #071689 !important; font-size: larger">
-                @Html.ActionLink("Salary Information", "SalaryInfo", "Employee", new { Employeeid = ratingId }, null)
-            </li>
-            <li id="EmployeeDocs" style="color: #071689 !important; font-size: larger">
-                @Html.ActionLink("My Documents", "EmployeeDocs", "Support", new { Employeeid = ratingId }, null)
-            </li>
-            <li id="EmployeeVacation" style="color: #071689 !important; font-size: larger">
-                @Html.ActionLink("Employee Vacation", "EmployeeVacation", "EmployeesVacation", new { Employeeid = ratingId }, null)
-            </li>
-            <li id="EmployeeRating" class="active" style="color: #071689 !important; font-size: larger">
-                @Html.ActionLink("Employee Rating", "EmployeeRating", "EmployeeRating", new { Employeeid = ratingId }, null)
-            </li>
-            <li id="EmployeeRating" style="color: #071689 !important; font-size: larger">
-                @Html.ActionLink("Termination Info", "TerminationInfo", "Employee", new { Employeeid = ratingId }, null)
-            </li>
-            <li id="EmployeeRating" style="color: #071689 !important; font-size: larger">
-                @Html.ActionLink("Exams Info", "ExamsInfo", "OnlineExam", new { Employeeid = ratingId }, null)
-            </li>
-        </ul>
-    </div>
-
-    <div class="col-md-9 col-sm-8" id="PersonalInfoDV">
-
-
-        <h2 style="color: #071689">Employee Rating</h2>
-
-        @if (User.IsInRole("Administrator"))
-        {
-            <p>
-                @Html.ActionLink("Create New", "Create", new { EmployeeId = ratingId })
-            </p>
-        }
-        <table class="table">
-            <tr>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.Year)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Rating)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Status)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SalaryBeforeUpdate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SalaryAfterUpdate)
-                </th>
-
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model)
+            @if (User.IsInRole("Administrator"))
             {
+                <p>
+                    @Html.ActionLink("Create New", "Create", new { EmployeeId = ratingId })
+                </p>
+            }
+            <table class="table">
                 <tr>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Year)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Rating)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Status)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SalaryBeforeUpdate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SalaryAfterUpdate)
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Year)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Rating)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SalaryBeforeUpdate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SalaryAfterUpdate)
+                    </th>
 
-                    <td>
-                        @if (User.IsInRole("Administrator"))
-                        {
-                            <div>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.id })
-                            </div>
-                        }
-                    </td>
+                    <th></th>
                 </tr>
-            }
 
-        </table>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Year)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Rating)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SalaryBeforeUpdate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SalaryAfterUpdate)
+                        </td>
+
+                        <td>
+                            @if (User.IsInRole("Administrator"))
+                            {
+                                <div>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+        <!-- /.row -->
     </div>
-    <!-- /.row -->
-</div>
