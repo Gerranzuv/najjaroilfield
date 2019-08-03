@@ -7,13 +7,13 @@ namespace najjar.biz.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class system_parameter_2 : IMigrationMetadata
+    public sealed partial class system_param : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(system_parameter_2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(system_param));
         
         string IMigrationMetadata.Id
         {
-            get { return "201908030609196_system_parameter_2"; }
+            get { return "201908031003240_system_param"; }
         }
         
         string IMigrationMetadata.Source

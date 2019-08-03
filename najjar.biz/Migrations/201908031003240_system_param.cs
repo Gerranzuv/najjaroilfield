@@ -3,7 +3,7 @@ namespace najjar.biz.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class system_parameter1 : DbMigration
+    public partial class system_param : DbMigration
     {
         public override void Up()
         {

@@ -382,17 +382,9 @@
     <Compile Include="Migrations\201907181122581_final_fuck.Designer.cs">
       <DependentUpon>201907181122581_final_fuck.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201908030606448_system_parameter.cs" />
-    <Compile Include="Migrations\201908030606448_system_parameter.Designer.cs">
-      <DependentUpon>201908030606448_system_parameter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908030608572_system_parameter1.cs" />
-    <Compile Include="Migrations\201908030608572_system_parameter1.Designer.cs">
-      <DependentUpon>201908030608572_system_parameter1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908030609196_system_parameter_2.cs" />
-    <Compile Include="Migrations\201908030609196_system_parameter_2.Designer.cs">
-      <DependentUpon>201908030609196_system_parameter_2.cs</DependentUpon>
+    <Compile Include="Migrations\201908031003240_system_param.cs" />
+    <Compile Include="Migrations\201908031003240_system_param.Designer.cs">
+      <DependentUpon>201908031003240_system_param.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArticleComment.cs" />
@@ -856,14 +848,8 @@
     <EmbeddedResource Include="Migrations\201907181122581_final_fuck.resx">
       <DependentUpon>201907181122581_final_fuck.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908030606448_system_parameter.resx">
-      <DependentUpon>201908030606448_system_parameter.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908030608572_system_parameter1.resx">
-      <DependentUpon>201908030608572_system_parameter1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908030609196_system_parameter_2.resx">
-      <DependentUpon>201908030609196_system_parameter_2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908031003240_system_param.resx">
+      <DependentUpon>201908031003240_system_param.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

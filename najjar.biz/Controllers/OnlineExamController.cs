@@ -369,13 +369,16 @@ namespace najjar.biz.Controllers
                 .Sum(x => x.MarkScored);
 
             Session["TOKEN"] = null;
+            var emailParameter = db.SystemParameters.Where(x => x.Code.Equals("exam_result_email")).Select(y => y.Value).FirstOrDefault();
+            List<string> receivers = emailParameter.Split(new char[] { ',' }).ToList();
+
             ViewBag.EmployeeId = registration.EmployeeId;
             String employeeName = db.Employees.Find(registration.EmployeeId).Name;
             String testName = db.Tests.Find(registration.TestId).Name;
             String subject = testName
                 + " Test Result For The Employee " + employeeName;
             String body = "The employee " + employeeName + "did " + testName + " test and get the result " + markScored;
-            EmailHelper.sendEmail("kabbas@najjaroilfield.com", subject, body);
+            EmailHelper.sendEmail(receivers, subject, body);
             return View(textXPapers);
         }
 

@@ -25,7 +25,7 @@ namespace najjar.biz.Controllers
         public ActionResult Index()
         {
 
-            EmailHelper.sendEmail("gerranzuv@gmail.com","Hello", "Hello Kinan");
+            //EmailHelper.sendEmail("gerranzuv@gmail.com","Hello", "Hello Kinan");
             fillUserData();
             return View(db.Articles.ToList());
         }

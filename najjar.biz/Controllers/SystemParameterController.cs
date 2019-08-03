@@ -96,6 +96,7 @@ namespace najjar.biz.Controllers
                 SystemParameter origin= db.SystemParameters.Where(y => y.id == systemparameter.id).First();
                 origin.Name = systemparameter.Name;
                 origin.Code = systemparameter.Code;
+                origin.Value = systemparameter.Value;
                 origin.LastModificationDate = DateTime.Now;
                 db.Entry(origin).State = EntityState.Modified;
                 db.SaveChanges();
