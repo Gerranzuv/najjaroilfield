@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace najjar.biz.Controllers
 {
- 
+
     public class OnlineExamController : Controller
     {
         private ApplicationDataContext db = new ApplicationDataContext();
@@ -38,7 +38,8 @@ namespace najjar.biz.Controllers
                 TempData["errMessage"] = "Please Enter A Valid Employee Code!";
                 return RedirectToAction("Index");
             }
-            else {
+            else
+            {
 
                 Test selectedTest = db.Tests.Include("TestXQuestions").Include("TestXQuestions.Question").FirstOrDefault(t => t.Id == TestId);
 
@@ -73,11 +74,11 @@ namespace najjar.biz.Controllers
 
             List<Registration> registrations = db
                 .Registrations
-                .Where(reg => reg.TestId == TestId && reg.EmployeeId == employee.Id ).ToList();
+                .Where(reg => reg.TestId == TestId && reg.EmployeeId == employee.Id).ToList();
 
             // If the employee has already registered for the Test --->
 
-            if (registrations.Count()>=2)
+            if (registrations.Count() >= 1000)
             {
                 Session["TOKEN"] = registrations[0].Token;
                 TempData["errMessage"] = "You can only take the test twice, If you believe that there is something wrong please contact your direct manager";
@@ -110,8 +111,10 @@ namespace najjar.biz.Controllers
             return RedirectToAction("EvalPage", new { @token = Session["TOKEN"] });
         }
 
-        public ActionResult EvalPage(Guid token, int? qno)
+        public ActionResult EvalPage(Guid token, int? qno, int? count)
         {
+           
+            @ViewBag.counter = count;
             Registration registration = db
                 .Registrations
                 .FirstOrDefault(r => r.Token.Equals(token));
@@ -142,16 +145,30 @@ namespace najjar.biz.Controllers
             if (qno.GetValueOrDefault() < 1 || qno.GetValueOrDefault() > db.TestXQuestions.Where(x => x.TestId == registration.TestId && x.IsActive).Count())
             {
                 qno = 1;
+                @ViewBag.counter = 1;
             }
 
             // Retrieving the current Question --->
+            int numberOfQuestions = db.TestXQuestions.Where(x => x.TestId == registration.TestId && x.IsActive).Count();
+            int testXQuestionId;
+            
+            bool flag=false;
+            do
+            {
+                Random random = new Random();
+                int questionNumber = random.Next(0, numberOfQuestions - 1);
+                testXQuestionId = db
+                    .TestXQuestions
+                    .Where(x => x.TestId == registration.TestId && x.QuestionNumber == questionNumber)
+                    .Select(x => x.Id)
+                    .FirstOrDefault();
+                var savedAnsweres = db.TestXPapers.Where(x => x.TestXQuestionId == testXQuestionId && 
+                    x.RegistrationId == registration.Id && x.Choice.IsActive).ToList();
+                if (savedAnsweres.Count == 0)
+                    flag = true;
+            } while (!flag);
 
-            int testXQuestionId = db
-                .TestXQuestions
-                .Where(x => x.TestId == registration.TestId && x.QuestionNumber == qno)
-                .Select(x => x.Id)
-                .FirstOrDefault();
-
+            
             if(testXQuestionId > 0)
             {
                 var EvalPageModel = db
@@ -174,23 +191,26 @@ namespace najjar.biz.Controllers
                                Label = c.Label
                         })
                         .ToList()
-                    }).FirstOrDefault();
+                    }).ToList().FirstOrDefault();
+
+                    
 
                 // If the Question is already answered. Set the Choices of the Employee
 
-                var savedAnsweres = db
-                    .TestXPapers
-                    .Include("Choice")
-                    .Where(x => x.TestXQuestionId == testXQuestionId && x.RegistrationId == registration.Id && x.Choice.IsActive)
-                    .Select(x => new { x.ChoiceId, x.Answer}).ToList();
+                //var savedAnsweres = db
+                //    .TestXPapers
+                //    .Include("Choice")
+                //    .Where(x => x.TestXQuestionId == testXQuestionId && x.RegistrationId == registration.Id && x.Choice.IsActive)
+                //    .Select(x => new { x.ChoiceId, x.Answer}).ToList();
 
-                foreach(var savedAnswer in savedAnsweres)
-                {
-                    EvalPageModel
-                        .Options
-                        .Where(opt => opt.ChoiceId == savedAnswer.ChoiceId).FirstOrDefault()
-                        .Answer = savedAnswer.Answer;
-                }
+
+                //foreach(var savedAnswer in savedAnsweres)
+                //{
+                //    EvalPageModel
+                //        .Options
+                //        .Where(opt => opt.ChoiceId == savedAnswer.ChoiceId).FirstOrDefault()
+                //        .Answer = savedAnswer.Answer;
+                //}
 
                 EvalPageModel.ExpiryDate = registration.ExpiresDate;
 
@@ -205,13 +225,14 @@ namespace najjar.biz.Controllers
 
             Registration registration = db.Registrations.Where(r => r.Token.Equals(choices.Token)).FirstOrDefault();
 
-            if(registration == null)
+            if (registration == null)
             {
                 TempData["errMessage"] = "You have an invalid Token. Please Register Again for the Test!";
                 return RedirectToAction("Index");
             }
 
-            if(registration.ExpiresDate < DateTime.Now) {
+            if (registration.ExpiresDate < DateTime.Now)
+            {
                 TempData["errMessage"] = "The Test has expired at " + registration.ExpiresDate.ToString();
 
                 db.Registrations.Remove(registration);
@@ -235,10 +256,10 @@ namespace najjar.biz.Controllers
 
             // Get all the points the Employee has Submitted
 
-            if(testQuestionInfo != null)
+            if (testQuestionInfo != null)
             {
                 // If the Question of Type Radio or Checkbox
-                if(choices.UserSelectedChoices.Count > 1)
+                if (choices.UserSelectedChoices.Count > 1)
                 {
                     var AllPointsValuesOfChoices =
                         (from a in db.Choices.Where(c => c.IsActive)
@@ -295,14 +316,18 @@ namespace najjar.biz.Controllers
                     .FirstOrDefault();
             }
 
-            if(nextQuestionNumber < 1)
+            if (nextQuestionNumber < 1)
             {
                 nextQuestionNumber = 1;
             }
 
-            return RedirectToAction("EvalPage", new {
-                   @token = Session["TOKEN"],
-                   @qno = nextQuestionNumber
+            int counter = choices.count + 1;
+            return RedirectToAction("EvalPage", new
+            {
+                @token = Session["TOKEN"],
+                @qno = nextQuestionNumber,
+                @count = counter
+
             });
         }
 
@@ -310,13 +335,18 @@ namespace najjar.biz.Controllers
         public ActionResult FinalResult(int TestId, Guid token)
         {
             fillUserData();
-            Registration registration = db.Registrations.Where(r => r.Token.Equals(token)).FirstOrDefault();
+            Registration registration = db.Registrations.Include("Test").Where(r => r.Token.Equals(token)).FirstOrDefault();
 
             if (registration == null)
             {
                 TempData["errMessage"] = "Invalid Token. Please Register again for the Test";
                 return RedirectToAction("Index");
             }
+            double totalMarks = db
+                .TestXQuestions
+                .Include("Question")
+                .Where(txq => txq.TestId == registration.TestId)
+                .Sum(x => x.Question.points);
 
             // Total Mark for the Test
             ViewBag.TotalMark = db
@@ -332,9 +362,20 @@ namespace najjar.biz.Controllers
                 .Where(x => x.RegistrationId == registration.Id)
                 .ToList();
 
+            double markScored = db.TestXPapers
+                .Include("Choice")
+                .Include("TestXQuestion")
+                .Where(x => x.RegistrationId == registration.Id)
+                .Sum(x => x.MarkScored);
+
             Session["TOKEN"] = null;
             ViewBag.EmployeeId = registration.EmployeeId;
-
+            String employeeName = db.Employees.Find(registration.EmployeeId).Name;
+            String testName = db.Tests.Find(registration.TestId).Name;
+            String subject = testName
+                + " Test Result For The Employee " + employeeName;
+            String body = "The employee " + employeeName + "did " + testName + " test and get the result " + markScored;
+            EmailHelper.sendEmail("kabbas@najjaroilfield.com", subject, body);
             return View(textXPapers);
         }
 
@@ -357,7 +398,7 @@ namespace najjar.biz.Controllers
 
             List<TestInfoModel> tests = new List<TestInfoModel>();
 
-            foreach(var reg in registrations)
+            foreach (var reg in registrations)
             {
                 TestInfoModel test = new TestInfoModel()
                 {

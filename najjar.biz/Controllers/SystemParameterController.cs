@@ -7,96 +7,67 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using najjar.biz.Models;
-using System.IO;
 using najjar.biz.Context;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System.Net.Mail;
-using najjar.biz.Extra;
-namespace najjar.biz.Controllers
 
+namespace najjar.biz.Controllers
 {
-    public class ArticleController : Controller
+    public class SystemParameterController : Controller
     {
         private ApplicationDataContext db = new ApplicationDataContext();
 
-        
-        // GET: /Article/
+        // GET: /SystemParameter/
         public ActionResult Index()
         {
-
-            EmailHelper.sendEmail("gerranzuv@gmail.com","Hello", "Hello Kinan");
             fillUserData();
-            return View(db.Articles.ToList());
+            return View(db.SystemParameters.ToList());
         }
 
-        public ActionResult ArticlesList()
-        {
-
-            return View(db.Articles.ToList());
-        }
-
-        public ActionResult NewsPage(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Articles articles = db.Articles.Find(id);
-            if (articles == null)
-            {
-                return HttpNotFound();
-            }
-            return View(articles);
-        }
-
-
-        // GET: /Article/Details/5
+        // GET: /SystemParameter/Details/5
         public ActionResult Details(int? id)
         {
+            fillUserData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Articles articles = db.Articles.Find(id);
-            if (articles == null)
+            SystemParameter systemparameter = db.SystemParameters.Find(id);
+            if (systemparameter == null)
             {
                 return HttpNotFound();
             }
-            return View(articles);
+            return View(systemparameter);
         }
 
-        // GET: /Article/Create
+        // GET: /SystemParameter/Create
         public ActionResult Create()
         {
             fillUserData();
             return View();
         }
 
-        // POST: /Article/Create
+        // POST: /SystemParameter/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="id,title,summary,description,attachment,date")] Articles articles, HttpPostedFileBase upload )
+        public ActionResult Create([Bind(Include="id,Name,Code,Value")] SystemParameter systemparameter)
         {
             fillUserData();
             if (ModelState.IsValid)
             {
-                string path = Path.Combine(Server.MapPath("~/Images"), upload.FileName);
-                upload.SaveAs(path);
-                articles.attachment = upload.FileName;
-
-
-                db.Articles.Add(articles);
+                systemparameter.CreationDate = DateTime.Now;
+                systemparameter.LastModificationDate = DateTime.Now;
+                db.SystemParameters.Add(systemparameter);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(articles);
+            return View(systemparameter);
         }
 
-        // GET: /Article/Edit/5
+        // GET: /SystemParameter/Edit/5
         public ActionResult Edit(int? id)
         {
             fillUserData();
@@ -104,51 +75,36 @@ namespace najjar.biz.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Articles articles = db.Articles.Find(id);
-            if (articles == null)
+            SystemParameter systemparameter = db.SystemParameters.Find(id);
+            if (systemparameter == null)
             {
                 return HttpNotFound();
             }
-            return View(articles);
+            return View(systemparameter);
         }
 
-        // POST: /Article/Edit/5
+        // POST: /SystemParameter/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="id,title,summary,description,attachment")] Articles articles,HttpPostedFileBase upload)
+        public ActionResult Edit([Bind(Include="id,Name,Code,Value")] SystemParameter systemparameter)
         {
             fillUserData();
             if (ModelState.IsValid)
             {
-                string path = Path.Combine(Server.MapPath("~/Images"), upload.FileName);
-                upload.SaveAs(path);
-                articles.attachment = upload.FileName;
-                articles.Date = System.DateTime.Now;
-                db.Entry(articles).State = EntityState.Modified;
+                SystemParameter origin= db.SystemParameters.Where(y => y.id == systemparameter.id).First();
+                origin.Name = systemparameter.Name;
+                origin.Code = systemparameter.Code;
+                origin.LastModificationDate = DateTime.Now;
+                db.Entry(origin).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(articles);
+            return View(systemparameter);
         }
 
-        // GET: /Article/Details/5
-        public ActionResult post(int? id)
-        {
-            fillUserData();
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Articles articles = db.Articles.Find(id);
-            if (articles == null)
-            {
-                return HttpNotFound();
-            }
-            return View(articles);
-        }
-        // GET: /Article/Delete/5
+        // GET: /SystemParameter/Delete/5
         public ActionResult Delete(int? id)
         {
             fillUserData();
@@ -156,22 +112,21 @@ namespace najjar.biz.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Articles articles = db.Articles.Find(id);
-            if (articles == null)
+            SystemParameter systemparameter = db.SystemParameters.Find(id);
+            if (systemparameter == null)
             {
                 return HttpNotFound();
             }
-            return View(articles);
+            return View(systemparameter);
         }
 
-        // POST: /Article/Delete/5
+        // POST: /SystemParameter/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            fillUserData();
-            Articles articles = db.Articles.Find(id);
-            db.Articles.Remove(articles);
+            SystemParameter systemparameter = db.SystemParameters.Find(id);
+            db.SystemParameters.Remove(systemparameter);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -184,18 +139,12 @@ namespace najjar.biz.Controllers
             }
             base.Dispose(disposing);
         }
+
         public void fillUserData()
         {
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDataContext()));
             var user = userManager.FindById(User.Identity.GetUserId());
             ViewBag.CurrentUser = user;
         }
-
-        
     }
-
-
-
-
-    
 }

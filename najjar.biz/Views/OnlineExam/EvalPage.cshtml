@@ -18,7 +18,7 @@
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-3">
-        <h4>Question Number:&nbsp;@Model.QuestionNumber</h4>
+        <h4>Question Number:&nbsp;@ViewBag.counter</h4>
     </div>
 </div>
 <div class="jumbotron" style="font-size:x-large">
@@ -29,9 +29,13 @@
 {
 
     <input type="hidden" name="Token" value="@Session["TOKEN"]" />
+    <input type="hidden" name="count" value="@ViewBag.counter" />
     <input type="hidden" name="Direction" value="forward" />
     <input type="hidden" name="TestId" value="@Model.TestId" />
     <input type="hidden" name="QuestionId" value="@Model.QuestionNumber" />
+    
+
+                     
 
     if (Model.QuestionType.Equals("multi_choice", StringComparison.InvariantCultureIgnoreCase))
     {
@@ -45,19 +49,20 @@
         <div class="col-xs-8 col-xs-offset-2 cols-sm-6 col-sm-offset-3">
             <table class="table table-responsive" id="myTable">
                 <tr>
-                    <td>
+                    @*<td>
                         <a href="javascript:void(0);" onclick="saveBackward();" class="btn btn-primary">
                             Save and Previous
                         </a>
-                    </td>
+                    </td>*@
                     @*<td>
                         <a href="@Url.Action("EvalPage", "OnlineExam", new { @token = Request.Params["token"], @qno = Model.QuestionNumber - 1 })" class="btn btn-default">
                             &lt;&lt;Previous
                         </a>
                     </td>*@
-                    @for (int i = 1; i <= Model.TotalQuestionInSet; i++)
+                    @*@for (int i = 1; i <= Model.TotalQuestionInSet; i++)
                     {
-                        if (i <= 5 || i > Model.TotalQuestionInSet-1) { 
+                        if (i <= 5 || i > Model.TotalQuestionInSet - 1)
+                        { 
                         <td>
                             <a href="@Url.Action("EvalPage", "OnlineExam", new { @token = Request.Params["token"], @qno = i })" id="question_@i" class="btn btn-primary">
                                 @i
@@ -74,7 +79,7 @@
                         }
 
 
-                    }
+                    }*@
                     @*<td>
                         <a href="@Url.Action("EvalPage", "OnlineExam", new { @token = Request.Params["token"], @qno = Model.QuestionNumber + 1 })" class="btn btn-default">
                             Next&gt;&gt;
@@ -102,7 +107,7 @@
         // Save and Next ----->
     function saveForward() {
 
-        var QuestionNumber = @Model.QuestionNumber;
+        var QuestionNumber = @ViewBag.counter;
 
         if (QuestionNumber < @Model.TotalQuestionInSet) {
             $('input[name="Direction"]').val('forward');

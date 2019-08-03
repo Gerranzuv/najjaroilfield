@@ -20,6 +20,8 @@ namespace najjar.biz.ViewModels
         public string Direction { get; set; }
         public List<ChoiceModel> UserSelectedChoices { get; set; }
 
+        public int count { get; set; }
+
         // In Case The Exam System supports Text Area Question-Type
         // public string Answer {get;set;}
 

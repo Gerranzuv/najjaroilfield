@@ -19,7 +19,6 @@ namespace najjar.biz.Controllers
         // GET: Test
         public ActionResult Index()
         {
-            sendEmail();
             fillUserData();
             List<Test> tests = db.Tests.Include("TestXQuestions").ToList();
             return View(tests);
@@ -138,46 +137,6 @@ namespace najjar.biz.Controllers
             ViewBag.CurrentUser = user;
         }
 
-        protected void sendEmail()
-        {
-            MailMessage m = new MailMessage();
-            SmtpClient sc = new SmtpClient();
-            m.From = new MailAddress("postmaster@najjaroilfield.com");
-            m.To.Add("gerranzuv@gmail.com");
-            m.Subject = "Hi Kinan";
-            m.Body = "This is a sample message using SMTP authentication";
-            sc.Host = "mail5004.smarterasp.net";
-            string str1 = "gmail.com";
-            string str2 = "kabbas@najjaroilfield.com";
-            if (str2.Contains(str1))
-            {
-                try
-                {
-                    sc.Port = 587;
-                    sc.Credentials = new System.Net.NetworkCredential("postmaster@najjaroilfield.com", "822357kenan$");
-                    sc.EnableSsl = true;
-                    sc.Send(m);
-                }
-                catch (Exception ex)
-                {
-
-                    throw ex;
-                }
-            }
-            else
-            {
-                try
-                {
-                    sc.Port = 25;
-                    sc.Credentials = new System.Net.NetworkCredential("postmaster@najjaroilfield.com", "822357kenan$");
-                    sc.EnableSsl = false;
-                    sc.Send(m);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-        } 
+        
     }
 }

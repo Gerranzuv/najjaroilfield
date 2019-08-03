@@ -227,8 +227,10 @@
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\SupportController.cs" />
+    <Compile Include="Controllers\SystemParameterController.cs" />
     <Compile Include="Controllers\TestContoller.cs" />
     <Compile Include="Extra\AccessDeniedAuthorizeAttribute.cs" />
+    <Compile Include="Extra\EmailHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -380,6 +382,18 @@
     <Compile Include="Migrations\201907181122581_final_fuck.Designer.cs">
       <DependentUpon>201907181122581_final_fuck.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908030606448_system_parameter.cs" />
+    <Compile Include="Migrations\201908030606448_system_parameter.Designer.cs">
+      <DependentUpon>201908030606448_system_parameter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908030608572_system_parameter1.cs" />
+    <Compile Include="Migrations\201908030608572_system_parameter1.Designer.cs">
+      <DependentUpon>201908030608572_system_parameter1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908030609196_system_parameter_2.cs" />
+    <Compile Include="Migrations\201908030609196_system_parameter_2.Designer.cs">
+      <DependentUpon>201908030609196_system_parameter_2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArticleComment.cs" />
     <Compile Include="Models\ExamSystemModels\Choice.cs" />
@@ -391,6 +405,7 @@
     <Compile Include="Models\FileDetail.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IndexViewModel.cs" />
+    <Compile Include="Models\SystemParameter.cs" />
     <Compile Include="Models\Job Request.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\ExamSystemModels\Question.cs" />
@@ -585,6 +600,14 @@
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="css\print.min.css" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Static\404.html" />
     <Content Include="Static\500.html" />
     <Content Include="Static\blank-page.html" />
@@ -697,6 +720,12 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\SystemParameter\Create.cshtml" />
+    <Content Include="Views\SystemParameter\Delete.cshtml" />
+    <Content Include="Views\SystemParameter\Details.cshtml" />
+    <Content Include="Views\SystemParameter\Edit.cshtml" />
+    <Content Include="Views\SystemParameter\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Roles\Create.cshtml" />
@@ -826,6 +855,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907181122581_final_fuck.resx">
       <DependentUpon>201907181122581_final_fuck.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908030606448_system_parameter.resx">
+      <DependentUpon>201908030606448_system_parameter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908030608572_system_parameter1.resx">
+      <DependentUpon>201908030608572_system_parameter1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908030609196_system_parameter_2.resx">
+      <DependentUpon>201908030609196_system_parameter_2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -1035,9 +1073,9 @@
     <Content Include="Views\Choice\Delete.cshtml" />
     <Content Include="Views\Choice\Details.cshtml" />
     <Content Include="Views\Choice\Index.cshtml" />
-    <Content Include="Views\OnlineExam\EvalPage.cshtml" />
     <Content Include="Views\Shared\_Layouttest.cshtml" />
     <Content Include="Views\OnlineExam\_ViewStart.cshtml" />
+    <Content Include="Views\OnlineExam\EvalPage.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
