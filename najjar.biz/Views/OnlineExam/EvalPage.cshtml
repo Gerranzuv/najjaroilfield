@@ -109,7 +109,7 @@
 
         var QuestionNumber = @ViewBag.counter;
 
-        if (QuestionNumber < @Model.TotalQuestionInSet) {
+        if (QuestionNumber < @Model.QuestionLimit) {
             $('input[name="Direction"]').val('forward');
             document.getElementById('formAnswer').submit();
         } else {

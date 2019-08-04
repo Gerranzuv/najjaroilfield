@@ -19,6 +19,8 @@ namespace najjar.biz.ViewModels
         public List<QXOModel> Options { get; set; }
 
         public DateTime ExpiryDate { get; set; }
+
+        public int QuestionLimit { get; set; }
     }
 
     public class QXOModel

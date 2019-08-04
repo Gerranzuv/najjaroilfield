@@ -77,8 +77,10 @@ namespace najjar.biz.Controllers
                 .Where(reg => reg.TestId == TestId && reg.EmployeeId == employee.Id).ToList();
 
             // If the employee has already registered for the Test --->
+            var _maxNumberOfAllowedExams = ParameterRepository.findByCode("max_number_of_allowed_exams");
 
-            if (registrations.Count() >= 1000)
+            int maxNumberOfAllowedExams = Int32.Parse(_maxNumberOfAllowedExams);
+            if (registrations.Count() >= maxNumberOfAllowedExams)
             {
                 Session["TOKEN"] = registrations[0].Token;
                 TempData["errMessage"] = "You can only take the test twice, If you believe that there is something wrong please contact your direct manager";
@@ -183,6 +185,7 @@ namespace najjar.biz.Controllers
                         QuestionNumber = x.QuestionNumber,
                         Question = x.Question.QuestionText,
                         TotalQuestionInSet = x.Test.TestXQuestions.Count(txq => txq.IsActive),
+                        QuestionLimit=x.Test.QuestionLimit,
                         Options = db
                         .Choices
                         .Where(c => c.IsActive && c.QuestionId == x.QuestionId)
@@ -369,16 +372,26 @@ namespace najjar.biz.Controllers
                 .Sum(x => x.MarkScored);
 
             Session["TOKEN"] = null;
-            var emailParameter = db.SystemParameters.Where(x => x.Code.Equals("exam_result_email")).Select(y => y.Value).FirstOrDefault();
-            List<string> receivers = emailParameter.Split(new char[] { ',' }).ToList();
+            //var isOnProcuctionParameter =db.SystemParameters.Where(x => x.Code.Equals("exam_result_email")).Select(y => y.Value).FirstOrDefault();
+            //var emailParameter = db.SystemParameters.Where(x => x.Code.Equals("exam_result_email")).Select(y => y.Value).FirstOrDefault();
+
+            var _isOnProcuctionParameter = ParameterRepository.findByCode("is_on_production");
+            Int32 isOnProcuctionParameter = Int32.Parse(_isOnProcuctionParameter);
+            if (isOnProcuctionParameter==1) {
+                var emailParameter = ParameterRepository.findByCode("exam_result_email");
+
+                List<string> receivers = EmailHelper.getReceivers(emailParameter);
+                String employeeName = db.Employees.Find(registration.EmployeeId).Name;
+                String testName = db.Tests.Find(registration.TestId).Name;
+                String subject = testName
+                    + " Test Result For The Employee " + employeeName;
+                String body = "The employee " + employeeName + "did " + testName + " test and get the result " + markScored;
+                EmailHelper.sendEmail(receivers, subject, body);
+            }
+            
 
             ViewBag.EmployeeId = registration.EmployeeId;
-            String employeeName = db.Employees.Find(registration.EmployeeId).Name;
-            String testName = db.Tests.Find(registration.TestId).Name;
-            String subject = testName
-                + " Test Result For The Employee " + employeeName;
-            String body = "The employee " + employeeName + "did " + testName + " test and get the result " + markScored;
-            EmailHelper.sendEmail(receivers, subject, body);
+            
             return View(textXPapers);
         }
 

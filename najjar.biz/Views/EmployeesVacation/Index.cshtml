@@ -8,7 +8,10 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    
+    <div class="text-center">
+        <button type="button" class="btn btn-primary" style="align-content:center" data-toggle="modal" data-target="#myModal">Create New</button>
+    </div>
 </p>
 <table class="table">
     <tr>
@@ -62,3 +65,33 @@
 }
 
 </table>
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Final notes before the exam</h2>
+            </div>
+            <div class="modal-body">
+                <p style="font-size:x-large">Please don't close browser session before you answer all the questions or you will fail in the exam!.</p>
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm("Register", "OnlineExam", FormMethod.Post, new { @id = "registerForm" }))
+                {
+                    @Html.Hidden("TestId", Model.Test.Id)
+                    @Html.Hidden("employee_code", Model.employee.EmployeeCode)
+                    <a href="javascript:void(0);" onclick="getElementById('registerForm').submit()" class="btn btn-primary">
+                        Start Exam
+                    </a>
+
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

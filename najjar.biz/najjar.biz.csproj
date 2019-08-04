@@ -215,6 +215,7 @@
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\ChoiceController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
+    <Compile Include="Controllers\EmailLogController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\EmployeeRatingController.cs" />
     <Compile Include="Controllers\EmployeesVacationController.cs" />
@@ -231,6 +232,7 @@
     <Compile Include="Controllers\TestContoller.cs" />
     <Compile Include="Extra\AccessDeniedAuthorizeAttribute.cs" />
     <Compile Include="Extra\EmailHelper.cs" />
+    <Compile Include="Extra\ParameterRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -386,6 +388,18 @@
     <Compile Include="Migrations\201908031003240_system_param.Designer.cs">
       <DependentUpon>201908031003240_system_param.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908031900066_test_question_limit.cs" />
+    <Compile Include="Migrations\201908031900066_test_question_limit.Designer.cs">
+      <DependentUpon>201908031900066_test_question_limit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908031941379_emailLog.cs" />
+    <Compile Include="Migrations\201908031941379_emailLog.Designer.cs">
+      <DependentUpon>201908031941379_emailLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908031948049_emailLog1.cs" />
+    <Compile Include="Migrations\201908031948049_emailLog1.Designer.cs">
+      <DependentUpon>201908031948049_emailLog1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArticleComment.cs" />
     <Compile Include="Models\ExamSystemModels\Choice.cs" />
@@ -397,6 +411,7 @@
     <Compile Include="Models\FileDetail.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IndexViewModel.cs" />
+    <Compile Include="Models\EmailLog.cs" />
     <Compile Include="Models\SystemParameter.cs" />
     <Compile Include="Models\Job Request.cs" />
     <Compile Include="Models\Job.cs" />
@@ -718,6 +733,11 @@
     <Content Include="Views\SystemParameter\Details.cshtml" />
     <Content Include="Views\SystemParameter\Edit.cshtml" />
     <Content Include="Views\SystemParameter\Index.cshtml" />
+    <Content Include="Views\EmailLog\Create.cshtml" />
+    <Content Include="Views\EmailLog\Delete.cshtml" />
+    <Content Include="Views\EmailLog\Details.cshtml" />
+    <Content Include="Views\EmailLog\Edit.cshtml" />
+    <Content Include="Views\EmailLog\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Roles\Create.cshtml" />
@@ -850,6 +870,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908031003240_system_param.resx">
       <DependentUpon>201908031003240_system_param.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908031900066_test_question_limit.resx">
+      <DependentUpon>201908031900066_test_question_limit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908031941379_emailLog.resx">
+      <DependentUpon>201908031941379_emailLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908031948049_emailLog1.resx">
+      <DependentUpon>201908031948049_emailLog1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

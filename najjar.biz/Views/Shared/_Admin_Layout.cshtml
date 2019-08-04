@@ -133,12 +133,27 @@
                                             </ul>
                                         </li>
                                     }
+                                    
+                                    @if (User.IsInRole("Administrator"))
+                                    {
+                                        <li class="treeview">
+                                            <a href="#">
+                                                <i class="fa fa-envelope"></i>
+                                                <span>Sent Emails</span>
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                            </a>
+                                            <ul class="treeview-menu">
+                                                @*<li><a href="@Url.Action("Index", "Roles")"><i class="fa fa-angle-right"></i> Users List</a></li>*@
+                                                <li><a href="@Url.Action("index", "EmailLog")"><i class="fa fa-angle-right"></i> Email Log </a></li>
+                                            </ul>
+                                        </li>
+                                    }
 
                                     @if (User.IsInRole("Administrator"))
                                     {
                                         <li class="treeview">
                                             <a href="#">
-                                                <i class="fa fa-laptop"></i>
+                                                <i class="fa fa-user"></i>
                                                 <span>Users Management</span>
                                                 <i class="fa fa-angle-left pull-right"></i>
                                             </a>
@@ -154,7 +169,7 @@
                                     {
                                         <li class="treeview">
                                             <a href="#">
-                                                <i class="fa fa-laptop"></i>
+                                                <i class="fa fa-group"></i>
                                                 <span>Employees Managment</span>
                                                 <i class="fa fa-angle-left pull-right"></i>
                                             </a>
@@ -202,7 +217,7 @@
                                     {
                                         <li class="treeview">
                                             <a href="#">
-                                                <i class="fa fa-pie-chart"></i>
+                                                <i class="fa fa-file-zip-o"></i>
                                                 <span>Articles Management</span>
                                                 <span class="fa fa-angle-left pull-right"></span>
                                             </a>
@@ -218,7 +233,7 @@
 
                                         <li class="treeview">
                                             <a href="#">
-                                                <i class="fa fa-pie-chart"></i>
+                                                <i class="fa fa-file"></i>
                                                 <span>Documents Management</span>
                                                 <span class="fa fa-angle-left pull-right"></span>
                                             </a>
@@ -232,7 +247,7 @@
                                     {
                                         <li class="treeview">
                                             <a href="#">
-                                                <i class="fa fa-pie-chart"></i>
+                                                <i class="fa fa-book"></i>
                                                 <span>Online Exam System</span>
                                                 <span class="fa fa-angle-left pull-right"></span>
                                             </a>
@@ -248,7 +263,7 @@
                                     {
                                         <li class="treeview">
                                             <a href="#">
-                                                <i class="fa fa-laptop"></i>
+                                                <i class="fa fa-info-circle"></i>
                                                 <span>My Info</span>
                                                 <i class="fa fa-angle-left pull-right"></i>
                                             </a>
@@ -263,9 +278,10 @@
                                     {
                                         <li class="treeview">
                                             <a href="#">
-                                                <i class="fa fa-pie-chart"></i>
+                                                <i class="fa fa-graduation-cap"></i>
                                                 <span>Online Exam</span>
                                                 <span class="fa fa-angle-left pull-right"></span>
+                                                <span class="label label-primary pull-right">new</span>
                                             </a>
                                             <ul class="treeview-menu">
                                                 <li><a href="@Url.Action("Index", "OnlineExam")"><i class="fa fa-angle-right"></i>Take Exam</a></li>

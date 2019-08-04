@@ -23,5 +23,7 @@ namespace najjar.biz.Models
 
         public List<Registration> Registrations { get; set; }
 
+        public int QuestionLimit { get; set; }
+
     }
 }

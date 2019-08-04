@@ -66,5 +66,7 @@ namespace najjar.biz.Context
         public DbSet<QuestionXDuration> QuestionXDurations { get; set; }
 
         public System.Data.Entity.DbSet<najjar.biz.Models.SystemParameter> SystemParameters { get; set; }
+
+        public System.Data.Entity.DbSet<najjar.biz.Models.EmailLog> EmailLogs { get; set; }
     }
 }
