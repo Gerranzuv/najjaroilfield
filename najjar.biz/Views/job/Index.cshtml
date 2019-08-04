@@ -11,9 +11,9 @@
     <h2 style="color: #071689">Job List</h2>
     <br />
     <p style="float:right;text-decoration-color:white;">
-
-        <input type="button" class="btn btn-primary btn-default" value="Add New Job" onclick="location.href='@Url.Action("Create", "Job")'" />
-
+        <button class="btn btn-primary btn-default" onclick="location.href='@Url.Action("Create", "Job")'">
+            <i class="fa fa-plus-square pull-right" style="font-size:x-large"></i> Add New job
+        </button>
     </p>
 
     @using (Html.BeginForm())
@@ -80,63 +80,71 @@
     <br />
 
     <table id="myTable" class="table table table-striped table-hover col-sm-10 col-md-10">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-
-            <th>
-                Announcement Date
-            </th>
-            <th>
-                Closing Date
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.Location)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.AnnouncementDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ClosingDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Location)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category)
-                </td>
+                <th>
+                    Announcement Date
+                </th>
+                <th>
+                    Closing Date
+                </th>
 
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Location)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Category)
+                </th>
+                <th></th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
 
-    </table>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AnnouncementDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ClosingDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category)
+                    </td>
+
+                    <td>
+                        <a href="@Url.Action("Edit", "Job", new { id = item.id })">
+                            <i class="fa fa-pencil" style="font-size:x-large" data-toggle="tooltip" title="Edit Job"></i>
+                        </a>
+                        &nbsp; &nbsp;
+                        @*@Html.ActionLink("Details", "Details", new { id = item.id }) |*@
+                        <a href="@Url.Action("Delete", "Job", new { id = item.id })" data-toggle="tooltip" title="Delete Job">
+                            <i class="fa fa-remove" style="font-size:x-large"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+</table>
     <br />
 
 

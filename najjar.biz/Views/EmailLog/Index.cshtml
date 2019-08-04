@@ -4,61 +4,81 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Admin_Layout.cshtml";
 }
+<div>
+    <h2 style="color: #8b224e">E-mail Management</h2>
 
-<h2>Index</h2>
+    <br />
+    <p style="float:right;text-decoration-color:white;">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Sender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Receiver)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Subject)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Body)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastModificationDate)
-        </th>
-        <th></th>
-    </tr>
+        <button class="btn btn-primary btn-default" onclick="location.href='@Url.Action("Create", "EmailLog")'">
+            <i class="fa fa-plus-square pull-right" style="font-size:x-large"></i> Create New E-mail
+        </button>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Receiver)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Subject)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Body)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastModificationDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+    </p>
+    <table id="myTable" class="table table table-striped table-hover col-sm-10 col-md-10">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Receiver)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Subject)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Body)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreationDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastModificationDate)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Receiver)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Body)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastModificationDate)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", "EmailLog", new { id = item.id })">
+                            <i class="fa fa-pencil" style="font-size:x-large" data-toggle="tooltip" title="Edit Employee"></i>
+                        </a>
+                        &nbsp; &nbsp;
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.id }) |*@
 
-</table>
+                        @*@Html.ActionLink("Details", "Details", new { id = item.id }) |*@
+                        <a href="@Url.Action("Delete", "EmailLog", new { id = item.id })" data-toggle="tooltip" title="Delete Employee">
+                            <i class="fa fa-remove" style="font-size:x-large"></i>
+                        </a>
+                        @*@Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+
+
+</div>
