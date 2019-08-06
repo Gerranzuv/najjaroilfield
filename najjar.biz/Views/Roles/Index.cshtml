@@ -33,8 +33,15 @@
                         @Html.ActionLink(item.Name, "UsersByRole", "Account", new { @RoleId = item.Id }, null)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        <a href="@Url.Action("Edit", "Roles", new { id = item.Id })">
+                            <i class="fa fa-pencil" style="font-size:x-large" data-toggle="tooltip" title="Edit Role"></i>
+                        </a>
+                        &nbsp; &nbsp;
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
+                        <a href="@Url.Action("Delete", "Roles", new { id = item.Id })" data-toggle="tooltip" title="Delete Role">
+                            <i class="fa fa-remove" style="font-size:x-large"></i>
+                        </a>
+                        @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
                     </td>
                 </tr>
             }
