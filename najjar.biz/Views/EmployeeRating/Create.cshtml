@@ -6,24 +6,29 @@
     var employeeId = Request.QueryString["Employeeid"];
 }
 
-<h2>Create</h2>
+<h2 style="color: #8b224e">Enter Employee Rating's Information</h2>
+<br />
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>EmployeeRating</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-
-        
 
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Year, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Year", new List<SelectListItem>
+    @Html.ValidationSummary(true)
+
+
+    <div class="container">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <td colspan="1">
+                        <form class="well form-horizontal" onsubmit="alert(1); validateMyForm(event);">
+                            <fieldset>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Year, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("Year", new List<SelectListItem>
                                { new SelectListItem { Text="2019", Value="2019"},
                                     new SelectListItem{Text="2020", Value="2021"},
                                     new SelectListItem { Text="2021", Value="2021"},
@@ -47,14 +52,14 @@
                                     new SelectListItem { Text="2039", Value="2039"},
                                     new SelectListItem { Text="2040", Value="2040"},
                                  }, "Select Year")
-                @Html.ValidationMessageFor(model => model.Year)
-            </div>
-        </div>
+                                        @Html.ValidationMessageFor(model => model.Year)
+                                    </div>
+                                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Rating, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Rating", new List<SelectListItem>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Rating, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("Rating", new List<SelectListItem>
                                { new SelectListItem { Text="A", Value="A"},
                                     new SelectListItem{Text="B", Value="B"},
                                     new SelectListItem{Text="C", Value="C"},
@@ -62,28 +67,37 @@
                                     new SelectListItem{Text="E", Value="E"},
                                     new SelectListItem{Text="F", Value="F"}
                                  }, "Select Rating")
-                @Html.ValidationMessageFor(model => model.Rating)
-            </div>
-        </div>
+                                        @Html.ValidationMessageFor(model => model.Rating)
+                                    </div>
+                                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Status, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Status", new List<SelectListItem>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Status, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("Status", new List<SelectListItem>
                                { new SelectListItem { Text="Confirmed", Value="Confirmed"},
                                     new SelectListItem{Text="Not Confirmed", Value="Not Confirmed"}
                                  }, "Select Status")
-                @Html.ValidationMessageFor(model => model.Status)
-            </div>
-        </div>
+                                        @Html.ValidationMessageFor(model => model.Status)
+                                    </div>
+                                </div>
 
-        
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                @Html.HiddenFor(model => model.EmployeeId, new { Value = employeeId })
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+                            </fieldset>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            @Html.HiddenFor(model => model.EmployeeId, new { Value = employeeId })
+            <input type="submit" value="Create" class="btn btn-default" />
         </div>
     </div>
 }

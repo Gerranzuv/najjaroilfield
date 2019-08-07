@@ -5,50 +5,70 @@
     Layout = "~/Views/Shared/_Admin_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New Documents", "Create")
-</p>
-<table class="gridtable">
-    <tr>
-        <th>
-            Name
-        </th>
-        <th>
-            Summary
-        </th>
-        <th>Total Files</th>
-        <th></th>
-    </tr>
+<div>
+    <h2 style="color: #8b224e">Employee Document Management</h2>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Summary)
-            </td>
-            <td>
-                @if (item.FileDetails.Count() == 0)
-                {
-                    <span>No File</span>
-                }
-                else
-                {
-                    <span>@item.FileDetails.Count() File(s)</span>
-                }
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.SupportId }) |
-            <a href="javascript:void(0);" data-id="@item.SupportId" class="deleteItem">Delete</a>
-        </td>
-    </tr>
-    }
+    <br />
+    <p style="float:right;text-decoration-color:white;">
 
-</table>
+        <button class="btn btn-primary btn-default" onclick="location.href='@Url.Action("Create", "Support")'">
+            <i class="fa fa-plus-square pull-right" style="font-size:x-large"></i> Create New Employee Document
+        </button>
+
+    </p>
+    <table id="myTable" class="table table table-striped table-hover col-sm-10 col-md-10">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Summary
+                </th>
+                <th>Total Files</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Summary)
+                    </td>
+                    <td>
+                        @if (item.FileDetails.Count() == 0)
+                        {
+                            <span>No File</span>
+                        }
+                        else
+                        {
+                            <span>@item.FileDetails.Count() File(s)</span>
+                        }
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Support", new { id = item.SupportId })">
+                            <i class="fa fa-pencil" style="font-size:x-large" data-toggle="tooltip" title="Edit Employee Document"></i>
+                        </a>
+                        &nbsp; &nbsp;
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.SupportId }) |*@
+                        @*<a href="@Url.Action("Delete", "Employee", new { id = item.SupportId })" data-toggle="tooltip" title="Delete Employee Document">
+                            <i class="fa fa-remove" style="font-size:x-large"></i>
+                        </a>*@
+                        <a href="javascript:void(0);" data-id="@item.SupportId" class="deleteItem">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+
+
+</div>
 
 @section Scripts {
 
