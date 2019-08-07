@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using najjar.biz.Models;
 using najjar.biz.Context;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace najjar.biz.Controllers
 {
@@ -18,6 +20,7 @@ namespace najjar.biz.Controllers
         // GET: /Registration/
         public ActionResult Index()
         {
+            fillUserData();
             var registrations = db.Registrations.Include(r => r.Employee).Include(r => r.Test);
             return View(registrations.ToList());
         }
@@ -25,6 +28,7 @@ namespace najjar.biz.Controllers
         // GET: /Registration/Details/5
         public ActionResult Details(int? id)
         {
+            fillUserData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -40,6 +44,7 @@ namespace najjar.biz.Controllers
         // GET: /Registration/Create
         public ActionResult Create()
         {
+            fillUserData();
             ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "Name");
             ViewBag.TestId = new SelectList(db.Tests, "Id", "Name");
             return View();
@@ -52,6 +57,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="Id,RegistrationDate,ExpiresDate,Token,TestId,EmployeeId")] Registration registration)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 db.Registrations.Add(registration);
@@ -67,6 +73,7 @@ namespace najjar.biz.Controllers
         // GET: /Registration/Edit/5
         public ActionResult Edit(int? id)
         {
+            fillUserData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -88,6 +95,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="Id,RegistrationDate,ExpiresDate,Token,TestId,EmployeeId")] Registration registration)
         {
+            fillUserData();
             if (ModelState.IsValid)
             {
                 db.Entry(registration).State = EntityState.Modified;
@@ -102,6 +110,7 @@ namespace najjar.biz.Controllers
         // GET: /Registration/Delete/5
         public ActionResult Delete(int? id)
         {
+            fillUserData();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -119,6 +128,7 @@ namespace najjar.biz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            fillUserData();
             Registration registration = db.Registrations.Find(id);
             db.Registrations.Remove(registration);
             db.SaveChanges();
@@ -132,6 +142,12 @@ namespace najjar.biz.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public void fillUserData()
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDataContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            ViewBag.CurrentUser = user;
         }
     }
 }
