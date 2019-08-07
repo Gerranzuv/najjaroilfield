@@ -5,62 +5,74 @@
     Layout = "~/Views/Shared/_Admin_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2 style="color: #8b224e">Enter Registration's Information</h2>
+<br />
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Registration</h4>
-        <hr />
-        @Html.ValidationSummary(true)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.RegistrationDate, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RegistrationDate)
-                @Html.ValidationMessageFor(model => model.RegistrationDate)
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ExpiresDate, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ExpiresDate)
-                @Html.ValidationMessageFor(model => model.ExpiresDate)
-            </div>
-        </div>
+    @Html.ValidationSummary(true)
+    <div class="container">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <td colspan="1">
+                        <form class="well form-horizontal" onsubmit="alert(1); validateMyForm(event);">
+                            <fieldset>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.RegistrationDate, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.RegistrationDate)
+                                        @Html.ValidationMessageFor(model => model.RegistrationDate)
+                                    </div>
+                                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Token, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Token)
-                @Html.ValidationMessageFor(model => model.Token)
-            </div>
-        </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ExpiresDate, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.ExpiresDate)
+                                        @Html.ValidationMessageFor(model => model.ExpiresDate)
+                                    </div>
+                                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TestId, "TestId", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("TestId", String.Empty)
-                @Html.ValidationMessageFor(model => model.TestId)
-            </div>
-        </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Token, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Token)
+                                        @Html.ValidationMessageFor(model => model.Token)
+                                    </div>
+                                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.EmployeeId, "EmployeeId", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("EmployeeId", String.Empty)
-                @Html.ValidationMessageFor(model => model.EmployeeId)
-            </div>
-        </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.TestId, "TestId", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("TestId", String.Empty)
+                                        @Html.ValidationMessageFor(model => model.TestId)
+                                    </div>
+                                </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.EmployeeId, "EmployeeId", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("EmployeeId", String.Empty)
+                                        @Html.ValidationMessageFor(model => model.EmployeeId)
+                                    </div>
+                                </div>
+
+                            </fieldset>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
         </div>
     </div>
 }

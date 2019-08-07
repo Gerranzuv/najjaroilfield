@@ -5,43 +5,56 @@
     Layout = "~/Views/Shared/_Admin_Layout.cshtml";
 }
 
-<h2>Create</h2>
 
+<h2 style="color: #8b224e">Enter System Parameter's Information</h2>
+<br />
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>SystemParameter</h4>
-        <hr />
+    
         @Html.ValidationSummary(true)
+    <div class="container">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <td colspan="1">
+                        <form class="well form-horizontal" onsubmit="alert(1); validateMyForm(event);">
+                            <fieldset>
 
-        
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name)
-                @Html.ValidationMessageFor(model => model.Name)
-            </div>
-        </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Name)
+                                        @Html.ValidationMessageFor(model => model.Name)
+                                    </div>
+                                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Code, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Code)
-                @Html.ValidationMessageFor(model => model.Code)
-            </div>
-        </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Code, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Code)
+                                        @Html.ValidationMessageFor(model => model.Code)
+                                    </div>
+                                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Value, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Value)
-                @Html.ValidationMessageFor(model => model.Value)
-            </div>
-        </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Value, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Value)
+                                        @Html.ValidationMessageFor(model => model.Value)
+                                    </div>
+                                </div>
+
+
+                            </fieldset>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -49,6 +62,7 @@
             </div>
         </div>
     </div>
+
 }
 
 <div>

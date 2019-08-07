@@ -5,71 +5,86 @@
     Layout = "~/Views/Shared/_Admin_Layout.cshtml";
 }
 
-<h2>Edit</h2>
 
+<h2 style="color: #8b224e">Edit E-mail's Information</h2>
+<br />
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>EmailLog</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Sender, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Sender)
-                @Html.ValidationMessageFor(model => model.Sender)
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Receiver, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Receiver)
-                @Html.ValidationMessageFor(model => model.Receiver)
-            </div>
-        </div>
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Subject, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Subject)
-                @Html.ValidationMessageFor(model => model.Subject)
-            </div>
-        </div>
+    <div class="container">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <td colspan="1">
+                        <form class="well form-horizontal" onsubmit="alert(1); validateMyForm(event);">
+                            <fieldset>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Body, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Body)
-                @Html.ValidationMessageFor(model => model.Body)
-            </div>
-        </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Sender, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Sender)
+                                        @Html.ValidationMessageFor(model => model.Sender)
+                                    </div>
+                                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreationDate, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CreationDate)
-                @Html.ValidationMessageFor(model => model.CreationDate)
-            </div>
-        </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Receiver, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Receiver)
+                                        @Html.ValidationMessageFor(model => model.Receiver)
+                                    </div>
+                                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.LastModificationDate, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LastModificationDate)
-                @Html.ValidationMessageFor(model => model.LastModificationDate)
-            </div>
-        </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Subject, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Subject)
+                                        @Html.ValidationMessageFor(model => model.Subject)
+                                    </div>
+                                </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Body, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Body)
+                                        @Html.ValidationMessageFor(model => model.Body)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CreationDate, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.CreationDate)
+                                        @Html.ValidationMessageFor(model => model.CreationDate)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.LastModificationDate, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.LastModificationDate)
+                                        @Html.ValidationMessageFor(model => model.LastModificationDate)
+                                    </div>
+                                </div>
+
+
+                            </fieldset>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
         </div>
     </div>
 }
