@@ -1,57 +1,83 @@
 ﻿@model IEnumerable<najjar.biz.Models.Test>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "List";
 }
+<div>
 
-<h2>List</h2>
+   
+       <h2 style="color: #8b224e">Company Test</h2>
+        <br />
+        <p style="float:right;text-decoration-color:white;">
 
-<p>
-    @Html.ActionLink("Create New", "AddTest")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DurationInMinutes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.isActive)
-        </th>
-        <th>
-            @Html.DisplayName("No. Questions")
-        </th>
-        <th></th>
-    </tr>
+            <button class="btn btn-primary btn-default" onclick="location.href='@Url.Action("Create New", "AddTest")'">
+                <i class="fa fa-plus-square pull-right" style="font-size:x-large"></i> Create New Test
+            </button>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink(item.Name, "QuestionPage", "Question",new { TestId = item.Id } , null)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DurationInMinutes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.isActive)
-        </td>
-        <td>
-            @item.TestXQuestions.Count(q => q.IsActive == true)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { TestId=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id }) |
-            @Html.ActionLink("Add New Question", "AddNewQuestion", "Question" , new { TestId = item.Id} ,null)
-        </td>
-    </tr>
-}
+        </p>
 
-</table>
+        <table id="myTable" class="table table table-striped table-hover col-sm-10 col-md-10">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DurationInMinutes)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.isActive)
+                    </th>
+                    <th>
+                        @Html.DisplayName("No. Questions")
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(item.Name, "QuestionPage", "Question", new { TestId = item.Id }, null)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DurationInMinutes)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.isActive)
+                        </td>
+                        <td>
+                            @item.TestXQuestions.Count(q => q.IsActive == true)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Test", new { TestId = item.Id })">
+                                <i class="fa fa-pencil" style="font-size:x-large" data-toggle="tooltip" title="Edit Test"></i>
+                            </a>
+                            &nbsp; &nbsp;
+                            <a href="@Url.Action("Delete", "Test", new { id = item.Id })" data-toggle="tooltip" title="Delete Test">
+                                <i class="fa fa-remove" style="font-size:x-large"></i>
+                            </a>
+
+                            &nbsp; &nbsp;
+
+
+                            @Html.ActionLink("Add Question", "AddNewQuestion", "Question", new { TestId = item.Id }, null)
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+        <br />
+
+
+</div>

@@ -5,72 +5,87 @@
     Layout = "~/Views/Shared/_Admin_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div>
+    <h2 style="color: #8b224e">Employees Vacation Management</h2>
 
-<p>
-    
-    <div class="text-center">
-        <button type="button" class="btn btn-primary" style="align-content:center" data-toggle="modal" data-target="#myModal">Create New</button>
-    </div>
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastModificationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.startDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Duration)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmployeeId)
-        </th>
-        <th></th>
-    </tr>
+    <br />
+    <p style="float:right;text-decoration-color:white;">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastModificationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.startDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Duration)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeeId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+        <button class="btn btn-primary btn-default" onclick="location.href='@Url.Action("Create", "EmployeesVacation")'">
+            <i class="fa fa-plus-square pull-right" style="font-size:x-large"></i> Create New Employees Vacation
+        </button>
 
-</table>
+    </p>
+
+    <table id="myTable" class="table table table-striped table-hover col-sm-10 col-md-10">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreationDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastModificationDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.startDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Duration)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmployeeId)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastModificationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.startDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Duration)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmployeeId)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", "EmployeesVacation", new { id = item.id })">
+                            <i class="fa fa-pencil" style="font-size:x-large" data-toggle="tooltip" title="Edit Employee"></i>
+                        </a>
+                        &nbsp; &nbsp;
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.id }) |*@
+                        @*@Html.ActionLink("Details", "Details", new { id = item.id }) |*@
+                        <a href="@Url.Action("Delete", "EmployeesVacation", new { id = item.id })" data-toggle="tooltip" title="Delete Employee">
+                            <i class="fa fa-remove" style="font-size:x-large"></i>
+                        </a>
+                        @*@Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
 
 
+</div>
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -92,6 +107,5 @@
                 }
             </div>
         </div>
-
     </div>
 </div>

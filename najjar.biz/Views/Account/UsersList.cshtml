@@ -3,30 +3,35 @@
     ViewBag.Title = "Users";
     Layout = "~/Views/Shared/_Admin_Layout.cshtml";
 }
+<div>
+    <h2 style="color: #8b224e">Registered Users</h2>
+    <br />
 
-<h2 class="text-center">Registered Users</h2>
-
-<div class="row">
-    <div class="col-md-offset-2 col-md-10">
-        <table class="table table-responsive table-hover">
+     <table id="myTable" class="table table table-striped table-hover col-sm-10 col-md-10">
+        <thead>
             <tr>
                 <th>User Name</th>
                 <th>Employee Code</th>
                 <th>User Type</th>
             </tr>
+        </thead>
+        <tbody>
             @foreach (var user in Model)
             {
                 <tr>
                     <td>@user.UserName</td>
                     <td>
                         @Html.ActionLink("Personal Page",
-                            "PersonalPage","Employee",
-                            new { @Employeeid = user.EmployeeId},null)
+                            "PersonalPage", "Employee",
+                            new { @Employeeid = user.EmployeeId }, null)
                     </td>
                     <td>@user.UserType</td>
-                    <td>@Html.ActionLink("Assign User to Role", "AssignUserRole", "Account",new { @UserId = user.Id },null)</td>
+                    <td>@Html.ActionLink("Assign User to Role", "AssignUserRole", "Account", new { @UserId = user.Id }, null)</td>
                 </tr>
             }
-        </table>
-    </div>
+        </tbody>
+    </table>
+    <br />
+
+
 </div>

@@ -225,6 +225,7 @@
     <Compile Include="Controllers\jobRequestController.cs" />
     <Compile Include="Controllers\OnlineExamController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\SupportController.cs" />
@@ -738,6 +739,11 @@
     <Content Include="Views\EmailLog\Details.cshtml" />
     <Content Include="Views\EmailLog\Edit.cshtml" />
     <Content Include="Views\EmailLog\Index.cshtml" />
+    <Content Include="Views\Registration\Create.cshtml" />
+    <Content Include="Views\Registration\Delete.cshtml" />
+    <Content Include="Views\Registration\Details.cshtml" />
+    <Content Include="Views\Registration\Edit.cshtml" />
+    <Content Include="Views\Registration\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Roles\Create.cshtml" />

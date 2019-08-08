@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
 
 }
 
@@ -14,7 +14,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 
-<h2 style="color: #071689">Edit Employee's Information</h2>
+<h2 style="color: #8b224e">Edit Employee's Information</h2>
 
 @using (Html.BeginForm("Edit", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {

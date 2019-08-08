@@ -30,7 +30,7 @@
 }
 
 <div >
-    <h2  style="color: #071689">Employees Management</h2>
+    <h2  style="color: #8b224e">Employees Management</h2>
 
     <br />
     <p  style="float:right;text-decoration-color:white;">
@@ -112,8 +112,6 @@
                             </a>
                             &nbsp; &nbsp;
                             @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
-
-
                         <a href="@Url.Action("Delete", "Employee", new { id = item.Id })" data-toggle="tooltip" title="Delete Employee">
                             <i class="fa fa-remove" style="font-size:x-large"></i>
                         </a>
