@@ -10,6 +10,7 @@ using najjar.biz.Models;
 using najjar.biz.Context;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using PagedList;
 
 namespace najjar.biz.Controllers
 {
@@ -18,11 +19,13 @@ namespace najjar.biz.Controllers
         private ApplicationDataContext db = new ApplicationDataContext();
 
         // GET: /Registration/
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             fillUserData();
-            var registrations = db.Registrations.Include(r => r.Employee).Include(r => r.Test);
-            return View(registrations.ToList());
+            var registrations = db.Registrations.Include(r => r.Employee).Include(r => r.Test).OrderByDescending(r=>r.RegistrationDate);
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(registrations.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: /Registration/Details/5

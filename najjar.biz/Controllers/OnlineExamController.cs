@@ -422,7 +422,7 @@ namespace najjar.biz.Controllers
                 {
                     TestId = reg.TestId,
                     TestName = reg.Test.Name,
-                    TotalMark = reg.Test.TestXQuestions.Sum(txq => txq.Question.points),
+                    TotalMark = reg.Test.TestXQuestions.Take(reg.Test.QuestionLimit).Sum(txq => txq.Question.points),
                     MarkScored = reg.TestXPapers.Sum(txp => txp.MarkScored)
                 };
 
