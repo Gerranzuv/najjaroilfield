@@ -340,6 +340,8 @@ namespace najjar.biz.Controllers
             fillUserData();
             Registration registration = db.Registrations.Include("Test").Where(r => r.Token.Equals(token)).FirstOrDefault();
 
+            Test test = db.Tests.Where(r => r.Id.Equals(TestId)).FirstOrDefault();
+
             if (registration == null)
             {
                 TempData["errMessage"] = "Invalid Token. Please Register again for the Test";
@@ -355,7 +357,7 @@ namespace najjar.biz.Controllers
             ViewBag.TotalMark = db
                 .TestXQuestions
                 .Include("Question")
-                .Where(txq => txq.TestId == registration.TestId)
+                .Where(txq => txq.TestId == registration.TestId).Take(test.QuestionLimit)
                 .Sum(x => x.Question.points);
 
             var textXPapers = db

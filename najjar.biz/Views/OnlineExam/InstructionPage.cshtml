@@ -35,7 +35,7 @@
 
 <div class="row" style="margin-top:3%">
     <span class="label label-info" style="font-size:x-large">
-        Total Mark:&nbsp;@Model.Test.TestXQuestions.Where(q => q.IsActive).Sum(q => q.Question.points)
+        Total Mark:&nbsp;@Model.Test.TestXQuestions.Where(q => q.IsActive).Take(@Model.Test.QuestionLimit).Sum(q => q.Question.points)
     </span>
 </div>
 

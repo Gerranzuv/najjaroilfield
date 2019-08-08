@@ -49,7 +49,7 @@
                     <td>@item.TotalMark</td>
                     <td>@item.MarkScored</td>
                     <td>
-                        @if (item.MarkScored / item.TotalMark >= 0.5)
+                        @if (item.MarkScored / item.TotalMark >= 0.75)
                         {
                             <span class="text-success">Suceeded!</span>
                         }
@@ -58,9 +58,9 @@
                             <span class="text-danger">Failed!</span>
                         }
                     </td>
-                    <td>
+                    @*<td>
                         @Html.ActionLink("Review Exam", "OnlineExam", null, new { @href="#"})
-                    </td>
+                    </td>*@
                 </tr>
             }
         </table>
