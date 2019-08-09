@@ -24,47 +24,52 @@
                         <form class="well form-horizontal" onsubmit="alert(1); validateMyForm(event);">
                             <fieldset>
 
-                                <div class="form-group">
+                                <div class="form-group" style="font-size:large ">
                                     @Html.LabelFor(model => model.Sender, new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
                                         @Html.EditorFor(model => model.Sender)
                                         @Html.ValidationMessageFor(model => model.Sender)
                                     </div>
                                 </div>
+                                <br />
 
-                                <div class="form-group">
+                                <div class="form-group" style="font-size:large ">
                                     @Html.LabelFor(model => model.Receiver, new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
                                         @Html.EditorFor(model => model.Receiver)
                                         @Html.ValidationMessageFor(model => model.Receiver)
                                     </div>
                                 </div>
+                                <br />
 
-                                <div class="form-group">
+                                <div class="form-group" style="font-size:large ">
                                     @Html.LabelFor(model => model.Subject, new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
                                         @Html.EditorFor(model => model.Subject)
                                         @Html.ValidationMessageFor(model => model.Subject)
                                     </div>
                                 </div>
+                                <br />
 
-                                <div class="form-group">
+                                <div class="form-group" style="font-size:large ">
                                     @Html.LabelFor(model => model.Body, new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
                                         @Html.EditorFor(model => model.Body)
                                         @Html.ValidationMessageFor(model => model.Body)
                                     </div>
                                 </div>
+                                <br />
 
-                                <div class="form-group">
+                                <div class="form-group" style="font-size:large ">
                                     @Html.LabelFor(model => model.CreationDate, new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
                                         @Html.EditorFor(model => model.CreationDate)
                                         @Html.ValidationMessageFor(model => model.CreationDate)
                                     </div>
                                 </div>
+                                <br />
 
-                                <div class="form-group">
+                                <div class="form-group" style="font-size:large ">
                                     @Html.LabelFor(model => model.LastModificationDate, new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
                                         @Html.EditorFor(model => model.LastModificationDate)
