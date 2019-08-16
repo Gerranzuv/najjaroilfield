@@ -236,6 +236,7 @@
     <Compile Include="Extra\AccessDeniedAuthorizeAttribute.cs" />
     <Compile Include="Extra\EmailHelper.cs" />
     <Compile Include="Extra\ParameterRepository.cs" />
+    <Compile Include="Extra\UserVerificationHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -419,6 +420,18 @@
     <Compile Include="Migrations\201908122037498_resume4.Designer.cs">
       <DependentUpon>201908122037498_resume4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908151823404_userVerificationHelper.cs" />
+    <Compile Include="Migrations\201908151823404_userVerificationHelper.Designer.cs">
+      <DependentUpon>201908151823404_userVerificationHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908151837553_userVerificationHelper1.cs" />
+    <Compile Include="Migrations\201908151837553_userVerificationHelper1.Designer.cs">
+      <DependentUpon>201908151837553_userVerificationHelper1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908160653005_userVerificaiton2.cs" />
+    <Compile Include="Migrations\201908160653005_userVerificaiton2.Designer.cs">
+      <DependentUpon>201908160653005_userVerificaiton2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArticleComment.cs" />
     <Compile Include="Models\ExamSystemModels\Choice.cs" />
@@ -431,6 +444,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Models\EmailLog.cs" />
+    <Compile Include="Models\UserVerificationLog.cs" />
     <Compile Include="Models\Resume\WorkExperience.cs" />
     <Compile Include="Models\Resume\EmployeeProspect.cs" />
     <Compile Include="Models\SystemParameter.cs" />
@@ -457,6 +471,7 @@
     <Compile Include="ViewModels\AccountViewModels.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModels\VerifyEmail.cs" />
     <Compile Include="ViewModels\ChoiceModel.cs" />
     <Compile Include="ViewModels\ExamsInfoViewModel.cs" />
     <Compile Include="ViewModels\InstructionPageModel.cs" />
@@ -776,6 +791,8 @@
     <Content Include="Views\WorkExperience\Edit.cshtml" />
     <Content Include="Views\WorkExperience\Index.cshtml" />
     <Content Include="Views\EmployeeProspect\AddNew.cshtml" />
+    <Content Include="Views\Account\RegisterGuestUser.cshtml" />
+    <Content Include="Views\Account\VerifyEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Roles\Create.cshtml" />
@@ -929,6 +946,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908122037498_resume4.resx">
       <DependentUpon>201908122037498_resume4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908151823404_userVerificationHelper.resx">
+      <DependentUpon>201908151823404_userVerificationHelper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908151837553_userVerificationHelper1.resx">
+      <DependentUpon>201908151837553_userVerificationHelper1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908160653005_userVerificaiton2.resx">
+      <DependentUpon>201908160653005_userVerificaiton2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
