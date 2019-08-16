@@ -2246,12 +2246,12 @@ textarea.input-lg, select[multiple].input-lg {
     }
 
     .btn-success.disabled, .btn-success[disabled], fieldset[disabled] .btn-success, .btn-success.disabled:hover, .btn-success[disabled]:hover, fieldset[disabled] .btn-success:hover, .btn-success.disabled:focus, .btn-success[disabled]:focus, fieldset[disabled] .btn-success:focus, .btn-success.disabled:active, .btn-success[disabled]:active, fieldset[disabled] .btn-success:active, .btn-success.disabled.active, .btn-success[disabled].active, fieldset[disabled] .btn-success.active {
-        background-color: #5cb85c;
+        background-color: #071689;
         border-color: #4cae4c;
     }
 
     .btn-success .badge {
-        color: #5cb85c;
+        color: #071689;
         background-color: #fff;
     }
 
@@ -4637,7 +4637,7 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
     }
 
 .label-success {
-    background-color: #5cb85c;
+    background-color: #071689;
 }
 
     .label-success[href]:hover, .label-success[href]:focus {
@@ -4927,7 +4927,7 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
 }
 
 .progress-bar-success {
-    background-color: #5cb85c;
+    background-color: #071689;
 }
 
 .progress-striped .progress-bar-success {

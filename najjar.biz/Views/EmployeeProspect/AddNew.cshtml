@@ -1,0 +1,203 @@
+﻿@model najjar.biz.Models.EmployeeProspect
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>EmployeeProspect</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address)
+                @Html.ValidationMessageFor(model => model.Address)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AddressInArabic, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AddressInArabic)
+                @Html.ValidationMessageFor(model => model.AddressInArabic)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email)
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmployeeImage, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmployeeImage)
+                @Html.ValidationMessageFor(model => model.EmployeeImage)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nationality, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nationality)
+                @Html.ValidationMessageFor(model => model.Nationality)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BirthDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BirthDate)
+                @Html.ValidationMessageFor(model => model.BirthDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Sex, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Sex)
+                @Html.ValidationMessageFor(model => model.Sex)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BirthPlace, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BirthPlace)
+                @Html.ValidationMessageFor(model => model.BirthPlace)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <form action="contact-form-submission.php" method="POST" role="form">
+            <div class="row">
+                <div class="form-group col-lg-4">
+                    <label for="WorkExperience_From">From</label>
+                    <input type="date" id="WorkExperience_From" class="form-control" name="From">
+                </div>
+                <div class="form-group col-lg-4">
+                    <label for="WorkExperience_To">To</label>
+                    <input type="date" id="WorkExperience_To" class="form-control" name="To">
+                </div>
+                <div class="form-group col-lg-4">
+                    <label for="Position">Position</label>
+                    <input type="text" id="WorkExperience_Position" class="form-control" name="Position">
+                </div>
+                <div class="form-group col-lg-4">
+                    <label for="Description">Description</label>
+                    <input type="text" id="WorkExperience_Description" class="form-control" name="Description">
+                </div>
+                <div class="form-group col-lg-12">
+
+                    <input class="btn btn-primary" name="submitButton" id="WorkExperience_btnSave" value="Save" type="button">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <!--  =================================================================-->
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+    $(function () {
+        $("#WorkExperience_btnSave").click(function () {
+            //alert("");
+            var std = {};
+            std.From = $("#WorkExperience_From").val();
+            std.To = $("#WorkExperience_To").val();
+            std.Position = $("#WorkExperience_Position").val();
+            std.Description = $("#WorkExperience_Description").val();
+            std.EmployeeProspectId=@Model.Id;
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("addWorkExperience", "EmployeeProspect")',
+                data: '{std: ' + JSON.stringify(std) + '}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    alert("Your message was sent, We will contact you asap!");
+                    $("#WorkExperience_From").val('');
+                    $("#WorkExperience_To").val('');
+                    $("#WorkExperience_Position").val('');
+                    $("#WorkExperience_Description").val('');
+                },
+                error: function () {
+                    alert("Error while inserting data");
+                }
+            });
+            return false;
+        });
+    });
+
+    @*function LoadData() {
+        $("#tblStudent tbody tr").remove();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("getStudent")',
+            dataType: 'json',
+            data: { id: '' },
+            success: function (data) {
+                var items = '';
+                $.each(data, function (i, item) {
+                    var rows = "<tr>"
+                    + "<td class='prtoducttd'>" + item.studentID + "</td>"
+                    + "<td class='prtoducttd'>" + item.studentName + "</td>"
+                    + "<td class='prtoducttd'>" + item.studentAddress + "</td>"
+                    + "</tr>";
+                    $('#tblStudent tbody').append(rows);
+                });
+            },
+            error: function (ex) {
+                var r = jQuery.parseJSON(response.responseText);
+                alert("Message: " + r.Message);
+                alert("StackTrace: " + r.StackTrace);
+                alert("ExceptionType: " + r.ExceptionType);
+            }
+        });
+        return false;*@
+    //}
+    </script>
+}  

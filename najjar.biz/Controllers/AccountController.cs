@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using najjar.biz.Models;
 using najjar.biz.Context;
 using najjar.biz.ViewModels;
+using najjar.biz.Extra;
 
 namespace najjar.biz.Controllers
 {
@@ -59,6 +60,14 @@ namespace najjar.biz.Controllers
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
+                    var guestProspectRole=db.Roles.Where(a=>a.Name.Equals("GuestProspect"));
+                    var guestRole = db.Roles.Where(a => a.Name.Equals("Guest"));
+                    if (UserManager.IsInRole(user.Id,"GuestProspect")&&!UserManager.IsInRole(user.Id,"Guest"))
+                    {
+                        Session["EMAIL"] = user.Email;
+                        Session["USER"] = user.Id;
+                        return RedirectToAction("VerifyEmail");  
+                    }
                     return RedirectToLocal(returnUrl);
                 }
                 else
@@ -94,7 +103,7 @@ namespace najjar.biz.Controllers
             fillUserData();
             if (ModelState.IsValid)
             {
-                if(db.Users.Count(u => u.EmployeeId == model.EmployeeId) > 0)
+                if (db.Users.Count(u => u.EmployeeId == model.EmployeeId) > 0)
                 {
                     string employee_name = db
                         .Employees
@@ -106,12 +115,12 @@ namespace najjar.biz.Controllers
                     ViewBag.UserType = new SelectList(db.Roles, "Name", "Name");
                     return View(model);
                 }
-                var user = new ApplicationUser() { UserName = model.UserName ,UserType=model.UserType,EmployeeId = model.EmployeeId};
+                var user = new ApplicationUser() { UserName = model.UserName, UserType = model.UserType, EmployeeId = model.EmployeeId };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
-                    
+
                     await UserManager.AddToRoleAsync(user.Id, model.UserType);
                     return RedirectToAction("Index", "Home");
                 }
@@ -127,6 +136,99 @@ namespace najjar.biz.Controllers
             return View(model);
         }
 
+        // GET: /Account/RegisterGuestUser
+        [AllowAnonymous]
+        public ActionResult RegisterGuestUser()
+        {
+            return View();
+        }
+
+
+        [AllowAnonymous]
+        public ActionResult VerifyEmail()
+        {
+            fillUserData();
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult VerifyEmail(VerifyEmail model)
+        {
+            fillUserData();
+            UserVerificationHelper.VerificationResult result= UserVerificationHelper.verifyCode(model.userId, model.code);
+            if (result.status.Equals("200") ){
+                var user = UserManager.FindById(model.userId);
+                 SignInAsync(user, isPersistent: false);
+                 return RedirectToAction("AdminPage", "Roles");  
+            }
+            else
+                TempData["errMessage"] = result.message;
+            return View();
+            
+        }
+        [AllowAnonymous]
+        public ActionResult resendCode(VerifyEmail model)
+        {
+            fillUserData();
+            if (model.userId == null || model.email == null)
+                TempData["errMessage"] = "Email or user is null";
+            else {
+                UserVerificationHelper.VerificationResult result = UserVerificationHelper.reSendVerificationLog(model.userId, model.email);
+                if (result.status.Equals("500"))
+                    TempData["errMessage"] = result.message;
+                else
+                {
+                    TempData["errMessage"] = "";
+                    TempData["SuccessMessage"] = result.message;
+                }
+            }
+
+                
+            
+            return View("VerifyEmail");
+        }
+
+
+        // POST: /Account/RegisterGuestUser
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterGuestUser(RegisterGuestViewModel model)
+        {
+
+            model.UserType = "GuestProspect";
+            var user = new ApplicationUser() { UserName = model.UserName, UserType = model.UserType, Email = model.Email };
+            var result = await UserManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
+                await SignInAsync(user, isPersistent: false);
+
+                await UserManager.AddToRoleAsync(user.Id, model.UserType);
+                UserVerificationHelper.VerificationResult r= UserVerificationHelper.generateVerificationLog(user.Id, model.Email);
+                if (r.status.Equals("500"))
+                {
+                    AddSingleError(r.message);
+                    return View();
+                }
+                Session["EMAIL"] = model.Email;
+                Session["USER"] = user.Id;
+                return RedirectToAction("VerifyEmail");
+            }
+            else
+            {
+                AddErrors(result);
+            }
+
+            return View();
+        }
+
+        public void generateUserToken()
+        {
+
+
+        }
         //
         // POST: /Account/Disassociate
         [HttpPost]
@@ -387,9 +489,9 @@ namespace najjar.biz.Controllers
             {
                 var user = db.Users.Find(model.UserId);
 
-                if(user != null)
+                if (user != null)
                 {
-                    if(user.Roles.Count(x => x.UserId == model.UserId && x.RoleId == model.SelectedRole) > 0)
+                    if (user.Roles.Count(x => x.UserId == model.UserId && x.RoleId == model.SelectedRole) > 0)
                     {
                         ModelState.AddModelError("", "The User already assigned to the specified Role!");
                         ViewBag.SelectedRole = new SelectList(db.Roles, "Id", "Name");
@@ -463,6 +565,12 @@ namespace najjar.biz.Controllers
                 ModelState.AddModelError("", error);
             }
         }
+        private void AddSingleError(String messsage)
+        {
+
+            ModelState.AddModelError("", messsage);
+            
+        }
 
         private bool HasPassword()
         {
@@ -486,13 +594,13 @@ namespace najjar.biz.Controllers
         {
             if (Url.IsLocalUrl(returnUrl))
             {
-                string[] s=returnUrl.Split(new Char [] {'/'});
-                if(s.Length<=2)
-                    return RedirectToAction("Index",s[1]);
+                string[] s = returnUrl.Split(new Char[] { '/' });
+                if (s.Length <= 2)
+                    return RedirectToAction("Index", s[1]);
                 else
                     return RedirectToAction(s[2], s[1]);
                 //return RedirectToAction("Index", "Employee");
-                
+
             }
             else
             {
@@ -502,7 +610,8 @@ namespace najjar.biz.Controllers
 
         private class ChallengeResult : HttpUnauthorizedResult
         {
-            public ChallengeResult(string provider, string redirectUri) : this(provider, redirectUri, null)
+            public ChallengeResult(string provider, string redirectUri)
+                : this(provider, redirectUri, null)
             {
             }
 

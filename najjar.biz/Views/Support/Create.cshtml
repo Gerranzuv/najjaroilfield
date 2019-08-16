@@ -6,6 +6,8 @@
     var IdSupport = Request.QueryString["Employeeid"];
 }
 
+<h2 style="color: #8b224e">Enter Document's Information</h2>
+<br />
 
 
 @using (Html.BeginForm("Create", "Support", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -14,7 +16,6 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend style="color: #071689">Add New Document</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Name)

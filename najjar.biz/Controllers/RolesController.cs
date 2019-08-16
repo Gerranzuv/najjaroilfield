@@ -8,12 +8,12 @@ using System.Web.Mvc;
 using najjar.biz.Context;
 using System.Data.Entity;
 using Microsoft.AspNet.Identity;
-
 namespace najjar.biz.Controllers
 {
     public class RolesController : Controller
     {
         ApplicationDataContext db = new ApplicationDataContext();
+        
         //
         // GET: /Roles/
         public ActionResult Index()
@@ -110,8 +110,15 @@ namespace najjar.biz.Controllers
 
         public ActionResult AdminPage()
         {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDataContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
             fillUserData();
-
+            if (userManager.IsInRole(user.Id, "GuestProspect") && !userManager.IsInRole(user.Id, "Guest"))
+            {
+                Session["EMAIL"] = user.Email;
+                Session["USER"] = user.Id;
+                return RedirectToAction("VerifyEmail", "Account");
+            }
             return View();
         }
 
