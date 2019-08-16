@@ -1,0 +1,76 @@
+﻿@model najjar.biz.ViewModels.VerifyEmail
+@{
+    ViewBag.Title = "VerifyEmail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <title>Verify Email </title>
+   </head>
+<!------ Include the above in your HEAD tag ---------->
+@using (Html.BeginForm("VerifyEmail", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-12 ">
+            <!-- col -->
+            <h1>Check your email!</h1>
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="userId" value="@Session["USER"]" />
+            <input type="hidden" name="email" value="@Session["EMAIL"]" />
+            <p class="desc" style="font-size:large">We’ve sent an eight-digit confirmation code to <mark><strong>@Session["EMAIL"]</strong> </mark>. Enter it below to confirm your email address.</p>
+            <br><br />            
+            <form data-toggle="validator" method="POST" role="form" id="WorkExperience_Form" >
+                <div class="row text-center" >
+                   
+                    <div class="form-group row" style="text-align: center">
+                        <div class="col-md-4"></div>
+                        
+                        <div class="col-md-4">@Html.TextBoxFor(m => m.code, new { @class = "form-control ", @Style = "float:center" })</div>
+                        <div class="col-md-4"></div>
+                    </div>
+                    
+                    <div class="form-group row" style="text-align: center">
+                        <div class="col-md-4"></div>
+
+                        <div class="col-md-4">
+                            <button class="btn btn-primary text-center" name="submitButton" id="btnSave" type="submit" style="float: right; margin-right: 5px;">
+                                <i class="fa fa-unlock pull-left" style="font-size:x-large"></i>
+                                Verify
+                            </button>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                   
+                    
+                </div>
+            </form>
+            </div>
+
+        </div><!-- endof col -->
+    </div>
+    
+    <div >
+
+        <button class="btn btn-primary text-center" name="btnResend" id="btnResend" style="float:left;margin-left:5px;" onclick="location.href='@Url.Action("resendCode", "Account", new { userId = @Session["USER"], email = @Session["EMAIL"] },null)'">
+            <i class="fa fa-refresh pull-left" style="font-size:x-large"></i>Resend Code
+        </button>
+                    </div>
+    
+    <div class="row row-bottom-margin " style="margin-top:3%">
+    <div class="text-center">
+        <span class="alert-danger" role="alert" style="font-size:x-large">
+            @Html.Raw(TempData["errMessage"])
+        </span>
+    </div>
+</div>
+     <div class="row row-bottom-margin " style="margin-top:3%">
+    <div class="text-center">
+        <span class="alert-success" role="alert" style="font-size:x-large">
+            @Html.Raw(TempData["errMessage"])
+        </span>
+    </div>
+</div>
+}
+

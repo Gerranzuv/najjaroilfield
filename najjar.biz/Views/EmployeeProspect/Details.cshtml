@@ -1,0 +1,320 @@
+﻿@model najjar.biz.Models.EmployeeProspect
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+
+<div>
+    <div class="panel panel-primary" id="PersonalInformation_Panel">
+        <div class="panel-heading" id="PersonalInformation_PanelHeading">
+           
+            <span><i class="fa fa-info-circle" style="font-size:large"></i></span> &nbsp;
+            <a data-toggle="collapse" href="#PersonalInof_collapse" style="font-size:large;color:white;font-weight:bolder">Personal Information</a>
+        </div>
+        <div id="PersonalInof_collapse" class="panel-collapse collapse in">
+            <div class="panel-body" id="PersonalInformation_Panel" style="color: #071689;font-size:large;font-weight:bold">
+
+                <div class="row">
+                    <div class="col-md-3" style="text-align:center;">
+                        @if (Model.EmployeeImage != null)
+                        {
+                            var path = Path.Combine("/Images/", Model.EmployeeImage);
+                            <img src="@path" alt="@Model.Name" title="@Model.Name" class="img-thumbnail" height="200" />
+                        }
+                    </div>
+                    <div class="col-md-9" style="text-align:left">
+                        <div>
+                            <h3>@Html.DisplayFor(model => model.Name)</h3>
+                        </div>
+                        <div>
+                            <i class="fa fa-home"></i>
+                            @Html.DisplayFor(model => model.Address)
+                        </div>
+                        <div>
+                            <i class="fa fa-home"></i>
+                            @Html.DisplayFor(model => model.AddressInArabic)
+                        </div>
+                        <div>
+                            <i class="fa fa-envelope"></i>&nbsp;
+                            @Html.DisplayFor(model => model.Email)
+                        </div>
+                        <div>
+                            <i class="fa fa-birthday-cake"></i>
+                            <span>@Html.DisplayFor(model => model.BirthDate)</span>
+                            <span>@Html.DisplayFor(model => model.BirthPlace)</span>
+                        </div>
+                        <div>
+                            <span> Nationality:</span>
+                            <span>@Html.DisplayFor(model => model.Nationality)</span>
+                            &nbsp;&nbsp;
+                            <span> Sex:</span>
+                            <span>@Html.DisplayFor(model => model.Sex)</span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@
+
+<!-- =============== Work Experience Panel ==================-->
+<div class="panel panel-primary" id="WorkExperience_Panel">
+    <div class="panel-heading" id="WorkExperience_Panel_Heading">
+        <div class="row">
+            <div class="col-md-10">
+                <span><i class="fa fa-info-circle" style="font-size:large"></i></span> &nbsp;
+                <a data-toggle="collapse" href="#WorkExperience_collapse" style="font-size:large;color:white;font-weight:bolder">Work Experience</a>
+            </div>
+            <div class="col-md-2" style="text-align:left">
+                <div class="text-center" style="float:left;">
+                    <button type="button" class="btn btn-primary" style="float:right;font-size:x-small" data-toggle="modal" data-target="#WorkExperienceModa">Add Work Experience</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="WorkExperience_collapse" class="panel-collapse collapse">
+        <div class="panel-body" id="WorkExperience_Panel_Body" style="color: #071689;font-size:large;font-weight:bold">
+
+
+        </div>
+
+    </div>
+    
+</div>
+
+<!-- Work Experienc Modal -->
+<div id="WorkExperienceModa" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Add New Work Experience</h2>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form data-toggle="validator" method="POST" role="form" id="WorkExperience_Form">
+                            <div class="row">
+                                <div class="form-group col-lg-4">
+                                    <label for="WorkExperience_From">From</label>
+                                    <input type="date" id="WorkExperience_From" class="form-control" name="From" required />
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label for="WorkExperience_To">To</label>
+                                    <input type="date" id="WorkExperience_To" class="form-control" name="To" required />
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label for="Position">Position</label>
+                                    <input type="text" id="WorkExperience_Position" class="form-control" name="Position" required />
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label for="Description">Description</label>
+                                    <input type="text" id="WorkExperience_Description" class="form-control" name="Description" required />
+                                </div>
+
+                                <input type="hidden" id="WorkExperience_id" name="Direction" value="add" />
+                                <div class="form-group col-lg-12">
+
+                                    <input class="btn btn-primary" name="submitButton" id="WorkExperience_btnSave" value="Save" type="button">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- =============== Certifications Panel ==================-->
+<div class="panel panel-primary" id="Certifications_Panel">
+    <div class="panel-heading" id="Certifications_Panel_Heading">
+        <div class="row">
+            <div class="col-md-10">
+                <span><i class="fa fa-graduation-cap" style="font-size:large"></i></span> &nbsp;
+                <a data-toggle="collapse" href="#Certifications_collapse" style="font-size:large;color:white;font-weight:bolder">Certifications</a>
+            </div>
+            <div class="col-md-2" style="text-align:left">
+                <div class="text-center" style="float:left;">
+                    <button type="button" class="btn btn-primary" style="float:right;font-size:x-small" data-toggle="modal" data-target="#CertificationsModal">Add Certification</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="Certifications_collapse" class="panel-collapse collapse">
+        <div class="panel-body" id="Certifications_Panel_Body" style="color: #071689;font-size:large;font-weight:bold">
+
+
+        </div>
+
+    </div>
+    
+</div>
+
+
+
+
+
+
+
+
+
+<script src="~/js/date.format.js"></script>
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+
+    $(document).ready(function () {
+        WorkExperienceLoadData();
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+    $(function () {
+        $("#WorkExperience_btnSave").click(function () {
+            //alert("");
+            var std = {};
+            var edit=$("#WorkExperience_id").val()=='add'?0:1;
+            var urlString='@Url.Action("addWorkExperience", "EmployeeProspect")';
+            std.From = $("#WorkExperience_From").val();
+            std.To = $("#WorkExperience_To").val();
+            std.Position = $("#WorkExperience_Position").val();
+            std.Description = $("#WorkExperience_Description").val();
+            if(edit==1){
+                urlString='@Url.Action("EditWorkExperience", "EmployeeProspect")';
+                std.id=$("#WorkExperience_id").val();
+            }
+            std.EmployeeProspectId=@Model.id;
+
+
+            $.ajax({
+                type: "POST",
+                url: urlString,
+                data: '{std: ' + JSON.stringify(std) + '}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    $('#WorkExperienceModa').modal('hide');
+                    $("#WorkExperience_From").val('');
+                    $("#WorkExperience_To").val('');
+                    $("#WorkExperience_Position").val('');
+                    $("#WorkExperience_Description").val('');
+                    $("#WorkExperience_id").val('add');
+                    jQuery('#WorkExperience_Panel_Body div').remove();
+                    WorkExperienceLoadData();
+                },
+                error: function () {
+                    alert("Error while inserting data");
+                }
+            });
+            return false;
+        });
+    });
+    function WorkExperienceLoadData() {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("getWorkExperiences", "EmployeeProspect")',
+            dataType: 'json',
+            data: { id: @Model.id},
+            success: function (data) {
+                var items = '';
+
+
+                $.each(data, function (i, item) {
+                    var from_date = item.From;
+                    var to_date = item.To;
+                    var from =  new Date(parseInt(from_date.substr(6)));
+                    var to = new Date(parseInt(to_date.substr(6)))
+
+
+                    var row="<span><div class=\"panel panel-default\">"+
+                        "<div class=\"panel-heading\">"+
+                        "<div class=\"row\" > "+
+                        "<div class=\"col-md-3\" style=\"color: #071689;font-size:larger;font-weight:bold\">"+
+
+                        from.format("dd/mm/yyyy") + "-"+to.format("dd/mm/yyyy")+
+                        //class=\"col-md-3\"
+                        "</div> "
+                        +"<div class=\"col-md-5\" style=\"color: black;font-size:larger;font-weight:bold\"> "+item.Position+
+                        //class=\"col-md-5\"
+                        " </div>"+
+                        " <div class=\"col-md-4\">"
+                        +"<button type=\"button\" class=\"btn btn-info\" style=\"margin-left:4px;float:right;font-size:x-small\" onclick=\"DeleteWorkExperience("+item.id +");\">Delete </button>"
+                        //+"<span><a href=\"#\" onclick=\"DeleteWorkExperience("+item.id +");\" data-toggle=\"tooltip\" title=\"Delete\"><i class=\"fa fa-remove\" style=\"font-size:x-large\"></i></a></span>"+
+                        //+"<a href=\"#\" onclick=\"EditWorkExperienceModal("+item.id+','+from.format("yyyy/mm/dd")+','+to.format("yyyy/mm/dd")+',\''+item.Position+'\',\''+item.Description+"\');\"><i class=\"fa fa-pencil\" style=\"font-size:x-large\" data-toggle=\"tooltip\" title=\"Edit\"></i></a>"+
+                        +"<button type=\"button\" class=\"btn btn-info\" style=\";float:right;font-size:x-small\" onclick=\"EditWorkExperienceModal("+item.id+',\''+from.format("yyyy/mm/dd")+'\',\''+to.format("yyyy/mm/dd")+'\',\''+item.Position+'\',\''+item.Description+"\');\">Edit </button>"
+                        //class=\"col-md-4\"
+                        +"</div>"
+                        //class=row
+                        +"</div>"
+                        //class= panel-heading
+                        +"</div> "
+
+                        +"<div class=\"panel-body\"> <div class=\"row\"><div class=\"col-md-1\"></div> <div class=\"col-md-5\">"+item.Description+"</div> </div> </div> </div></span>";
+                    $('#WorkExperience_Panel_Body').append(row);
+                });
+            },
+            error: function (ex) {
+                var r = jQuery.parseJSON(response.responseText);
+                alert("Message: " + r.Message);
+                alert("StackTrace: " + r.StackTrace);
+                alert("ExceptionType: " + r.ExceptionType);
+            }
+        });
+        return false;
+    }
+
+        function DeleteWorkExperience(workExperienceId) {
+            var result = confirm("Want to delete?")
+            if(result){
+                $.ajax({
+                    type: 'DELETE',
+                    url: '@Url.Action("deleteWorkExperience", "EmployeeProspect")',
+                    dataType: 'json',
+                    data: { id: workExperienceId},
+                    success: function (data) {
+                        jQuery('#WorkExperience_Panel_Body div').remove();
+                        WorkExperienceLoadData();
+                    },
+                    error: function (ex) {
+                        var r = jQuery.parseJSON(response.responseText);
+                        alert("Message: " + r.Message);
+                        alert("StackTrace: " + r.StackTrace);
+                        alert("ExceptionType: " + r.ExceptionType);
+                    }
+                });
+                return false;
+            }
+       
+    }
+    function EditWorkExperienceModal(workExperienceId,from,to, position,description) {
+      
+        var toD=new Date(to);
+        var fromD=new Date(from);
+        $("#WorkExperience_From").val(fromD.format("yyyy-mm-dd"));
+        $("#WorkExperience_To").val(toD.format("yyyy-mm-dd"));
+        //document.getElementById("WorkExperience_To").value=toD.format("yyyy-mm-dd");
+        $("#WorkExperience_Position").val(position);
+        $("#WorkExperience_Description").val(description);
+        $("#WorkExperience_id").val(workExperienceId);
+        $('#WorkExperienceModa').modal('show');
+    }
+    </script>
+}  
