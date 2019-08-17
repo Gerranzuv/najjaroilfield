@@ -99,34 +99,7 @@
 }
 
 
-<div class="row">
-    <div class="col-sm-12">
-        <form action="contact-form-submission.php" method="POST" role="form">
-            <div class="row">
-                <div class="form-group col-lg-4">
-                    <label for="WorkExperience_From">From</label>
-                    <input type="date" id="WorkExperience_From" class="form-control" name="From">
-                </div>
-                <div class="form-group col-lg-4">
-                    <label for="WorkExperience_To">To</label>
-                    <input type="date" id="WorkExperience_To" class="form-control" name="To">
-                </div>
-                <div class="form-group col-lg-4">
-                    <label for="Position">Position</label>
-                    <input type="text" id="WorkExperience_Position" class="form-control" name="Position">
-                </div>
-                <div class="form-group col-lg-4">
-                    <label for="Description">Description</label>
-                    <input type="text" id="WorkExperience_Description" class="form-control" name="Description">
-                </div>
-                <div class="form-group col-lg-12">
 
-                    <input class="btn btn-primary" name="submitButton" id="WorkExperience_btnSave" value="Save" type="button">
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
 
     <!--  =================================================================-->
     <div>
@@ -138,66 +111,3 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
 
-@section Scripts
-{
-    <script type="text/javascript">
-
-    $(function () {
-        $("#WorkExperience_btnSave").click(function () {
-            //alert("");
-            var std = {};
-            std.From = $("#WorkExperience_From").val();
-            std.To = $("#WorkExperience_To").val();
-            std.Position = $("#WorkExperience_Position").val();
-            std.Description = $("#WorkExperience_Description").val();
-            std.EmployeeProspectId=@Model.Id;
-            $.ajax({
-                type: "POST",
-                url: '@Url.Action("addWorkExperience", "EmployeeProspect")',
-                data: '{std: ' + JSON.stringify(std) + '}',
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success: function () {
-                    alert("Your message was sent, We will contact you asap!");
-                    $("#WorkExperience_From").val('');
-                    $("#WorkExperience_To").val('');
-                    $("#WorkExperience_Position").val('');
-                    $("#WorkExperience_Description").val('');
-                },
-                error: function () {
-                    alert("Error while inserting data");
-                }
-            });
-            return false;
-        });
-    });
-
-    @*function LoadData() {
-        $("#tblStudent tbody tr").remove();
-        $.ajax({
-            type: 'POST',
-            url: '@Url.Action("getStudent")',
-            dataType: 'json',
-            data: { id: '' },
-            success: function (data) {
-                var items = '';
-                $.each(data, function (i, item) {
-                    var rows = "<tr>"
-                    + "<td class='prtoducttd'>" + item.studentID + "</td>"
-                    + "<td class='prtoducttd'>" + item.studentName + "</td>"
-                    + "<td class='prtoducttd'>" + item.studentAddress + "</td>"
-                    + "</tr>";
-                    $('#tblStudent tbody').append(rows);
-                });
-            },
-            error: function (ex) {
-                var r = jQuery.parseJSON(response.responseText);
-                alert("Message: " + r.Message);
-                alert("StackTrace: " + r.StackTrace);
-                alert("ExceptionType: " + r.ExceptionType);
-            }
-        });
-        return false;*@
-    //}
-    </script>
-}  
