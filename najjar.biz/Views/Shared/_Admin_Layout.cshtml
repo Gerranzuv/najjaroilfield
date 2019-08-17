@@ -276,7 +276,23 @@
                                         </li>
                                     }
                                     
-                                    @if (User.IsInRole("Employee"))
+                                    @if (User.IsInRole("Guest"))
+                                    {
+                                        <li class="treeview">
+                                            <a href="#">
+                                                <i class="fa fa-graduation-cap"></i>
+                                                <span>My CV</span>
+                                                <span class="fa fa-angle-left pull-right"></span>
+                                                <span class="label label-primary pull-right">new</span>
+                                            </a>
+                                            <ul class="treeview-menu">
+                                                <li><a href="@Url.Action("AddNew", "EmployeeProspect")"><i class="fa fa-angle-right"></i>Add Presonal Info</a></li>
+                                                <li><a href="@Url.Action("Details", "EmployeeProspect")"><i class="fa fa-angle-right"></i>My CV</a></li>
+                                            </ul>
+                                        </li>
+                                    }
+
+                                    @if (User.IsInRole("Employee") || User.IsInRole("Guest"))
                                     {
                                         <li class="treeview">
                                             <a href="#">
