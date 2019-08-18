@@ -6,20 +6,11 @@ using System.Web;
 
 namespace najjar.biz.Models
 {
-    public class WorkExperience
+    public class WorkExperience:BasicModel
     {
 
 
-        [Key]
-        public int id { get; set; }
-
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
-        [Display(Name = "CreationDate")]
-        public DateTime CreationDate { get; set; }
-
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
-        [Display(Name = "LastModificationDate")]
-        public DateTime LastModificationDate { get; set; }
+        
 
 
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
