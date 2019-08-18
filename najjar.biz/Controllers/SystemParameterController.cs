@@ -10,7 +10,8 @@ using najjar.biz.Models;
 using najjar.biz.Context;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-
+using PagedList;
+  
 namespace najjar.biz.Controllers
 {
     public class SystemParameterController : Controller
@@ -18,10 +19,13 @@ namespace najjar.biz.Controllers
         private ApplicationDataContext db = new ApplicationDataContext();
 
         // GET: /SystemParameter/
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             fillUserData();
-            return View(db.SystemParameters.ToList());
+            var SystemParameters = db.SystemParameters.OrderByDescending(r => r.CreationDate);
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(SystemParameters.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: /SystemParameter/Details/5

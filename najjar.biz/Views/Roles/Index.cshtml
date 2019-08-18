@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+﻿@model PagedList.IPagedList<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -13,7 +15,7 @@
 
         <button class="btn btn-primary btn-default" onclick="location.href='@Url.Action("Create", "Roles")'">
             <i class="fa fa-plus-square pull-right" style="font-size:x-large"></i> Create New Roles
-        </button>
+        </button> 
 
     </p>
     <table id="myTable" class="table table table-striped table-hover col-sm-10 col-md-10">
@@ -47,6 +49,10 @@
             }
         </tbody>
     </table>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))
     <br />
 
 

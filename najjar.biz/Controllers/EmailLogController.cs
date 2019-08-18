@@ -10,6 +10,7 @@ using najjar.biz.Models;
 using najjar.biz.Context;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using PagedList;
 
 namespace najjar.biz.Controllers
 {
@@ -18,11 +19,14 @@ namespace najjar.biz.Controllers
         private ApplicationDataContext db = new ApplicationDataContext();
 
         // GET: /EmailLog/
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             fillUserData();
-            return View(db.EmailLogs.OrderBy(a=>a.CreationDate).ToList());
-        }
+            var EmailLogs = db.EmailLogs.OrderByDescending(r => r.CreationDate);
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(EmailLogs.ToPagedList(pageNumber, pageSize));
+        } 
 
         // GET: /EmailLog/Details/5
         public ActionResult Details(int? id)
@@ -52,7 +56,7 @@ namespace najjar.biz.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="id,Sender,Receiver,Subject,Body,CreationDate,LastModificationDate")] EmailLog emaillog)
+        public ActionResult Create([Bind(Include = "id,Sender,Receiver,Subject,Body,CreationDate,LastModificationDate")] EmailLog emaillog)
         {
             fillUserData();
             if (ModelState.IsValid)
@@ -86,7 +90,7 @@ namespace najjar.biz.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="id,Sender,Receiver,Subject,Body,CreationDate,LastModificationDate")] EmailLog emaillog)
+        public ActionResult Edit([Bind(Include = "id,Sender,Receiver,Subject,Body,CreationDate,LastModificationDate")] EmailLog emaillog)
         {
             fillUserData();
             if (ModelState.IsValid)
