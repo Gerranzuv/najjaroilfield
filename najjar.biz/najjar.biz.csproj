@@ -237,6 +237,7 @@
     <Compile Include="Extra\EmailHelper.cs" />
     <Compile Include="Extra\ParameterRepository.cs" />
     <Compile Include="Extra\UserVerificationHelper.cs" />
+    <Compile Include="Extra\BasicModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -432,6 +433,14 @@
     <Compile Include="Migrations\201908160653005_userVerificaiton2.Designer.cs">
       <DependentUpon>201908160653005_userVerificaiton2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908181831288_certification.cs" />
+    <Compile Include="Migrations\201908181831288_certification.Designer.cs">
+      <DependentUpon>201908181831288_certification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908181832319_certification2.cs" />
+    <Compile Include="Migrations\201908181832319_certification2.Designer.cs">
+      <DependentUpon>201908181832319_certification2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArticleComment.cs" />
     <Compile Include="Models\ExamSystemModels\Choice.cs" />
@@ -444,6 +453,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Models\EmailLog.cs" />
+    <Compile Include="Models\Resume\Certification.cs" />
     <Compile Include="Models\UserVerificationLog.cs" />
     <Compile Include="Models\Resume\WorkExperience.cs" />
     <Compile Include="Models\Resume\EmployeeProspect.cs" />
@@ -955,6 +965,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908160653005_userVerificaiton2.resx">
       <DependentUpon>201908160653005_userVerificaiton2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908181831288_certification.resx">
+      <DependentUpon>201908181831288_certification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908181832319_certification2.resx">
+      <DependentUpon>201908181832319_certification2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

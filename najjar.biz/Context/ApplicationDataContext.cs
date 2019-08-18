@@ -74,5 +74,6 @@ namespace najjar.biz.Context
         public System.Data.Entity.DbSet<najjar.biz.Models.EmployeeProspect> EmployeeProspects { get; set; }
 
         public System.Data.Entity.DbSet<najjar.biz.Models.WorkExperience> WorkExperiences { get; set; }
+        public System.Data.Entity.DbSet<najjar.biz.Models.Certification> Certifications { get; set; }
     }
 }
