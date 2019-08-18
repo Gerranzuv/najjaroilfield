@@ -1,4 +1,6 @@
-﻿@model IEnumerable<najjar.biz.Models.EmailLog>
+﻿@model PagedList.IPagedList<najjar.biz.Models.EmailLog>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -19,22 +21,22 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Sender)
+                    Sender
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Receiver)
+                    Receiver
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Subject)
+                    Subject
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Body)
+                    Body
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.CreationDate)
+                    CreationDate
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.LastModificationDate)
+                    LastModificationDate
                 </th>
                 <th></th>
             </tr>
@@ -78,6 +80,11 @@
             }
         </tbody>
     </table>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))
+
     <br />
 
 

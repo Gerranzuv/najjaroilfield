@@ -8,6 +8,9 @@ using System.Web.Mvc;
 using najjar.biz.Context;
 using System.Data.Entity;
 using Microsoft.AspNet.Identity;
+using PagedList;
+
+
 namespace najjar.biz.Controllers
 {
     public class RolesController : Controller
@@ -16,10 +19,13 @@ namespace najjar.biz.Controllers
         
         //
         // GET: /Roles/
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             fillUserData();
-            return View(db.Roles.ToList());
+            var Roles = db.Roles.OrderByDescending(r => r.Name);
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(Roles.ToPagedList(pageNumber, pageSize));
         }
 
         //
