@@ -9,7 +9,7 @@ using najjar.biz.Context;
 using System.Data.Entity;
 using Microsoft.AspNet.Identity;
 using PagedList;
-
+ 
 
 namespace najjar.biz.Controllers
 {

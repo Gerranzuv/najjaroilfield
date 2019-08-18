@@ -12,7 +12,7 @@ using System.IO;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using PagedList;
-
+ 
 namespace najjar.biz.Controllers
 {
     public class jobRequestController : Controller

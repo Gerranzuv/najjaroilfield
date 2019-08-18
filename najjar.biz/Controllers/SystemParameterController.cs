@@ -11,7 +11,7 @@ using najjar.biz.Context;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using PagedList;
-
+  
 namespace najjar.biz.Controllers
 {
     public class SystemParameterController : Controller
