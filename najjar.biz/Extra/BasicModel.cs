@@ -21,6 +21,10 @@ namespace najjar.biz.Models
         [Display(Name = "Last Modification Date")]
         public DateTime LastModificationDate { get; set; }
 
+        public string Creator { get; set; }
+
+        public string Modifier { get; set; }
+
 
         
       

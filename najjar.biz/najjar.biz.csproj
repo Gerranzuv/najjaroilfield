@@ -234,8 +234,10 @@
     <Compile Include="Controllers\SystemParameterController.cs" />
     <Compile Include="Controllers\TestContoller.cs" />
     <Compile Include="Extra\AccessDeniedAuthorizeAttribute.cs" />
+    <Compile Include="Extra\UserHelper.cs" />
     <Compile Include="Extra\EmailHelper.cs" />
     <Compile Include="Extra\ParameterRepository.cs" />
+    <Compile Include="Extra\ResponseEntity.cs" />
     <Compile Include="Extra\UserVerificationHelper.cs" />
     <Compile Include="Extra\BasicModel.cs" />
     <Compile Include="Global.asax.cs">
@@ -440,6 +442,18 @@
     <Compile Include="Migrations\201908181832319_certification2.cs" />
     <Compile Include="Migrations\201908181832319_certification2.Designer.cs">
       <DependentUpon>201908181832319_certification2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908182010130_certification3.cs" />
+    <Compile Include="Migrations\201908182010130_certification3.Designer.cs">
+      <DependentUpon>201908182010130_certification3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908182011196_workExperience5.cs" />
+    <Compile Include="Migrations\201908182011196_workExperience5.Designer.cs">
+      <DependentUpon>201908182011196_workExperience5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908182037256_workExperience6.cs" />
+    <Compile Include="Migrations\201908182037256_workExperience6.Designer.cs">
+      <DependentUpon>201908182037256_workExperience6.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArticleComment.cs" />
@@ -971,6 +985,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908181832319_certification2.resx">
       <DependentUpon>201908181832319_certification2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908182010130_certification3.resx">
+      <DependentUpon>201908182010130_certification3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908182011196_workExperience5.resx">
+      <DependentUpon>201908182011196_workExperience5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908182037256_workExperience6.resx">
+      <DependentUpon>201908182037256_workExperience6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

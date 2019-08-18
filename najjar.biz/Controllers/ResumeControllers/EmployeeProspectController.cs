@@ -12,12 +12,14 @@ using najjar.biz.Context;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity.Validation;
+using najjar.biz.Extra;
 
 namespace najjar.biz.Controllers.ResumeControllers
 {
     public class EmployeeProspectController : Controller
     {
         private ApplicationDataContext db = new ApplicationDataContext();
+        private UserHelper userHelper = new UserHelper();
 
         // GET: /EmployeeProspect/
         public async Task<ActionResult> Index()
@@ -150,6 +152,8 @@ namespace najjar.biz.Controllers.ResumeControllers
             std.CreationDate = DateTime.Now;
             std.LastModificationDate = DateTime.Now;
             std.EmployeeProspectId = (int)std.EmployeeProspectId;
+            std.Creator = getCurrentUser().Id;
+            std.Modifier = getCurrentUser().Id;
             db.WorkExperiences.Add(std);
             try { db.SaveChanges(); }
             catch (DbEntityValidationException e) {
@@ -228,6 +232,7 @@ namespace najjar.biz.Controllers.ResumeControllers
             toEdit.From = std.From;
             toEdit.To = std.To;
             toEdit.LastModificationDate = DateTime.Now;
+            toEdit.Modifier = getCurrentUser().Id;
             db.Entry(toEdit).State = EntityState.Modified;
             try { db.SaveChanges(); }
             catch (DbEntityValidationException e)
@@ -262,7 +267,9 @@ namespace najjar.biz.Controllers.ResumeControllers
             if (ModelState.IsValid)
             {
                 employeeprospect.CreationDate = DateTime.Now;
-                employeeprospect.LastModificationDate = DateTime.Now; ;
+                employeeprospect.LastModificationDate = DateTime.Now;
+             
+
 
                 db.EmployeeProspects.Add(employeeprospect);
                 await db.SaveChangesAsync();
@@ -270,6 +277,13 @@ namespace najjar.biz.Controllers.ResumeControllers
             }
 
             return View(employeeprospect);
+        }
+
+        public ApplicationUser getCurrentUser()
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDataContext()));
+            ApplicationUser user = userManager.FindById(User.Identity.GetUserId());
+            return user;
         }
 
     }
