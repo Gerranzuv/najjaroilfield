@@ -34,7 +34,7 @@
                     <div class="form-group row" style="text-align: center">
                         <div class="col-md-4"></div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-4"style="margin-left:-20%">
                             <button class="btn btn-primary text-center" name="submitButton" id="btnSave" type="submit" style="float: right; margin-right: 5px;">
                                 <i class="fa fa-unlock pull-left" style="font-size:x-large"></i>
                                 Verify
@@ -50,13 +50,13 @@
 
         </div><!-- endof col -->
     </div>
-    
-    <div >
 
-        <button class="btn btn-primary text-center" name="btnResend" id="btnResend" style="float:left;margin-left:5px;" onclick="location.href='@Url.Action("resendCode", "Account", new { userId = @Session["USER"], email = @Session["EMAIL"] },null)'">
+    <div style="margin-top: -5.3%; margin-left: 55%; ">
+
+        <button class="btn btn-primary text-center" name="btnResend" id="btnResend" style=" float: left; margin-left: 5px; " onclick="location.href='@Url.Action("resendCode", "Account", new { userId = @Session["USER"], email = @Session["EMAIL"] },null)'">
             <i class="fa fa-refresh pull-left" style="font-size:x-large"></i>Resend Code
         </button>
-                    </div>
+    </div>
     
     <div class="row row-bottom-margin " style="margin-top:3%">
     <div class="text-center">

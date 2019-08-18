@@ -4,110 +4,163 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Admin_Layout.cshtml";
 }
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-<h2>Create</h2>
+<h2 style="color: #8b224e">Enter Employee's rospect</h2>
+<br />
 
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>EmployeeProspect</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-        
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name)
-                @Html.ValidationMessageFor(model => model.Name)
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Address)
-                @Html.ValidationMessageFor(model => model.Address)
-            </div>
-        </div>
+    @Html.ValidationSummary(true)
+    <div class="container">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <td colspan="1">
+                        <form class="well form-horizontal" onsubmit="alert(1); validateMyForm(event);">
+                            <fieldset>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AddressInArabic, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AddressInArabic)
-                @Html.ValidationMessageFor(model => model.AddressInArabic)
-            </div>
-        </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label"> Name</label>
+                                    <div class="col-md-8 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                            @Html.EditorFor(model => model.Name)
+                                            @Html.ValidationMessageFor(model => model.Name)
+                                        </div>
+                                    </div>
+                                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email)
-                @Html.ValidationMessageFor(model => model.Email)
-            </div>
-        </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">  Address</label>
+                                    <div class="col-md-8 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                            @Html.EditorFor(model => model.Address)
+                                            @Html.ValidationMessageFor(model => model.Address)
+                                        </div>
+                                    </div>
+                                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.EmployeeImage, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EmployeeImage)
-                @Html.ValidationMessageFor(model => model.EmployeeImage)
-            </div>
-        </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label"> Arabic Address</label>
+                                    <div class="col-md-8 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                            @Html.EditorFor(model => model.AddressInArabic)
+                                            @Html.ValidationMessageFor(model => model.AddressInArabic)
+                                        </div>
+                                    </div>
+                                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nationality, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nationality)
-                @Html.ValidationMessageFor(model => model.Nationality)
-            </div>
-        </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Email</label>
+                                    <div class="col-md-8 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                            @Html.EditorFor(model => model.Email)
+                                            @Html.ValidationMessageFor(model => model.Email)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Nationality </label>
+                                    <div class="col-md-8 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                            @Html.EditorFor(model => model.Nationality)
+                                            @Html.ValidationMessageFor(model => model.Nationality)
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </td>
+                    <td colspan="1">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.BirthDate, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BirthDate)
-                @Html.ValidationMessageFor(model => model.BirthDate)
-            </div>
-        </div>
+                        <fieldset>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Sex, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Sex)
-                @Html.ValidationMessageFor(model => model.Sex)
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.BirthPlace, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BirthPlace)
-                @Html.ValidationMessageFor(model => model.BirthPlace)
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+
+
+                          
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Birth Date</label>
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                        @Html.EditorFor(model => model.BirthDate)
+                                        @Html.ValidationMessageFor(model => model.BirthDate)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Sex</label>
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        @Html.EditorFor(model => model.Sex)
+                                        @Html.ValidationMessageFor(model => model.Sex)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Birth Place</label>
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                        @Html.EditorFor(model => model.BirthPlace)
+                                        @Html.ValidationMessageFor(model => model.BirthPlace)
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Employee Image</label>
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-upload"></i></span>
+                                        <input type="file" name="upload" id="imageFile" />
+                                        @Html.EditorFor(model => model.EmployeeImage)
+                                        @Html.ValidationMessageFor(model => model.EmployeeImage)
+                                    </div>
+                                </div>
+
+                            </div>
+                        </fieldset>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="form-group">
+        <div class=" col-md-offset-2 col-md-10">
+            <input type="submit" style="color: #fff; background-color: #071689; " value="Create" class="btn btn-default" />
+    </div>
     </div>
 }
 
 
 
 
-    <!--  =================================================================-->
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+<!--  =================================================================-->
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
 
