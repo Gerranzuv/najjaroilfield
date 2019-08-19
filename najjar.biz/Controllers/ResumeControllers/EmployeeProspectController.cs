@@ -286,5 +286,107 @@ namespace najjar.biz.Controllers.ResumeControllers
             return user;
         }
 
+        [HttpPost]
+        public ActionResult addCertification(Certification std)
+        {
+            std.CreationDate = DateTime.Now;
+            std.LastModificationDate = DateTime.Now;
+            std.id = (int)std.id;
+            std.Creator = getCurrentUser().Id;
+            std.Modifier = getCurrentUser().Id;
+            db.Certifications.Add(std);
+            try { db.SaveChanges(); }
+            catch (DbEntityValidationException e)
+            {
+                string message1 = e.StackTrace;
+                foreach (var eve in e.EntityValidationErrors)
+                {
+
+                    message1 += eve.Entry.State + "\n";
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        message1 += String.Format("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                        message1 += "\n";
+                    }
+                }
+                return Json(new { Message = message1, JsonRequestBehavior.AllowGet });
+            }
+
+            string message = "SUCCESS";
+            return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+        }
+
+        public JsonResult getCertifications(int id)
+        {
+            return Json(db.Certifications.Where(a => a.id.Equals(id)).ToList(), JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+        [HttpDelete]
+        public JsonResult deleteCertification(int id)
+        {
+            Certification toDelete = db.Certifications.Where(a => a.id.Equals(id)).FirstOrDefault();
+            db.Certifications.Remove(toDelete);
+            try { db.SaveChanges(); }
+            catch (DbEntityValidationException e)
+            {
+                string message1 = e.StackTrace;
+                foreach (var eve in e.EntityValidationErrors)
+                {
+
+                    message1 += eve.Entry.State + "\n";
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        message1 += String.Format("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                        message1 += "\n";
+                    }
+                }
+                return Json(new { Message = message1, JsonRequestBehavior.AllowGet });
+            }
+
+            string message = "SUCCESS";
+            return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+        }
+
+
+
+        [HttpPost]
+        public ActionResult editCertification(Certification std)
+        {
+            Certification toEdit = db.Certifications.Where(a => a.id == std.id).FirstOrDefault();
+            if (toEdit == null)
+                return Json("No Matching record");
+            toEdit.Name = std.Name;
+            toEdit.CertificationDate = std.CertificationDate;
+            toEdit.Location = std.Location;
+            toEdit.University = std.University;
+            toEdit.LastModificationDate = DateTime.Now;
+            toEdit.Modifier = getCurrentUser().Id;
+            db.Entry(toEdit).State = EntityState.Modified;
+            try { db.SaveChanges(); }
+            catch (DbEntityValidationException e)
+            {
+                string message1 = e.StackTrace;
+                foreach (var eve in e.EntityValidationErrors)
+                {
+
+                    message1 += eve.Entry.State + "\n";
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        message1 += String.Format("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                        message1 += "\n";
+                    }
+                }
+                return Json(new { Message = message1, JsonRequestBehavior.AllowGet });
+            }
+
+            string message = "SUCCESS";
+            return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+        }
     }
 }
