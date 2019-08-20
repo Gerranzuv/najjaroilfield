@@ -471,6 +471,10 @@
     <Compile Include="Migrations\201908201141541_skill1.Designer.cs">
       <DependentUpon>201908201141541_skill1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908201644413_contex1.cs" />
+    <Compile Include="Migrations\201908201644413_contex1.Designer.cs">
+      <DependentUpon>201908201644413_contex1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArticleComment.cs" />
     <Compile Include="Models\ExamSystemModels\Choice.cs" />
@@ -1024,6 +1028,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908201141541_skill1.resx">
       <DependentUpon>201908201141541_skill1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908201644413_contex1.resx">
+      <DependentUpon>201908201644413_contex1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

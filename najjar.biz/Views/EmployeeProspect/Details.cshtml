@@ -222,10 +222,143 @@
     </div>
 </div>
 
+<!-- ===============Language Panel ==================-->
+<div class="panel panel-primary" id="Language_Panel">
+    <div class="panel-heading" id="Language_Panel_Heading">
+        <div class="row">
+            <div class="col-md-10">
+                <span><i class="fa fa-info-circle" style="font-size:large"></i></span> &nbsp;
+                <a data-toggle="collapse" href="#Language_collapse" style="font-size:large;color:white;font-weight:bolder">Languages</a>
+            </div>
+            <div class="col-md-2" style="text-align:left">
+                <div class="text-center" style="float:left;">
+                    <button type="button" class="btn btn-primary" style="float:right;font-size:x-small" data-toggle="modal" data-target="#LanguageModa">Add Language</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="Language_collapse" class="panel-collapse collapse">
+        <div class="panel-body" id="WLanguage_Panel_Body" style="color: #071689;font-size:large;font-weight:bold">
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Language Modal -->
+<div id="LanguageModa" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Add New Language</h2>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form data-toggle="validator" method="POST" role="form" id="Language_Form">
+                            <div class="row">
+                                                            
+                                <div class="form-group col-lg-4">
+                                    <label for="Name">Name</label>
+                                    <input type="text" id="Language_Name" class="form-control" name="Name" required />
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label for="Level">Level</label>
+                                    <input type="text" id="Language_Level" class="form-control" name="Level" required />
+                                </div>
+
+                                <input type="hidden" id="Language_id" name="Direction" value="add" />
+                                <div class="form-group col-lg-12">
+
+                                    <input class="btn btn-primary" name="submitButton" id="Language_btnSave" value="Save" type="button">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
+    </div>
+</div>
 
 
 
+<!-- =============== Skill Panel ==================-->
+<div class="panel panel-primary" id="Skill_Panel">
+    <div class="panel-heading" id="Skill_Panel_Heading">
+        <div class="row">
+            <div class="col-md-10">
+                <span><i class="fa fa-info-circle" style="font-size:large"></i></span> &nbsp;
+                <a data-toggle="collapse" href="#Skill_collapse" style="font-size:large;color:white;font-weight:bolder">Skills</a>
+            </div>
+            <div class="col-md-2" style="text-align:left">
+                <div class="text-center" style="float:left;">
+                    <button type="button" class="btn btn-primary" style="float:right;font-size:x-small" data-toggle="modal" data-target="#SkillModa">Add Skill</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="Skill_collapse" class="panel-collapse collapse">
+        <div class="panel-body" id="Skill_Panel_Body" style="color: #071689;font-size:large;font-weight:bold">
 
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Skill Modal -->
+<div id="SkillModa" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Add New Skill</h2>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form data-toggle="validator" method="POST" role="form" id="Skill_Form">
+                            <div class="row">
+                               
+                                <div class="form-group col-lg-4">
+                                    <label for="Name">Name</label>
+                                    <input type="text" id="Skill_Name" class="form-control" name="Name" required />
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label for="Description">Description</label>
+                                    <input type="text" id="Skill_Description" class="form-control" name="Description" required />
+                                </div>
+
+                                <input type="hidden" id="Skill_id" name="Direction" value="add" />
+                                <div class="form-group col-lg-12">
+
+                                    <input class="btn btn-primary" name="submitButton" id="Skill_btnSave" value="Save" type="button">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
+    </div>
+</div>
 
 
 <script src="~/js/date.format.js"></script>
@@ -238,6 +371,10 @@
     $(document).ready(function () {
         WorkExperienceLoadData();
         CertificationLoadData();
+        LanguageLoadData();
+        SkillLoadData();
+
+
         $('[data-toggle="tooltip"]').tooltip();
     });
 
@@ -373,7 +510,7 @@
         }
 //Certificatoins -============================================= 
 
-   
+   //save function
 
 
     $(function () {
@@ -417,6 +554,9 @@
         });
     });
 
+
+
+        //loaddata function--------------------------------
 
         function CertificationLoadData() {
             $.ajax({
@@ -472,6 +612,9 @@
             return false;
         }
 
+
+        //delete function ------------------------------------------------
+
         function DeleteCertification(CertificationId) {
             var result = confirm("Want to delete?")
             if(result){
@@ -496,6 +639,8 @@
        
         }
 
+        //edit function ---------------------------------------
+
         function EditCertificationModal(certificationId,name,certificationDate, university,location) {
       
             var cerD=new Date(certificationDate);
@@ -508,6 +653,277 @@
             $("#Certification_id").val(certificationId);
             $('#CertificationModa').modal('show');
         }
+
+
+        //Language---------------------------------------------
+
+
+
+        //save function
+
+
+        $(function () {
+            $("#Language_btnSave").click(function () {
+                //alert("");
+                var std = {};
+                var edit=$("#Language_id").val()=='add'?0:1;
+                var urlString='@Url.Action("addLanguage", "EmployeeProspect")';
+                std.Name = $("#Language_Name").val();
+                std.Level = $("#Language_Level").val();
+                if(edit==1){
+                    urlString='@Url.Action("editLanguage", "EmployeeProspect")';
+                    std.id=$("#Language_id").val();
+                }
+                std.EmployeeProspectId=@Model.id;
+
+
+                $.ajax({
+                    type: "POST",
+                    url: urlString,
+                    data: '{std: ' + JSON.stringify(std) + '}',
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function () {
+                        $('#LanguageModa').modal('hide');
+                        $("#Language_Name").val('');
+                        $("#Language_Level").val('');
+                        $("#Language_id").val('add');
+                        jQuery('#Language_Panel_Body div').remove();
+                        LanguageLoadData();
+                    },
+                    error: function () {
+                        alert("Error while inserting data");
+                    }
+                });
+                return false;
+            });
+        });
+
+
+        //loaddata function--------------------------------
+
+        function LanguageLoadData() {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("getLanguages", "EmployeeProspect")',
+                dataType: 'json',
+                data: { id: @Model.id},
+                success: function (data) {
+                    var items = '';
+
+
+                    $.each(data, function (i, item) {
+                       
+                        var row="<span><div class=\"panel panel-default\">"+
+                            "<div class=\"panel-heading\">"+
+                            "<div class=\"row\" > "+"<div class=\"col-md-5\" style=\"color: black;font-size:larger;font-weight:bold\"> "+item.Name+
+                            //class=\"col-md-5\"
+                            " </div>"+
+                                                    " <div class=\"col-md-4\">"
+
+                         
+                            +"<button type=\"button\" class=\"btn btn-info\" style=\"margin-left:4px;float:right;font-size:x-small\" onclick=\"DeleteLanguage("+item.id +");\">Delete </button>"
+                            +"<button type=\"button\" class=\"btn btn-info\" style=\";float:right;font-size:x-small\" onclick=\"EditLanguageModal("+item.id+',\''+item.Name+'\',\''+item.Level+"\');\">Edit </button>"
+                            //class=\"col-md-4\"
+                            +"</div>"
+                            //class=row
+                            +"</div>"
+                            //class= panel-heading
+                            +"</div> "
+
+                            +"<div class=\"panel-body\"> <div class=\"row\"><div class=\"col-md-1\"></div> <div class=\"col-md-5\">"+item.Level+"</div> </div> </div> </div></span>";
+                        $('#Language_Panel_Body').append(row);
+                    });
+                },
+                error: function (ex) {
+                    var r = jQuery.parseJSON(response.responseText);
+                    alert("Message: " + r.Message);
+                    alert("StackTrace: " + r.StackTrace);
+                    alert("ExceptionType: " + r.ExceptionType);
+                }
+            });
+            return false;
+        }
+
+        //delete function ------------------------------------------------
+
+        function DeleteLanguage(languageId) {
+            var result = confirm("Want to delete?")
+            if(result){
+                $.ajax({
+                    type: 'DELETE',
+                    url: '@Url.Action("deleteLanguage", "EmployeeProspect")',
+                    dataType: 'json',
+                    data: { id: languageId},
+                    success: function (data) {
+                        jQuery('#Language_Panel_Body div').remove();
+                        LanguageLoadData();
+                    },
+                    error: function (ex) {
+                        var r = jQuery.parseJSON(response.responseText);
+                        alert("Message: " + r.Message);
+                        alert("StackTrace: " + r.StackTrace);
+                        alert("ExceptionType: " + r.ExceptionType);
+                    }
+                });
+                return false;
+            }
+       
+        }
+
+        //edit function ---------------------------------------
+
+        function EditLanguageModal(languageId,name,level) {
+      
+           
+            $("#Language_Name").val(name);
+            $("#Language_Level").val(level);
+
+            $("#Language_id").val(languageId);
+            $('#LanguageModa').modal('show');
+        }
+
+
+
+
+
+
+        //Skill-----------------------------------------------
+
+        //save
+
+        $(function () {
+            $("#Skill_btnSave").click(function () {
+                //alert("");
+                var std = {};
+                var edit=$("#Skill_id").val()=='add'?0:1;
+                var urlString='@Url.Action("addSkill", "EmployeeProspect")';
+                std.Name = $("#Skill_Name").val();
+                std.Description = $("#Skill_Description").val();
+                if(edit==1){
+                    urlString='@Url.Action("EditSkill", "EmployeeProspect")';
+                    std.id=$("#Skill_id").val();
+                }
+                std.EmployeeProspectId=@Model.id;
+
+
+                $.ajax({
+                    type: "POST",
+                    url: urlString,
+                    data: '{std: ' + JSON.stringify(std) + '}',
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function () {
+                        $('#SkillModa').modal('hide');
+                        $("#Skill_Name").val('');
+                        $("#Skill_Description").val('');
+                        $("#Skill_id").val('add');
+                        jQuery('#Skill_Panel_Body div').remove();
+                        SkillLoadData();
+                    },
+                    error: function () {
+                        alert("Error while inserting data");
+                    }
+                });
+                return false;
+            });
+        });
+
+
+//load data
+
+        function SkillLoadData() {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("getSkills", "EmployeeProspect")',
+                dataType: 'json',
+                data: { id: @Model.id},
+                success: function (data) {
+                    var items = '';
+
+
+                    $.each(data, function (i, item) {
+                        var row="<span><div class=\"panel panel-default\">"+
+                            "<div class=\"panel-heading\">"+
+                            "<div class=\"row\" > "
+                            +"<div class=\"col-md-5\" style=\"color: black;font-size:larger;font-weight:bold\"> "+item.Name+
+                            //class=\"col-md-5\"
+                            " </div>"+
+                            " <div class=\"col-md-4\">"
+                            +"<button type=\"button\" class=\"btn btn-info\" style=\"margin-left:4px;float:right;font-size:x-small\" onclick=\"DeleteSkill("+item.id +");\">Delete </button>"
+                            //+"<span><a href=\"#\" onclick=\"DeleteWorkExperience("+item.id +");\" data-toggle=\"tooltip\" title=\"Delete\"><i class=\"fa fa-remove\" style=\"font-size:x-large\"></i></a></span>"+
+                            //+"<a href=\"#\" onclick=\"EditWorkExperienceModal("+item.id+','+from.format("yyyy/mm/dd")+','+to.format("yyyy/mm/dd")+',\''+item.Position+'\',\''+item.Description+"\');\"><i class=\"fa fa-pencil\" style=\"font-size:x-large\" data-toggle=\"tooltip\" title=\"Edit\"></i></a>"+
+                            +"<button type=\"button\" class=\"btn btn-info\" style=\";float:right;font-size:x-small\" onclick=\"EditSkillModal("+item.id+',\''+item.Name+'\',\''+item.Description+"\');\">Edit </button>"
+                            //class=\"col-md-4\"
+                            +"</div>"
+                            //class=row
+                            +"</div>"
+                            //class= panel-heading
+                            +"</div> "
+
+                            +"<div class=\"panel-body\"> <div class=\"row\"><div class=\"col-md-1\"></div> <div class=\"col-md-5\">"+item.Description+"</div> </div> </div> </div></span>";
+                        $('#Skill_Panel_Body').append(row);
+                    });
+                },
+                error: function (ex) {
+                    var r = jQuery.parseJSON(response.responseText);
+                    alert("Message: " + r.Message);
+                    alert("StackTrace: " + r.StackTrace);
+                    alert("ExceptionType: " + r.ExceptionType);
+                }
+            });
+            return false;
+        }
+
+        //Delete
+
+
+        function DeleteSkill(skillId) {
+            var result = confirm("Want to delete?")
+            if(result){
+                $.ajax({
+                    type: 'DELETE',
+                    url: '@Url.Action("deleteSkill", "EmployeeProspect")',
+                    dataType: 'json',
+                    data: { id: skillId},
+                    success: function (data) {
+                        jQuery('#Skill_Panel_Body div').remove();
+                        SkillLoadData();
+                    },
+                    error: function (ex) {
+                        var r = jQuery.parseJSON(response.responseText);
+                        alert("Message: " + r.Message);
+                        alert("StackTrace: " + r.StackTrace);
+                        alert("ExceptionType: " + r.ExceptionType);
+                    }
+                });
+                return false;
+            }
+       
+        }
+
+
+
+
+        //Edit
+
+
+        function EditSkillModal(skillId,name,description) {
+      
+            
+            $("#Skill_Name").val(name);
+            $("#Skill_Description").val(description);
+            $("#Skill_id").val(skillId);
+            $('#SkillModa').modal('show');
+    
+        }
+
+
+
+
+
+
+
 
 
 
