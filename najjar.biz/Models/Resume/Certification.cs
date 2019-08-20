@@ -23,7 +23,9 @@ namespace najjar.biz.Models
         [Display(Name = "Location")]
         public string Location { get; set; }
 
-        
+        public int EmployeeProspectId { get; set; }
+
+        public EmployeeProspect EmployeePros { get; set; }
       
     }
 }

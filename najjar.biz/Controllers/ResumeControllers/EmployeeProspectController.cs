@@ -291,7 +291,7 @@ namespace najjar.biz.Controllers.ResumeControllers
         {
             std.CreationDate = DateTime.Now;
             std.LastModificationDate = DateTime.Now;
-            std.id = (int)std.id;
+            std.EmployeeProspectId = (int)std.EmployeeProspectId; 
             std.Creator = getCurrentUser().Id;
             std.Modifier = getCurrentUser().Id;
             db.Certifications.Add(std);
@@ -319,7 +319,8 @@ namespace najjar.biz.Controllers.ResumeControllers
 
         public JsonResult getCertifications(int id)
         {
-            return Json(db.Certifications.Where(a => a.id.Equals(id)).ToList(), JsonRequestBehavior.AllowGet);
+            return Json(db.Certifications.Where(a => a.EmployeeProspectId.Equals(id)).ToList()
+, JsonRequestBehavior.AllowGet);
         }
 
 

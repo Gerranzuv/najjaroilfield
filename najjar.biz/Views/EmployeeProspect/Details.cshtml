@@ -190,7 +190,7 @@
 
                                 <div class="form-group col-lg-4">
                                     <label for="Certification_Certification Date">Certification Date</label>
-                                    <input type="date" id="Certificatione_Certification Date" class="form-control" name="Certification Date" required />
+                                    <input type="date" id="Certification_CertificationDate" class="form-control" name="Certification Date" required />
                                 </div>
 
                                 <div class="form-group col-lg-4">
@@ -237,6 +237,7 @@
 
     $(document).ready(function () {
         WorkExperienceLoadData();
+        CertificationLoadData();
         $('[data-toggle="tooltip"]').tooltip();
     });
 
@@ -357,37 +358,22 @@
             }
        
     }
-    function EditWorkExperienceModal(workExperienceId,from,to, position,description) {
+        function EditWorkExperienceModal(workExperienceId,from,to, position,description) {
       
-        var toD=new Date(to);
-        var fromD=new Date(from);
-        $("#WorkExperience_From").val(fromD.format("yyyy-mm-dd"));
-        $("#WorkExperience_To").val(toD.format("yyyy-mm-dd"));
-        //document.getElementById("WorkExperience_To").value=toD.format("yyyy-mm-dd");
-        $("#WorkExperience_Position").val(position);
-        $("#WorkExperience_Description").val(description);
-        $("#WorkExperience_id").val(workExperienceId);
-        $('#WorkExperienceModa').modal('show');
-    }
+            var toD=new Date(to);
+            var fromD=new Date(from);
+            $("#WorkExperience_From").val(fromD.format("yyyy-mm-dd"));
+            $("#WorkExperience_To").val(toD.format("yyyy-mm-dd"));
+            //document.getElementById("WorkExperience_To").value=toD.format("yyyy-mm-dd");
+            $("#WorkExperience_Position").val(position);
+            $("#WorkExperience_Description").val(description);
+            $("#WorkExperience_id").val(workExperienceId);
+            $('#WorkExperienceModa').modal('show');
+    
+        }
+//Certificatoins -============================================= 
 
-
-
-
-
-
-
-
-
-    </script>
-
-
-
-    <script type="text/javascript">
-
-    $(document).ready(function () {
-        CertificationLoadData();
-        $('[data-toggle="tooltip"]').tooltip();
-    });
+   
 
 
     $(function () {
@@ -445,8 +431,8 @@
                     $.each(data, function (i, item) {
                         var certifiaction_date = item.CertificationDate;
                         var certifiactionDate =  new Date(parseInt(certifiaction_date.substr(6)));
+                        alert(certifiactionDate);
                        
-
 
 
                         var row="<span><div class=\"panel panel-default\">"+
@@ -464,9 +450,7 @@
 
                          
                             +"<button type=\"button\" class=\"btn btn-info\" style=\"margin-left:4px;float:right;font-size:x-small\" onclick=\"DeleteCertification("+item.id +");\">Delete </button>"
-                            //+"<span><a href=\"#\" onclick=\"DeleteWorkExperience("+item.id +");\" data-toggle=\"tooltip\" title=\"Delete\"><i class=\"fa fa-remove\" style=\"font-size:x-large\"></i></a></span>"+
-                            //+"<a href=\"#\" onclick=\"EditWorkExperienceModal("+item.id+','+from.format("yyyy/mm/dd")+','+to.format("yyyy/mm/dd")+',\''+item.Position+'\',\''+item.Description+"\');\"><i class=\"fa fa-pencil\" style=\"font-size:x-large\" data-toggle=\"tooltip\" title=\"Edit\"></i></a>"+
-                            +"<button type=\"button\" class=\"btn btn-info\" style=\";float:right;font-size:x-small\" onclick=\"EditCertification("+item.id+',\''+item.Name+'\',\''+certifiactionDate.format("yyyy/mm/dd")+'\',\''+item.University+'\',\''+item.Location+"\');\">Edit </button>"
+                            +"<button type=\"button\" class=\"btn btn-info\" style=\";float:right;font-size:x-small\" onclick=\"EditCertificationModal("+item.id+',\''+item.Name+'\',\''+certifiactionDate.format("yyyy/mm/dd")+'\',\''+item.University+'\',\''+item.Location+"\');\">Edit </button>"
                             //class=\"col-md-4\"
                             +"</div>"
                             //class=row
@@ -512,36 +496,18 @@
        
         }
 
-        function EditCertification(certificationId,name,certificationDate, university,location) {
+        function EditCertificationModal(certificationId,name,certificationDate, university,location) {
       
-            var cerD=new Date(certification);
-           
-            $("#certification_CertificationDate").val(cerD.format("yyyy-mm-dd"));
+            var cerD=new Date(certificationDate);
+            $("#Certification_certificationDate").val(cerD.format("yyyy-mm-dd"));
             //document.getElementById("WorkExperience_To").value=toD.format("yyyy-mm-dd");
-            $("#certification_Name").val(name);
-            $("#certification_University").val(university);
-            $("#certification_Location").val(location);
+            $("#Certification_Name").val(name);
+            $("#Certification_University").val(university);
+            $("#Certification_Location").val(location);
 
-            $("#certification_id").val(certificationId);
-            $('#certificationModa').modal('show');
+            $("#Certification_id").val(certificationId);
+            $('#CertificationModa').modal('show');
         }
-
-        $(document).ready(function () {
-            CertificationLoadData();
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -459,6 +459,10 @@
     <Compile Include="Migrations\201908190355143_cert1.Designer.cs">
       <DependentUpon>201908190355143_cert1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908192028386_cerrr1.cs" />
+    <Compile Include="Migrations\201908192028386_cerrr1.Designer.cs">
+      <DependentUpon>201908192028386_cerrr1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArticleComment.cs" />
     <Compile Include="Models\ExamSystemModels\Choice.cs" />
@@ -1001,6 +1005,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908190355143_cert1.resx">
       <DependentUpon>201908190355143_cert1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908192028386_cerrr1.resx">
+      <DependentUpon>201908192028386_cerrr1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
