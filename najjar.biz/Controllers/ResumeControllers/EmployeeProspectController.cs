@@ -418,7 +418,8 @@ namespace najjar.biz.Controllers.ResumeControllers
         //language ----------------------------------------------------------
 
 
-        //addLanguage
+
+        //addlanguage
 
         [HttpPost]
         public ActionResult addLanguage(Language std)
@@ -450,6 +451,7 @@ namespace najjar.biz.Controllers.ResumeControllers
             string message = "SUCCESS";
             return Json(new { Message = message, JsonRequestBehavior.AllowGet });
         }
+
 
 
 
