@@ -463,6 +463,14 @@
     <Compile Include="Migrations\201908192028386_cerrr1.Designer.cs">
       <DependentUpon>201908192028386_cerrr1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908201126511_language1.cs" />
+    <Compile Include="Migrations\201908201126511_language1.Designer.cs">
+      <DependentUpon>201908201126511_language1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908201141541_skill1.cs" />
+    <Compile Include="Migrations\201908201141541_skill1.Designer.cs">
+      <DependentUpon>201908201141541_skill1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArticleComment.cs" />
     <Compile Include="Models\ExamSystemModels\Choice.cs" />
@@ -475,6 +483,8 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Models\EmailLog.cs" />
+    <Compile Include="Models\Resume\Skill.cs" />
+    <Compile Include="Models\Resume\Language.cs" />
     <Compile Include="Models\Resume\Certification.cs" />
     <Compile Include="Models\UserVerificationLog.cs" />
     <Compile Include="Models\Resume\WorkExperience.cs" />
@@ -1008,6 +1018,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908192028386_cerrr1.resx">
       <DependentUpon>201908192028386_cerrr1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908201126511_language1.resx">
+      <DependentUpon>201908201126511_language1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908201141541_skill1.resx">
+      <DependentUpon>201908201141541_skill1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
