@@ -83,7 +83,6 @@ namespace najjar.biz.Models
         [Display(Name = "Food Allowance ")]
         public Double FoodAllowance { get; set; }
 
-        [Required]
         [Display(Name = "Total Salary ")]
         public double TotalSalary { get; set; }
 
@@ -199,5 +198,7 @@ namespace najjar.biz.Models
 
         [Display(Name = "Contract")]
         public String Contract { get; set; }
+
+        public Boolean IsProspect { get; set; }
     }
 }
