@@ -30,6 +30,7 @@ namespace najjar.biz.Models
         public int EmployeeProspectId { get; set; }
 
         public EmployeeProspect EmployeePros { get; set; }
-      
+
+        public List<Certification> WorkExperiences { get; set; }
     }
 }
