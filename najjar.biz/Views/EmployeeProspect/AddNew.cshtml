@@ -72,6 +72,33 @@
                                 <br />
 
                                 <div class="form-group">
+                                    <label class="col-md-4 control-label">Phone Number</label>
+                                    <div class="col-md-8 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                            @Html.EditorFor(model => model.PhoneNumber)
+                                            @Html.ValidationMessageFor(model => model.PhoneNumber)
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <br />
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Fixed Number</label>
+                                    <div class="col-md-8 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                            @Html.EditorFor(model => model.FixedNumber)
+                                            @Html.ValidationMessageFor(model => model.FixedNumber)
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <br />
+
+
+                                <div class="form-group">
                                     <label class="col-md-4 control-label">Nationality </label>
                                     <div class="col-md-8 inputGroupContainer">
                                         <div class="input-group">
@@ -87,11 +114,6 @@
                     <td colspan="1">
 
                         <fieldset>
-
-
-
-
-
                           
 
                             <div class="form-group">
@@ -99,7 +121,7 @@
                                 <div class="col-md-8 inputGroupContainer">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                        @Html.EditorFor(model => model.BirthDate)
+                                        @Html.TextBoxFor(model => model.BirthDate, new { type = "date" })
                                         @Html.ValidationMessageFor(model => model.BirthDate)
                                     </div>
                                 </div>
@@ -111,8 +133,11 @@
                                 <div class="col-md-8 inputGroupContainer">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                        @Html.EditorFor(model => model.Sex)
-                                        @Html.ValidationMessageFor(model => model.Sex)
+                                        @Html.DropDownList("Sex", new List<SelectListItem>
+                                      { new SelectListItem { Text="Male", Value="Male"},
+                                         new SelectListItem{Text="Female", Value="Female"}
+                                        }, "Select Sex")
+                                                @Html.ValidationMessageFor(model => model.Sex)
                                     </div>
                                 </div>
                             </div>
@@ -130,6 +155,50 @@
                             </div>
                             <br />
 
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Martial Status</label>
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                        @Html.DropDownList("MaritalStatus", new List<SelectListItem>
+                                      { new SelectListItem { Text="Single", Value="Single"},
+                                         new SelectListItem{Text="Married", Value="Married"}
+                                        }, "Select MaritalStatus")
+                                        @Html.ValidationMessageFor(model => model.MaritalStatus)
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Military Service</label>
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-home"></i>
+                                        </span>
+                                        @Html.DropDownList("militaryService", new List<SelectListItem>
+                                 { new SelectListItem { Text="Done", Value="Done"},
+                                   new SelectListItem{Text="Not Yet", Value="Not Yet"},
+                                   new SelectListItem{Text="N/A", Value="N/A"}
+                             }, "Select militaryService")
+                                        @Html.ValidationMessageFor(model => model.militaryService)
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Start Date</label>
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                        @Html.TextBoxFor(model => model.StartDate, new { type = "date" })
+                                        @Html.ValidationMessageFor(model => model.StartDate)
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Employee Image</label>
