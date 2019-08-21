@@ -5,94 +5,107 @@
     Layout = "~/Views/Shared/_Admin_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastModificationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AddressInArabic)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmployeeImage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nationality)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sex)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BirthPlace)
-        </th>
-        <th></th>
-    </tr>
+<div>
+    <h2 style="color: #8b224e">EmployeeProspects Management</h2>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastModificationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AddressInArabic)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeeImage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nationality)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BirthDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sex)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BirthPlace)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+    <br />
+    <p style="float:right;text-decoration-color:white;">
 
-</table>
+        <button class="btn btn-primary btn-default" onclick="location.href='@Url.Action("Create", "EmployeeProspect")'">
+            <i class="fa fa-plus-square pull-right" style="font-size:x-large"></i> Create New Employee Prospect
+        </button>
 
+    </p>
+    <table id="myTable" class="table table table-striped table-hover col-sm-10 col-md-10">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreationDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastModificationDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AddressInArabic)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmployeeImage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nationality)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BirthDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sex)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BirthPlace)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastModificationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AddressInArabic)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmployeeImage)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nationality)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BirthDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sex)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BirthPlace)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+
+
+</div>
 
 
 
