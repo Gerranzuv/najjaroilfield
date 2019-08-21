@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity.Validation;
 using najjar.biz.Extra;
+using System.IO;
 
 namespace najjar.biz.Controllers.ResumeControllers
 {
@@ -278,14 +279,17 @@ namespace najjar.biz.Controllers.ResumeControllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddNew(EmployeeProspect employeeprospect)
+        public async Task<ActionResult> AddNew(EmployeeProspect employeeprospect, HttpPostedFileBase upload)
         {
             fillUserData();
             if (ModelState.IsValid)
             {
                 employeeprospect.CreationDate = DateTime.Now;
                 employeeprospect.LastModificationDate = DateTime.Now;
-             
+
+                string path = Path.Combine(Server.MapPath("~/Images"), upload.FileName);
+                upload.SaveAs(path);
+                employeeprospect.EmployeeImage = upload.FileName;
 
 
                 db.EmployeeProspects.Add(employeeprospect);

@@ -595,6 +595,8 @@
     <Content Include="Content\Admin\js\validator.min.js" />
     <Content Include="Content\chamcss.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="css\bootstrap-formhelpers.css" />
+    <Content Include="css\bootstrap-formhelpers.min.css" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.min.css" />
@@ -686,6 +688,8 @@
     <Content Include="Images\whitelogo.png" />
     <Content Include="Images\ww.jpg" />
     <Content Include="Images\ؤ.png" />
+    <Content Include="js\bootstrap-formhelpers.js" />
+    <Content Include="js\bootstrap-formhelpers.min.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="css\print.min.css" />
