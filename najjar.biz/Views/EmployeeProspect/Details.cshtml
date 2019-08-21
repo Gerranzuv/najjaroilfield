@@ -686,7 +686,7 @@
                         $("#Language_Level").val('');
                         $("#Language_id").val('add');
                         jQuery('#Language_Panel_Body div').remove();
-                        LanguageLoadData();
+                        SkillLoadData();
                     },
                     error: function () {
                         alert("Error while inserting data");
@@ -728,7 +728,7 @@
                         +"</div> "
 
                         +"<div class=\"panel-body\"> <div class=\"row\"><div class=\"col-md-1\"></div> <div class=\"col-md-5\">"+item.Level+"</div> </div> </div> </div></span>";
-                    $('#Language_Panel_Body').append(row);
+                    $('#Skill_Panel_Body').append(row);
                 });
             },
             error: function (ex) {
