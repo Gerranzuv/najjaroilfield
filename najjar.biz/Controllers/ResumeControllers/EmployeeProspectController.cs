@@ -291,9 +291,12 @@ namespace najjar.biz.Controllers.ResumeControllers
                 upload.SaveAs(path);
                 employeeprospect.EmployeeImage = upload.FileName;
 
-
+                Employees emp = createNewEmployee(employeeprospect);
+                employeeprospect.EmployeeId = emp.Id;
+                employeeprospect.Employee = emp;
                 db.EmployeeProspects.Add(employeeprospect);
                 await db.SaveChangesAsync();
+
                 return RedirectToAction("Index");
             }
 
@@ -647,6 +650,35 @@ namespace najjar.biz.Controllers.ResumeControllers
         }
 
 
+        public Employees createNewEmployee(EmployeeProspect empPros)
+        {
+            Employees emp = new Employees();
+            emp.creationDate = DateTime.Now;
+            emp.lastModificationDate = DateTime.Now;
+            emp.Name = empPros.Name;
+            emp.Email = empPros.Email;
+            emp.BirthDate = empPros.BirthDate;
+            emp.BirthPlace = empPros.BirthPlace;
+            emp.Country = empPros.Nationality;
+            emp.AddressInArabic = empPros.AddressInArabic;
+            emp.EmployeeImage = empPros.EmployeeImage;
+            emp.EmployeeCode = UserVerificationHelper.GenerateCode();
+            emp.IsProspect = true;
+            emp.EId = emp.EmployeeCode;
+            emp.Status = "Prospect";
+            emp.DirectManager = "Assad Al-Abd";
+            emp.position = "Dummy";
+            emp.MaritalStatus = "Single";
+            emp.PhoneNumber = "2342342";
+            emp.FixedNumber = "234234";
+            emp.militaryService = "Done";
+            emp.StartDate = DateTime.Now;
+            db.Employees.Add(emp);
+            db.SaveChanges();
+            return emp;
+
+
+        }
 
     }
 }

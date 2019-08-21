@@ -62,6 +62,30 @@ namespace najjar.biz.Models
 
         public List<WorkExperience> WorkExperiences { get; set; }
 
+        public int EmployeeId {get;set;}
+
+        public Employees Employee { get; set; }
+
+        [Required]
+        [Display(Name = "Marital Status")]
+        public String MaritalStatus { get; set; }
+
+        [Required]
+        [Display(Name = "Phone Number")]
+        public String PhoneNumber { get; set; }
+
+        [Display(Name = "Fixed Number")]
+        public String FixedNumber { get; set; }
+
+        [Required]
+        [Display(Name = "Military Service")]
+        public String militaryService { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "Start Date ")]
+        public DateTime StartDate { get; set; }
+
         
 
       

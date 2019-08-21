@@ -475,6 +475,14 @@
     <Compile Include="Migrations\201908201644413_contex1.Designer.cs">
       <DependentUpon>201908201644413_contex1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908211722406_employeeVsEmployeeProspect.cs" />
+    <Compile Include="Migrations\201908211722406_employeeVsEmployeeProspect.Designer.cs">
+      <DependentUpon>201908211722406_employeeVsEmployeeProspect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908211731357_employeeprospectNewFields.cs" />
+    <Compile Include="Migrations\201908211731357_employeeprospectNewFields.Designer.cs">
+      <DependentUpon>201908211731357_employeeprospectNewFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArticleComment.cs" />
     <Compile Include="Models\ExamSystemModels\Choice.cs" />
@@ -1035,6 +1043,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908201644413_contex1.resx">
       <DependentUpon>201908201644413_contex1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908211722406_employeeVsEmployeeProspect.resx">
+      <DependentUpon>201908211722406_employeeVsEmployeeProspect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908211731357_employeeprospectNewFields.resx">
+      <DependentUpon>201908211731357_employeeprospectNewFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
