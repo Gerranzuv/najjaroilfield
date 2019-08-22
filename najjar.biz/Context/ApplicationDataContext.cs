@@ -80,6 +80,10 @@ namespace najjar.biz.Context
 
         public System.Data.Entity.DbSet<najjar.biz.Models.Skill> Skills { get; set; }
 
+        public System.Data.Entity.DbSet<najjar.biz.Models.Picklist> Picklists { get; set; }
+
+        public System.Data.Entity.DbSet<najjar.biz.Models.PicklistItem> PicklistItems { get; set; }
+
 
     }
 }

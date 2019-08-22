@@ -1,0 +1,70 @@
+﻿@model IEnumerable<najjar.biz.Models.Picklist>
+
+@{
+    ViewBag.Title = "Index";
+    var picId = Request.QueryString["sourcepage"];
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+<div>
+
+    <h2 style="color: #8b224e">Picklist Management</h2>
+    <br />
+    <p style="float:right;text-decoration-color:white;">
+
+        <button class="btn btn-primary btn-default" onclick="location.href='@Url.Action("Create", "Picklist")'">
+            <i class="fa fa-plus-square pull-right" style="font-size:x-large"></i> Create New Picklist
+        </button>
+
+    </p>
+    <table id="myTable" class="table table table-striped table-hover col-sm-10 col-md-10">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Code
+                </th>
+                <th>
+                    CreationDate
+                </th>
+                <th>
+                    LastModificationDate
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(@item.Name, "ManageItems", "PicklistItem", new { picklistid = @item.id }, null)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastModificationDate)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+    <br />
+
+
+</div>

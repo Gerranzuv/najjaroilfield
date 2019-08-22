@@ -232,6 +232,8 @@
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\SupportController.cs" />
     <Compile Include="Controllers\SystemParameterController.cs" />
+    <Compile Include="Controllers\Systemutil\PicklistController.cs" />
+    <Compile Include="Controllers\Systemutil\PicklistItemController.cs" />
     <Compile Include="Controllers\TestContoller.cs" />
     <Compile Include="Extra\AccessDeniedAuthorizeAttribute.cs" />
     <Compile Include="Extra\UserHelper.cs" />
@@ -483,6 +485,14 @@
     <Compile Include="Migrations\201908211731357_employeeprospectNewFields.Designer.cs">
       <DependentUpon>201908211731357_employeeprospectNewFields.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908221329124_sysutil1.cs" />
+    <Compile Include="Migrations\201908221329124_sysutil1.Designer.cs">
+      <DependentUpon>201908221329124_sysutil1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908221643306_manageitem1.cs" />
+    <Compile Include="Migrations\201908221643306_manageitem1.Designer.cs">
+      <DependentUpon>201908221643306_manageitem1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArticleComment.cs" />
     <Compile Include="Models\ExamSystemModels\Choice.cs" />
@@ -498,6 +508,8 @@
     <Compile Include="Models\Resume\Skill.cs" />
     <Compile Include="Models\Resume\Language.cs" />
     <Compile Include="Models\Resume\Certification.cs" />
+    <Compile Include="Models\SystemsUtil\Picklist.cs" />
+    <Compile Include="Models\SystemsUtil\PicklistItem.cs" />
     <Compile Include="Models\UserVerificationLog.cs" />
     <Compile Include="Models\Resume\WorkExperience.cs" />
     <Compile Include="Models\Resume\EmployeeProspect.cs" />
@@ -851,6 +863,17 @@
     <Content Include="Views\EmployeeProspect\AddNew.cshtml" />
     <Content Include="Views\Account\RegisterGuestUser.cshtml" />
     <Content Include="Views\Account\VerifyEmail.cshtml" />
+    <Content Include="Views\Picklist\Create.cshtml" />
+    <Content Include="Views\Picklist\Delete.cshtml" />
+    <Content Include="Views\Picklist\Details.cshtml" />
+    <Content Include="Views\Picklist\Edit.cshtml" />
+    <Content Include="Views\Picklist\Index.cshtml" />
+    <Content Include="Views\PicklistItem\Create.cshtml" />
+    <Content Include="Views\PicklistItem\Delete.cshtml" />
+    <Content Include="Views\PicklistItem\Details.cshtml" />
+    <Content Include="Views\PicklistItem\Edit.cshtml" />
+    <Content Include="Views\PicklistItem\Index.cshtml" />
+    <Content Include="Views\PicklistItem\ManageItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Roles\Create.cshtml" />
@@ -1049,6 +1072,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908211731357_employeeprospectNewFields.resx">
       <DependentUpon>201908211731357_employeeprospectNewFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908221329124_sysutil1.resx">
+      <DependentUpon>201908221329124_sysutil1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908221643306_manageitem1.resx">
+      <DependentUpon>201908221643306_manageitem1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
