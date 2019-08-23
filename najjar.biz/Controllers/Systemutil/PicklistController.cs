@@ -98,17 +98,22 @@ namespace najjar.biz.Controllers.Systemutil
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="id,Name,Code,CreationDate,LastModificationDate,Creator,Modifier")] Picklist picklist)
+        public ActionResult Edit(Picklist std)
         {
             fillUserData();
+            Picklist toEdit = db.Picklists.Find(std.id);
 
             if (ModelState.IsValid)
             {
-                db.Entry(picklist).State = EntityState.Modified;
+                toEdit.Name = std.Name;
+                toEdit.Code = std.Code;
+                toEdit.LastModificationDate = DateTime.Now;
+                toEdit.Modifier = getCurrentUser().Id;
+                db.Entry(toEdit).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(picklist);
+            return View(std);
         }
 
         // GET: /Picklist/Delete/5
