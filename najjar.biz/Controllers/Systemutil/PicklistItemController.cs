@@ -10,6 +10,9 @@ using najjar.biz.Models;
 using najjar.biz.Context;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity.Validation;
+using najjar.biz.Extra;
+using System.IO;
 
 namespace najjar.biz.Controllers.Systemutil
 {
@@ -31,12 +34,8 @@ namespace najjar.biz.Controllers.Systemutil
         public ActionResult ManageItems(int picklistid)
         {
             fillUserData();
-            PicklistItem picklistItem = db.PicklistItems.Find(picklistid);
-            if (picklistItem == null)
-            {
-                return HttpNotFound();
-            }
-            return View(picklistItem);
+            var picklistitems = db.PicklistItems.Where(p => p.PicklistId == (picklistid)).Include(p => p.FatherPickList);
+            return View(picklistitems.ToList());
         }
 
         // GET: /PicklistItem/Details/5
@@ -57,11 +56,11 @@ namespace najjar.biz.Controllers.Systemutil
         }
 
         // GET: /PicklistItem/Create
-        public ActionResult Create()
+        public ActionResult Create(int picklistid)
         {
             fillUserData();
 
-            ViewBag.PicklistId = new SelectList(db.Picklists, "id", "Name");
+            ViewBag.picklistid = new SelectList(db.Picklists, "id", "Name");
             return View();
         }
 
@@ -70,20 +69,25 @@ namespace najjar.biz.Controllers.Systemutil
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="id,Name,Code,PicklistId,CreationDate,LastModificationDate,Creator,Modifier")] PicklistItem picklistitem)
+        public ActionResult Create(PicklistItem std)
         {
-            fillUserData();
-
-
+            std.CreationDate = DateTime.Now;
+            std.LastModificationDate = DateTime.Now;
+            std.Creator = getCurrentUser().Id;
+            std.Modifier = getCurrentUser().Id;
+            //fatherid = std.getpicklistId;
+            Picklist picklist = db.Picklists.Find(std.PicklistId);
+            std.FatherPickList = picklist;
+            db.PicklistItems.Add(std);
             if (ModelState.IsValid)
             {
-                db.PicklistItems.Add(picklistitem);
+
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ManageItems", new { picklistid = std.PicklistId });
+
             }
 
-            ViewBag.PicklistId = new SelectList(db.Picklists, "id", "Name", picklistitem.PicklistId);
-            return View(picklistitem);
+            return View();
         }
 
         // GET: /PicklistItem/Edit/5
@@ -111,18 +115,23 @@ namespace najjar.biz.Controllers.Systemutil
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="id,Name,Code,PicklistId,CreationDate,LastModificationDate,Creator,Modifier")] PicklistItem picklistitem)
+        public ActionResult Edit( PicklistItem std)
         {
             fillUserData();
 
+            PicklistItem toEdit = db.PicklistItems.Find(std.id);
+           
             if (ModelState.IsValid)
             {
-                db.Entry(picklistitem).State = EntityState.Modified;
+                toEdit.Name = std.Name;
+                toEdit.Code = std.Code;
+                toEdit.LastModificationDate = DateTime.Now;
+                toEdit.Modifier = getCurrentUser().Id;
+                db.Entry(toEdit).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ManageItems", new { picklistid = toEdit.PicklistId });
             }
-            ViewBag.PicklistId = new SelectList(db.Picklists, "id", "Name", picklistitem.PicklistId);
-            return View(picklistitem);
+            return RedirectToAction("ManageItems", new { picklistid = toEdit.PicklistId });
         }
 
         // GET: /PicklistItem/Delete/5
@@ -153,7 +162,7 @@ namespace najjar.biz.Controllers.Systemutil
             PicklistItem picklistitem = db.PicklistItems.Find(id);
             db.PicklistItems.Remove(picklistitem);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("ManageItems", new { picklistid = picklistitem.PicklistId });
         }
 
         protected override void Dispose(bool disposing)
@@ -171,6 +180,13 @@ namespace najjar.biz.Controllers.Systemutil
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDataContext()));
             var user = userManager.FindById(User.Identity.GetUserId());
             ViewBag.CurrentUser = user;
+        }
+
+        public ApplicationUser getCurrentUser()
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDataContext()));
+            ApplicationUser user = userManager.FindById(User.Identity.GetUserId());
+            return user;
         }
     }
 }

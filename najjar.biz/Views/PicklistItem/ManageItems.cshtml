@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "ManageItems";
     Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+    var fatherid = Request.QueryString["picklistid"];
+
+    
 }
 
 <div>
@@ -10,8 +13,9 @@
     <h2 style="color: #8b224e">ManageItems Management</h2>
     <br />
     <p style="float:right;text-decoration-color:white;">
-
-        <button class="btn btn-primary btn-default" onclick="location.href='@Url.Action("Create", "PicklistItem")'">
+        @*@Html.ActionLink(@item.Name, "ManageItems", "PicklistItem", new { picklistid = @item.id }, null)*@
+        @*@Html.HiddenFor(model => model.PicklistId, new { picklistid = fatherid })*@
+        <button class="btn btn-primary btn-default" onclick="location.href='@Url.Action("Create", "PicklistItem", new { picklistid = fatherid }, null)'" />
             <i class="fa fa-plus-square pull-right" style="font-size:x-large"></i> Create New PicklistItem
         </button>
 
@@ -38,9 +42,7 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FatherPickList.Name)
-                    </td>
+                   
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
@@ -56,11 +58,13 @@
 
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+
+                        @*@Html.ActionLink("Details", "Details", new { id = item.id }) |*@
                         @Html.ActionLink("Delete", "Delete", new { id = item.id })
                     </td>
                 </tr>
             }
+
         </tbody>
     </table>
 

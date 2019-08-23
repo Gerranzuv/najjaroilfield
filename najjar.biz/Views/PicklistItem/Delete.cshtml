@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+    var fatherid = Request.QueryString["picklistid"];
+
 }
 
 <h2>Delete</h2>
@@ -12,13 +14,7 @@
     <h4>PicklistItem</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FatherPickList.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FatherPickList.Name)
-        </dd>
+       
 
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -36,37 +32,11 @@
             @Html.DisplayFor(model => model.Code)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </dt>
+       
 
-        <dd>
-            @Html.DisplayFor(model => model.CreationDate)
-        </dd>
+       
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastModificationDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastModificationDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Creator)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Creator)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Modifier)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Modifier)
-        </dd>
+        
 
     </dl>
 
@@ -75,7 +45,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Back to List", "ManageItems", new { picklistid = fatherid }, null)
         </div>
     }
 </div>

@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+    var fatherid = Request.QueryString["picklistid"];
+
+
 }
 
 <h2 style="color: #8b224e">Enter PicklistItem's Information</h2>
@@ -95,7 +98,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "ManageItems", new { picklistid = fatherid }, null)
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
