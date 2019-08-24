@@ -44,6 +44,7 @@ namespace najjar.biz.Controllers
             //Get full list of employees
             var employees = from s in db.Employees
                             select s;
+            employees = employees.Where(s => s.IsProspect.Equals(false));
             //Filter result by name
             if (!String.IsNullOrEmpty(searchString))
             {

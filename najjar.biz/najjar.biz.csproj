@@ -493,6 +493,10 @@
     <Compile Include="Migrations\201908221643306_manageitem1.Designer.cs">
       <DependentUpon>201908221643306_manageitem1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908240754514_employees2.cs" />
+    <Compile Include="Migrations\201908240754514_employees2.Designer.cs">
+      <DependentUpon>201908240754514_employees2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArticleComment.cs" />
     <Compile Include="Models\ExamSystemModels\Choice.cs" />
@@ -615,8 +619,6 @@
     <Content Include="Content\Admin\js\validator.min.js" />
     <Content Include="Content\chamcss.css" />
     <Content Include="Content\PagedList.css" />
-    <Content Include="css\bootstrap-formhelpers.css" />
-    <Content Include="css\bootstrap-formhelpers.min.css" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.min.css" />
@@ -708,8 +710,6 @@
     <Content Include="Images\whitelogo.png" />
     <Content Include="Images\ww.jpg" />
     <Content Include="Images\ؤ.png" />
-    <Content Include="js\bootstrap-formhelpers.js" />
-    <Content Include="js\bootstrap-formhelpers.min.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="css\print.min.css" />
@@ -1078,6 +1078,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908221643306_manageitem1.resx">
       <DependentUpon>201908221643306_manageitem1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908240754514_employees2.resx">
+      <DependentUpon>201908240754514_employees2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -261,7 +261,7 @@
                                         </li>
                                     }
 
-                                    @if (User.IsInRole("Employee"))
+                                    @if (User.IsInRole("Employee") || User.IsInRole("EmployeeProspect"))
                                     {
                                         <li class="treeview">
                                             <a href="#">
@@ -286,13 +286,15 @@
                                                 <span class="label label-primary pull-right">new</span>
                                             </a>
                                             <ul class="treeview-menu">
-                                                <li><a href="@Url.Action("AddNew", "EmployeeProspect")"><i class="fa fa-angle-right"></i>Add Presonal Info</a></li>
-                                                <li><a href="@Url.Action("Details", "EmployeeProspect")"><i class="fa fa-angle-right"></i>My CV</a></li>
+                                                @if (!User.IsInRole("EmployeeProspect"))
+                                                {<li><a href="@Url.Action("AddNew", "EmployeeProspect")"><i class="fa fa-angle-right"></i>Add Presonal Info</a></li>}
+                                                @if (User.IsInRole("EmployeeProspect"))
+                                                {<li><a href="@Url.Action("Details", "EmployeeProspect", new { id = @ViewBag.CurrentUser.EmployeeId })"><i class="fa fa-angle-right"></i>My CV</a></li>}
                                             </ul>
                                         </li>
                                     }
 
-                                    @if (User.IsInRole("Employee") || User.IsInRole("Guest"))
+                                    @if (User.IsInRole("Employee") || User.IsInRole("EmployeeProspect"))
                                     {
                                         <li class="treeview">
                                             <a href="#">

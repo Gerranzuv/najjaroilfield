@@ -282,11 +282,18 @@ namespace najjar.biz.Controllers.ResumeControllers
         public async Task<ActionResult> AddNew(EmployeeProspect employeeprospect, HttpPostedFileBase upload)
         {
             fillUserData();
+            if (upload == null)
+            {
+                TempData["errMessage"] = "Please upload valid image";
+                return View(employeeprospect);
+            }
             if (ModelState.IsValid)
             {
+
+                var user = getCurrentUser();
                 employeeprospect.CreationDate = DateTime.Now;
                 employeeprospect.LastModificationDate = DateTime.Now;
-
+                
                 string path = Path.Combine(Server.MapPath("~/Images"), upload.FileName);
                 upload.SaveAs(path);
                 employeeprospect.EmployeeImage = upload.FileName;
@@ -295,9 +302,17 @@ namespace najjar.biz.Controllers.ResumeControllers
                 employeeprospect.EmployeeId = emp.Id;
                 employeeprospect.Employee = emp;
                 db.EmployeeProspects.Add(employeeprospect);
-                await db.SaveChangesAsync();
+                if (user.EmployeeId == null)
+                {
+                    user.EmployeeId = emp.Id;
+                    db.Entry(user).State = EntityState.Modified;
 
-                return RedirectToAction("Index");
+                }
+                UserVerificationHelper.assignUserToRole(user.Id, "EmployeeProspect");
+                await db.SaveChangesAsync();
+                this.Response.Cache.SetNoStore();
+
+                return RedirectToAction("Details", new { id=employeeprospect.id});
             }
 
             return View(employeeprospect);
@@ -660,6 +675,8 @@ namespace najjar.biz.Controllers.ResumeControllers
             emp.BirthDate = empPros.BirthDate;
             emp.BirthPlace = empPros.BirthPlace;
             emp.Country = empPros.Nationality;
+            emp.Location = empPros.Address;
+            emp.Address = empPros.Address;
             emp.AddressInArabic = empPros.AddressInArabic;
             emp.EmployeeImage = empPros.EmployeeImage;
             emp.EmployeeCode = UserVerificationHelper.GenerateCode();
@@ -668,13 +685,31 @@ namespace najjar.biz.Controllers.ResumeControllers
             emp.Status = "Prospect";
             emp.DirectManager = "Assad Al-Abd";
             emp.position = "Dummy";
-            emp.MaritalStatus = "Single";
-            emp.PhoneNumber = "2342342";
-            emp.FixedNumber = "234234";
-            emp.militaryService = "Done";
-            emp.StartDate = DateTime.Now;
+            emp.MaritalStatus = empPros.MaritalStatus;
+            emp.PhoneNumber = empPros.PhoneNumber;
+            emp.FixedNumber = empPros.FixedNumber;
+            emp.militaryService = empPros.militaryService;
+            emp.StartDate=DateTime.Now;
             db.Employees.Add(emp);
-            db.SaveChanges();
+            try { db.SaveChanges(); }
+            catch (DbEntityValidationException e)
+            {
+                string message1 = e.StackTrace;
+                foreach (var eve in e.EntityValidationErrors)
+                {
+
+                    message1 += eve.Entry.State + "\n";
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        message1 += String.Format("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                        message1 += "\n";
+                    }
+                }
+
+                TempData["errMessage"] = message1;
+            }
+
             return emp;
 
 
