@@ -42,6 +42,10 @@ namespace najjar.biz.Controllers.ResumeControllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Country = PicklistRepository.findPickListItemsByPicklistCode("country");
+            ViewBag.Language = PicklistRepository.findPickListItemsByPicklistCode("language");
+            ViewBag.LanguageLevel = PicklistRepository.findPickListItemsByPicklistCode("language_level");
+            
             return View(employeeprospect);
         }
 
@@ -49,6 +53,7 @@ namespace najjar.biz.Controllers.ResumeControllers
         public ActionResult Create()
         {
             fillUserData();
+            
             return View();
         }
 
@@ -98,7 +103,7 @@ namespace najjar.biz.Controllers.ResumeControllers
             {
                 db.Entry(employeeprospect).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id=employeeprospect.id});
             }
             return View(employeeprospect);
         }
@@ -233,6 +238,10 @@ namespace najjar.biz.Controllers.ResumeControllers
         public ActionResult AddNew()
         {
             fillUserData();
+            ViewBag.Sex = PicklistRepository.findPickListItemsByPicklistCode("sex");
+            ViewBag.Nationality = PicklistRepository.findPickListItemsByPicklistCode("nationality");
+            ViewBag.MartialStatus = PicklistRepository.findPickListItemsByPicklistCode("martial_status");
+            ViewBag.militaryService = PicklistRepository.findPickListItemsByPicklistCode("military_service");
             return View();
         }
 
@@ -282,6 +291,7 @@ namespace najjar.biz.Controllers.ResumeControllers
         public async Task<ActionResult> AddNew(EmployeeProspect employeeprospect, HttpPostedFileBase upload)
         {
             fillUserData();
+
             if (upload == null)
             {
                 TempData["errMessage"] = "Please upload valid image";
@@ -315,6 +325,10 @@ namespace najjar.biz.Controllers.ResumeControllers
                 return RedirectToAction("Details", new { id=employeeprospect.id});
             }
 
+            ViewBag.Sex = PicklistRepository.findPickListItemsByPicklistCode("sex");
+            ViewBag.Nationality = PicklistRepository.findPickListItemsByPicklistCode("nationality");
+            ViewBag.MartialStatus = PicklistRepository.findPickListItemsByPicklistCode("martial_status");
+            ViewBag.militaryService = PicklistRepository.findPickListItemsByPicklistCode("military_service");
             return View(employeeprospect);
         }
 

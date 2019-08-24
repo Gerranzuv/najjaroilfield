@@ -103,7 +103,7 @@
                                     <div class="col-md-8 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                            @Html.EditorFor(model => model.Nationality)
+                                            @Html.DropDownList("Nationality", new SelectList(ViewBag.Nationality, "code", "name"))
                                             @Html.ValidationMessageFor(model => model.Nationality)
                                         </div>
                                     </div>
@@ -133,10 +133,13 @@
                                 <div class="col-md-8 inputGroupContainer">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                        @Html.DropDownList("Sex", new List<SelectListItem>
+                                        @Html.DropDownList("Sex", new SelectList(ViewBag.Sex, "code", "name"))
+
+
+                                        @*@Html.DropDownList("Sex", new List<SelectListItem>
                                       { new SelectListItem { Text="Male", Value="Male"},
                                          new SelectListItem{Text="Female", Value="Female"}
-                                        }, "Select Sex")
+                                        }, "Select Sex")*@
                                                 @Html.ValidationMessageFor(model => model.Sex)
                                     </div>
                                 </div>
@@ -160,10 +163,11 @@
                                 <div class="col-md-8 inputGroupContainer">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                        @Html.DropDownList("MaritalStatus", new List<SelectListItem>
+                                        @Html.DropDownList("MaritalStatus", new SelectList(ViewBag.MartialStatus, "code", "name"))
+                                        @*@Html.DropDownList("MaritalStatus", new List<SelectListItem>
                                       { new SelectListItem { Text="Single", Value="Single"},
                                          new SelectListItem{Text="Married", Value="Married"}
-                                        }, "Select MaritalStatus")
+                                        }, "Select MaritalStatus")*@
                                         @Html.ValidationMessageFor(model => model.MaritalStatus)
                                     </div>
                                 </div>
@@ -177,11 +181,14 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-home"></i>
                                         </span>
-                                        @Html.DropDownList("militaryService", new List<SelectListItem>
+                                        @Html.DropDownList("militaryService", new SelectList(ViewBag.militaryService, "code", "name"))
+
+                                 
+                                        @*@Html.DropDownList("militaryService", new List<SelectListItem>
                                  { new SelectListItem { Text="Done", Value="Done"},
                                    new SelectListItem{Text="Not Yet", Value="Not Yet"},
                                    new SelectListItem{Text="N/A", Value="N/A"}
-                             }, "Select militaryService")
+                             }, "Select militaryService")*@
                                         @Html.ValidationMessageFor(model => model.militaryService)
                                     </div>
                                 </div>
@@ -239,9 +246,7 @@
 
 
 <!--  =================================================================-->
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>

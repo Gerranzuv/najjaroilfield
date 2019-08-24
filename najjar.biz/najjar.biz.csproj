@@ -236,6 +236,7 @@
     <Compile Include="Controllers\Systemutil\PicklistItemController.cs" />
     <Compile Include="Controllers\TestContoller.cs" />
     <Compile Include="Extra\AccessDeniedAuthorizeAttribute.cs" />
+    <Compile Include="Extra\PicklistRepository.cs" />
     <Compile Include="Extra\UserHelper.cs" />
     <Compile Include="Extra\EmailHelper.cs" />
     <Compile Include="Extra\ParameterRepository.cs" />

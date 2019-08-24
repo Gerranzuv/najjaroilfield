@@ -107,64 +107,107 @@
                                     @if (User.IsInRole("Administrator"))
                                     {
                                         <li class="treeview">
-                                            <a href="#">
-                                                <i class="fa fa-laptop"></i>
-                                                <span>Roles</span>
-                                                <i class="fa fa-angle-left pull-right"></i>
-                                            </a>
-                                            <ul class="treeview-menu">
-                                                <li><a href="@Url.Action("Index", "Roles")"><i class="fa fa-angle-right"></i> Roles List</a></li>
-                                                <li><a href="@Url.Action("Create", "Roles")"><i class="fa fa-angle-right"></i> Add new Role</a></li>
-                                            </ul>
-                                        </li>
-                                    }
-                                    
-                                    @if (User.IsInRole("Administrator"))
-                                    {
-                                        <li class="treeview">
-                                            <a href="#">
-                                                <i class="fa fa-laptop"></i>
-                                                <span>System parameters</span>
-                                                <i class="fa fa-angle-left pull-right"></i>
-                                            </a>
-                                            <ul class="treeview-menu">
-                                                @*<li><a href="@Url.Action("Index", "Roles")"><i class="fa fa-angle-right"></i> Users List</a></li>*@
-                                                <li><a href="@Url.Action("index", "SystemParameter")"><i class="fa fa-angle-right"></i> Parameters List</a></li>
-                                            </ul>
-                                        </li>
-                                    }
-                                    
-                                    @if (User.IsInRole("Administrator"))
-                                    {
-                                        <li class="treeview">
-                                            <a href="#">
-                                                <i class="fa fa-envelope"></i>
-                                                <span>Sent Emails</span>
-                                                <i class="fa fa-angle-left pull-right"></i>
-                                            </a>
-                                            <ul class="treeview-menu">
-                                                @*<li><a href="@Url.Action("Index", "Roles")"><i class="fa fa-angle-right"></i> Users List</a></li>*@
-                                                <li><a href="@Url.Action("index", "EmailLog")"><i class="fa fa-angle-right"></i> Email Log </a></li>
-                                            </ul>
-                                        </li>
-                                    }
 
-                                    @if (User.IsInRole("Administrator"))
-                                    {
-                                        <li class="treeview">
+
                                             <a href="#">
-                                                <i class="fa fa-user"></i>
-                                                <span>Users Management</span>
+                                                <i class="fa fa-laptop"></i>
+                                                <span>System Mgmt</span>
                                                 <i class="fa fa-angle-left pull-right"></i>
                                             </a>
                                             <ul class="treeview-menu">
-                                                @*<li><a href="@Url.Action("Index", "Roles")"><i class="fa fa-angle-right"></i> Users List</a></li>*@
-                                                <li><a href="@Url.Action("Register", "Account")"><i class="fa fa-angle-right"></i> Register New User</a></li>
-                                                <li><a href="@Url.Action("UsersList", "Account")"><i class="fa fa-angle-right"></i> Users List</a></li>
-                                                <li>@Html.ActionLink("Change Password", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+                                                <!--Roles Menu -->
+                                                <li class="treeview">
+                                                    <a href="#">
+                                                        <i class="fa fa-laptop"></i>
+                                                        <span>Roles</span>
+                                                        <i class="fa fa-angle-left pull-right"></i>
+                                                    </a>
+                                                    <ul class="treeview-menu">
+                                                        <li><a href="@Url.Action("Index", "Roles")"><i class="fa fa-angle-right"></i> Roles List</a></li>
+                                                        <li><a href="@Url.Action("Create", "Roles")"><i class="fa fa-angle-right"></i> Add new Role</a></li>
+                                                    </ul>
+
+                                                </li>
+                                                <!--User Management -->
+                                                <li class="treeview">
+                                                    <a href="#">
+                                                        <i class="fa fa-user"></i>
+                                                        <span>Users Management</span>
+                                                        <i class="fa fa-angle-left pull-right"></i>
+                                                    </a>
+                                                    <ul class="treeview-menu">
+                                                        @*<li><a href="@Url.Action("Index", "Roles")"><i class="fa fa-angle-right"></i> Users List</a></li>*@
+                                                        <li><a href="@Url.Action("Register", "Account")"><i class="fa fa-angle-right"></i> Register New User</a></li>
+                                                        <li><a href="@Url.Action("UsersList", "Account")"><i class="fa fa-angle-right"></i> Users List</a></li>
+                                                        <li>@Html.ActionLink("Change Password", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+                                                    </ul>
+                                                </li>
+
+                                                <!--Sent Email -->
+                                                <li class="treeview">
+                                                    <a href="#">
+                                                        <i class="fa fa-envelope"></i>
+                                                        <span>Sent Emails</span>
+                                                        <i class="fa fa-angle-left pull-right"></i>
+                                                    </a>
+                                                    <ul class="treeview-menu">
+                                                        @*<li><a href="@Url.Action("Index", "Roles")"><i class="fa fa-angle-right"></i> Users List</a></li>*@
+                                                        <li><a href="@Url.Action("index", "EmailLog")"><i class="fa fa-angle-right"></i> Email Log </a></li>
+                                                    </ul>
+                                                </li>
+                                                <!--System Parameters-->
+                                                <li class="treeview">
+                                                    <a href="#">
+                                                        <i class="fa fa-laptop"></i>
+                                                        <span>System parameters</span>
+                                                        <i class="fa fa-angle-left pull-right"></i>
+                                                    </a>
+                                                    <ul class="treeview-menu">
+                                                        @*<li><a href="@Url.Action("Index", "Roles")"><i class="fa fa-angle-right"></i> Users List</a></li>*@
+                                                        <li><a href="@Url.Action("index", "SystemParameter")"><i class="fa fa-angle-right"></i> Parameters List</a></li>
+                                                    </ul>
+                                                </li>
+                                                <!--Contact us Messages-->
+                                                <li class="treeview">
+                                                    <a href="#">
+                                                        <i class="fa fa-pie-chart"></i>
+                                                        <span>Contact Us Messages</span>
+                                                        <span class="fa fa-angle-left pull-right"></span>
+                                                    </a>
+                                                    <ul class="treeview-menu">
+                                                        <li><a href="@Url.Action("Index", "ContactUs")"><i class="fa fa-angle-right"></i> Received Messages</a></li>
+                                                        <li><a href="@Url.Action("Create", "ContactUs")"><i class="fa fa-angle-right"></i> Add new Message</a></li>
+                                                    </ul>
+                                                </li>
+                                                <!--Document Mgmt-->
+                                                <li class="treeview">
+                                                    <a href="#">
+                                                        <i class="fa fa-file"></i>
+                                                        <span>Documents Management</span>
+                                                        <span class="fa fa-angle-left pull-right"></span>
+                                                    </a>
+                                                    <ul class="treeview-menu">
+                                                        <li><a href="@Url.Action("Index", "Support")"><i class="fa fa-angle-right"></i> All Employees Documents</a></li>
+                                                        <li><a href="@Url.Action("Create", "Support")"><i class="fa fa-angle-right"></i> Add new Document</a></li>
+                                                    </ul>
+                                                </li>
+                                                <!--Picklist-->
+                                                <li class="treeview">
+                                                    <a href="#">
+                                                        <i class="fa fa-file"></i>
+                                                        <span>Picklists</span>
+                                                        <span class="fa fa-angle-left pull-right"></span>
+                                                    </a>
+                                                    <ul class="treeview-menu">
+                                                        <li><a href="@Url.Action("Index", "Picklist")"><i class="fa fa-angle-right"></i> PickList Menu</a></li>
+                                                    </ul>
+                                                </li>
                                             </ul>
                                         </li>
+                                            
                                     }
+                                    
+                                 
                                     @if (User.IsInRole("Administrator"))
                                     {
                                         <li class="treeview">
@@ -198,20 +241,7 @@
                                         </li>
                                     }
 
-                                    @if (User.IsInRole("Administrator"))
-                                    {
-                                        <li class="treeview">
-                                            <a href="#">
-                                                <i class="fa fa-pie-chart"></i>
-                                                <span>Contact Us Messages</span>
-                                                <span class="fa fa-angle-left pull-right"></span>
-                                            </a>
-                                            <ul class="treeview-menu">
-                                                <li><a href="@Url.Action("Index", "ContactUs")"><i class="fa fa-angle-right"></i> Received Messages</a></li>
-                                                <li><a href="@Url.Action("Create", "ContactUs")"><i class="fa fa-angle-right"></i> Add new Message</a></li>
-                                            </ul>
-                                        </li>
-                                    }
+                                    
 
                                     @if (User.IsInRole("Administrator"))
                                     {
@@ -228,21 +258,7 @@
                                             </ul>
                                         </li>
                                     }
-                                    @if (User.IsInRole("Administrator"))
-                                    {
-
-                                        <li class="treeview">
-                                            <a href="#">
-                                                <i class="fa fa-file"></i>
-                                                <span>Documents Management</span>
-                                                <span class="fa fa-angle-left pull-right"></span>
-                                            </a>
-                                            <ul class="treeview-menu">
-                                                <li><a href="@Url.Action("Index", "Support")"><i class="fa fa-angle-right"></i> All Employees Documents</a></li>
-                                                <li><a href="@Url.Action("Create", "Support")"><i class="fa fa-angle-right"></i> Add new Document</a></li>
-                                            </ul>
-                                        </li>
-                                    }
+                                    
                                     @if (User.IsInRole("Administrator"))
                                     {
                                         <li class="treeview">
