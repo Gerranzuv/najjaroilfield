@@ -101,7 +101,7 @@ namespace najjar.biz.Models
         [Display(Name = "Status ")]
         public String Status { get; set; }
 
-        [Required]
+        
         [Display(Name = "Department ")]
         public String Department { get; set; }
 

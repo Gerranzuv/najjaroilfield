@@ -197,6 +197,19 @@ namespace najjar.biz.Extra
             db.SaveChanges();
         }
 
+        public static void assignUserToRole(string userId, string roleName)
+        {
+            var user = db.Users.Find(userId);
+            var role = db.Roles.Where(a => a.Name.Equals(roleName)).FirstOrDefault();
+            user.Roles.Add(new IdentityUserRole()
+            {
+                UserId = user.Id,
+                RoleId = role.Id
+            });
+
+            db.SaveChanges();
+        }
+
         public  class VerificationResult
         {
             public string status { get; set; }

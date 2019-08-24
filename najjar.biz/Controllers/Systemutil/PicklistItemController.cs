@@ -188,5 +188,50 @@ namespace najjar.biz.Controllers.Systemutil
             ApplicationUser user = userManager.FindById(User.Identity.GetUserId());
             return user;
         }
+
+        [HttpPost]
+        public ActionResult BulkIsert(BulkPicklistItems std)
+        {
+            Picklist picklist=PicklistRepository.findPicklistByCode(std.picklistCode);
+            List<string>items =std.itemsName.Split(new char[] { ';' }).ToList();
+            foreach (var item in items)
+            {
+                PicklistItem temp = new PicklistItem();
+                temp.Name = item;
+                temp.Code = item.ToLower();
+                temp.CreationDate = DateTime.Now;
+                temp.LastModificationDate = DateTime.Now;
+                temp.PicklistId = picklist.id;
+                db.PicklistItems.Add(temp);
+            }
+            
+            try { db.SaveChanges(); }
+            catch (DbEntityValidationException e)
+            {
+                string message1 = e.StackTrace;
+                foreach (var eve in e.EntityValidationErrors)
+                {
+
+                    message1 += eve.Entry.State + "\n";
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        message1 += String.Format("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                        message1 += "\n";
+                    }
+                }
+                return Json(new { Message = message1, JsonRequestBehavior.AllowGet });
+            }
+
+            string message = "SUCCESS";
+            return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+        }
+
+        public  class BulkPicklistItems
+        {
+            public string picklistCode { get; set; }
+            public string itemsName { get; set; }
+            
+        }
     }
 }
