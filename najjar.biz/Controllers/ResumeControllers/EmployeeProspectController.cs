@@ -100,7 +100,7 @@ namespace najjar.biz.Controllers.ResumeControllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="id,CreationDate,LastModificationDate,Name,Address,AddressInArabic,Email,EmployeeImage,Nationality,BirthDate,Sex,BirthPlace")] EmployeeProspect employeeprospect)
+        public async Task<ActionResult> Edit(EmployeeProspect employeeprospect, HttpPostedFileBase upload)
         {
             fillUserData();
             ViewBag.Sex = PicklistRepository.findPickListItemsByPicklistCode("sex");
@@ -109,6 +109,15 @@ namespace najjar.biz.Controllers.ResumeControllers
             ViewBag.militaryService = PicklistRepository.findPickListItemsByPicklistCode("military_service");
             if (ModelState.IsValid)
             {
+                string oldpath = employeeprospect.EmployeeImage;
+                if (upload != null)
+                {
+                    System.IO.File.Delete(oldpath);
+                    string path = Path.Combine(Server.MapPath("~/Images"), upload.FileName);
+                    upload.SaveAs(path);
+                    employeeprospect.EmployeeImage = upload.FileName;
+                }
+
                 db.Entry(employeeprospect).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Details", new { id=employeeprospect.id});
