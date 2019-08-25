@@ -10,6 +10,26 @@
     <title>Details </title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.css">
+    <style>
+        .modal-header {
+            background-color: #8b224e;
+            padding: 9px 15px;
+            color: #FFF;
+            font-family: Verdana, sans-serif;
+            border-bottom: 1px solid #eee;
+           
+        }
+
+        .modal-body {
+            background-color: #ecf0f1;
+            padding: 9px 15px;
+            color: #000;
+            font-family: Verdana, sans-serif;
+        }
+        .div {
+            font-family: Verdana, sans-serif;
+        }
+    </style>
 </head>
 
 <div>
@@ -167,9 +187,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-
-            </div>
+            
         </div>
 
     </div>
@@ -249,9 +267,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-
-                </div>
+                
             </div>
 
         </div>
@@ -320,10 +336,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-
-
-                </div>
+               
             </div>
 
         </div>
@@ -393,9 +406,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-
-            </div>
+           
         </div>
 
     </div>
@@ -439,11 +450,6 @@
             showConfirmButton: false,
             timer: 2000
         })
-    }
-
-    function  confrimAction(){
-
-
     }
 
     $(function () {
@@ -570,11 +576,7 @@
             reverseButtons: true
         }).then((result) => {
             if (result.value) {
-            swalWithBootstrapButtons.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              'success'
-            );
+            
         $.ajax({
             type: 'DELETE',
             url: '@Url.Action("deleteWorkExperience", "EmployeeProspect")',
@@ -584,7 +586,6 @@
                 jQuery('#WorkExperience_Panel_Body div').remove();
                 toDelete=false;
                 WorkExperienceLoadData();
-                successMessage();
 
             },
             error: function (ex) {
@@ -593,7 +594,12 @@
                 alert("StackTrace: " + r.StackTrace);
                 alert("ExceptionType: " + r.ExceptionType);
             }
-        });
+    });
+    swalWithBootstrapButtons.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        );
     } else if (
       /* Read more about handling dismissals below */
       result.dismiss === Swal.DismissReason.cancel
@@ -767,7 +773,6 @@
             success: function (data) {
                 jQuery('#Certification_Panel_Body div').remove();
                 CertificationLoadData();
-                successMessage();
             },
             error: function (ex) {
                 var r = jQuery.parseJSON(response.responseText);
@@ -938,7 +943,6 @@
             success: function (data) {
                 jQuery('#Language_Panel_Body li').remove();
                 LanguageLoadData();
-                successMessage();
             },
             error: function (ex) {
                 var r = jQuery.parseJSON(response.responseText);
@@ -1112,7 +1116,6 @@
                 success: function (data) {
                     jQuery('#Skill_Panel_Body div').remove();
                     SkillLoadData();
-                    successMessage();
                 },
                 error: function (ex) {
                     var r = jQuery.parseJSON(response.responseText);

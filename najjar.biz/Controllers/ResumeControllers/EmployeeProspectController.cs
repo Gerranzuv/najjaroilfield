@@ -79,6 +79,10 @@ namespace najjar.biz.Controllers.ResumeControllers
         public async Task<ActionResult> Edit(int? id)
         {
             fillUserData();
+            ViewBag.Sex = PicklistRepository.findPickListItemsByPicklistCode("sex");
+            ViewBag.Nationality = PicklistRepository.findPickListItemsByPicklistCode("nationality");
+            ViewBag.MartialStatus = PicklistRepository.findPickListItemsByPicklistCode("martial_status");
+            ViewBag.militaryService = PicklistRepository.findPickListItemsByPicklistCode("military_service");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -99,6 +103,10 @@ namespace najjar.biz.Controllers.ResumeControllers
         public async Task<ActionResult> Edit([Bind(Include="id,CreationDate,LastModificationDate,Name,Address,AddressInArabic,Email,EmployeeImage,Nationality,BirthDate,Sex,BirthPlace")] EmployeeProspect employeeprospect)
         {
             fillUserData();
+            ViewBag.Sex = PicklistRepository.findPickListItemsByPicklistCode("sex");
+            ViewBag.Nationality = PicklistRepository.findPickListItemsByPicklistCode("nationality");
+            ViewBag.MartialStatus = PicklistRepository.findPickListItemsByPicklistCode("martial_status");
+            ViewBag.militaryService = PicklistRepository.findPickListItemsByPicklistCode("military_service");
             if (ModelState.IsValid)
             {
                 db.Entry(employeeprospect).State = EntityState.Modified;
