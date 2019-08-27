@@ -91,7 +91,7 @@
                                     <label class="col-md-4 control-label">Fixed Number</label>
                                     <div class="col-md-8 inputGroupContainer">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                            <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
                                             @Html.EditorFor(model => model.FixedNumber)
                                             @Html.ValidationMessageFor(model => model.FixedNumber)
                                         </div>
@@ -104,7 +104,7 @@
                                     <label class="col-md-4 control-label">Nationality </label>
                                     <div class="col-md-8 inputGroupContainer">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                            <span class="input-group-addon"><i class="fa fa-flag"></i></span>
                                             @Html.DropDownList("Nationality", new SelectList(ViewBag.Nationality, "code", "name"))
                                             @Html.ValidationMessageFor(model => model.Nationality)
                                         </div>
@@ -127,7 +127,7 @@
                                 <label class="col-md-4 control-label">Birth Date</label>
                                 <div class="col-md-8 inputGroupContainer">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                        <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
                                         @Html.TextBoxFor(model => model.BirthDate, new { type = "date", @Value = Model.BirthDate.ToString("yyyy-MM-dd") })
 
 
@@ -142,7 +142,7 @@
                                 <label class="col-md-4 control-label">Sex</label>
                                 <div class="col-md-8 inputGroupContainer">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <span class="input-group-addon"><i class="fa fa-male"></i></span>
                                         @Html.DropDownList("Sex", new SelectList(ViewBag.Sex, "code", "name"))
 
 
@@ -160,7 +160,7 @@
                                 <label class="col-md-4 control-label">Birth Place</label>
                                 <div class="col-md-8 inputGroupContainer">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                        <span class="input-group-addon"><i class="fa fa-building"></i></span>
                                         @Html.EditorFor(model => model.BirthPlace)
                                         @Html.ValidationMessageFor(model => model.BirthPlace)
                                     </div>
@@ -173,7 +173,7 @@
                                 <label class="col-md-4 control-label">Martial Status</label>
                                 <div class="col-md-8 inputGroupContainer">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                        <span class="input-group-addon"><i class="fa fa-heart"></i></span>
                                         @Html.DropDownList("MaritalStatus", new SelectList(ViewBag.MartialStatus, "code", "name"))
 
 
@@ -192,7 +192,7 @@
                                 <div class="col-md-8 inputGroupContainer">
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <i class="glyphicon glyphicon-home"></i>
+                                            <i class="fa fa-rocket"></i>
                                         </span>
                                         @Html.DropDownList("militaryService", new SelectList(ViewBag.militaryService, "code", "name"))
 

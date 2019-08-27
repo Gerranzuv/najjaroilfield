@@ -880,10 +880,6 @@
     <Content Include="Views\PicklistItem\Edit.cshtml" />
     <Content Include="Views\PicklistItem\Index.cshtml" />
     <Content Include="Views\PicklistItem\ManageItems.cshtml" />
-    <Content Include="Views\UserVerificationLog\Create.cshtml" />
-    <Content Include="Views\UserVerificationLog\Delete.cshtml" />
-    <Content Include="Views\UserVerificationLog\Details.cshtml" />
-    <Content Include="Views\UserVerificationLog\Edit.cshtml" />
     <Content Include="Views\UserVerificationLog\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
