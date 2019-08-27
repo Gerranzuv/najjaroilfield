@@ -235,6 +235,7 @@
     <Compile Include="Controllers\Systemutil\PicklistController.cs" />
     <Compile Include="Controllers\Systemutil\PicklistItemController.cs" />
     <Compile Include="Controllers\TestContoller.cs" />
+    <Compile Include="Controllers\UserVerificationLogController.cs" />
     <Compile Include="Extra\AccessDeniedAuthorizeAttribute.cs" />
     <Compile Include="Extra\PicklistRepository.cs" />
     <Compile Include="Extra\UserHelper.cs" />
@@ -497,6 +498,10 @@
     <Compile Include="Migrations\201908240754514_employees2.cs" />
     <Compile Include="Migrations\201908240754514_employees2.Designer.cs">
       <DependentUpon>201908240754514_employees2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908270612565_emppros1.cs" />
+    <Compile Include="Migrations\201908270612565_emppros1.Designer.cs">
+      <DependentUpon>201908270612565_emppros1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArticleComment.cs" />
@@ -875,6 +880,11 @@
     <Content Include="Views\PicklistItem\Edit.cshtml" />
     <Content Include="Views\PicklistItem\Index.cshtml" />
     <Content Include="Views\PicklistItem\ManageItems.cshtml" />
+    <Content Include="Views\UserVerificationLog\Create.cshtml" />
+    <Content Include="Views\UserVerificationLog\Delete.cshtml" />
+    <Content Include="Views\UserVerificationLog\Details.cshtml" />
+    <Content Include="Views\UserVerificationLog\Edit.cshtml" />
+    <Content Include="Views\UserVerificationLog\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Roles\Create.cshtml" />
@@ -1082,6 +1092,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908240754514_employees2.resx">
       <DependentUpon>201908240754514_employees2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908270612565_emppros1.resx">
+      <DependentUpon>201908270612565_emppros1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

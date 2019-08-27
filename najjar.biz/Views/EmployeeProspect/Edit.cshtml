@@ -128,7 +128,10 @@
                                 <div class="col-md-8 inputGroupContainer">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                        @Html.TextBoxFor(model => model.BirthDate, new { type = "date" })
+                                        @Html.TextBoxFor(model => model.BirthDate, new { type = "date", @Value = Model.BirthDate.ToString("yyyy-MM-dd") })
+
+
+                                        @*@Html.TextBoxFor(model => model.BirthDate, new { type = "date" })*@
                                         @Html.ValidationMessageFor(model => model.BirthDate)
                                     </div>
                                 </div>
@@ -205,7 +208,7 @@
                             </div>
                             <br />
 
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 <label class="col-md-4 control-label">Start Date</label>
                                 <div class="col-md-8 inputGroupContainer">
                                     <div class="input-group">
@@ -215,7 +218,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <br />
+                            <br />*@
 
 
                             <div class="form-group">
