@@ -340,18 +340,20 @@ namespace najjar.biz.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( Employees employees, HttpPostedFileBase upload)
+        public ActionResult Edit( Employees employee, HttpPostedFileBase upload)
         {
             fillUserData();
             if (ModelState.IsValid)
             {
-                string oldpath = employees.EmployeeImage;
+                Employees toEdit = db.Employees.Find(employee.Id);
+
+                string oldpath = employee.EmployeeImage;
                 if (upload != null)
                 {
                     System.IO.File.Delete(oldpath);
                     string path = Path.Combine(Server.MapPath("~/Images"), upload.FileName);
                     upload.SaveAs(path);
-                    employees.EmployeeImage = upload.FileName;
+                    toEdit.EmployeeImage = upload.FileName;
                 }
                     var depMap = new Dictionary<string, string>
                     {
@@ -378,16 +380,39 @@ namespace najjar.biz.Controllers
                         { "Iraq", "64" }
                     };
 
-                    string month = employees.StartDate.ToString("MM");
-                    string year = employees.StartDate.ToString("yy");
+                    string month = toEdit.StartDate.ToString("MM");
+                    string year = toEdit.StartDate.ToString("yy");
 
-                    employees.EmployeeCode = depMap[employees.Department] + month + year + countryMap[employees.Country] + employees.EId;
-                    employees.lastModificationDate = DateTime.Now;
-                    db.Entry(employees).State = EntityState.Modified;
+
+
+                    toEdit.Name = employee.Name;
+                    toEdit.EId = employee.EId;
+                    toEdit.BirthDate = employee.BirthDate;
+                    toEdit.BirthPlace = employee.BirthPlace;
+                    toEdit.MaritalStatus = employee.MaritalStatus;
+                    toEdit.Location = employee.Location;
+                    toEdit.Email = employee.Email;
+                    toEdit.PhoneNumber = employee.PhoneNumber;
+                    toEdit.FixedNumber = employee.FixedNumber;
+                    toEdit.Address = employee.Address;
+                    toEdit.Country = employee.Country;
+                    toEdit.AddressInArabic = employee.AddressInArabic;
+                    toEdit.militaryService = employee.militaryService;
+                    toEdit.StartDate = employee.StartDate;
+                    toEdit.Contract = employee.Contract;
+                    toEdit.TotalSalary = employee.TotalSalary;
+                    toEdit.Status = employee.Status;
+                    toEdit.Department = employee.Department;
+                    toEdit.DirectManager = employee.DirectManager;
+                    toEdit.position = employee.position;
+
+                    toEdit.EmployeeCode = depMap[employee.Department] + month + year + countryMap[employee.Country] + employee.EId;
+                    toEdit.lastModificationDate = DateTime.Now;
+                    db.Entry(toEdit).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("PersonalPage", new { Employeeid = employees.Id });
+                    return RedirectToAction("PersonalPage", new { Employeeid = employee.Id });
             }
-            return View(employees);
+            return View(employee);
         }
 
 
