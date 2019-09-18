@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity.Validation;
 using najjar.biz.Extra;
 using System.IO;
+using PagedList;
 
 namespace najjar.biz.Controllers.Systemutil
 {
@@ -31,11 +32,13 @@ namespace najjar.biz.Controllers.Systemutil
 
 
         // GET: /ManageItems/
-        public ActionResult ManageItems(int picklistid)
+        public ActionResult ManageItems(int picklistid, int? page)
         {
             fillUserData();
-            var picklistitems = db.PicklistItems.Where(p => p.PicklistId == (picklistid)).Include(p => p.FatherPickList);
-            return View(picklistitems.ToList());
+            var picklistitems = db.PicklistItems.Where(p => p.PicklistId == (picklistid)).OrderByDescending(r => r.CreationDate); ;
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(picklistitems.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: /PicklistItem/Details/5

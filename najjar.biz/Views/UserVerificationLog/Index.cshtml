@@ -1,0 +1,100 @@
+﻿@model PagedList.IPagedList<najjar.biz.Models.UserVerificationLog>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+<div>
+    <h2 style="color: #8b224e">User Verification Log Management</h2>
+
+    <br />
+    @*<p style="float:right;text-decoration-color:white;">
+
+            <button class="btn btn-primary btn-default" onclick="location.href='@Url.Action("Create", "EmailLog")'">
+                <i class="fa fa-plus-square pull-right" style="font-size:x-large"></i> Create New E-mail
+            </button>
+
+        </p>*@
+    <table id="myTable" class="table table table-striped table-hover col-sm-10 col-md-10">
+        <thead>
+            <tr>
+                <th>
+                    CreationDate
+                </th>
+                <th>
+                    LastModificationDate
+                </th>
+                <th>
+                    ConfirmationDate
+                </th>
+                <th>
+                    ExpiryDate
+                </th>
+                <th>
+                    Code
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    IsEmailSent
+                </th>
+                <th>
+                    UserId
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastModificationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ConfirmationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ExpiryDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsEmailSent)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))
+
+    <br />
+
+
+</div>

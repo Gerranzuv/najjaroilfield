@@ -1,5 +1,6 @@
-﻿@model IEnumerable<najjar.biz.Models.PicklistItem>
-
+﻿@model PagedList.IPagedList<najjar.biz.Models.PicklistItem>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     ViewBag.Title = "ManageItems";
     Layout = "~/Views/Shared/_Admin_Layout.cshtml";
@@ -67,6 +68,13 @@
 
         </tbody>
     </table>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))
+
+
+
 
     <br />
 

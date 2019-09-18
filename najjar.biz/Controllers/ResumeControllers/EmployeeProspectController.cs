@@ -15,6 +15,7 @@ using System.Data.Entity.Validation;
 using najjar.biz.Extra;
 using System.IO;
 
+
 namespace najjar.biz.Controllers.ResumeControllers
 {
     public class EmployeeProspectController : Controller
@@ -28,6 +29,7 @@ namespace najjar.biz.Controllers.ResumeControllers
             fillUserData();
             return View(await db.EmployeeProspects.ToListAsync());
         }
+
 
         // GET: /EmployeeProspect/Details/5
         public async Task<ActionResult> Details(int? id)
@@ -100,16 +102,44 @@ namespace najjar.biz.Controllers.ResumeControllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="id,CreationDate,LastModificationDate,Name,Address,AddressInArabic,Email,EmployeeImage,Nationality,BirthDate,Sex,BirthPlace")] EmployeeProspect employeeprospect)
+        public async Task<ActionResult> Edit(EmployeeProspect employeeprospect, HttpPostedFileBase upload)
         {
             fillUserData();
             ViewBag.Sex = PicklistRepository.findPickListItemsByPicklistCode("sex");
             ViewBag.Nationality = PicklistRepository.findPickListItemsByPicklistCode("nationality");
             ViewBag.MartialStatus = PicklistRepository.findPickListItemsByPicklistCode("martial_status");
             ViewBag.militaryService = PicklistRepository.findPickListItemsByPicklistCode("military_service");
+            EmployeeProspect toEdit = db.EmployeeProspects.Find(employeeprospect.id);
             if (ModelState.IsValid)
             {
-                db.Entry(employeeprospect).State = EntityState.Modified;
+                EmployeeProspect toEditt = db.EmployeeProspects.Where(a => a.id == employeeprospect.id).FirstOrDefault();
+                string oldpath = employeeprospect.EmployeeImage;
+                if (upload != null)
+                {
+
+                    toEditt.Name = employeeprospect.Name;
+                    toEditt.Address = employeeprospect.Address;
+                    toEditt.Email = employeeprospect.Email;
+                    toEditt.AddressInArabic = employeeprospect.AddressInArabic;
+                    toEditt.PhoneNumber = employeeprospect.PhoneNumber;
+                    toEditt.FixedNumber = employeeprospect.FixedNumber;
+                    toEditt.Nationality = employeeprospect.Nationality;
+                    toEditt.BirthDate = employeeprospect.BirthDate;
+                    toEditt.Sex = employeeprospect.Sex;
+                    toEditt.BirthPlace = employeeprospect.BirthPlace;
+                    toEditt.MaritalStatus = employeeprospect.MaritalStatus;
+                    toEditt.militaryService = employeeprospect.militaryService;
+                    toEditt.FixedNumber = employeeprospect.FixedNumber;
+                    toEdit.LastModificationDate = DateTime.Now;
+                    toEdit.Modifier = getCurrentUser().Id;
+                    System.IO.File.Delete(oldpath);
+                    string path = Path.Combine(Server.MapPath("~/Images"), upload.FileName);
+                    upload.SaveAs(path);
+                    toEditt.EmployeeImage = upload.FileName;
+                    db.Entry(toEdit).State = EntityState.Modified;
+
+                }
+
                 await db.SaveChangesAsync();
                 return RedirectToAction("Details", new { id=employeeprospect.id});
             }

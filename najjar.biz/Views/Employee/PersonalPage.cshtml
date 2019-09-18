@@ -37,9 +37,17 @@
                 </li>
             </ul>
         </div>
+        <div class="col-md-2">
+            @if (Model.EmployeeImage != null)
+            {
+                var path = Path.Combine("/Images/", Model.EmployeeImage);
+                <img src="@path" alt="@Model.Name" title="@Model.Name" class="img-thumbnail" height="200" />
+            }
+        </div>
+        <div class="col-md-6" id="PersonalInfoDV">
 
-        <div class="col-md-8" id="PersonalInfoDV">
             <h2 class="text-center" style="color: #071689 !important;">Personal Information for @Model.Name</h2>
+
             <table class="table table-responsive" style="margin-top:3%">
                 <tr>
                     <th>
@@ -161,9 +169,11 @@
                         @Html.DisplayFor(model => model.Address)
                     </td>
                 </tr>
+
             </table>
 
             <hr />
+
             @if (User.IsInRole("Administrator"))
             {
                 <div class="row">
@@ -175,13 +185,7 @@
                 </div>
             }
         </div>
-        <div class="col-md-3">
-            @if (Model.EmployeeImage != null)
-            {
-                var path = Path.Combine("/Images/", Model.EmployeeImage);
-                <img src="@path" alt="@Model.Name" title="@Model.Name" class="img-thumbnail" height="200" />
-            }
-        </div>
+       
     </div>
     <!-- /.row -->
 </div>
